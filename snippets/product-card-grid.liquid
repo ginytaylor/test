@@ -9,61 +9,41 @@
     {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
-  
-
+  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url | within: collection }}">
+    <span class="visually-hidden">{{ product.title }}</span>
+  </a>
+  <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">{{ product.title }}</div>
   {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
   {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
   {%- assign preview_image = product.featured_media.preview_image -%}
-  {%- assign img_url = preview_image | img_url: '1x1'  -%}
-  {%- assign img_url_l = preview_image | img_url: '430x540', crop: "center"  -%}
-  {% assign images = product.images %}
-  {% assign img_hover_url = img_url_l %}
-<div class="product-card-inner ">
-  {% if images.size > 1 %}
-  {% assign img_hover = images[1] %}
-  {% assign img_hover_url = img_hover.src | img_url: '430x540', crop: "center"  %} 
-  {% endif %}
-    {% render 'flair-product-badges', product: product %}
-    <a class="grid-view-item__link grid-view-item__image-container" href="{{ product.url }}">
-        <div class="product-card__image-with-placeholder-wrapper" data-image-loading-animation>
-            <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
-                <div class="img-main">
-                    <img id="{{ img_id }}"
-                    class="grid-view-item__image lazyload"
-                    alt="{{ preview_image.alt }}"
-                    src="{{ img_url }}"
-                    data-src="{{ img_url_l }}" >
-                </div>
-                <div class="img-hover">
-                    <img
-                    class="grid-view-item__image lazyload"
-                    alt=""
-                    src="{{ img_url }}"
-                    data-src="{{ img_hover_url }}" >
-                </div>
-            </div>
-        </div>
-    </a>
-    <div class="icon-actions">
-        <a href="{{ product.url }}" class="add-cart"><span class="icon-cart_a"></span></a>
-        <!-- Swym Wishlist Plus EPI Button-->
-          <button data-with-epi="true" class="wishlist-cart swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}" data-variant-id="{{product.variants[0].id}}" data-product-url="{{ shop.url }}{{ product.url }}"></button>
-        <!-- Swym Wishlist Plus EPI Button-->
+  {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+  {% unless preview_image == blank %}
+    {% include 'image-style', image: preview_image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
+  {% endunless %}
+
+  <div class="product-card__image-with-placeholder-wrapper" data-image-loading-animation>
+    <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
+      <div style="padding-top:{% unless preview_image == blank %}{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%{% else %}100%{% endunless %};">
+        <img id="{{ img_id }}"
+              class="grid-view-item__image lazyload"
+              alt="{{ preview_image.alt }}"
+              data-src="{{ img_url }}"
+              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+              data-aspectratio="{{ preview_image.aspect_ratio }}"
+              data-sizes="auto"
+              data-image>
+      </div>
     </div>
-</div>
+  </div>
 
   <noscript>
     {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
     <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
   </noscript>
-  <div class="card-footer">
-    <div class="card-info">
-      {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
-      <div class="h7 grid-view-item__title product-card__title" aria-hidden="true"><a class="grid-view-item__link grid-view-item__image-container" href="{{ product.url }}">{{ product.title }}</a></div>
-    </div>
-    <div class="colors">
-      {% include 'swatch_color', product:product %}
-    </div>
-  </div>
-</div>
 
+  
+
+  {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+  <div class="btn btn-view-p"> {{ 'products.product.add_to_cart' | t }}</div>
+</div>

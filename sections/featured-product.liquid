@@ -159,9 +159,9 @@
             {% include 'product-price', variant: current_variant, product: product, show_vendor: section.settings.show_vendor %}
           </div>
 
-          {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+          {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__policies rte" data-product-policies>
-              {%- if cart.taxes_included -%}
+              {%- if shop.taxes_included -%}
                 {{ 'products.product.include_taxes' | t }}
               {%- endif -%}
               {%- if shop.shipping_policy.body != blank -%}
@@ -187,8 +187,6 @@
               {%- if current_variant.available == false %} product-form--variant-sold-out {%- endif -%}
             {%- endcapture %}
             {% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '' %}
-              {{ form | payment_terms }}
-
               {% unless section_onboarding %}
                 {% unless product.has_only_default_variant %}
                   <div class="product-form__controls-group">
@@ -447,7 +445,7 @@
         "nb": "Vis leverandør",
         "nl": "Leverancier weergeven",
         "pl": "Pokaż dostawcę",
-        "pt-BR": "Exibir fabricante",
+        "pt-BR": "Exibir fornecedor",
         "pt-PT": "Mostrar fornecedor",
         "sv": "Visa säljare",
         "th": "แสดงผู้ขาย",
@@ -473,7 +471,7 @@
         "ja": "動的チェックアウトボタンを表示する",
         "ko": "동적 결제 버튼 표시",
         "nb": "Vis dynamisk knapp for å gå til kassen",
-        "nl": "Dynamische checkoutknop weergeven",
+        "nl": "Dynamische betaalknop weergeven",
         "pl": "Pokaż dynamiczny przycisk realizacji zakupu",
         "pt-BR": "Exibir botão de checkout dinâmico",
         "pt-PT": "Mostrar o botão dinâmico de finalização da compra",

@@ -1,58 +1,62 @@
-{%- assign collection = collections[section.settings.collection] -%}
 <div class="page-width">
-  <div class="grid grid__collections">
-    <div class="grid__item col-4 col-md-3 ">
-        <div class="grid__info">
-              {% if section.settings.title != blank %}
-                <h2 class="h2">{{ section.settings.title | escape }}</h2>
-              {% endif %}
-              {% if section.settings.text != blank %}
-                <div class="info-desc">
-                  <div class="p-large">{{  section.settings.text }}</div>
-                </div>
-              {% endif %}
-              {% if section.settings.show_view_all %}
-                <div class="shop-all">
-                  <a href="{{ collection.url }}" class="btn_light btn_light_large" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
-                    {{ 'collections.general.view_all' | t }}
-                  </a>
-                </div>
-              {% endif %}
-        </div>
+  {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+      <h2>{{ section.settings.title | escape }}</h2>
     </div>
-    <div class="grid__item col-8 col-md-5">
-      
-         {%- assign max_height = 540 -%}
-        {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
-        <div class="swiper-container swiper-container-{{section.id}} featured-products-slider">
-          <div class="swiper-wrapper">
-            {% for product in collection.products limit: product_limit %}
-              <div class="swiper-slide grid__item--{{section.id}}">
-                {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-              </div>
-            {% else %}
+  {% endif %}
 
-              {% for i in (1..product_limit) %}
-                <div class="swiper-slide grid__item--{{section.id}} ">
-                  <div class="grid-view-item product-card">
-                    <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="#">
-                      <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
-                    </a>
-                    <div class="grid-view-item__image-wrapper">
-                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                      {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                    </div>
-                    <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
-                    {% include 'product-price' %}
-                  </div>
-                </div>
-              {% endfor %}
-            {% endfor %}
+  {%- assign collection = collections[section.settings.collection] -%}
+
+  {% case section.settings.grid %}
+    {% when 2 %}
+      {%- assign max_height = 530 -%}
+      {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+      {%- assign max_height = 345 -%}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+      {%- assign max_height = 250 -%}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+      {%- assign max_height = 195 -%}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+  {% endcase %}
+
+  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
+
+  <ul class="grid grid--uniform grid--view-items">
+    {% for product in collection.products limit: product_limit %}
+      <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+        {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+      </li>
+    {% else %}
+
+      {% for i in (1..product_limit) %}
+        <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+          <div class="grid-view-item product-card">
+            <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="#">
+              <span class="visually-hidden">{{ 'homepage.onboarding.product_title' | t }}</span>
+            </a>
+            <div class="grid-view-item__image-wrapper">
+              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+            <div class="h4 grid-view-item__title" aria-hidden="true">{{ 'homepage.onboarding.product_title' | t }}</div>
+            {% include 'product-price' %}
           </div>
-        </div>
+        </li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+
+  {% if section.settings.show_view_all %}
+    <hr class="hr--invisible" aria-hidden="true" />
+    <div class="text-center">
+      <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
+        {{ 'collections.general.view_all' | t }}
+      </a>
     </div>
-  </div>
-  
+  {% endif %}
 
 </div>
 
@@ -83,7 +87,7 @@
     "zh-CN": "特色产品系列",
     "zh-TW": "精選商品系列"
   },
-  "class": "index-section featured-products-block",
+  "class": "index-section",
   "settings": [
     {
       "type": "text",
@@ -134,11 +138,6 @@
         "zh-CN": "特色产品系列",
         "zh-TW": "精選商品系列"
       }
-    },
-    {
-      "id": "text",
-       "type": "text",
-       "label": "Text"
     },
     {
       "id": "collection",
@@ -246,7 +245,7 @@
         "nb": "Vis produktleverandører",
         "nl": "Productleveranciers weergeven",
         "pl": "Pokaż dostawców produktu",
-        "pt-BR": "Exibir fabricantes do produto",
+        "pt-BR": "Exibir fornecedores do produto",
         "pt-PT": "Mostrar fornecedores do produto",
         "sv": "Visa produktleverantörer",
         "th": "แสดงผู้ขายสินค้า",

@@ -163,10 +163,10 @@
       "remove": "Verwijderen",
       "subtotal": "Subtotaal",
       "savings": "Je bespaart",
-      "taxes_and_shipping_at_checkout": "Belastingen en verzendkosten worden berekend bij de checkout",
-      "taxes_and_shipping_policy_at_checkout_html": "Belastingen en <a href=\"{{ link }}\">verzendkosten<\/a> worden berekend bij de checkout",
-      "taxes_included_but_shipping_at_checkout": "Belasting inbegrepen en verzendkosten worden berekend bij de checkout",
-      "taxes_included_and_shipping_policy_html": "Inclusief belasting. <a href=\"{{ link }}\">Verzendkosten<\/a> worden berekend bij de checkout.",
+      "taxes_and_shipping_at_checkout": "Belastingen en verzendkosten worden berekend bij het afrekenen",
+      "taxes_and_shipping_policy_at_checkout_html": "Belastingen en <a href=\"{{ link }}\">verzendkosten<\/a> worden berekend bij het afrekenen",
+      "taxes_included_but_shipping_at_checkout": "Belasting inbegrepen en verzendkosten worden berekend bij het afrekenen",
+      "taxes_included_and_shipping_policy_html": "Inclusief belasting. <a href=\"{{ link }}\">Verzendkosten<\/a> worden berekend bij het afrekenen.",
       "update": "Bijwerken",
       "checkout": "Afrekenen",
       "empty": "Je winkelwagen is leeg.",
@@ -270,11 +270,11 @@
       "delete_confirm": "Weet je zeker dat je dit adres wilt verwijderen?"
     },
     "login": {
-      "title": "Inloggegevens",
+      "title": "Aanmelden",
       "email": "E-mail",
       "password": "Wachtwoord",
       "forgot_password": "Wachtwoord vergeten?",
-      "sign_in": "Inloggen",
+      "sign_in": "Aanmelden",
       "guest_title": "Doorgaan als gast",
       "guest_continue": "Verdergaan"
     },
@@ -335,7 +335,7 @@
   },
   "homepage": {
     "general": {
-      "title": "Homepage"
+      "title": "Startpagina"
     },
     "onboarding": {
       "product_title": "Naam van je product",
@@ -363,8 +363,8 @@
     },
     "customer": {
       "account": "Account",
-      "log_out": "Uitloggen",
-      "log_in": "Inloggen",
+      "log_out": "Afmelden",
+      "log_in": "Aanmelden",
       "create_account": "Account aanmaken"
     },
     "footer": {
@@ -385,7 +385,7 @@
       "vendor": "Verkoper",
       "quantity_minimum_message": "Hoeveelheid moet 1 of meer zijn",
       "include_taxes": "Inclusief belasting",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Verzendkosten<\/a> worden berekend bij de checkout.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Verzendkosten<\/a> worden berekend bij het afrekenen.",
       "unit_price_label": "Eenheidsprijs",
       "view_cart": "Winkelwagen bekijken",
       "availability": "Beschikbaarheid",
@@ -402,7 +402,7 @@
       "disabled": "Uitgeschakeld",
       "expired": "Verlopen op {{ expiry }}",
       "active": "Verloopt op {{ expiry }}",
-      "redeem_html": "Gebruik deze code bij de checkout om je cadeaubon van {{ value }} te verzilveren",
+      "redeem_html": "Gebruik deze code bij het afrekenen om je cadeaubon van {{ value }} te verzilveren",
       "shop_link": "Ga winkelen",
       "print": "Deze cadeaubon afdrukken",
       "remaining_html": "{{ balance }} over",
@@ -419,12 +419,5 @@
       "pick_up_available_at_html": "Afhaling is beschikbaar bij <strong>{{ location_name }}<\/strong>",
       "pick_up_unavailable_at_html": "Afhaling is momenteel niet beschikbaar bij <strong>{{ location_name }}<\/strong>"
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

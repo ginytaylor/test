@@ -1,43 +1,34 @@
-
+<div class="page-width">
   {% if section.settings.title != blank %}
     <div class="section-header text-center">
-      <h2 class="h2">{{ section.settings.title | escape }}</h2>
+      <h2>{{ section.settings.title | escape }}</h2>
     </div>
   {% endif %}
 
   {% if section.blocks.size > 0 %}
-  <div class="logo-bar-slider-outer">
-    <div class="logo-bar-slider swiper-container">
-      {% capture logobar %}
-      
-      <ul class="swiper-wrapper logo-bar {% if section.settings.title_enable %} logo-bar--large{% endif %}">
-        {% for block in section.blocks %}
-          <li class="swiper-slide logo-bar__item{% if section.settings.title_enable %} logo-bar__item--large{% endif %}" {{ block.shopify_attributes }}>
-            {% if block.settings.link != blank %}
-              <a href="{{ block.settings.link }}" class="logo-bar__link">
-            {% endif %}
-            {% if block.settings.image != blank %}
-              {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt, 'logo-bar__image' }}
-            {% else %}
-              {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
-            {% endif %}
-            {% if block.settings.link != blank %}
-              </a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-       {% endcapture %}
-      {{ logobar }}
-      
-    </div>
-  </div>
+    <ul class="logo-bar{% if section.settings.title_enable %} logo-bar--large{% endif %}">
+      {% for block in section.blocks %}
+        <li class="logo-bar__item{% if section.settings.title_enable %} logo-bar__item--large{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}" class="logo-bar__link">
+          {% endif %}
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | img_url: '160x160', scale: 2 | img_tag: block.settings.image.alt, 'logo-bar__image' }}
+          {% else %}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          {% if block.settings.link != blank %}
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   {% endif %}
 
   {% if section.blocks.size == 0 %}
     {% include 'no-blocks' %}
   {% endif %}
-
+</div>
 
 
 
@@ -57,7 +48,7 @@
     "nb": "Logoliste",
     "nl": "Logolijst",
     "pl": "Lista logo",
-    "pt-BR": "Lista de logos",
+    "pt-BR": "Lista de logotipos",
     "pt-PT": "Lista de logótipos",
     "sv": "Logotyplista",
     "th": "รายการโลโก้",
@@ -66,7 +57,7 @@
     "zh-CN": "logo 列表",
     "zh-TW": "標誌清單"
   },
-  "class": "index-section index-section-logo-bar",
+  "class": "index-section",
   "max_blocks": 20,
   "settings": [
     {
@@ -109,7 +100,7 @@
         "nb": "Logoliste",
         "nl": "Logolijst",
         "pl": "Lista logo",
-        "pt-BR": "Lista de logos",
+        "pt-BR": "Lista de logotipos",
         "pt-PT": "Lista de logótipos",
         "sv": "Logotyplista",
         "th": "รายการโลโก้",
@@ -137,7 +128,7 @@
         "nb": "Logo",
         "nl": "Logo",
         "pl": "Logo",
-        "pt-BR": "Logo",
+        "pt-BR": "Logotipo",
         "pt-PT": "Logótipo",
         "sv": "Logotyp",
         "th": "โลโก้",
@@ -243,7 +234,7 @@
         "nb": "Logoliste",
         "nl": "Logolijst",
         "pl": "Lista logo",
-        "pt-BR": "Lista de logos",
+        "pt-BR": "Lista de logotipos",
         "pt-PT": "Lista de logótipos",
         "sv": "Logotyplista",
         "th": "รายการโลโก้",

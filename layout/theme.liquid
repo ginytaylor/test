@@ -1,5 +1,5 @@
-{% comment %}ly_liquid_scripts_begin{% endcomment %}{% capture ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}<!doctype html>
-<html class="no-js" lang="{{ request.locale.iso_code }}"{% comment %}ly_dir_replace_for_[]_begin{% endcomment %}{%- assign language_code = '_' | append: request.locale.iso_code -%}{%- if '_ar_he_fa_ur' contains language_code -%} dir="rtl" {%- endif -%}{% comment %}ly_dir_replace_end{% endcomment %}>
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,42 +10,27 @@
   <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
   <link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
 
-  <!-- Global site tag (gtag.js) - Google Ads: 401329305 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-401329305"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'AW-401329305');
-  </script>
-  
   {%- assign header_font = settings.type_header_font -%}
   {%- assign base_font = settings.type_base_font -%}
   {%- assign base_font_bolder = base_font | font_modify: 'weight', 'bolder' -%}
   {%- assign base_font_bold = base_font | font_modify: 'weight', 'bold' -%}
   {%- assign base_font_italic = base_font | font_modify: 'style', 'italic' -%}
   {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
-  <link rel="preload" href="{{ 'swiper.css' | asset_url }}" as="style">
+
   <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
   <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
   <link rel="preload" as="font" href="{{ base_font_bold | font_url }}" type="font/woff2" crossorigin>
-  <link rel="preload" href="{{ 'swiper.js' | asset_url }}" as="script">
-  <link rel="preload" href="{{ 'gsap.min.js' | asset_url }}" as="script">
-  <link rel="preload" href="{{ 'texture.js' | asset_url }}" as="script">
   <link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
-  {% if template contains 'index' or template contains 'product' %}
-  <link rel="preload" href="{{ 'slick.min.js' | asset_url }}" as="script">
-  {% endif %}
-  <link rel="preload" href="{{ 'scandale.js' | asset_url }}" as="script">
   <link rel="preload" href="{{ 'lazysizes.js' | asset_url }}" as="script">
-  
+
   {%- if canonical_url != blank  -%}
     <link rel="canonical" href="{{ canonical_url }}">
   {%- endif -%}
 
-    <link rel="shortcut icon" href="{{ '20210818_scandale_favicon.svg' | asset_url }}" type="image/png">
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
 
   {%- capture seo_title -%}
     {%- if request.page_type == 'search' and search.performed == true -%}
@@ -64,7 +49,7 @@
       &ndash; {{ shop.name }}
     {%- endunless -%}
   {%- endcapture -%}
-  <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  <title>{{ seo_title | strip }}</title>
 
   {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
@@ -73,7 +58,7 @@
   {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
 
-  <style>*,::after,::before{box-sizing:border-box}body{margin:0}body,html{background-color:var(--color-body)}body,button{font-size:calc(var(--font-size-base) * 1px);font-family:var(--font-stack-body);font-style:var(--font-style-body);font-weight:var(--font-weight-body);color:var(--color-text);line-height:1.5}body,button{-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}.border-bottom{border-bottom:1px solid var(--color-border)}.btn--link{background-color:transparent;border:0;margin:0;color:var(--color-text);text-align:left}.text-right{text-align:right}.icon{display:inline-block;width:20px;height:20px;vertical-align:middle;fill:currentColor}.icon__fallback-text,.visually-hidden{position:absolute!important;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,svg.icon:not(.icon--full-color) g,svg.icon:not(.icon--full-color) line,svg.icon:not(.icon--full-color) path,svg.icon:not(.icon--full-color) polygon,svg.icon:not(.icon--full-color) polyline,svg.icon:not(.icon--full-color) rect,symbol.icon:not(.icon--full-color) circle,symbol.icon:not(.icon--full-color) ellipse,symbol.icon:not(.icon--full-color) g,symbol.icon:not(.icon--full-color) line,symbol.icon:not(.icon--full-color) path,symbol.icon:not(.icon--full-color) polygon,symbol.icon:not(.icon--full-color) polyline,symbol.icon:not(.icon--full-color) rect{fill:inherit;stroke:inherit}li{list-style:none}.list--inline{padding:0;margin:0}.list--inline>li{display:inline-block;margin-bottom:0;vertical-align:middle}a{color:var(--color-text);text-decoration:none}.h1,.h2,h1,h2{margin:0 0 17.5px;font-family:var(--font-stack-header);font-style:var(--font-style-header);font-weight:var(--font-weight-header);line-height:1.2;overflow-wrap:break-word;word-wrap:break-word}.h1 a,.h2 a,h1 a,h2 a{color:inherit;text-decoration:none;font-weight:inherit}.h1,h1{font-size:calc(((var(--font-h1-desktop))/ (var(--font-size-base))) * 1em);text-transform:none;letter-spacing:0}@media only screen and (max-width:749px){.h1,h1{font-size:calc(((var(--font-h1-mobile))/ (var(--font-size-base))) * 1em)}}.h2,h2{font-size:calc(((var(--font-h2-desktop))/ (var(--font-size-base))) * 1em);text-transform:uppercase;letter-spacing:.1em}@media only screen and (max-width:749px){.h2,h2{font-size:calc(((var(--font-h2-mobile))/ (var(--font-size-base))) * 1em)}}p{color:var(--color-body-text);margin:0 0 19.44444px}p:last-child{margin-bottom:0}@media only screen and (max-width:749px){.small--hide{display:none!important}}.grid{list-style:none;margin:0;padding:0;margin-left:-30px}.grid::after{content:'';display:table;clear:both}@media only screen and (max-width:749px){.grid{margin-left:-22px}}.grid::after{content:'';display:table;clear:both}.grid--no-gutters{margin-left:0}.grid--no-gutters .grid__item{padding-left:0}.grid--table{display:table;table-layout:fixed;width:100%}.grid--table>.grid__item{float:none;display:table-cell;vertical-align:middle}.grid__item{float:left;padding-left:30px;width:100%}@media only screen and (max-width:749px){.grid__item{padding-left:22px}}.grid__item[class*="--push"]{position:relative}@media only screen and (min-width:750px){.medium-up--one-quarter{width:25%}.medium-up--push-one-third{width:33.33%}.medium-up--one-half{width:50%}.medium-up--push-one-third{left:33.33%;position:relative}}.site-header{position:relative;background-color:var(--color-body)}@media only screen and (max-width:749px){.site-header{border-bottom:1px solid var(--color-border)}}@media only screen and (min-width:750px){.site-header{padding:0 55px}.site-header.logo--center{padding-top:30px}}.site-header__logo{margin:15px 0}.logo-align--center .site-header__logo{text-align:center;margin:0 auto}@media only screen and (max-width:749px){.logo-align--center .site-header__logo{text-align:left;margin:15px 0}}@media only screen and (max-width:749px){.site-header__logo{padding-left:22px;text-align:left}.site-header__logo img{margin:0}}.site-header__logo-link{display:inline-block;word-break:break-word}@media only screen and (min-width:750px){.logo-align--center .site-header__logo-link{margin:0 auto}}.site-header__logo-image{display:block}@media only screen and (min-width:750px){.site-header__logo-image{margin:0 auto}}.site-header__logo-image img{width:100%}.site-header__logo-image--centered img{margin:0 auto}.site-header__logo img{display:block}.site-header__icons{position:relative;white-space:nowrap}@media only screen and (max-width:749px){.site-header__icons{width:auto;padding-right:13px}.site-header__icons .btn--link,.site-header__icons .site-header__cart{font-size:calc(((var(--font-size-base))/ (var(--font-size-base))) * 1em)}}.site-header__icons-wrapper{position:relative;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;-ms-align-items:center;-o-align-items:center;align-items:center;-webkit-justify-content:flex-end;-ms-justify-content:flex-end;justify-content:flex-end}.site-header__account,.site-header__cart,.site-header__search{position:relative}.site-header__search.site-header__icon{display:none}@media only screen and (min-width:1400px){.site-header__search.site-header__icon{display:block}}.site-header__search-toggle{display:block}@media only screen and (min-width:750px){.site-header__account,.site-header__cart{padding:10px 11px}}.site-header__cart-title,.site-header__search-title{position:absolute!important;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0;display:block;vertical-align:middle}.site-header__cart-title{margin-right:3px}.site-header__cart-count{display:flex;align-items:center;justify-content:center;position:absolute;right:.4rem;top:.2rem;font-weight:700;background-color:var(--color-btn-primary);color:var(--color-btn-primary-text);border-radius:50%;min-width:1em;height:1em}.site-header__cart-count span{font-family:HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:calc(11em / 16);line-height:1}@media only screen and (max-width:749px){.site-header__cart-count{top:calc(7em / 16);right:0;border-radius:50%;min-width:calc(19em / 16);height:calc(19em / 16)}}@media only screen and (max-width:749px){.site-header__cart-count span{padding:.25em calc(6em / 16);font-size:12px}}.site-header__menu{display:none}@media only screen and (max-width:749px){.site-header__icon{display:inline-block;vertical-align:middle;padding:10px 11px;margin:0}}@media only screen and (min-width:750px){.site-header__icon .icon-search{margin-right:3px}}.announcement-bar{z-index:10;position:relative;text-align:center;border-bottom:1px solid transparent;padding:2px}.announcement-bar__link{display:block}.announcement-bar__message{display:block;padding:11px 22px;font-size:calc(((16)/ (var(--font-size-base))) * 1em);font-weight:var(--font-weight-header)}@media only screen and (min-width:750px){.announcement-bar__message{padding-left:55px;padding-right:55px}}.site-nav{position:relative;padding:0;text-align:center;margin:25px 0}.site-nav a{padding:3px 10px}.site-nav__link{display:block;white-space:nowrap}.site-nav--centered .site-nav__link{padding-top:0}.site-nav__link .icon-chevron-down{width:calc(8em / 16);height:calc(8em / 16);margin-left:.5rem}.site-nav__label{border-bottom:1px solid transparent}.site-nav__link--active .site-nav__label{border-bottom-color:var(--color-text)}.site-nav__link--button{border:none;background-color:transparent;padding:3px 10px}.site-header__mobile-nav{z-index:11;position:relative;background-color:var(--color-body)}@media only screen and (max-width:749px){.site-header__mobile-nav{display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;-ms-align-items:center;-o-align-items:center;align-items:center}}.mobile-nav--open .icon-close{display:none}.main-content{opacity:0}.main-content .shopify-section{display:none}.main-content .shopify-section:first-child{display:inherit}.critical-hidden{display:none}</style>
+  <style>*,::after,::before{box-sizing:border-box}body{margin:0}body,html{background-color:var(--color-body)}body,button{font-size:calc(var(--font-size-base) * 1px);font-family:var(--font-stack-body);font-style:var(--font-style-body);font-weight:var(--font-weight-body);color:var(--color-text);line-height:1.5}body,button{-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}.border-bottom{border-bottom:1px solid var(--color-border)}.btn--link{background-color:transparent;border:0;margin:0;color:var(--color-text);text-align:left}.text-right{text-align:right}.icon{display:inline-block;width:20px;height:20px;vertical-align:middle;fill:currentColor}.icon__fallback-text,.visually-hidden{position:absolute!important;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0}svg.icon:not(.icon--full-color) circle,svg.icon:not(.icon--full-color) ellipse,svg.icon:not(.icon--full-color) g,svg.icon:not(.icon--full-color) line,svg.icon:not(.icon--full-color) path,svg.icon:not(.icon--full-color) polygon,svg.icon:not(.icon--full-color) polyline,svg.icon:not(.icon--full-color) rect,symbol.icon:not(.icon--full-color) circle,symbol.icon:not(.icon--full-color) ellipse,symbol.icon:not(.icon--full-color) g,symbol.icon:not(.icon--full-color) line,symbol.icon:not(.icon--full-color) path,symbol.icon:not(.icon--full-color) polygon,symbol.icon:not(.icon--full-color) polyline,symbol.icon:not(.icon--full-color) rect{fill:inherit;stroke:inherit}li{list-style:none}.list--inline{padding:0;margin:0}.list--inline>li{display:inline-block;margin-bottom:0;vertical-align:middle}a{color:var(--color-text);text-decoration:none}.h1,.h2,h1,h2{margin:0 0 17.5px;font-family:var(--font-stack-header);font-style:var(--font-style-header);font-weight:var(--font-weight-header);line-height:1.2;overflow-wrap:break-word;word-wrap:break-word}.h1 a,.h2 a,h1 a,h2 a{color:inherit;text-decoration:none;font-weight:inherit}.h1,h1{font-size:calc(((var(--font-h1-desktop))/ (var(--font-size-base))) * 1em);text-transform:none;letter-spacing:0}@media only screen and (max-width:749px){.h1,h1{font-size:calc(((var(--font-h1-mobile))/ (var(--font-size-base))) * 1em)}}.h2,h2{font-size:calc(((var(--font-h2-desktop))/ (var(--font-size-base))) * 1em);text-transform:uppercase;letter-spacing:.1em}@media only screen and (max-width:749px){.h2,h2{font-size:calc(((var(--font-h2-mobile))/ (var(--font-size-base))) * 1em)}}p{color:var(--color-body-text);margin:0 0 19.44444px}@media only screen and (max-width:749px){p{font-size:calc(((var(--font-size-base) - 1)/ (var(--font-size-base))) * 1em)}}p:last-child{margin-bottom:0}@media only screen and (max-width:749px){.small--hide{display:none!important}}.grid{list-style:none;margin:0;padding:0;margin-left:-30px}.grid::after{content:'';display:table;clear:both}@media only screen and (max-width:749px){.grid{margin-left:-22px}}.grid::after{content:'';display:table;clear:both}.grid--no-gutters{margin-left:0}.grid--no-gutters .grid__item{padding-left:0}.grid--table{display:table;table-layout:fixed;width:100%}.grid--table>.grid__item{float:none;display:table-cell;vertical-align:middle}.grid__item{float:left;padding-left:30px;width:100%}@media only screen and (max-width:749px){.grid__item{padding-left:22px}}.grid__item[class*="--push"]{position:relative}@media only screen and (min-width:750px){.medium-up--one-quarter{width:25%}.medium-up--push-one-third{width:33.33%}.medium-up--one-half{width:50%}.medium-up--push-one-third{left:33.33%;position:relative}}.site-header{position:relative;background-color:var(--color-body)}@media only screen and (max-width:749px){.site-header{border-bottom:1px solid var(--color-border)}}@media only screen and (min-width:750px){.site-header{padding:0 55px}.site-header.logo--center{padding-top:30px}}.site-header__logo{margin:15px 0}.logo-align--center .site-header__logo{text-align:center;margin:0 auto}@media only screen and (max-width:749px){.logo-align--center .site-header__logo{text-align:left;margin:15px 0}}@media only screen and (max-width:749px){.site-header__logo{padding-left:22px;text-align:left}.site-header__logo img{margin:0}}.site-header__logo-link{display:inline-block;word-break:break-word}@media only screen and (min-width:750px){.logo-align--center .site-header__logo-link{margin:0 auto}}.site-header__logo-image{display:block}@media only screen and (min-width:750px){.site-header__logo-image{margin:0 auto}}.site-header__logo-image img{width:100%}.site-header__logo-image--centered img{margin:0 auto}.site-header__logo img{display:block}.site-header__icons{position:relative;white-space:nowrap}@media only screen and (max-width:749px){.site-header__icons{width:auto;padding-right:13px}.site-header__icons .btn--link,.site-header__icons .site-header__cart{font-size:calc(((var(--font-size-base))/ (var(--font-size-base))) * 1em)}}.site-header__icons-wrapper{position:relative;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;-ms-align-items:center;-o-align-items:center;align-items:center;-webkit-justify-content:flex-end;-ms-justify-content:flex-end;justify-content:flex-end}.site-header__account,.site-header__cart,.site-header__search{position:relative}.site-header__search.site-header__icon{display:none}@media only screen and (min-width:1400px){.site-header__search.site-header__icon{display:block}}.site-header__search-toggle{display:block}@media only screen and (min-width:750px){.site-header__account,.site-header__cart{padding:10px 11px}}.site-header__cart-title,.site-header__search-title{position:absolute!important;overflow:hidden;clip:rect(0 0 0 0);height:1px;width:1px;margin:-1px;padding:0;border:0;display:block;vertical-align:middle}.site-header__cart-title{margin-right:3px}.site-header__cart-count{display:flex;align-items:center;justify-content:center;position:absolute;right:.4rem;top:.2rem;font-weight:700;background-color:var(--color-btn-primary);color:var(--color-btn-primary-text);border-radius:50%;min-width:1em;height:1em}.site-header__cart-count span{font-family:HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:calc(11em / 16);line-height:1}@media only screen and (max-width:749px){.site-header__cart-count{top:calc(7em / 16);right:0;border-radius:50%;min-width:calc(19em / 16);height:calc(19em / 16)}}@media only screen and (max-width:749px){.site-header__cart-count span{padding:.25em calc(6em / 16);font-size:12px}}.site-header__menu{display:none}@media only screen and (max-width:749px){.site-header__icon{display:inline-block;vertical-align:middle;padding:10px 11px;margin:0}}@media only screen and (min-width:750px){.site-header__icon .icon-search{margin-right:3px}}.announcement-bar{z-index:10;position:relative;text-align:center;border-bottom:1px solid transparent;padding:2px}.announcement-bar__link{display:block}.announcement-bar__message{display:block;padding:11px 22px;font-size:calc(((16)/ (var(--font-size-base))) * 1em);font-weight:var(--font-weight-header)}@media only screen and (min-width:750px){.announcement-bar__message{padding-left:55px;padding-right:55px}}.site-nav{position:relative;padding:0;margin:25px 0}.site-nav a{padding:3px 10px}.site-nav__link{display:block;white-space:nowrap}.site-nav--centered .site-nav__link{padding-top:0}.site-nav__link .icon-chevron-down{width:calc(8em / 16);height:calc(8em / 16);margin-left:.5rem}.site-nav__label{border-bottom:1px solid transparent}.site-nav__link--active .site-nav__label{border-bottom-color:var(--color-text)}.site-nav__link--button{border:none;background-color:transparent;padding:3px 10px}.site-header__mobile-nav{z-index:11;position:relative;background-color:var(--color-body)}@media only screen and (max-width:749px){.site-header__mobile-nav{display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;-ms-flex-align:center;-webkit-align-items:center;-moz-align-items:center;-ms-align-items:center;-o-align-items:center;align-items:center}}.mobile-nav--open .icon-close{display:none}.main-content{opacity:0}.main-content .shopify-section{display:none}.main-content .shopify-section:first-child{display:inherit}.critical-hidden{display:none}</style>
 
   <script>
     window.performance.mark('debut:theme_stylesheet_loaded.start');
@@ -88,7 +73,7 @@
       link.dispatchEvent(new Event('load'));
     }
   </script>
-  <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
+
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
 
   <style>
@@ -101,24 +86,13 @@
   </style>
 
   <script>
-
     var theme = {
-      no_img: {{ 'no-img.jpg' | asset_img_url: '634x940' | json }},
-      size: {{ 'collections.general.size' | t | json }},
-      file_url: {{ '' | file_url | split: '?' | first | json }},
-      product_url: {{ product.handle | default: '' | json }},
       breakpoints: {
         medium: 750,
         large: 990,
         widescreen: 1400
       },
       strings: {
-        reviewReview: {{ 'general.reviews.review' | t | json }},
-        reviewQuestion: {{ 'general.reviews.questions' | t | json }},
-        reviewEmpty: {{ 'general.reviews.first' | t | json }},
-        writeReview: {{ 'general.reviews.write_review' | t | json }},
-        shopAll: {{ 'general.size_quiz.shop_all' | t | json }},
-        continueShoping: {{ "cart.general.continue_shopping" | t | json }},
         addToCart: {{ 'products.product.add_to_cart' | t | json }},
         soldOut: {{ 'products.product.sold_out' | t | json }},
         unavailable: {{ 'products.product.unavailable' | t | json }},
@@ -155,9 +129,7 @@
         loading: {{ 'general.search.loading' | t | json }},
         number_of_results: {{ 'general.search.number_of_results' | t: result_number: '[result_number]', results_count: '[results_count]' | json }},
         number_of_results_found: {{ 'general.search.number_of_results_found' | t: results_count: '[results_count]' | json }},
-        one_result_found: {{ 'general.search.one_result_found' | t | json }},
-        item: {{ 'cart.popup.item' | t | json }},
-        items: {{ 'cart.popup.items' | t | json }}
+        one_result_found: {{ 'general.search.one_result_found' | t | json }}
       },
       moneyFormat: {{ shop.money_format | json }},
       moneyFormatWithCurrency: {{ shop.money_with_currency_format | json }},
@@ -175,17 +147,10 @@
   {%- if request.page_type contains 'customers/' -%}
     <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {%- endif -%}
-  <script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'texture.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
-  {% if template contains 'index' or template contains 'product'  or template contains 'qr' or template contains 'mixplay' %}
-  <script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
-  {% endif %}
-  <script src="{{ 'scandale.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'qr.js' | asset_url }}" defer="defer"></script>
+
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
       var scripts = document.getElementsByTagName('script')[0];
@@ -198,75 +163,18 @@
   </script>
 
   {{ content_for_header }}
-  <!--begin-boost-pfs-filter-css-->
-  {% render 'boost-pfs-style' %}
-<!--end-boost-pfs-filter-css-->
-{% include 'sohead-reply-common' %}
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-202542273-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-202542273-1');
-</script>
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W34H8J8');</script>
-<!-- End Google Tag Manager -->
-
-<!-- CookiePro Cookies Consent Notice start for www.scandale.com -->
-
-<script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="f7642c25-70d2-480f-8666-0fc02253f53c" ></script>
-<script type="text/javascript">
-function OptanonWrapper() { }
-</script>
-<!-- CookiePro Cookies Consent Notice end for www.scandale.com -->
- 
-<!-- Hotjar Tracking Code for https://www.scandale.com --> <script> (function(h,o,t,j,a,r){ h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)}; h._hjSettings={hjid:2235915,hjsv:6}; a=o.getElementsByTagName('head')[0]; r=o.createElement('script');r.async=1; r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv; a.appendChild(r); })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv='); </script>
-
-
-{% render 'flair-app-init' %}
-
-
-{% comment %}ly_dir_styles_begin{% endcomment %}{%- assign language_code = '_' | append: request.locale.iso_code -%}{%- if '_ar_he_fa_ur' contains language_code -%}{{- 'ly-rtl.css' | asset_url | stylesheet_tag -}}{%- endif -%}{% comment %}ly_dir_styles_end{% endcomment %}</head>
+</head>
 
 <body class="template-{{ request.page_type | handle }}">
 
-{% capture the_snippet_content %}{% render 'socialshopwave-helper' %}{% endcapture %}
-{% unless the_snippet_content contains 'Liquid error' %}
-  {{ the_snippet_content }}
-{% endunless %}
-{% render 'flair-banners' %}
-{% if template contains 'blog' or template contains 'article' or template contains 'page'  %} 
-  {% section 'tags' %}
-{% endif %} 
-{% section 'swatches-colors' %}
-<div class="bkg-overlay"></div>
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
- {% section 'GEO' %}
- {% comment %}
- {% section 'newsletter' %}
- {% endcomment %}
+
   {%- if settings.enable_ajax -%}
-  {% unless template contains 'cart' %} 
-    <div class="cart-popup-wrapper cart-popup-wrapper--hidden critical-hidden" data-cart-popup-wrapper>
-        <div class="cart-popup" data-cart-popup tabindex="-1">
-            {% section 'cart-template' %}
-        </div>
-    </div>
-  {% endunless %}  
+    {% include 'cart-popup' %}
   {%- endif -%}
-  
-  {% section 'announcement' %}
+
   {% section 'header' %}
- 
+
   <div class="page-container drawer-page-content" id="PageContainer">
 
     <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
@@ -280,77 +188,10 @@ function OptanonWrapper() { }
     </div>
 
   </div>
-  {% render 'zoom' %}
-  <script type="application/json" data-cart-routes>
-    {
-      "cartUrl": "{{ routes.cart_url }}",
-      "cartAddUrl": "{{ routes.cart_add_url }}",
-      "cartChangeUrl": "{{ routes.cart_change_url }}"
-    }
-  </script>
 
   <ul hidden>
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
-
-<!--begin-boost-pfs-js-->
-  {% render 'boost-pfs' %}
-<!--end-boost-pfs-js-->
-  {% section 'collection-static-block' %}
-
-<!-- Back in Stock helper snippet -->
-<div id="back-in-stock-helper-i">
-{% render 'back-in-stock-helper' %}
-</div>
-<!-- End Back in Stock helper snippet -->
-{% section 'quiz-size' %}
-{% include 'table-size' %}
-
-  {% include 'swymSnippet' %}
-   {%- if request.page_type contains 'customers/' and customer -%}
-   <script src="{{ 'custom-wishlist.js' | asset_url }}" defer="defer"></script>
-   {% endif %}
-  <script>
-    var isWishlist = document.querySelectorAll('#wishlistList').length > 0 ? true: false;
-    if(isWishlist == true)
-      theme.strings.addToCart = "{{ 'general.pages.move_to_bag' | t }}";
-  </script>
-
-<script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VYhNew"></script>
-<script>
- var _learnq = _learnq || [];
- if ('{{ customer.email }}') {
-   _learnq.push(['identify', {
-       '$email' : '{{ customer.email }}'
-     }]);
-  }
-</script>
-<script data-b8-data>
-window.B8_CUSTOMER_ID = {{ customer.id | json }};
-window.B8_CUSTOMER_TAGS = {{ customer.tags | json }};
-</script>
- 
-  <script>
-    var gorgiasChatInterval = window.setInterval(function() {
-      if (window.GorgiasChat && GorgiasChat.hasOwnProperty("on")) {
-          GorgiasChat.setShopifyContext('scandale-webstore.myshopify.com');
-          window.clearInterval(gorgiasChatInterval); // do not delete this line
-          GorgiasChat.on('widget:closed', function(data) {
-              $('#gorgias-chat-container').hide();
-          });
-      }
-    }, 100);
-</script>
-<!--Gorgias Chat Widget Start--><script id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="11041",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/11041",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/11041");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://client-builds.production.gorgias.chat/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/11041")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><script id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script><!--Gorgias Chat Widget End-->
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W34H8J8"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-  
- 
-    
-  <!-- langify-v2-scripts-begin -->{% comment %}ly_liquid_scripts_begin{% endcomment %}{% endcapture %}{% render 'ly-liquid-scripts' content: ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}{% comment %}ly_core_scripts_begin{% endcomment %}{% render 'ly-core-scripts' %}{% comment %}ly_core_scripts_end{% endcomment %}{% comment %}ly_switcher_factory_begin{% endcomment %}{% render 'ly-switcher-factory' %}{% comment %}ly_switcher_factory_end{% endcomment %}<!-- langify-v2-scripts-end --></body>
+</body>
 </html>

@@ -1,190 +1,99 @@
 {
   "general": {
-    "reviews": {
-      "first": "be the first to review this item",
-      "write_review": "write a review",
-      "questions": "questions",
-      "review": "reviews"
-    },
-    "language": {
-      "dropdown_label": "language",
-      "en": "English",
-      "fr": "French",
-      "de": "German"
-    },
-    "cart": {
-      "reducing": "planet resources preserved",
-      "water": "water",
-      "fabric_waste": "fabric waste",
-      "co2_eq": "CO2 eq",
-      "p04_eq": "PO4 eq"
-    },
-    "pages": {
-      "custom_1": "carbon neutral on my entire value chain",
-      "certified_html": "VCS, CER <span>certified<\/span>",
-      "move_to_bag": "move to bag",
-      "now": "now",
-      "qr_map_title": "my éco journey",
-      "make_it_last": "make it last",
-      "qr_mix_lay_sub": "multiplying the occasions",
-      "today": "today…",
-      "certified": "certified by BCOME",
-      "transparency": "transparency",
-      "social_responsibilities": "social responsibilities",
-      "environmental_responsibilities": "environmental responsibilities"
-    },
-    "size_quiz": {
-      "title": "find my size",
-      "desc": "80% of women wears the wrong bra size. we developed this tool to help you to find the perfect fit. together, we want you to be comfortable in your bra, and at the same time reduce returns that creates extra impact to the planet.",
-      "start": "start",
-      "desc_step2": "Please measure the band & bust wearing your best-fitting, non-padded bra.",
-      "title_step2": "band measurement",
-      "subdesc_step2": "wrap the tape measure around your torso directly under your breasts.",
-      "note_step2": "please enter measurement from 68cm - 92cm",
-      "next": "next step",
-      "prev": "back to previous step",
-      "desc_step3": "please measure the band & bust wearing your best-fitting, non-padded bra.",
-      "title_step3": "chest measurement",
-      "subdesc_step3": "place the tape measure around the fullest part of your bust.",
-      "note_step3": "please enter measurement from 82cm - 112cm",
-      "shop_all": "shop all bras",
-      "your_size": "your size is",
-      "input_size": "measurement in cm"
-    },
-    "wishlist": {
-      "text": "log in to access your favourite éco-lingerie across all your devices",
-      "log_in": "log in"
-    },
-    "size_table": {
-      "cup": "cup",
-      "body_title": "cup size \/ EU size",
-      "body": "le body décolleté",
-      "size_chart": "size chart",
-      "panty": "panty",
-      "cup_size": "cup size (cm)",
-      "under": "under-bust (cm)",
-      "hips": "hips (cm)",
-      "waist": "waist (cm)",
-      "wired": "wired bra",
-      "alternatively_html": "alternatively, wear your best fitting unpadded bra & can use the size chart to find the right size.<br\/>step 1: wrap the tape measure around your torso directly under your breasts, check the 1st part of the table to find your band size.<br\/>step 2: place the tape measure around the fullest part of your bust, you can round the measurement to find your cup size.",
-      "non_wired": "non-wired bra & le body",
-      "used": "use the wired bra size table to find your cup size, then use the table below to find your respective size.",
-      "title_html": "we developed <a href=\"\/size-quiz\">a tool<\/a> to help you find the right fit."
-    },
     "accessibility": {
       "skip_to_content": "Skip to content",
-      "close_modal": "close",
+      "close_modal": "Close",
       "link_messages": {
         "new_window": "Opens in a new window.",
-        "external": "opens external website.",
-        "new_window_and_external": "opens external website in a new window."
+        "external": "Opens external website.",
+        "new_window_and_external": "Opens external website in a new window."
       },
-      "refresh_page": "choosing a selection results in a full page refresh.",
-      "selection_help": "press the space key then arrow keys to make a selection.",
+      "refresh_page": "Choosing a selection results in a full page refresh.",
+      "selection_help": "Press the space key then arrow keys to make a selection.",
       "unit_price_separator": "per",
-      "error": "this field is invalid"
+      "error": "Error"
     },
     "meta": {
-      "tags": "tagged \"{{ tags }}\"",
+      "tags": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page }}"
     },
     "404": {
-      "title": "page not found",
-      "subtext": "page not found.",
-      "desc": "we cannot find the page you are looking for. we are sorry for the inconvenience, we will bring you back to our homepage to explore our latest collection.",
-      "link": "back to home"
+      "title": "404 Page Not Found",
+      "subtext": "The page you requested does not exist.",
+      "link": "Continue shopping"
     },
     "pagination": {
-      "previous": "previous page",
-      "next": "next page",
-      "current_page": "page {{ current }} of {{ total }}"
+      "previous": "Previous page",
+      "next": "Next page",
+      "current_page": "Page {{ current }} of {{ total }}"
     },
     "password_page": {
-      "opening_soon": "opening Soon",
-      "login_form_heading": "enter store using password",
-      "login_form_password_label": "password",
-      "login_form_password_placeholder": "your password",
-      "login_form_submit": "enter",
-      "signup_form_email_label": "email",
-      "signup_form_success": "we will send you an email right before we open!",
-      "admin_link_html": "are you the store owner? <a href=\"\/admin\" class=\"text-link\">log in here<\/a>",
-      "password_link": "enter using password"
+      "opening_soon": "Opening Soon",
+      "login_form_heading": "Enter store using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "signup_form_email_label": "Email",
+      "signup_form_success": "We will send you an email right before we open!",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"text-link\">Log in here<\/a>",
+      "password_link": "Enter using password"
     },
     "social": {
-      "share_on_instagram": "instagram",
-      "share_on_facebook": "facebook",
-      "share_on_twitter": "tweet",
-      "share_on_pinterest": "pin it",
+      "share_on_facebook": "Share",
+      "share_on_twitter": "Tweet",
+      "share_on_pinterest": "Pin it",
       "alt_text": {
-        "share_on_instagram": "instagram",
-        "share_on_facebook": "facebook",
-        "share_on_twitter": "tweet on twitter",
-        "share_on_pinterest": "pin on pinterest"
+        "share_on_facebook": "Share on Facebook",
+        "share_on_twitter": "Tweet on Twitter",
+        "share_on_pinterest": "Pin on Pinterest"
       }
     },
     "search": {
-      "clear_all": "clear all",
-      "recent_searchs": "recent searches",
-      "recently_viewed": "recently viewed",
-      "popular_title": "popular searches",
-      "no_results": "try checking your spelling or using different words.",
-      "empty_search_message": "search field cannot be empty",
+      "no_results": "Try checking your spelling or using different words.",
+      "empty_search_message": "Search field cannot be empty",
       "results_with_count": {
         "one": "{{ count }} result for “{{ terms }}”",
         "other": "{{ count }} results for “{{ terms }}”"
       },
-      "title": "search our site",
-      "placeholder": "search",
-      "submit": "submit",
-      "close": "close search",
+      "title": "Search our site",
+      "placeholder": "Search",
+      "submit": "Submit",
+      "close": "Close search",
       "heading": {
-        "one": "search result",
-        "other": "search results"
+        "one": "Search result",
+        "other": "Search results"
       },
-      "search_for": "search for",
-      "products": "products",
-      "loading": "loading",
-      "clear_search_term": "clear search term",
+      "search_for": "Search for",
+      "products": "Products",
+      "loading": "Loading",
+      "clear_search_term": "Clear search term",
       "number_of_results": "{{ result_number }} of {{ results_count }}",
       "number_of_results_found": "{{ results_count }} results found",
       "one_result_found": "1 result found"
     },
     "newsletter_form": {
-      "newsletter_email": "subscribe to our mailing list",
-      "email_placeholder": "email address",
-      "confirmation": "thanks for subscribing!",
-      "submit": "submit",
-      "popup_submit": "join the movement",
-      "agree_html": "by providing your email address, you agree to our <a href=\"\/pages\/privacy-policy\">privacy policy<\/a>  & <a href=\"\/pages\/terms-and-conditions\">terms of service<\/a>."
+      "newsletter_email": "Subscribe to our mailing list",
+      "email_placeholder": "Email address",
+      "confirmation": "Thanks for subscribing!",
+      "submit": "Subscribe"
     },
     "filters": {
-      "show_more": "show more",
-      "show_less": "show less"
+      "show_more": "Show More",
+      "show_less": "Show Less"
     },
     "payment": {
-      "method": "payment methods"
+      "method": "Payment methods"
     },
     "currency": {
-      "dropdown_label": "currency"
+      "dropdown_label": "Currency"
+    },
+    "language": {
+      "dropdown_label": "Language"
     }
   },
   "sections": {
-    "geo": {
-      "title": "select your shipping country & language",
-      "france": "France",
-      "euro": "EURO €",
-      "germany": "Germany",
-      "united_kingdom": "United Kingdom",
-      "italy": "Italy",
-      "spain": "Spain",
-      "update": "apply"
-    },
-    "mgs": {
-      "close": "close"
-    },
     "header": {
-      "announcement_bar_label": "Announcement",
-      "announcement_bar_learn_more": "learn more"
+      "announcement_bar_label": "Announcement"
     },
     "slideshow": {
       "next_slide": "Next slide",
@@ -216,27 +125,27 @@
   },
   "blogs": {
     "article": {
-      "view_all": "view all",
-      "view_all_blogs": "view all blogs",
-      "all_topics": "all topics",
+      "view_all": "View all",
+      "view_all_blogs": "View all blogs",
+      "all_topics": "All topics",
       "by_author": "by {{ author }}",
-      "posted_in": "posted in",
-      "read_more": "read more",
-      "read_more_title": "read more: {{ title }}",
-      "back_to_blog": "back to {{ title }}",
-      "tags": "tags",
+      "posted_in": "Posted in",
+      "read_more": "Read more",
+      "read_more_title": "Read more: {{ title }}",
+      "back_to_blog": "Back to {{ title }}",
+      "tags": "Tags",
       "article_with_count": {
         "one": "{{ count }} article",
         "other": "{{ count }} articles"
       }
     },
     "comments": {
-      "title": "leave a comment",
-      "name": "name",
-      "email": "email",
-      "message": "message",
-      "post": "post comment",
-      "moderated": "please note, comments must be approved before they are published",
+      "title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "post": "Post comment",
+      "moderated": "Please note, comments must be approved before they are published",
       "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
       "success": "Your comment was posted successfully! Thank you!",
       "unapproved": "The email address provided is not approved for posting comments.",
@@ -252,19 +161,18 @@
       "note": "Add a note to your order",
       "removed_item_html": "Removed <span class=\"cart__removed-product-details\">({{ quantity }}) {{ link }}<\/span> from your cart.",
       "remove": "Remove",
-      "subtotal": "order subtotal:",
+      "subtotal": "Subtotal",
       "savings": "You're saving",
       "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
       "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout",
       "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping<\/a> calculated at checkout.",
-      "update": "update",
-      "checkout": "checkout",
-      "empty": "your bag is empty",
+      "update": "Update",
+      "checkout": "Check out",
+      "empty": "Your cart is currently empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
-      "continue_shopping": "continue shopping",
-      "cart_error": "There was an error while updating your cart. Please try again.",
-      "low-in-stock": "low in stock"
+      "continue_shopping": "Continue shopping",
+      "cart_error": "There was an error while updating your cart. Please try again."
     },
     "label": {
       "discounted_total": "Discounted total",
@@ -280,9 +188,7 @@
       "update": "Update"
     },
     "popup": {
-      "item": "item",
-      "items": "items",
-      "added_to_cart": "my bag",
+      "added_to_cart": "Just added to your cart",
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
@@ -294,11 +200,8 @@
   },
   "collections": {
     "general": {
-      "size": "size",
-      "back_top": "back to top",
-      "view_all": "view all",
+      "view_all": "View all",
       "view_all_label": "View all products in the {{ collection_name }} collection",
-      "view_items": "view ( {{ item }} ) products",
       "no_matches": "Sorry, there are no products in this collection",
       "items_with_count": {
         "one": "{{ count }} product",
@@ -310,11 +213,7 @@
       "title": "Catalog"
     },
     "sorting": {
-      "title": "Sort by",
-      "best_selling": "bestsellers",
-      "price_descending": "price: high-low",
-      "price_ascending": "price: low-high",
-      "date_descending": "new arrivals"
+      "title": "Sort by"
     },
     "filters": {
       "title_tags": "Filter by",
@@ -323,34 +222,21 @@
   },
   "contact": {
     "form": {
-      "request_type": "request type",
-      "option1": "account & checkout",
-      "option2": "sizing & product information",
-      "option3": "general feedback",
-      "option4": "orders, shipping & returns",
-      "option5": "wholesale",
-      "title": "or, leave us a message & we will get back to you.",
-      "name": "name",
-      "email": "email",
-      "phone": "phone number",
-      "message": "message",
-      "submit": "submit",
-      "post_success": "thank you for your message. we will get back to you shortly.",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "message": "Message",
+      "submit": "Send",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
       "error_heading": "Please adjust the following:"
     }
   },
   "customer": {
     "account": {
-      "title": "my account",
-      "details": "account details",
+      "title": "My Account",
+      "details": "Account Details",
       "view_addresses": "View Addresses",
-      "return": "Return to Account Details",
-      "wishlist": "my wishlist",
-      "retuns": "retuns",
-      "planet_title": "total planet resources preserved by you",
-      "order_detail": "order details",
-      "order_no": "order no.",
-      "total": "{{ order_count }} orders by you. thank you!"
+      "return": "Return to Account Details"
     },
     "activate_account": {
       "title": "Activate Account",
@@ -361,100 +247,95 @@
       "cancel": "Decline Invitation"
     },
     "addresses": {
-      "title": "your addresses",
-      "default": "default",
-      "add_new": "add a new address",
-      "edit_address": "edit address",
-      "first_name": "first name",
-      "last_name": "last name",
-      "company": "company",
-      "address1": "address1",
-      "address2": "address2",
-      "city": "city",
-      "country": "country\/region",
-      "province": "province",
-      "zip": "postal\/zip code",
-      "phone": "phone",
-      "set_default": "set as default address",
+      "title": "Your Addresses",
+      "default": "Default",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address",
+      "address2": "Apartment, suite, etc.",
+      "city": "City",
+      "country": "Country\/Region",
+      "province": "Province",
+      "zip": "Postal\/Zip Code",
+      "phone": "Phone",
+      "set_default": "Set as default address",
       "add": "Add Address",
-      "update": "update",
-      "cancel": "cancel",
-      "edit": "edit",
-      "delete": "delete",
+      "update": "Update Address",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
       "delete_confirm": "Are you sure you wish to delete this address?"
     },
     "login": {
-      "title": "log in",
+      "title": "Login",
       "email": "Email",
       "password": "Password",
-      "forgot_password": "reset password",
-      "sign_in": "log in",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
       "guest_title": "Continue as a guest",
-      "guest_continue": "Continue",
-      "keep_me": "remember me"
+      "guest_continue": "Continue"
     },
     "orders": {
-      "title": "my orders",
-      "order_number": "your order",
+      "title": "Order History",
+      "order_number": "Order",
       "order_number_link": "Order number {{ number }}",
       "date": "Date",
-      "payment_status": "status",
+      "payment_status": "Payment Status",
       "fulfillment_status": "Fulfillment Status",
       "total": "Total",
       "none": "You haven't placed any orders yet."
     },
     "order": {
-      "title": "your order {{ name }}",
+      "title": "Order {{ name }}",
       "date_html": "Placed on {{ date }}",
       "cancelled_html": "Order Cancelled on {{ date }}",
       "cancelled_reason": "Reason: {{ reason }}",
-      "billing_address": "billing address",
-      "payment_status": "status",
-      "shipping_address": "shipping address",
-      "fulfillment_status": "fulfillment status",
-      "discount": "discount",
-      "shipping": "shipping",
-      "tax": "tax",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
       "product": "Product",
       "sku": "SKU",
       "price": "Price",
       "quantity": "Quantity",
-      "total": "totals",
+      "total": "Total",
       "fulfilled_at_html": "Fulfilled {{ date }}",
-      "subtotal": "subtotal",
-      "track_shipment": "Track shipment",
-      "payment_title": "payment detail"
+      "subtotal": "Subtotal",
+      "track_shipment": "Track shipment"
     },
     "recover_password": {
-      "title": "reset password",
-      "email": "email",
-      "submit": "send reset link",
-      "cancel": "cancel",
-      "subtext": "enter your email address to receive a link to reset your password.",
+      "title": "Reset your password",
+      "email": "Email",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "subtext": "We will send you an email to reset your password.",
       "success": "We've sent you an email with a link to update your password."
     },
     "reset_password": {
-      "title": "reset password",
+      "title": "Reset account password",
       "subtext": "Enter a new password for {{ email }}",
-      "password": "password",
-      "password_confirm": "confirm password",
-      "submit": "reset password",
-      "need_help_html": "need help? <a href=\"\/pages\/contact-us\">contact us<\/a>"
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
     },
     "register": {
-      "title": "sign up",
-      "first_name": "first name",
-      "last_name": "last name",
-      "email": "email",
-      "password": "password",
-      "submit": "sign up ",
-      "back_to_home": "back to homepage"
+      "title": "Create Account",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create"
     }
   },
   "homepage": {
     "general": {
-      "title": "home",
-      "search": "search"
+      "title": "Homepage"
     },
     "onboarding": {
       "product_title": "Your product's name",
@@ -468,11 +349,10 @@
   },
   "layout": {
     "navigation": {
-      "search": "search",
+      "search": "Search",
       "expand": "expand",
       "collapse": "collapse",
-      "menu": "Menu",
-      "size": "find my size"
+      "menu": "Menu"
     },
     "cart": {
       "title": "Cart",
@@ -485,33 +365,14 @@
       "account": "Account",
       "log_out": "Log out",
       "log_in": "Log in",
-      "create_account": "join us.",
-      "not_a_member": "not a member?",
-      "back_to_store": "return to store"
+      "create_account": "Create account"
     },
     "footer": {
-      "login": "log in",
-      "register": "join us",
-      "logout": "log out",
-      "member": "become member",
-      "social_platform": "{{ name }} on {{ platform }}",
-      "live_chat": "contact us",
-      "chat": "live chat",
-      "reserved": "all rights reserved."
+      "social_platform": "{{ name }} on {{ platform }}"
     }
   },
   "products": {
-    "share": {
-      "title": "scandale feels good on you"
-    },
-    "mixplay": {
-      "title": "mix & play",
-      "mix_it_up_button": "mix it up",
-      "mix_this": "mix this"
-    },
     "product": {
-      "description": "description",
-      "detail": "fabrics & details",
       "regular_price": "Regular price",
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
@@ -520,7 +381,7 @@
       "from_lowest_price_html": "from {{ lowest_price }}",
       "sale_price": "Sale price",
       "quantity": "Quantity",
-      "add_to_cart": "add to bag",
+      "add_to_cart": "Add to cart",
       "loader_label": "Adding product to your cart",
       "back_to_collection": "Back to {{ title }}",
       "vendor": "Vendor",
@@ -557,35 +418,6 @@
       "remaining_html": "{{ balance }} left",
       "add_to_apple_wallet": "Add to Apple Wallet",
       "qr_image_alt": "QR code — scan to redeem gift card"
-    }
-  },
-  "faq": {
-    "group": {
-      "option1": "Shipping & Delivery",
-      "option2": "Returns & Exchanges",
-      "option3": "Account, Payment & Promotions",
-      "option4": "Sustainability",
-      "option5": "Customer Care & Contact Us"
-    }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
-  },
-  "shopify": {
-    "checkout": {
-      "general": {
-        "page_title": "Checkout"
-      },
-      "contact": {
-        "city_label": "city"
-      },
-      "field_errors": {
-        "address_city_blank": "Enter a city"
-      }
     }
   }
 }

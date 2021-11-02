@@ -10,20 +10,10 @@
 {%- else -%}
   {%- assign number_of_comments = article.comments_count -%}
 {%- endif -%}
-{% if article.image %}
-{%- assign img_url = article.image | img_url: '1440x460', crop: 'center', scale: 2   -%}
-<div class="article-featured-image">
-  <picture>
-    <source media="(min-width:1025px)" srcset="{{ img_url }}">
-    <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ article.image | img_url: '462x300', crop: 'center' }}">
-    <source media="(max-width:599px)" srcset="{{ article.image | img_url: '375x195', crop: 'center' }}">
-    <img id="{{ img_id }}" class="article__grid-image lazyload" src="{{ img_url }}" alt="">
-  </picture>
-</div>
-{% endif %}
+
 <article class="page-width" aria-labelledby="title-0">
-  <div class="grid grid__article">
-    <div class="grid__item col-8">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
       {% section 'article-template' %}
     </div>
   </div>
@@ -33,8 +23,8 @@
   {% if number_of_comments > 0 %}
     <hr aria-hidden="true">
     <div class="page-width">
-      <div class="grid grid__article">
-        <div class="grid__item col-8">
+      <div class="grid">
+        <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
           <h2 class="h3">{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</h2>
 
           {% paginate article.comments by 5 %}
@@ -143,56 +133,13 @@
   </div>
 {% endif %}
 
-{% assign article_prev = blog.previous_article %}
-{% assign article_next = blog.next_article %}
-<div class="page-width">
-<div class="grid grid__article">
-  <div class="grid__item col-8">
-    <div class="next-pre-posts grid">
-      {% if article_prev %}
-      <a href="{{ article_prev.url }}" class="prev-post grid__item col-6 col-md-4">
-        <span class="icon-arrow_left col-3 col-md-2"></span>
-        <span class="title-article col-9 col-md-6">
-          <span class="text">previous</span>
-          <span>{{ article_prev.title }}</span>
-        </span>
-      </a>  
-      {% endif %}
-      {% if article_next %}
-      <a href="{{ article_next.url }}" class="nex-post grid__item col-6 col-md-4">
-        <span class="title-article col-9 col-md-6">
-           <span class="text">next</span>
-          <span>{{ article_next.title }}</span>
-        </span>
-        <span class="icon-arrow_right col-3 col-md-2"></span>
-      </a>  
-      {% endif %}
-    </div>
-  </div>
+<div class="text-center return-link-wrapper page-width">
+  <a href="{{ blog.url }}" class="btn btn--secondary btn--has-icon-before">
+    {% include 'icon-arrow-left' %}
+    {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+  </a>
 </div>
-</div>
-{% if article.excerpt %}
-  {% assign listProduct = article.excerpt | split: ';' %}
-  {% if listProduct.size > 0 %}
-  <div class="page-width">
-    <div class="you-may-also-like">
-      <h2 class="h2 text-center">you might interested</h2>
-      <div class="you-may-also-like-slider">
-        <ul class=" grid grid--uniform grid--view-items">
-          {% for handle in listProduct %}
-          {% assign product_handle =  handle | strip  | handle %}
-            {% assign product = all_products[product_handle] %}
-              <li class="swiper-slide grid__item col-3 col-md-4 col-small-3">
-                  {% include 'product-card-grid', max_height: 530, product: product, show_vendor: false %}
-              </li>
-          {% endfor %}
-        </ul> 
-        
-      </div> 
-    </div>
-  </div>
-  {% endif %}
-{% endif %}
+
 <script type="application/ld+json">
 {
   "@context": "http://schema.org",

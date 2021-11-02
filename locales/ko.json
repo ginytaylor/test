@@ -419,12 +419,5 @@
       "pick_up_available_at_html": "<strong>{{ location_name }}<\/strong>에서 픽업을 사용할 수 있습니다.",
       "pick_up_unavailable_at_html": "<strong>{{ location_name }}<\/strong>에서는 현재 픽업을 사용할 수 없습니다."
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

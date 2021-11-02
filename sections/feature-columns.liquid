@@ -1,45 +1,33 @@
-<div class="{{ section.settings.css_class }}">
-<div class="page-width ">
-  <div class="grid">
-    <div class="col-8 col-md-6 grid__item grid__item__title">
-
+<div class="page-width {{ section.settings.classes }} {% if section.settings.show_background %} show-background{% endif %}">
   {% if section.settings.title != blank %}
     <div class="section-header text-center">
       <h2>{{ section.settings.title | escape }}</h2>
     </div>
   {% endif %}
-  {% if section.settings.desc != blank %}
-    <div class="section-desc p-large text-center">
-      {{ section.settings.desc  }}
-    </div>
-  {% endif %}
-  </div>
-  </div>
-  <div class="grid {% unless section.blocks.size == 5 %}grid--uniform{% endunless %}">
-    {%- assign grid_item_width = 'col-3 col-md-2' -%}
+
+  <div class="grid {% unless section.blocks.size == 5 %}grid--uniform{% endunless %} grid--flush-bottom">
+    {%- assign grid_item_width = 'medium-up--one-third' -%}
     {%- assign max_height = 345 -%}
     {% case section.blocks.size %}
       {% when 1 %}
-        {%- assign grid_item_width = 'col-12 col-md-8' -%}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
         {%- assign max_height = 530 -%}
       {% when 2 %}
-        {%- assign grid_item_width = 'col-6 col-md-4' -%}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
         {%- assign max_height = 530 -%}
-      {% when 3 %}
-        {%- assign grid_item_width = 'col-4 col-md-8' -%}
+      {% when 4 %}
+        {%- assign grid_item_width = 'medium-up--one-half' -%}
         {%- assign max_height = 530 -%}
     {% endcase %}
     {% for block in section.blocks %}
       {% if section.blocks.size == 5 and forloop.index < 3 %}
-        {%- assign column_width = 'col-6' -%}
+        {%- assign column_width = 'medium-up--one-half' -%}
         {%- assign max_height = 530 -%}
       {% else %}
         {%- assign column_width = grid_item_width -%}
       {% endif %}
-      <div class="{% if block.settings.video != blank or  block.settings.poster != blank %} has-video {% endif %} grid__item {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
-        <div class="grid__item__inner">
-          <div class="grid__item__inner__content">
-        {% if block.settings.enable_image and block.settings.useIcon == false %}
+      <div class="grid__item {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
+        {% if block.settings.enable_image %}
           {% if block.settings.image != blank %}
             {% capture img_id %}TextColumnImage-{{ block.id }}{% endcapture %}
             {% capture wrapper_id %}TextColumnImageWrapper-{{ block.id }}{% endcapture %}
@@ -55,24 +43,6 @@
                      data-sizes="auto"
                      alt="{{ block.settings.image.alt | escape }}">
               </div>
-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-              {%- capture ariaLabel -%}
-                {{- block.settings.button_label -}}
-                {%- if block.settings.button_link.type == 'frontpage_link' -%}
-                  : {{ 'homepage.general.title' | t -}}
-                {%- elsif block.settings.button_link.type == 'catalog_link' -%}
-                  : {{ 'collections.catalog.title' | t -}}
-                {%- elsif block.settings.button_link.object.title -%}
-                  : {{ block.settings.button_link.object.title -}}
-                {%- endif -%}
-              {%- endcapture -%}
-
-              <a href="{{ block.settings.button_link }}"
-                class="h1"
-                aria-label="{{ ariaLabel | escape }}">
-                <span>{{- block.settings.button_label | escape -}}</span>
-              </a>
-            {% endif %}
             </div>
             <noscript>
               <p>
@@ -84,65 +54,38 @@
               {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
             </p>
           {% endif %}
-        {% else %}
-          {% if block.settings.useIcon == true %}
-            <span class="{{ block.settings.icons}} text-center font-icons"></span>
-          {% endif %}
-        {% endif %}
-        {% if block.settings.subtitle != blank %}
-          <div class="sub-title text-center h6">
-            {{ block.settings.subtitle  }}
-          </div>
         {% endif %}
         {% if block.settings.title != blank %}
-          <h3 class="h1">{{ block.settings.title | escape }}</h3>
+          <h3 class="h4">
+            {% if block.settings.icon != blank %}
+            <img class="icons" src="{{ block.settings.icon | img_url: '53x53' }}" alt="">
+            {% endif %}
+          {{ block.settings.title | escape }}
+
+         </h3>
         {% endif %}
         {% if block.settings.text != blank %}
-          <div class="p-medium">{{ block.settings.text }}</div>
+          <div class="rte-setting">{{ block.settings.text }}</div>
         {% endif %}
-        {% if block.settings.enable_image == false %}
-              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-              {%- capture ariaLabel -%}
-                {{- block.settings.button_label -}}
-                {%- if block.settings.button_link.type == 'frontpage_link' -%}
-                  : {{ 'homepage.general.title' | t -}}
-                {%- elsif block.settings.button_link.type == 'catalog_link' -%}
-                  : {{ 'collections.catalog.title' | t -}}
-                {%- elsif block.settings.button_link.object.title -%}
-                  : {{ block.settings.button_link.object.title -}}
-                {%- endif -%}
-              {%- endcapture -%}
 
-              <a href="{{ block.settings.button_link }}"
-                class="btn_light btn_light_large"
-                aria-label="{{ ariaLabel | escape }}">
-                <span>{{- block.settings.button_label | escape -}}</span>
-              </a>
-            {% endif %}
+        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+          {%- capture ariaLabel -%}
+            {{- block.settings.button_label -}}
+            {%- if block.settings.button_link.type == 'frontpage_link' -%}
+              : {{ 'homepage.general.title' | t -}}
+            {%- elsif block.settings.button_link.type == 'catalog_link' -%}
+              : {{ 'collections.catalog.title' | t -}}
+            {%- elsif block.settings.button_link.object.title -%}
+              : {{ block.settings.button_link.object.title -}}
+            {%- endif -%}
+          {%- endcapture -%}
+
+          <a href="{{ block.settings.button_link }}"
+            class="btn btn--secondary btn--small"
+            aria-label="{{ ariaLabel | escape }}">
+            {{- block.settings.button_label | escape -}}
+          </a>
         {% endif %}
-         </div>
-        
-            
-        </div>
-        {% if block.settings.video != blank or block.settings.poster != blank %}
-          <div class="video-bkg">
-              {% if block.settings.video != blank %}
-                <video preload="auto" src="{{ block.settings.video }}"  loop muted playsinline {% if block.settings.video_mobile != blank %}  class="hide-mobile" {% endif %} ></video>
-                {% if block.settings.video_mobile != blank %}
-                  <video preload="auto" src="{{ block.settings.video_mobile }}" loop muted playsinline class="hide-desktop"></video>
-                {% endif %}
-              {% else %}  
-                {% if block.settings.poster != blank %}
-                  <picture>
-                    <source media="(min-width:1025px)" srcset="{{ block.settings.poster | img_url: '316x329', crop: 'center' }}">
-                    <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ block.settings.poster | img_url: '154x329', crop: 'center' }}">
-                    <source media="(max-width:599px)" srcset="{{ block.settings.poster | img_url: '168x250', crop: 'center' }}">
-                    <img  class="article__grid-image lazyload" src="{{ block.settings.poster | img_url: '316x329', crop: 'center' }}" alt="">
-                  </picture>
-                {% endif %}
-              {% endif %}
-          </div>
-         {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -151,7 +94,7 @@
     {% include 'no-blocks' %}
   {% endif %}
 </div>
-</div>
+
 
 
 {% schema %}
@@ -182,10 +125,37 @@
   "class": "index-section",
   "settings": [
     {
+      "id": "show_background",
+      "type": "checkbox",
+      "label": {
+        "cs": "Zobrazit pozadí",
+        "da": "Vis baggrund",
+        "de": "Hintergrund anzeigen",
+        "en": "Show background",
+        "es": "Mostrar fondo",
+        "fi": "Näytä tausta",
+        "fr": "Afficher l'arrière-plan",
+        "it": "Mostra sfondo",
+        "ja": "背景を表示する",
+        "ko": "배경 표시",
+        "nb": "Vis bakgrunn",
+        "nl": "Toon achtergrond",
+        "pl": "Wyświetl tło",
+        "pt-BR": "Exibir plano de fundo",
+        "pt-PT": "Mostrar fundo",
+        "sv": "Visa bakgrund",
+        "th": "แสดงพื้นหลัง",
+        "tr": "Arka planı göster",
+        "vi": "Hiển thị nền",
+        "zh-CN": "显示背景",
+        "zh-TW": "顯示背景"
+      },
+      "default": false
+    },
+    {
       "type": "text",
-      "id": "css_class",
-      "label": "class",
-      "info": "This field only spend  developer"
+      "id": "classes",
+      "label": "Class"
     },
     {
       "type": "text",
@@ -213,6 +183,7 @@
         "zh-CN": "标题",
         "zh-TW": "標題"
       },
+
       "default": {
         "cs": "Text. sloupce s obrázky",
         "da": "Tekstkolonner med billeder",
@@ -236,11 +207,6 @@
         "zh-CN": "带有图片的文本列",
         "zh-TW": "附圖片的文字欄"
       }
-    },
-    {
-      "type": "richtext",
-      "id": "desc",
-      "label": "description"
     },
     {
       "type": "select",
@@ -353,51 +319,6 @@
       },
       "settings": [
         {
-          "type":"url",
-          "id": "video",
-          "label": "Video"
-        },
-        {
-          "type":"url",
-          "id": "video_mobile",
-          "label": "Video Mobile"
-        },
-        {
-          "type":"image_picker",
-          "id": "poster",
-          "label": "Poster"
-        },
-        {
-          "type": "checkbox",
-          "id": "useIcon",
-          "label": "use Icon",
-          "default": false
-        },
-        {
-          "type": "select",
-          "id": "icons",
-          "label": "Icons",
-          "default":"icon-contact",
-          "options": [
-            {
-              "value": "icon-contact",
-              "label": "icon-contact"
-            },
-            {
-              "value": "icon-payment",
-              "label": "icon-payment"
-            },
-            {
-              "value": "icon-delivery",
-              "label": "icon-delivery"
-            },
-            {
-              "value": "icon-return",
-              "label": "icon-return"
-            }
-          ]
-        },
-        {
           "type": "checkbox",
           "id": "enable_image",
           "label": {
@@ -453,6 +374,11 @@
           }
         },
         {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
           "type": "text",
           "id": "title",
           "label": {
@@ -503,12 +429,7 @@
           }
         },
         {
-          "type": "text",
-          "id": "subtitle",
-          "label": "sub title"
-        },
-        {
-          "type": "richtext",
+          "type": "html",
           "id": "text",
           "label": {
             "cs": "Text",
@@ -552,7 +473,7 @@
             "sv": "<p>Dela blogginlägg, produkter eller kampanjer med dina kunder. Använd den här texten för att beskriva produkter, dela information om tillgänglighet och stil eller som ett utrymme för att visa senaste recensioner eller vanliga frågor.</p>",
             "th": "<p>แชร์โพสต์บล็อก สินค้า หรือโปรโมชันกับลูกค้าของคุณ ใช้ข้อความนี้เพื่ออธิบายสินค้า แชร์รายละเอียดเกี่ยวกับความพร้อมจำหน่ายและสไตล์ หรือเป็นพื้นที่เพื่อจัดแสดงรีวิวล่าสุด หรือว่าคำถามที่พบบ่อย</p>",
             "tr": "<p>Müşterilerinizle blog gönderileri, ürünler ve promosyonlar paylaşın. Ürünleri açıklamak, stok durumu ve stil ile ilgili ayrıntıları paylaşmak veya son değerlendirmeleri ya da SSS'leri göstereceğiniz bir alan olarak yararlanmak için bu metni kullanabilirsiniz.</p>",
-            "vi": "<p>Chia sẻ bài viết blog, sản phẩm, hoặc chương trình ưu đãi với khách hàng. Sử dụng văn bản này để mô tả sản phẩm, chia sẻ thông tin về tình trạng còn hàng và kiểu dáng, hoặc là nơi để hiển thị các đánh giá mới hoặc câu hỏi thường gặp.</p>",
+            "vi": "<p>Chia sẻ bài viết blog, sản phẩm, hoặc chương trình ưu đãi với khách hàng. Sử dụng văn bản này để mô tả sản phẩm, chia sẻ thông tin về tình trạng còn hàng và kiểu dáng, hoặc là nơi để hiển thị các đánh giá mới hoặc CHTG.</p>",
             "zh-CN": "<p>与您的客户分享博客文章、产品或促销信息。使用此文本描述产品、分享有关供货情况和风格的详细信息，或将此文本作为显示最近评论或常见问题解答的区域。</p>",
             "zh-TW": "<p>與顧客分享部落格貼文、產品或宣傳活動。請使用這段文字描述商品、分享庫存和樣式的詳細資訊，或顯示近期評論及常見問題。</p>"
           }

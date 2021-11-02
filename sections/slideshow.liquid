@@ -1,80 +1,193 @@
+{%- if section.settings.slideshow_height == 'adapt' -%}
+  {% comment %}
+    'min_aspect_ratio' is the minimum aspect ratio of images shown without
+    whitespace when 'slideshow_height' is set to 'adapt'.
+    The aspect ratio values for the first image in the slideshow will be used
+    unless it is blank, in that case a ratio of 2:1 will be used.
+  {% endcomment %}
 
+  {%- assign first_block = section.blocks[0] -%}
+  {%- if first_block.settings.image.aspect_ratio == blank -%}
+    {%- assign min_aspect_ratio = 2.0 -%}
+  {%- else -%}
+    {%- assign min_aspect_ratio = first_block.settings.image.aspect_ratio -%}
+  {%- endif -%}
+  {% assign wrapper_height = 100 | divided_by: min_aspect_ratio %}
+{%- endif -%}
 
 {%- assign text_alignments = section.settings.text_alignment | split: ' ' -%}
 {%- assign text_horizontal_alignment = text_alignments.first -%}
 {%- assign text_vertical_alignment = text_alignments.last | strip -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
-  <div class="main-slideshow">
-    <div class="slide-content">
-    <div data-slideshow-title class="section-heading  h1 slideshow__title mega-subtitle ">{{ section.settings.heading }}</div>
-    {%- if section.blocks.size > 0 -%}
-      <div id="SlideshowWrapper-{{ section.id }}" class="slideshow-wrapper" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1" data-slider>
-        <div class="slideshow slideshow--{{ section.settings.slideshow_height }}{% if display_controls %} slideshow--display-controls{% endif %}"
-             id="Slideshow-{{ section.id }}"
-             data-autorotate="{{ section.settings.autorotate }}"
-             data-slider-container
-             data-speed="{{ section.settings.autorotate_speed | times: 1000 }}"
-             data-adapt-height="true"
-             data-slide-nav-a11y="{{ 'sections.slideshow.load_slide' | t: slide_number: '[slide_number]' }}"
-             >
-          {%- for block in section.blocks -%}
-            <div id="slickSlide-{{ block.id }}" class="slideshow__slide slideshow__slide--{{ block.id }}{% if forloop.first %} slideshow__slide--active{% endif %}" data-slider-slide-index="{{ forloop.index0 }}" data-slider-item {{ block.shopify_attributes }}>
-              <div class="slideshow__text-wrap slideshow__text-wrap--desktop">
-                <div data-slideshow-text-content class="slideshow__text-content slideshow__text-content--vertical-{{ text_vertical_alignment }} text-{{ text_horizontal_alignment }}">
-                  
-                  <div class="page-width">
-                    {% unless block.settings.slide_title == blank and block.settings.subheading == blank %}
-                      <ul class="slideshow__text-content-list">
-                        {%- unless block.settings.slide_title == blank -%}
-                          <li>
-                            <h2 class="h1 mega-title slideshow__title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
-                              {{ block.settings.slide_title | escape }}
-                            </h2>
-                          </li>
-                        {%- endunless -%}
-                        {%- unless block.settings.subheading == blank -%}
-                          <li>
-                            <span class=" h1 mega-subtitle slideshow__subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">
-                              {{ block.settings.subheading | escape }}
-                            </span>
-                          </li>
-                        {%- endunless -%}
-                      </ul>
-                    {% endunless %}
+  {%- if section.blocks.size > 0 -%}
+    <div id="SlideshowWrapper-{{ section.id }}" class="slideshow-wrapper" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1" data-slider>
+      <div class="slideshow slideshow--{{ section.settings.slideshow_height }}{% if display_controls %} slideshow--display-controls{% endif %}"
+           id="Slideshow-{{ section.id }}"
+           data-autorotate="{{ section.settings.autorotate }}"
+           data-slider-container
+           data-speed="{{ section.settings.autorotate_speed | times: 1000 }}">
+        {%- for block in section.blocks -%}
+          {%- assign block_image = block.settings.image -%}
+          <div id="slickSlide-{{ block.id }}" class="slideshow__slide slideshow__slide--{{ block.id }}{% if forloop.first %} slideshow__slide--active{% endif %}" data-slider-slide-index="{{ forloop.index0 }}" data-slider-item {{ block.shopify_attributes }}>
+            {% if block_image == blank %}
+              <div class="slideshow__image js">
+                <div class="placeholder-background">
+                  {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+                  {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                {% if section.settings.show_overlay %}<div class="slideshow__overlay"></div>{% endif %}
+              </div>
+            {% else %}
+              <div>
+                  {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                  <img  class="lazyload"
+                     data-src="{{ img_url }}"
+                     data-widths="[ 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="{{ collection_image.image.aspect_ratio }}"
+                     data-sizes="auto"
+                     alt="{{ collection_image.image.alt | escape }}">
+                {% if section.settings.show_overlay %}<div class="slideshow__overlay"></div>{% endif %}
+              </div>
+            {% endif %}
 
-                   
+            <noscript>
+              <div class="slideshow__image"{% if block_image %}{% unless block_image.alt == blank %} role="img" aria-label="{{ block_image.alt | escape }}"{% endunless %} style="background-image: url('{{ block_image | img_url: '2048x' }}'); background-position: {{ block.settings.alignment }};"{% endif %}>
+                {% if block_image == blank %}
+                  <div class="placeholder-background">
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
                   </div>
+                {% endif %}
+              </div>
+            </noscript>
+
+            <div class="slideshow__text-wrap slideshow__text-wrap--desktop">
+              <div class="slideshow__text-content slideshow__text-content--vertical-{{ text_vertical_alignment }} text-{{ text_horizontal_alignment }}">
+                <div class="page-width">
+                  {% unless block.settings.slide_title == blank and block.settings.subheading == blank %}
+                    <ul class="slideshow__text-content-list">
+                      {%- unless block.settings.slide_title == blank -%}
+                        <li>
+                          <h2 class="h1 mega-title slideshow__title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
+                            {{ block.settings.slide_title | escape }}
+                          </h2>
+                        </li>
+                      {%- endunless -%}
+                      {%- unless block.settings.subheading == blank -%}
+                        <li>
+                          <span class="mega-subtitle slideshow__subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">
+                            {{ block.settings.subheading | escape }}
+                          </span>
+                        </li>
+                      {%- endunless -%}
+                    </ul>
+                  {% endunless %}
+
+                  {%- assign show_link_button = false -%}
+                  {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+                    {%- assign show_link_button = true -%}
+                  {%- endif -%}
+                  {%- if show_link_button -%}
+                    <div class="slideshow__btn-wrapper{% if block.settings.slide_title != blank or block.settings.subheading != blank %} slideshow__btn-wrapper--push{% endif %}">
+                      <a href="{{ block.settings.button_link }}" class="btn slideshow__btn">
+                        {{ block.settings.button_label | escape }}
+                      </a>
+                    </div>
+                  {%- endif -%}
                 </div>
               </div>
             </div>
-          {%- endfor -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="slideshow__controls">
+        {%- if section.blocks.size > 1 -%}
+          {%- assign arrows_width = section.blocks.size | times: 18 | plus: 115 -%}
+          <div class="slideshow__arrows"
+               style="width: {{- arrows_width -}}px">
+            <button class="slideshow__arrow slideshow__arrow-previous" aria-label="{{ 'sections.slideshow.previous_slide' | t }}" data-slider-button>{% include 'icon-chevron-left' %}</button>
+            <button class="slideshow__arrow slideshow__arrow-next" aria-label="{{ 'sections.slideshow.next_slide' | t }}" data-slider-button data-slider-button-next>{% include 'icon-chevron-right' %}</button>
+
+            <ul class="slick-dots" data-slider-indicators>
+              {%- for block in section.blocks -%}
+                <li{% if forloop.first %} class="slick-active"{% endif %} data-slider-indicator>
+                  <a href="#Slideshow-{{ section.id }}" aria-label="{{ 'sections.slideshow.load_slide' | t: slide_number: forloop.index }}" data-slide-number="{{ forloop.index0 }}" aria-controls="slickSlide-{{ block.id }}"></a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+
+          {%- if section.settings.autorotate -%}
+            <button type="button" class="slideshow__pause" data-id="{{ section.id }}" aria-live="polite" aria-pressed="false" data-slider-pause>
+              <span class="slideshow__pause-stop">
+                {% include 'icon-pause' %}
+                <span class="icon__fallback-text">{{ 'sections.slideshow.pause_slideshow' | t }}</span>
+              </span>
+              <span class="slideshow__pause-rotate">
+                {% include 'icon-play' %}
+                <span class="icon__fallback-text">{{ 'sections.slideshow.rotate_slideshow' | t }}</span>
+              </span>
+            </button>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="slideshow__text-wrap slideshow__text-wrap--mobile">
+      {% if section.blocks.size > 1 %}
+        <div class="slideshow__arrows slideshow__arrows--mobile">
+          <button class="slideshow__arrow slideshow__arrow-previous" aria-label="{{ 'sections.slideshow.previous_slide' | t }}" data-slider-button>{% include 'icon-chevron-left' %}</button>
+          <button class="slideshow__arrow slideshow__arrow-next" aria-label="{{ 'sections.slideshow.next_slide' | t }}" data-slider-button data-slider-button-next>{% include 'icon-chevron-right' %}</button>
+
+          <ul class="slick-dots" data-slider-indicators>
+            {%- for block in section.blocks -%}
+              <li{% if forloop.first %} class="slick-active"{% endif %} data-slider-indicator>
+                <a href="#Slideshow-{{ section.id }}" aria-label="{{ 'sections.slideshow.load_slide' | t: slide_number: forloop.index }}" data-slide-number="{{ forloop.index0 }}" aria-controls="slickSlide-{{ block.id }}"></a>
+              </li>
+            {%- endfor -%}
+          </ul>
         </div>
-      </div>
-    {%- endif -%}
-    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-      <div class="slideshow__btn-wrapper">
-        <a href="{{ section.settings.button_link }}" class="btn_dark_large btn_dark">
-          {{ section.settings.button_label | escape }}
-        </a>
-      </div>
-    {%- endif -%}
-  </div>
-    {% if section.settings.use_video and section.settings.video != blank %}
-      <video preload="auto"  {% if  section.settings.poster != blank %} poster="{{ section.settings.poster | img_url: '1440x700', scale: 2 }}" {% endif %} class="styles_backgroundMedia__Ajqh9 styles_video__21QdD {% if section.settings.video_mobile != blank %} hide-mobile {% endif %}" src="{{ section.settings.video }}"  autoplay loop muted playsinline ></video>
-      {% if section.settings.video_mobile != blank %}
-        <video preload="auto" {% if  section.settings.poster != blank %} poster="{{ section.settings.poster | img_url: '375x490' }}" {% endif %} class="styles_backgroundMedia__Ajqh9 styles_video__21QdD hide-desktop" src="{{ section.settings.video_mobile }}"  autoplay loop muted playsinline ></video>
       {% endif %}
-    {% else %}
-      {% if section.settings.main_image != blank %}
-        <picture>
-          <source media="(max-width:767px)" srcset="{{ section.settings.main_image_mobile | default: section.settings.main_image | img_url: '1920x' }}">
-          <source srcset="{{ section.settings.main_image | img_url: '1920x'}}">
-          <img src="{{ section.settings.main_image | img_url: '1920x'}}" alt="" />
-        </picture>
-      {% endif %}
-    {% endif %}
-  </div>
+
+      {%- for block in section.blocks -%}
+        {%- assign show_text = false -%}
+        {%- unless block.settings.slide_title == blank and block.settings.subheading == blank -%}
+          {%- assign show_text = true -%}
+        {%- endunless -%}
+        {%- assign show_link_button = false -%}
+        {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+          {%- assign show_link_button = true -%}
+        {%- endif -%}
+        {%- if show_text or show_link_button -%}
+          <div class="slideshow__text-content slideshow__text-content--mobile{% if forloop.first %} slideshow__text-content--mobile-active{% endif %} text-center" data-slider-mobile-content-index="{{ forloop.index0 }}">
+            <div class="page-width">
+              {%- unless block.settings.slide_title == blank -%}
+                <h2 class="h1 mega-title slideshow__title slideshow__title--mobile{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">
+                  {{ block.settings.slide_title | escape }}
+                </h2>
+              {%- endunless -%}
+              {%- unless block.settings.subheading == blank -%}
+                <span class="mega-subtitle slideshow__subtitle slideshow__subtitle--mobile{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">
+                  {{ block.settings.subheading | escape }}
+                </span>
+              {%- endunless -%}
+
+              {%- if show_link_button -%}
+                <a href="{{ block.settings.button_link }}" class="btn slideshow__btn slideshow__btn--mobile">
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {% if section.blocks.size == 0 %}
+    <div class="placeholder-noblocks">
+      {{ 'homepage.onboarding.no_content' | t }}
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -106,96 +219,162 @@
   "max_blocks": 6,
   "settings": [
     {
-      "type": "image_picker",
-      "id": "main_image",
-      "label": "Main Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "poster",
-      "label": "poster"
-    },
-    {
-      "type": "image_picker",
-      "id": "main_image_mobile",
-      "label": "Main Mobile Image"
-    },
-    {
-      "type": "checkbox",
-      "id": "use_video",
-      "label": "Use a video"
-    },
-    {
-      "type": "text",
-      "id": "video",
-      "label": "Video Url"
-    },
-    {
-      "type": "text",
-      "id": "video_mobile",
-      "label": "Video Url Mobile"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "i am"
-    },
-    {
-          "type": "text",
-          "id": "button_label",
+      "type": "select",
+      "id": "slideshow_height",
+      "label": {
+        "cs": "Výška snímku",
+        "da": "Diashøjde",
+        "de": "Diahöhe",
+        "en": "Slide height",
+        "es": "Altura de diapositiva",
+        "fi": "Dian korkeus",
+        "fr": "Hauteur de la diapositive",
+        "it": "Altezza slide",
+        "ja": "スライドの高さ",
+        "ko": "슬라이드 높이",
+        "nb": "Lysbildehøyde",
+        "nl": "Diahoogte",
+        "pl": "Wysokość slajdu",
+        "pt-BR": "Altura do slide",
+        "pt-PT": "Altura do diapositivo",
+        "sv": "Bildhöjd",
+        "th": "ความสูงของสไลด์",
+        "tr": "Slayt yüksekliği",
+        "vi": "Chiều cao trang chiếu",
+        "zh-CN": "幻灯片高度",
+        "zh-TW": "投影片高度"
+      },
+      "default": "adapt",
+      "info": {
+        "cs": "Prostudujte si [nápovědu k prezentaci](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific).",
+        "da": "Få mere at vide om [slideshow guidelines](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "de": "Erfahren Sie mehr über die [Richtlinien für Slideshows](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "en": "Learn more about [slideshow guidelines](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "es": "Más información sobre [directrices de presentación de diapositivas](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "fi": "Lisätietoja [diaesitysohjeista](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "fr": "En savoir plus sur [directives de diaporama](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "it": "Maggiori informazioni sulle [linee guida per le presentazioni](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "ja": "[スライドショーのガイドライン](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)に関して詳しくはこちらをご覧ください",
+        "ko": "[슬라이드 쇼 가이드라인에 대해 자세히 알아보기](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "nb": "Finn ut mer om [retningslinjer for lysbilder](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "nl": "Meer informatie over [richtlijnen voor diavoorstellingen](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "pl": "Dowiedz się więcej o [wytycznych dotyczących pokazu slajdów](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "pt-BR": "Saiba mais sobre [diretrizes de apresentação de slides](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "pt-PT": "Saiba mais sobre [diretrizes de apresentação de diapositivos](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "sv": "Läs mer om [bildspelets riktlinjer](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "th": "ดูข้อมูลเพิ่มเติมเกี่ยวกับ [แนวทางสไลด์โชว์](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "tr": "[Slayt gösterisi yönergeleri](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific) hakkında daha fazla bilgi edinin",
+        "vi": "Tìm hiểu thêm về [hướng dẫn trình chiếu](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "zh-CN": "详细了解[幻灯片指南](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)",
+        "zh-TW": "深入瞭解 [素材輪播準則](https://help.shopify.com/en/manual/using-themes/themes-by-shopify/debut#slideshow-sections-specific)"
+      },
+      "options": [
+        {
           "label": {
-            "cs": "Text tlačítka",
-            "da": "Knaptekst",
-            "de": "Button-Name",
-            "en": "Button label",
-            "es": "Etiqueta de botón",
-            "fi": "Tekstipainike",
-            "fr": "Texte du bouton",
-            "it": "Etichetta pulsante",
-            "ja": "ボタンのラベル",
-            "ko": "버튼 레이블",
-            "nb": "Knappetikett",
-            "nl": "Knoplabel",
-            "pl": "Przycisk z etykietą",
-            "pt-BR": "Etiqueta de botão",
-            "pt-PT": "Etiqueta do botão",
-            "sv": "Knappetikett",
-            "th": "ป้ายกำกับปุ่ม",
-            "tr": "Düğme etiketi",
-            "vi": "Nhãn nút",
-            "zh-CN": "按钮标签",
-            "zh-TW": "按鈕標籤"
+            "cs": "Přizpůsobení prvnímu obrázku",
+            "da": "Tilpas til første side",
+            "de": "An erstes Bild anpassen",
+            "en": "Adapt to first image",
+            "es": "Adaptar a la primera imagen",
+            "fi": "Mukauta ensimmäisen kuvan mukaan",
+            "fr": "Adapter à la première image",
+            "it": "Adatta alla prima immagine",
+            "ja": "最初の画像に対応",
+            "ko": "첫 번째 이미지에 맞춤",
+            "nb": "Tilpass etter første bilde",
+            "nl": "Aanpassen aan eerste afbeelding",
+            "pl": "Dostosuj do pierwszego obrazu",
+            "pt-BR": "Adaptar à primeira imagem",
+            "pt-PT": "Adaptar à primeira imagem",
+            "sv": "Anpassa efter första bilden",
+            "th": "ปรับให้เข้ากับรูปภาพแรก",
+            "tr": "İlk görsele uyarla",
+            "vi": "Điều chỉnh theo hình ảnh đầu tiên",
+            "zh-CN": "适应第一张图片",
+            "zh-TW": "配合第一張圖片"
           },
-          "default": "shop all"
+          "value": "adapt"
         },
         {
-          "type": "url",
-          "id": "button_link",
           "label": {
-            "cs": "Tlačítkový odkaz",
-            "da": "Knaplink",
-            "de": "Button-Link",
-            "en": "Button link",
-            "es": "Enlace de la diapositiva",
-            "fi": "Painikelinkki",
-            "fr": "Lien du bouton",
-            "it": "Link slide",
-            "ja": "ボタンのリンク",
-            "ko": "버튼 링크",
-            "nb": "Kobling for knapp",
-            "nl": "Knoplink",
-            "pl": "Link przycisku",
-            "pt-BR": "Link do slide",
-            "pt-PT": "Ligação do botão",
-            "sv": "Knapplänk",
-            "th": "ลิงก์ปุ่ม",
-            "tr": "Düğme bağlantısı",
-            "vi": "Liên kết trên nút",
-            "zh-CN": "按钮链接",
-            "zh-TW": "按鈕連結"
-          }
+            "cs": "Malá",
+            "da": "Lille",
+            "de": "Klein",
+            "en": "Small",
+            "es": "Pequeña",
+            "fi": "Pieni",
+            "fr": "Petite",
+            "it": "Piccolo",
+            "ja": "小",
+            "ko": "스몰",
+            "nb": "Liten",
+            "nl": "Klein",
+            "pl": "Mały",
+            "pt-BR": "Pequeno",
+            "pt-PT": "Pequeno",
+            "sv": "Liten",
+            "th": "เล็ก",
+            "tr": "Küçük",
+            "vi": "Nhỏ",
+            "zh-CN": "小",
+            "zh-TW": "小型"
+          },
+          "value": "small"
         },
+        {
+          "label": {
+            "cs": "Střední",
+            "da": "Medium",
+            "de": "Mittel",
+            "en": "Medium",
+            "es": "Mediana",
+            "fi": "Keskisuuri",
+            "fr": "Moyenne",
+            "it": "Medio",
+            "ja": "中",
+            "ko": "보통",
+            "nb": "Middels",
+            "nl": "Gemiddeld",
+            "pl": "Średnie",
+            "pt-BR": "Médio",
+            "pt-PT": "Médio",
+            "sv": "Medium",
+            "th": "ปานกลาง",
+            "tr": "Orta",
+            "vi": "Trung bình",
+            "zh-CN": "中等",
+            "zh-TW": "中等"
+          },
+          "value": "medium"
+        },
+        {
+          "label": {
+            "cs": "Velká",
+            "da": "Stor",
+            "de": "Groß",
+            "en": "Large",
+            "es": "Grande",
+            "fi": "Suuri",
+            "fr": "Grande",
+            "it": "Grande",
+            "ja": "大",
+            "ko": "라지",
+            "nb": "Stor",
+            "nl": "Groot",
+            "pl": "Duży",
+            "pt-BR": "Grande",
+            "pt-PT": "Grande",
+            "sv": "Stor",
+            "th": "ใหญ่",
+            "tr": "Büyük",
+            "vi": "Lớn",
+            "zh-CN": "大",
+            "zh-TW": "大型"
+          },
+          "value": "large"
+        }
+      ]
+    },
     {
       "type": "select",
       "id": "text_size",
@@ -624,9 +803,9 @@
         "zh-CN": "幻灯片更改时间间隔",
         "zh-TW": "每過以下時間即變更投影片"
       },
-      "max": 8,
-      "min": 2,
-      "step": 1,
+      "max": 9,
+      "min": 3,
+      "step": 2,
       "unit": {
         "cs": " s",
         "da": " s",
@@ -656,8 +835,57 @@
   "blocks": [
     {
       "type": "image",
-      "name": "Slide",
+      "name": {
+        "cs": "Obrázkový snímek",
+        "da": "Billeddias",
+        "de": "Foto-Slide",
+        "en": "Image slide",
+        "es": "Diapositiva de imagen",
+        "fi": "Kuvadia",
+        "fr": "Diapositive (image)",
+        "it": "Slide immagine",
+        "ja": "画像スライド",
+        "ko": "이미지 슬라이드",
+        "nb": "Lysbilde",
+        "nl": "Afbeelding dia",
+        "pl": "Slajd obrazu",
+        "pt-BR": "Slide de imagem",
+        "pt-PT": "Diapositivo de imagem",
+        "sv": "Bild i bildspel",
+        "th": "สไลด์รูปภาพ",
+        "tr": "Görsel slaytı",
+        "vi": "Trang chiếu hình ảnh",
+        "zh-CN": "图片幻灯片",
+        "zh-TW": "圖片投影片"
+      },
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "cs": "Obrázek",
+            "da": "Billede",
+            "de": "Foto",
+            "en": "Image",
+            "es": "Imagen",
+            "fi": "Kuva",
+            "fr": "Image",
+            "it": "Immagine",
+            "ja": "画像",
+            "ko": "이미지",
+            "nb": "Bilde",
+            "nl": "Afbeelding",
+            "pl": "Obraz",
+            "pt-BR": "Imagem",
+            "pt-PT": "Imagem",
+            "sv": "Bild",
+            "th": "รูปภาพ",
+            "tr": "Görsel",
+            "vi": "Hình ảnh",
+            "zh-CN": "图片",
+            "zh-TW": "圖片"
+          }
+        },
         {
           "type": "select",
           "id": "alignment",
@@ -1020,6 +1248,60 @@
             "vi": "Chia sẻ câu chuyện thương hiệu của bạn qua hình ảnh",
             "zh-CN": "通过图片讲述您的品牌故事",
             "zh-TW": "用圖片講述您的品牌故事"
+          }
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": {
+            "cs": "Text tlačítka",
+            "da": "Knaptekst",
+            "de": "Button-Name",
+            "en": "Button label",
+            "es": "Etiqueta de botón",
+            "fi": "Tekstipainike",
+            "fr": "Texte du bouton",
+            "it": "Etichetta pulsante",
+            "ja": "ボタンのラベル",
+            "ko": "버튼 레이블",
+            "nb": "Knappetikett",
+            "nl": "Knoplabel",
+            "pl": "Przycisk z etykietą",
+            "pt-BR": "Etiqueta de botão",
+            "pt-PT": "Etiqueta do botão",
+            "sv": "Knappetikett",
+            "th": "ป้ายกำกับปุ่ม",
+            "tr": "Düğme etiketi",
+            "vi": "Nhãn nút",
+            "zh-CN": "按钮标签",
+            "zh-TW": "按鈕標籤"
+          }
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": {
+            "cs": "Tlačítkový odkaz",
+            "da": "Knaplink",
+            "de": "Button-Link",
+            "en": "Button link",
+            "es": "Enlace de la diapositiva",
+            "fi": "Painikelinkki",
+            "fr": "Lien du bouton",
+            "it": "Link slide",
+            "ja": "ボタンのリンク",
+            "ko": "버튼 링크",
+            "nb": "Kobling for knapp",
+            "nl": "Knoplink",
+            "pl": "Link przycisku",
+            "pt-BR": "Link do slide",
+            "pt-PT": "Ligação do botão",
+            "sv": "Knapplänk",
+            "th": "ลิงก์ปุ่ม",
+            "tr": "Düğme bağlantısı",
+            "vi": "Liên kết trên nút",
+            "zh-CN": "按钮链接",
+            "zh-TW": "按鈕連結"
           }
         }
       ]

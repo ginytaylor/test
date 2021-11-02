@@ -433,12 +433,5 @@
       "pick_up_available_at_html": "K dispozícii na vyzdvihnutie na adrese <strong>{{ location_name }}<\/strong>",
       "pick_up_unavailable_at_html": "Aktuálne dostupné na vyzdvihnutie na adrese <strong>{{ location_name }}<\/strong>"
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

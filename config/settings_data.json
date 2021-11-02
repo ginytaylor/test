@@ -1,180 +1,84 @@
 {
   "current": {
-    "banner": "shopify:\/\/shop_images\/sss.jpg",
-    "color_text": "#000000",
-    "color_body_text": "#000000",
-    "color_button": "#000000",
-    "type_header_font": "avenir_next_n4",
-    "type_base_font": "avenir_next_n4",
-    "type_base_size": 16,
-    "search_term": "non-wired bra,unpadded bra,panty",
-    "predictive_search_enabled": false,
-    "share_facebook": true,
-    "share_twitter": false,
-    "share_pinterest": false,
-    "social_linked-in_link": "https:\/\/www.linkedin.com\/company\/scandaleecolingerie\/",
-    "social_facebook_link": "https:\/\/www.facebook.com\/scandale.eco\/",
-    "social_instagram_link": "https:\/\/www.instagram.com\/scandale.ecolingerie\/",
-    "favicon": "shopify:\/\/shop_images\/fav_a6127f11-3508-4ed7-8388-d933c14c955c.png",
-    "checkout_logo_image": "shopify:\/\/shop_images\/20210709_scandale_logo.png",
-    "social_linkedin_link": "https:\/\/www.facebook.com\/",
+    "color_text": "#3a3a3a",
+    "color_body_text": "#4a4a4a",
+    "color_sale_text": "#EA0606",
+    "color_button": "#ffffff",
+    "color_button_text": "#a8a59e",
+    "color_small_button_text_border": "#3a3a3a",
+    "color_text_field_text": "#000000",
+    "color_text_field_border": "#cccccc",
+    "color_text_field": "#ffffff",
+    "color_image_overlay_text": "#ffffff",
+    "color_image_overlay": "#685858",
+    "image_overlay_opacity": 40,
+    "color_borders": "#cccccc",
+    "color_body_bg": "#ffffff",
+    "type_header_font": "helvetica_n7",
+    "type_header_base_size": 26,
+    "type_base_font": "helvetica_n4",
+    "type_base_size": 15,
+    "social_twitter_link": "https:\/\/www.facebook.com\/",
+    "social_facebook_link": "https:\/\/www.facebook.com\/",
+    "social_pinterest_link": "https:\/\/www.facebook.com\/",
+    "favicon": "shopify:\/\/shop_images\/favicon.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#1878b9",
+    "checkout_button_color": "#1878b9",
+    "checkout_error_color": "#e22120",
     "sections": {
       "header": {
         "type": "header",
-        "blocks": {
-          "d1f47d7f-bed2-4c9f-b8d6-e996a43a1663": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/collection-sleek.jpg",
-              "menu_link": "shopify:\/\/collections\/le-sleek",
-              "menu_title": "sleek mood",
-              "menu_desc": "inspired by Palais-Royal"
-            }
-          },
-          "bb595033-a495-47cf-a952-26f1cecba6d5": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/collection-sensual.jpg",
-              "menu_link": "shopify:\/\/collections\/le-sensual",
-              "menu_title": "sensual mood",
-              "menu_desc": "inspired by Saint-Germain"
-            }
-          },
-          "33b93efa-84a2-48f0-9a0a-b3112dcd0bc3": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/collection-sublime.jpg",
-              "menu_link": "shopify:\/\/collections\/le-sublime",
-              "menu_title": "sublime mood",
-              "menu_desc": "inspired by Montmartre"
-            }
-          },
-          "3960d6ae-d08a-47f2-9f6a-eb9f53ff5a1c": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/d_cbf035ce-4960-4610-a15e-d13ec113fc11.jpg",
-              "menu_link": "shopify:\/\/pages\/low-planet-impact-eco-lingerie",
-              "menu_title": "planet in mind",
-              "menu_desc": "decarbonisation is a must"
-            }
-          },
-          "233f3bbb-6bac-4164-97be-ca0fc6d7c563": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/e_b89a874b-879c-4bb6-91c2-f883ef4bf841.jpg",
-              "menu_link": "shopify:\/\/pages\/people-commitments",
-              "menu_title": "people in mind",
-              "menu_desc": "our community first"
-            }
-          },
-          "b5465ae2-0efa-47c3-8d00-9fb515997e53": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/f_77696625-23bf-4f36-9406-15b3e981319b.jpg",
-              "menu_link": "shopify:\/\/pages\/traceable-transparent",
-              "menu_title": "transparency in mind",
-              "menu_desc": "no hide & seek"
-            }
-          },
-          "bd32728a-4362-4923-b5fb-21f7e851b501": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/banner-mixplay-panties.jpg",
-              "menu_link": "shopify:\/\/pages\/mix-to-play",
-              "menu_title": "mix & play",
-              "menu_desc": "multiplying the occasions"
-            }
-          },
-          "76c772c8-14a2-4ae9-9106-89497c7a3a47": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/banner-ecobra-undyed.jpg",
-              "menu_link": "https:\/\/www.scandale.com\/collections\/undyed#bra",
-              "menu_title": "undyed",
-              "menu_desc": "the most sustainable colour"
-            }
-          },
-          "09166090-0683-493d-9ac5-31c71ec19ed1": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/banner-mixplay-bra.jpg",
-              "menu_link": "https:\/\/www.scandale.com\/pages\/mix-to-play#bra",
-              "menu_title": "mix & play",
-              "menu_desc": "multiplying the occasions"
-            }
-          },
-          "e6e6d268-878a-47e3-991f-56569908821e": {
-            "type": "menu",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/banner-ecopanty-undyed.jpg",
-              "menu_link": "shopify:\/\/collections\/undyed",
-              "menu_title": "undyed",
-              "menu_desc": "the most sustainable colour"
-            }
-          }
-        },
-        "block_order": [
-          "d1f47d7f-bed2-4c9f-b8d6-e996a43a1663",
-          "bb595033-a495-47cf-a952-26f1cecba6d5",
-          "33b93efa-84a2-48f0-9a0a-b3112dcd0bc3",
-          "3960d6ae-d08a-47f2-9f6a-eb9f53ff5a1c",
-          "233f3bbb-6bac-4164-97be-ca0fc6d7c563",
-          "b5465ae2-0efa-47c3-8d00-9fb515997e53",
-          "bd32728a-4362-4923-b5fb-21f7e851b501",
-          "76c772c8-14a2-4ae9-9106-89497c7a3a47",
-          "09166090-0683-493d-9ac5-31c71ec19ed1",
-          "e6e6d268-878a-47e3-991f-56569908821e"
-        ],
         "settings": {
           "align_logo": "left",
-          "logo": "shopify:\/\/shop_images\/logo.png",
-          "logo_max_width": 180,
-          "main_linklist": "main-menu"
+          "logo": "shopify:\/\/shop_images\/logo_v.png",
+          "logo_max_width": 165,
+          "main_linklist": "main-menu",
+          "message": true,
+          "home_page_only": true,
+          "message_text": "購物滿$500即享免費送貨。",
+          "color_bg": "rgba(0,0,0,0)",
+          "color_text": "#6c6c6c"
         }
       },
       "feature-row": {
         "type": "feature-row",
         "settings": {
+          "image": "shopify:\/\/shop_images\/hkhomepagestore_optimised.jpg",
           "layout": "left",
-          "title": "Image with text",
-          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-          "button_label": ""
+          "title": "分店搜尋",
+          "text": "<p>康維他誠意為您帶來源自新西蘭的健康滋味!<br\/>立即搜尋我們的分店。<\/p>",
+          "button_label": "查看分店地址",
+          "button_link": "shopify:\/\/collections"
         }
       },
       "feature-columns": {
         "type": "feature-columns",
-        "disabled": true,
         "blocks": {
           "feature-columns-0": {
             "type": "text_block",
             "settings": {
-              "video": "",
-              "video_mobile": "",
-              "useIcon": false,
-              "icons": "icon-contact",
               "enable_image": true,
-              "image": "shopify:\/\/shop_images\/Rectangle_575.jpg",
-              "title": "from",
-              "subtitle": "",
+              "image": "shopify:\/\/shop_images\/Freeshipping_optimised.jpg",
+              "title": "",
               "text": "",
-              "button_label": "undyed",
-              "button_link": "shopify:\/\/collections\/undyed"
+              "button_label": ""
             }
           },
           "feature-columns-1": {
             "type": "text_block",
             "settings": {
-              "video": "",
-              "video_mobile": "",
-              "useIcon": false,
-              "icons": "icon-contact",
               "enable_image": true,
-              "image": "shopify:\/\/shop_images\/Rectangle_576.jpg",
-              "title": "to",
-              "subtitle": "",
+              "image": "shopify:\/\/shop_images\/Comvita20_003_Online_Promotion_Feb_Web_WWWindowVM_LA1_800x275_fae60ae4-0720-4a1d-a1d2-971568add97f.jpg",
+              "title": "",
               "text": "",
-              "button_label": "colour",
-              "button_link": "shopify:\/\/collections\/bodies"
+              "button_label": ""
             }
           }
         },
@@ -183,20 +87,19 @@
           "feature-columns-1"
         ],
         "settings": {
-          "css_class": "fromTo",
+          "show_background": true,
+          "classes": "remove-margin",
           "title": "",
-          "desc": "",
           "align_text": "left"
         }
       },
       "collection": {
         "type": "collection",
         "settings": {
-          "title": "best sellers",
-          "text": "80% from previous life - carbon neutral - ethical & traceable",
-          "collection": "home-page-eco-bra-collection",
-          "grid": 4,
-          "rows": 2,
+          "title": "顧客最愛產品",
+          "collection": "rangehk00001",
+          "grid": 5,
+          "rows": 1,
           "show_vendor": false,
           "show_view_all": false
         }
@@ -241,33 +144,23 @@
           "image-bar-0": {
             "type": "image",
             "settings": {
-              "alignment": "center",
+              "image": "shopify:\/\/shop_images\/Freeshipping_optimised.jpg",
               "cta_label": ""
             }
           },
           "image-bar-1": {
             "type": "image",
             "settings": {
-              "alignment": "center",
-              "cta_label": ""
-            }
-          },
-          "image-bar-2": {
-            "type": "image",
-            "settings": {
-              "alignment": "center",
+              "image": "shopify:\/\/shop_images\/Comvita20_003_Online_Promotion_Feb_Web_WWWindowVM_LA1_800x275_fae60ae4-0720-4a1d-a1d2-971568add97f.jpg",
               "cta_label": ""
             }
           }
         },
         "block_order": [
           "image-bar-0",
-          "image-bar-1",
-          "image-bar-2"
+          "image-bar-1"
         ],
-        "settings": {
-          "section_height": "medium"
-        }
+        "settings": {}
       },
       "footer": {
         "type": "footer",
@@ -275,3931 +168,286 @@
           "footer-0": {
             "type": "link_list",
             "settings": {
-              "title": "about us",
-              "menu": "about-us"
+              "title": "關於康維他™",
+              "menu": "link-list"
             }
           },
-          "623cdb34-a6b0-4f85-88cd-a50bcd38749b": {
+          "a9d16ead-372a-44fe-84b4-53b3c0c45cab": {
             "type": "link_list",
             "settings": {
-              "title": "let us help",
-              "menu": "let-us-help"
+              "title": "探索更多",
+              "menu": "link-list-2"
             }
           },
-          "3fee8250-9a2f-4955-abcd-0ee8d62464e6": {
+          "48f2f7a6-f66f-409a-a69d-de48c8220010": {
             "type": "link_list",
             "settings": {
-              "title": "partnerships",
-              "menu": "connect-with-us"
+              "title": "我們的服務",
+              "menu": "link-list-1"
+            }
+          },
+          "a3268526-94a3-4ea6-ac00-cb5a8bfdca66": {
+            "type": "link_list",
+            "settings": {
+              "title": "合作關係",
+              "menu": "link-list-3"
             }
           },
           "footer-1": {
             "type": "newsletter",
             "settings": {
-              "title": "join our movement",
-              "sub-heading": "sign up to hear from us"
+              "title": "Newsletter"
             }
           }
         },
         "block_order": [
           "footer-0",
-          "623cdb34-a6b0-4f85-88cd-a50bcd38749b",
-          "3fee8250-9a2f-4955-abcd-0ee8d62464e6",
+          "a9d16ead-372a-44fe-84b4-53b3c0c45cab",
+          "48f2f7a6-f66f-409a-a69d-de48c8220010",
+          "a3268526-94a3-4ea6-ac00-cb5a8bfdca66",
           "footer-1"
         ],
         "settings": {
           "show_payment_icons": false,
-          "color_footer_bg": "#ffffff",
-          "color_footer_text": "#000000",
+          "color_footer_bg": "rgba(0,0,0,0)",
+          "color_footer_text": "#333232",
           "show_locale_selector": true,
-          "show_currency_selector": true,
-          "policy": "footer"
+          "show_currency_selector": true
         }
       },
-      "announcement": {
-        "type": "announcement",
-        "blocks": {
-          "1121ca93-95b0-40b3-9b04-5de6939e3965": {
-            "type": "announcement_bar",
-            "settings": {
-              "message_text": "1st order ships free - use code: bienvenue",
-              "message_link": ""
-            }
-          },
-          "806ef57d-1b8d-4e7f-ba22-e82331611f09": {
-            "type": "announcement_bar",
-            "settings": {
-              "message_text": "100% éco-fabrics",
-              "message_link": ""
-            }
-          },
-          "f9f67f9b-1cb2-44f1-a9d4-1954a0882444": {
-            "type": "announcement_bar",
-            "disabled": true,
-            "settings": {
-              "message_text": "free shipping above €69",
-              "message_link": ""
-            }
-          },
-          "24922b33-5f35-49ec-9b09-664a9349824d": {
-            "type": "announcement_bar",
-            "settings": {
-              "message_text": "80% from previous life",
-              "message_link": ""
-            }
-          },
-          "2aaac488-bf70-45d9-a00a-309a6ffc1320": {
-            "type": "announcement_bar",
-            "disabled": true,
-            "settings": {
-              "message_text": "carbon neutral",
-              "message_link": ""
-            }
-          },
-          "8f28c33a-8cb4-40a4-b3cc-69ec342a6036": {
-            "type": "announcement_bar",
-            "settings": {
-              "message_text": "join our movement",
-              "message_link": ""
-            }
-          }
-        },
-        "block_order": [
-          "1121ca93-95b0-40b3-9b04-5de6939e3965",
-          "806ef57d-1b8d-4e7f-ba22-e82331611f09",
-          "f9f67f9b-1cb2-44f1-a9d4-1954a0882444",
-          "24922b33-5f35-49ec-9b09-664a9349824d",
-          "2aaac488-bf70-45d9-a00a-309a6ffc1320",
-          "8f28c33a-8cb4-40a4-b3cc-69ec342a6036"
-        ],
-        "settings": {
-          "message": true,
-          "home_page_only": true,
-          "auto_play": true,
-          "color_bg": "#000000",
-          "color_text": "#ffffff"
-        }
-      },
-      "161952267785a95a29": {
+      "161795635995bca987": {
         "type": "slideshow",
         "blocks": {
-          "161952267785a95a29-0": {
+          "161795635995bca987-0": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_homepage_banner_LA2.jpg",
               "alignment": "center center",
               "slide_title": "",
-              "subheading": "a new sensuality"
+              "subheading": "",
+              "button_label": ""
             }
           },
-          "161952267785a95a29-1": {
+          "161795635995bca987-1": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/20201222_propolis_homepage_desktop.jpg",
               "alignment": "center center",
               "slide_title": "",
-              "subheading": "with people & planet in mind"
+              "subheading": "",
+              "button_label": ""
             }
           },
-          "38a446a4-54db-48f7-a4b3-698d25da2cfa": {
+          "5cf50361-74c6-4511-ab85-d4140947f0a4": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/20191205_Dec_Web_Kids_Corner_1440x500_LA2.jpg",
               "alignment": "center center",
               "slide_title": "",
-              "subheading": "carbon neutral"
+              "subheading": "",
+              "button_label": ""
             }
           },
-          "50fea6bb-f022-4821-a192-6da277336e61": {
+          "e37e17a5-ed44-4652-8d7b-5d62c0ef03a7": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/20190510_banner_new-package_desktop.jpg",
               "alignment": "center center",
               "slide_title": "",
-              "subheading": "100% éco-fabrics"
-            }
-          },
-          "77d7e57c-e689-458f-9bb3-a6005ba8f347": {
-            "type": "image",
-            "settings": {
-              "alignment": "center center",
-              "slide_title": "",
-              "subheading": "ethical & traceable"
+              "subheading": "",
+              "button_label": ""
             }
           }
         },
         "block_order": [
-          "161952267785a95a29-0",
-          "161952267785a95a29-1",
-          "38a446a4-54db-48f7-a4b3-698d25da2cfa",
-          "50fea6bb-f022-4821-a192-6da277336e61",
-          "77d7e57c-e689-458f-9bb3-a6005ba8f347"
+          "161795635995bca987-0",
+          "161795635995bca987-1",
+          "5cf50361-74c6-4511-ab85-d4140947f0a4",
+          "e37e17a5-ed44-4652-8d7b-5d62c0ef03a7"
         ],
         "settings": {
-          "main_image": "shopify:\/\/shop_images\/Rectangle_73.jpg",
-          "poster": "shopify:\/\/shop_images\/home_default_hero_banner.png",
-          "use_video": true,
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/20210824_home_main_champaign_c.mp4?v=1629948523",
-          "video_mobile": "",
-          "heading": "i am",
-          "button_label": "discover now",
-          "button_link": "shopify:\/\/collections\/all",
+          "slideshow_height": "adapt",
           "text_size": "medium",
           "text_alignment": "center center",
           "show_overlay": false,
           "autorotate": true,
-          "autorotate_speed": 2
+          "autorotate_speed": 3
         }
       },
-      "1619531054b7cc1c96": {
-        "type": "MGS",
+      "1617957154e00b76f5": {
+        "type": "collection-list",
         "blocks": {
-          "fbfe13fe-5c74-465f-b58a-fa83a6672f30": {
-            "type": "mgs",
+          "1617957154e00b76f5-0": {
+            "type": "featured_collection",
             "settings": {
-              "number": 48446,
-              "unit": "kg",
-              "small_text": "CO2eq preserved",
-              "desc": "48,446kg CO2eq preserved"
+              "collection": "rangehk00005",
+              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_420x480_LA1-01.jpg"
             }
           },
-          "2e82341a-c827-4880-aa56-d21be2eef664": {
-            "type": "mgs",
+          "1617957154e00b76f5-1": {
+            "type": "featured_collection",
             "settings": {
-              "number": 523729,
-              "unit": "L",
-              "small_text": "water preserved",
-              "desc": "523,729 L water preserved"
+              "collection": "rangehk00001",
+              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_420x480_LA2-03.jpg"
             }
           },
-          "bd39d460-7830-4d61-acb6-742380c15356": {
-            "type": "mgs",
+          "1617957154e00b76f5-2": {
+            "type": "featured_collection",
             "settings": {
-              "number": 55652,
-              "unit": "g",
-              "small_text": "PO4eq preserved",
-              "desc": "55,652g PO4eq  preserved"
-            }
-          },
-          "a0f891b5-1838-42f0-9e00-45112beec617": {
-            "type": "mgs",
-            "disabled": true,
-            "settings": {
-              "number": 22000,
-              "unit": "m",
-              "small_text": "fabrics waste",
-              "desc": "2,4000 international flights equivalent reduced"
+              "collection": "rangehk190008",
+              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_420x480_LA1-02.jpg"
             }
           }
         },
         "block_order": [
-          "fbfe13fe-5c74-465f-b58a-fa83a6672f30",
-          "2e82341a-c827-4880-aa56-d21be2eef664",
-          "bd39d460-7830-4d61-acb6-742380c15356",
-          "a0f891b5-1838-42f0-9e00-45112beec617"
+          "1617957154e00b76f5-0",
+          "1617957154e00b76f5-1",
+          "1617957154e00b76f5-2"
         ],
         "settings": {
-          "background": "shopify:\/\/shop_images\/Rectangle_76.jpg",
-          "background_mobile": "shopify:\/\/shop_images\/Rectangle_76_234c027e-c62a-4f3f-9e0a-892a0026f017.jpg",
-          "use_video": true,
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/20210824_home_sustainability_bg.mp4?v=1629948171",
-          "video_mobile": "",
-          "heading": "focusing on decarbonation & circularity",
-          "sub-heading": "with people & planet in mind",
-          "btn_label": "our éco journey",
-          "link": "shopify:\/\/pages\/act-now",
-          "color_bg": "#e5e3dd",
-          "color_text": "#000000"
-        }
-      },
-      "1619582937b26a3c0d": {
-        "type": "video-list",
-        "disabled": true,
-        "blocks": {
-          "47158abd-c93d-4a7b-afe8-d8cd24a44c43": {
-            "type": "video",
-            "settings": {
-              "poster": "shopify:\/\/shop_images\/Home_sleek_-_vertical.png",
-              "poster_mobile": "shopify:\/\/shop_images\/Home_sleek_-_hor.png",
-              "autoplay": true,
-              "title": "sleek mood",
-              "subtitle": "inspired by Palais-Royal",
-              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sleek_2.mp4?v=1631847130",
-              "video_mobile": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sleek_2_mobile.mp4?v=1631847130",
-              "link": "shopify:\/\/collections\/le-sleek"
-            }
-          },
-          "072d028d-51c1-435f-90ae-2fb2097552e8": {
-            "type": "video",
-            "settings": {
-              "poster": "shopify:\/\/shop_images\/Home_senual_-_vertical.png",
-              "poster_mobile": "shopify:\/\/shop_images\/Home_senual_-_hor.png",
-              "autoplay": true,
-              "title": "sensual mood",
-              "subtitle": "inspired by Saint-Germain",
-              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sensual_2.mp4?v=1631847130",
-              "video_mobile": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sensual_2_mobile.mp4?v=1631847130",
-              "link": "shopify:\/\/collections\/le-sensual"
-            }
-          },
-          "fa689eec-98a5-4384-9c81-5464d9cf3300": {
-            "type": "video",
-            "settings": {
-              "poster": "shopify:\/\/shop_images\/Home_sublime_-_vertical.png",
-              "poster_mobile": "shopify:\/\/shop_images\/Home_sublime_-_hor.png",
-              "autoplay": true,
-              "title": "sublime mood",
-              "subtitle": "inspired by Montmartre",
-              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sublime.mp4?v=1631179792",
-              "video_mobile": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sublime_mobile.mp4?v=1631179792",
-              "link": "shopify:\/\/collections\/le-sublime"
-            }
-          }
-        },
-        "block_order": [
-          "47158abd-c93d-4a7b-afe8-d8cd24a44c43",
-          "072d028d-51c1-435f-90ae-2fb2097552e8",
-          "fa689eec-98a5-4384-9c81-5464d9cf3300"
-        ],
-        "settings": {
-          "title": "Paris inspired"
-        }
-      },
-      "161958609347c28740": {
-        "type": "quotes",
-        "blocks": {
-          "161958609347c28740-0": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>comfortable, fitting, sustainable... definitely a brand to look out for, I am in love with their products & cannot wait to be part of this movement<\/p>",
-              "author": "Solène"
-            }
-          },
-          "161958609347c28740-1": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>an amazing approach to bridge the gap between fashion lingerie & sustainability, never in any brand I know of has attempted it before, eye-opening<\/p>",
-              "author": "Davorka"
-            }
-          },
-          "161958609347c28740-2": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>a refreshing point of view with a strong focus on sustainability, especially amazed by the fact that scandale do not retouch any of the models<\/p>",
-              "author": "Emma"
-            }
-          },
-          "a3f4a8bc-f416-4365-aa9f-b1a6bb2988f7": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>a big applause to scandale in going deep into every step of the process to be more sustainable, almost educational<\/p>",
-              "author": "Amy"
-            }
-          },
-          "6ff2f556-bbc0-4105-b600-e8a28c858e8d": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>scandale is a disruptor, truly sustainable & accessible to modern women, from women liberation to planet liberation<\/p>",
-              "author": "Amandline"
-            }
-          },
-          "7044f8d4-ce08-4d5a-847e-a5e38e491d0d": {
-            "type": "quote",
-            "disabled": true,
-            "settings": {
-              "quote": "<p>xAdd customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
-              "author": "Author's name"
-            }
-          }
-        },
-        "block_order": [
-          "161958609347c28740-0",
-          "161958609347c28740-1",
-          "161958609347c28740-2",
-          "a3f4a8bc-f416-4365-aa9f-b1a6bb2988f7",
-          "6ff2f556-bbc0-4105-b600-e8a28c858e8d",
-          "7044f8d4-ce08-4d5a-847e-a5e38e491d0d"
-        ],
-        "settings": {
-          "title": "what planet lovers are saying"
-        }
-      },
-      "1619586112b6139ee7": {
-        "type": "logo-bar",
-        "blocks": {
-          "1619586112b6139ee7-0": {
-            "type": "logo_image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home_available_ASOS_9239babd-4af1-467e-b9f5-b5b7772ab8c0.png",
-              "link": ""
-            }
-          },
-          "1619586112b6139ee7-1": {
-            "type": "logo_image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home_available_Zalando_51751893-5a64-4198-81f8-b544fe53301b.png",
-              "link": ""
-            }
-          },
-          "1619586112b6139ee7-2": {
-            "type": "logo_image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home_available_3suisses_9f557e0d-a945-4d31-ba4d-2912eea76975.png",
-              "link": ""
-            }
-          },
-          "3d925fd5-7665-414b-874f-4190e678226a": {
-            "type": "logo_image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home_available_La_Redoute_cac0d38f-b38c-4c5b-a0f5-614fff78e6d4.png",
-              "link": ""
-            }
-          },
-          "1619586112b6139ee7-3": {
-            "type": "logo_image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home_available_La_Redoute_6e650457-7083-42d6-bb10-4c5f83f77fae.png",
-              "link": ""
-            }
-          },
-          "3e48c4c3-219a-4d48-9713-e1f22eb3abd0": {
-            "type": "logo_image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/home_available_Galeries_Lafayette_092f667a-b7c0-4a0f-bde1-7147285b7798.png",
-              "link": ""
-            }
-          },
-          "aa285426-7231-4d7d-802d-3af1b1855e81": {
-            "type": "logo_image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Screenshot_2020-04-14_at_13.43_1.png",
-              "link": ""
-            }
-          },
-          "77771f1f-0947-42e2-bedf-d05fb71b6e54": {
-            "type": "logo_image",
-            "disabled": true,
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Screenshot_2020-04-14_at_13.43_1.png",
-              "link": ""
-            }
-          }
-        },
-        "block_order": [
-          "1619586112b6139ee7-0",
-          "1619586112b6139ee7-1",
-          "1619586112b6139ee7-2",
-          "3d925fd5-7665-414b-874f-4190e678226a",
-          "1619586112b6139ee7-3",
-          "3e48c4c3-219a-4d48-9713-e1f22eb3abd0",
-          "aa285426-7231-4d7d-802d-3af1b1855e81",
-          "77771f1f-0947-42e2-bedf-d05fb71b6e54"
-        ],
-        "settings": {
-          "title": "also available at"
-        }
-      },
-      "1619591983f4668ded": {
-        "type": "eco-certified-bras",
-        "disabled": true,
-        "blocks": {
-          "1619591983f4668ded-0": {
-            "type": "text_block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/ourbras-lelounge-scandalered.jpg",
-              "button_label": "le lounge",
-              "button_link": "shopify:\/\/collections\/le-lounge"
-            }
-          },
-          "1619591983f4668ded-1": {
-            "type": "text_block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/ourbras-letriangle-nude2.jpg",
-              "button_label": "le triangle",
-              "button_link": "shopify:\/\/collections\/le-triangle"
-            }
-          },
-          "1619591983f4668ded-2": {
-            "type": "text_block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/ourbras-lebandeau-black.jpg",
-              "button_label": "le bandeau",
-              "button_link": "shopify:\/\/collections\/le-bandeau"
-            }
-          },
-          "20daad03-0b3e-4cb7-b79f-71c1c76a1805": {
-            "type": "text_block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/ourbras-leplunge-nude.jpg",
-              "button_label": "le plunge",
-              "button_link": "shopify:\/\/collections\/le-plunge"
-            }
-          },
-          "d2b96bc1-17f8-4b61-a166-f4be98d80f44": {
-            "type": "text_block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/ourbras-lebalconnet-undyed.jpg",
-              "button_label": "le balconnet",
-              "button_link": "shopify:\/\/collections\/le-balconet"
-            }
-          }
-        },
-        "block_order": [
-          "1619591983f4668ded-0",
-          "1619591983f4668ded-1",
-          "1619591983f4668ded-2",
-          "20daad03-0b3e-4cb7-b79f-71c1c76a1805",
-          "d2b96bc1-17f8-4b61-a166-f4be98d80f44"
-        ],
-        "settings": {
-          "title": "éco-bras",
-          "label_button": "",
-          "link": ""
-        }
-      },
-      "1619593897b1d1d319": {
-        "type": "feature-columns",
-        "blocks": {
-          "1619593897b1d1d319-0": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "useIcon": true,
-              "icons": "icon-contact",
-              "enable_image": false,
-              "image": "shopify:\/\/shop_images\/contact.png",
-              "title": "contact us",
-              "subtitle": "",
-              "text": "<p>here to help<\/p>",
-              "button_label": "",
-              "button_link": ""
-            }
-          },
-          "1619593897b1d1d319-1": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "useIcon": true,
-              "icons": "icon-payment",
-              "enable_image": false,
-              "image": "shopify:\/\/shop_images\/payment.png",
-              "title": "secure payment",
-              "subtitle": "",
-              "text": "<p>Visa, MasterCard, American Express, Apple Pay<br\/><\/p>",
-              "button_label": "",
-              "button_link": ""
-            }
-          },
-          "1619593897b1d1d319-2": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "useIcon": true,
-              "icons": "icon-delivery",
-              "enable_image": false,
-              "image": "shopify:\/\/shop_images\/delivery.png",
-              "title": "carbon neutral",
-              "subtitle": "",
-              "text": "<p>sourcing to delivery<\/p>",
-              "button_label": "",
-              "button_link": ""
-            }
-          },
-          "6aef5644-ee8f-4f41-8ed3-e33f37635039": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "useIcon": true,
-              "icons": "icon-return",
-              "enable_image": false,
-              "image": "shopify:\/\/shop_images\/return.png",
-              "title": "easy returns",
-              "subtitle": "",
-              "text": "<p>30 days<\/p>",
-              "button_label": "",
-              "button_link": ""
-            }
-          }
-        },
-        "block_order": [
-          "1619593897b1d1d319-0",
-          "1619593897b1d1d319-1",
-          "1619593897b1d1d319-2",
-          "6aef5644-ee8f-4f41-8ed3-e33f37635039"
-        ],
-        "settings": {
-          "css_class": "shipping-block",
+          "show_background": true,
           "title": "",
-          "desc": "",
-          "align_text": "center"
-        }
-      },
-      "161959455709590fc8": {
-        "type": "feature-columns",
-        "blocks": {
-          "76aabc83-e713-4f25-92d9-285633f428c0": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "poster": "shopify:\/\/shop_images\/home_sustainability_9ex_f9e664c7-f5f3-42ed-b6e8-5773e31ee91b.jpg",
-              "useIcon": false,
-              "icons": "icon-contact",
-              "enable_image": false,
-              "title": "9.1",
-              "subtitle": "circularity",
-              "text": "<p>honours<\/p>",
-              "button_label": "learn more",
-              "button_link": "shopify:\/\/pages\/sustainabiliy-radical-circular-at-our-core"
-            }
-          },
-          "161959455709590fc8-0": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "poster": "shopify:\/\/shop_images\/home_sustainability_7planet_0549004a-8131-4cfa-901a-7e16ca90a9ee.jpg",
-              "useIcon": false,
-              "icons": "icon-contact",
-              "enable_image": false,
-              "title": "7.8",
-              "subtitle": "planet",
-              "text": "<p>high<\/p>",
-              "button_label": "learn more",
-              "button_link": "shopify:\/\/pages\/low-planet-impact-eco-lingerie"
-            }
-          },
-          "161959455709590fc8-1": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "poster": "shopify:\/\/shop_images\/home_sustainability_7people_db44ae20-e40b-471c-830f-ac87936d0ebc.jpg",
-              "useIcon": false,
-              "icons": "icon-contact",
-              "enable_image": false,
-              "title": "7.0",
-              "subtitle": "people & community",
-              "text": "<p>high<\/p>",
-              "button_label": "learn more",
-              "button_link": "shopify:\/\/pages\/people-commitments"
-            }
-          },
-          "161959455709590fc8-2": {
-            "type": "text_block",
-            "settings": {
-              "video": "",
-              "video_mobile": "",
-              "poster": "shopify:\/\/shop_images\/home_sustainability_8traceability_ae215bf8-7a87-4835-aa9a-95f404d380bc.jpg",
-              "useIcon": false,
-              "icons": "icon-contact",
-              "enable_image": false,
-              "title": "8.1",
-              "subtitle": "transparency",
-              "text": "<p>advanced<\/p>",
-              "button_label": "learn more",
-              "button_link": "shopify:\/\/pages\/traceable-transparent"
-            }
-          }
-        },
-        "block_order": [
-          "76aabc83-e713-4f25-92d9-285633f428c0",
-          "161959455709590fc8-0",
-          "161959455709590fc8-1",
-          "161959455709590fc8-2"
-        ],
-        "settings": {
-          "css_class": "our-commitments",
-          "title": "french touch with people & planet in mind",
-          "desc": "<p>carbon neutral driven by circularity & decarbonisation, a journey to net zero with SBTi approved by 2023.<\/p>",
-          "align_text": "center"
-        }
-      },
-      "16196024367107cd08": {
-        "type": "videos",
-        "settings": {
-          "class": "shop-our-eco-bras",
-          "image": "shopify:\/\/shop_images\/shopecobras.jpg",
-          "video": "",
-          "alignment": "center",
-          "hero_layout": "full_width",
-          "hero_size": "large",
-          "sub-heading": "",
-          "title": "shop our éco-bras",
-          "text": "<p>soft touch comfort <br\/>crafted with planet & people in mind<br\/>made with 100% éco-fabrics<br\/>ethical & traceable<\/p>",
-          "button_label": "shop bras",
-          "button_link": "shopify:\/\/collections\/bra"
-        }
-      },
-      "16196097723b855b51": {
-        "type": "videos",
-        "settings": {
-          "class": "mix-to-play",
-          "image": "shopify:\/\/shop_images\/home_default_mixtoplay.png",
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/mix_play_video.mp4?v=1631270227",
-          "alignment": "center",
-          "hero_layout": "full_width",
-          "hero_size": "medium",
-          "sub-heading": "",
-          "title": "mix & play",
-          "text": "",
-          "button_label": "multiplying the occasions",
-          "button_link": "shopify:\/\/pages\/mix-to-play"
-        }
-      },
-      "collection-template": {
-        "type": "collection-template",
-        "blocks": {
-          "1284ef11-7de2-455b-8835-d0425d337346": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/allecobras-lelounge-redscandale.jpg",
-              "menu_link": "shopify:\/\/collections\/le-lounge"
-            }
-          },
-          "07d41a6b-2d9e-45bb-8f14-cf9f8398b6b4": {
-            "type": "image",
-            "disabled": true,
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/allecobras-letriangle-nude2.jpg",
-              "menu_link": "shopify:\/\/collections\/le-triangle"
-            }
-          },
-          "9c28669a-c224-4bc9-9866-0b1fd8f541df": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/allecobras-lebandeau-black.jpg",
-              "menu_link": "shopify:\/\/collections\/le-bandeau"
-            }
-          },
-          "db56696a-91de-4b60-937c-eddbea99024a": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/allecobras-leplunge-nude.jpg",
-              "menu_link": "shopify:\/\/collections\/le-plunge"
-            }
-          },
-          "eb3ba244-0c0a-4ea4-9fbf-5a27da06cf98": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/allecobras-lebalconnet-undyed.jpg",
-              "menu_link": "shopify:\/\/collections\/le-balconet"
-            }
-          },
-          "58be2208-51a6-4f66-accf-9c779271e9be": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/body.jpg",
-              "menu_link": "shopify:\/\/collections\/body"
-            }
-          },
-          "b50eda90-8b0f-4c1e-a316-acbe50bc81b1": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/PLP_panty_le_shorty.jpg",
-              "menu_link": "shopify:\/\/collections\/le-shorty"
-            }
-          },
-          "5ded9d69-5b4d-4988-978a-c5e13f675a59": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/PLP_panty_le_string.jpg",
-              "menu_link": "shopify:\/\/collections\/le-string"
-            }
-          },
-          "684ea050-f7b5-41b9-9501-bdada0df33bf": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/PLP_panty_le_bresilien.jpg",
-              "menu_link": "shopify:\/\/collections\/le-bresilien"
-            }
-          },
-          "d2391861-b652-4c0b-95d1-27cbef85d19c": {
-            "type": "image",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/PLP_panty_le_bikini.jpg",
-              "menu_link": "shopify:\/\/collections\/le-bikini"
-            }
-          },
-          "58e55120-ef68-4b99-ad5d-afd30e71f997": {
-            "type": "image",
-            "settings": {
-              "menu_link": ""
-            }
-          }
-        },
-        "block_order": [
-          "1284ef11-7de2-455b-8835-d0425d337346",
-          "07d41a6b-2d9e-45bb-8f14-cf9f8398b6b4",
-          "9c28669a-c224-4bc9-9866-0b1fd8f541df",
-          "db56696a-91de-4b60-937c-eddbea99024a",
-          "eb3ba244-0c0a-4ea4-9fbf-5a27da06cf98",
-          "58be2208-51a6-4f66-accf-9c779271e9be",
-          "b50eda90-8b0f-4c1e-a316-acbe50bc81b1",
-          "5ded9d69-5b4d-4988-978a-c5e13f675a59",
-          "684ea050-f7b5-41b9-9501-bdada0df33bf",
-          "d2391861-b652-4c0b-95d1-27cbef85d19c",
-          "58e55120-ef68-4b99-ad5d-afd30e71f997"
-        ],
-        "settings": {
-          "layout": "grid",
-          "grid": 3,
-          "rows": 4,
-          "show_collection_image": true,
-          "show_vendor": false,
-          "sort_enable": true,
-          "tags_enable": true
-        }
-      },
-      "GEO": {
-        "type": "GEO",
-        "settings": {
-          "show_box": true,
-          "background": "shopify:\/\/shop_images\/countryandlanguage.jpg"
-        }
-      },
-      "list-collections-template": {
-        "type": "list-collections-template",
-        "settings": {
-          "display_type": "all",
-          "sort": "alphabetical",
           "grid": 3
         }
       },
-      "product-template": {
-        "type": "product-template",
-        "settings": {
-          "show_quantity_selector": false,
-          "show_vendor": false,
-          "enable_payment_button": false,
-          "show_share_buttons": true,
-          "media_size": "full",
-          "enable_image_zoom": false,
-          "enable_video_looping": false,
-          "size_guide": "<p><a href=\"\/size-quiz\" title=\"\/size-quiz\"><span style=\"text-decoration:underline\">find your size<\/span><\/a> to reduce éco-impact of returns<\/p>",
-          "shipping_text": "your 1st order ships free, use code: bienvenue. free shipping for orders above",
-          "shipping_price": "69",
-          "share": "<p>share your moment on @scandale.ecolingerie to be featured & earn a chance to win your €70 voucher.<\/p>",
-          "title1": "recycled nylon",
-          "description1": "from yarn wastes - PRC, Taiwan & Thailand",
-          "title2": "recycled polyester",
-          "description2": "from PET bottles - Thailand",
-          "title3": "recycled spandex",
-          "description3": "from yarn wastes - PRC",
-          "title4": "organic cotton",
-          "description4": "grown organically - East PRC",
-          "title5": "",
-          "description5": "",
-          "title6": "",
-          "description6": "",
-          "title7": "",
-          "description7": "",
-          "title8": "",
-          "description8": ""
-        }
-      },
-      "cart-template": {
-        "type": "cart-template",
-        "settings": {
-          "cart_ajax_enable": true,
-          "cart_notes_enable": false
-        }
-      },
-      "collection-static-block": {
-        "type": "collection-static-block",
-        "blocks": {
-          "4f187a23-c22f-4fa6-a9ca-86c7a79aa568": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>100% éco-fabrics<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_All_100ecofabrics.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "deceea1a-3936-4df2-a6ed-d6d7316dd433": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>free shipping for your 1st order<br\/>use code: bienvenue<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/red_box.png",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "0b113abd-0a18-445e-9b01-69604eba4720": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>think before you buy<br\/>shop sustainably<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_All_think_before_you_buy.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "1399d113-7137-4112-92d2-e3c8ecc5aea6": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>ethical <br\/>&<br\/>traceable<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_All_ethical.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "35d51f70-13a4-4f73-9d7f-30f8389ad694": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>mix & play<\/p>",
-              "link": "shopify:\/\/pages\/mix-to-play",
-              "button_text": "make it last",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_All_mix_play.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "3b985d17-bb21-4bb2-8066-32a0c3e0bc6d": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>free shipping above €69<\/p>",
-              "link": "shopify:\/\/pages\/size-quiz",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_All_free_shipping.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "f1642afc-4c84-4fe4-a460-b55e866f5182": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>30 days returns<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_panty_30-days-returns.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all"
-            }
-          },
-          "921bc994-c9ed-46ea-bd6b-bd7f1f5fc0ec": {
-            "type": "static_block",
-            "disabled": true,
-            "settings": {
-              "title": "<p>sleek mood<\/p>",
-              "link": "shopify:\/\/collections\/le-sleek",
-              "button_text": "shop Palais-Royal inspired",
-              "image": "shopify:\/\/shop_images\/Palais-Royal.jpg",
-              "use_video": true,
-              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0539\/4068\/2944\/files\/mood_01_test.mov?v=1622193215",
-              "collection": "all"
-            }
-          },
-          "f81766fc-080c-4465-acc7-36752b2b7d55": {
-            "type": "static_block",
-            "disabled": true,
-            "settings": {
-              "title": "<p>sensual mood<\/p>",
-              "link": "shopify:\/\/collections\/le-sensual",
-              "button_text": "shop Saint Germain inspired",
-              "image": "shopify:\/\/shop_images\/Saint_Germain.jpg",
-              "use_video": true,
-              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0539\/4068\/2944\/files\/mood_02_test.mov?v=1622193215",
-              "collection": "all"
-            }
-          },
-          "928f1945-b526-4466-ab0e-1fa7743b1886": {
-            "type": "static_block",
-            "disabled": true,
-            "settings": {
-              "title": "<p>sublime mood<\/p>",
-              "link": "shopify:\/\/collections\/le-sublime",
-              "button_text": "shop Montmartre inspired",
-              "image": "shopify:\/\/shop_images\/Montmartre.jpg",
-              "use_video": true,
-              "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0539\/4068\/2944\/files\/mood_03_test.mov?v=1622193215",
-              "collection": "all"
-            }
-          },
-          "45fe16ce-f76f-42b6-8b54-33ccfb0068da": {
-            "type": "static_block",
-            "disabled": true,
-            "settings": {
-              "title": "<p>€29 <br\/>for any 2<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_panty_28_for_2.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all-bottoms"
-            }
-          },
-          "9f1148d5-bbb1-4d9f-9e0d-b54692ba3774": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>100% éco-packaging<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_panty_eco-packaging.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all-bottoms"
-            }
-          },
-          "8f085c18-d7fa-4f5c-88e7-c1c7a0e015ec": {
-            "type": "static_block",
-            "settings": {
-              "title": "<p>30 days returns<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_panty_30-days-returns.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "all-bottoms"
-            }
-          },
-          "a96bc3ef-c41f-4d0f-85bb-ab3f9978e473": {
-            "type": "static_block",
-            "disabled": true,
-            "settings": {
-              "title": "<p>-55% carbon<br\/>-18% water<br\/>-34% chemicals<\/p>",
-              "link": "",
-              "button_text": "",
-              "image": "shopify:\/\/shop_images\/PLP_MSG_undyed_55_carbon.jpg",
-              "use_video": false,
-              "video": "",
-              "collection": "undyed"
-            }
-          }
-        },
-        "block_order": [
-          "4f187a23-c22f-4fa6-a9ca-86c7a79aa568",
-          "deceea1a-3936-4df2-a6ed-d6d7316dd433",
-          "0b113abd-0a18-445e-9b01-69604eba4720",
-          "1399d113-7137-4112-92d2-e3c8ecc5aea6",
-          "35d51f70-13a4-4f73-9d7f-30f8389ad694",
-          "3b985d17-bb21-4bb2-8066-32a0c3e0bc6d",
-          "f1642afc-4c84-4fe4-a460-b55e866f5182",
-          "921bc994-c9ed-46ea-bd6b-bd7f1f5fc0ec",
-          "f81766fc-080c-4465-acc7-36752b2b7d55",
-          "928f1945-b526-4466-ab0e-1fa7743b1886",
-          "45fe16ce-f76f-42b6-8b54-33ccfb0068da",
-          "9f1148d5-bbb1-4d9f-9e0d-b54692ba3774",
-          "8f085c18-d7fa-4f5c-88e7-c1c7a0e015ec",
-          "a96bc3ef-c41f-4d0f-85bb-ab3f9978e473"
-        ],
-        "settings": {}
-      },
-      "blog-template": {
-        "type": "blog-template",
-        "settings": {
-          "layout": "grid",
-          "article": "news\/our-packaging-a-case-study"
-        }
-      },
-      "article-template": {
-        "type": "article-template",
-        "settings": {
-          "blog_show_author": false,
-          "blog_show_date": true,
-          "show_share_buttons": false
-        }
-      },
-      "contact": {
-        "type": "contact",
-        "settings": {
-          "banner": "shopify:\/\/shop_images\/Rectangle_454_220df283-ac35-4ecd-b7e2-625f716bedb7.jpg"
-        }
-      },
-      "faq": {
-        "type": "faq",
-        "blocks": {
-          "44b5011e-114c-4046-926a-9371cc60ddbf": {
-            "type": "faq",
-            "settings": {
-              "group": "shipping",
-              "question": "what countries do you ship to?",
-              "answer": "we currently ship to France, Germany, Spain &amp; Italy. we are working on shipping to more countries, <a href=\"\/pages\/contact-us\">contact us<\/a> for more information"
-            }
-          },
-          "a5eb1dc7-3001-4c3d-9e47-20029a522e2f": {
-            "type": "faq",
-            "settings": {
-              "group": "shipping",
-              "question": "what shipping methods do you offer?",
-              "answer": "we only offer standard shipping to limit our impact on the planet"
-            }
-          },
-          "d802f9e6-f616-41c2-954e-58a533becf97": {
-            "type": "faq",
-            "settings": {
-              "group": "shipping",
-              "question": "how fast is your shipping?",
-              "answer": "<p>- most of our orders are shipped within 1-2 business days of purchase. business days are Monday to Friday (excluding public holidays). <\/p>\n<p>- you will receive an email when the order is shipped. once your order is shipped, we estimate you will receive your order within 2-6 business days. COVID-19 update: currently, our warehouse in Belgium is operating at full capacity. however, shipping times may vary.<\/p>\n<p>- our shipping carriers do not deliver on weekends or public holidays.<\/p>\n<p>- note: we cannot deliver to BFPO or PO addresses. we apologize for any inconvenience this may cause.<\/p><br>\n<table>\n\t<thead>\n\t\t<tr>\n\t\t\t<th>destination<\/th>\n\t\t\t<th>shipping method<\/th>\n\t\t\t<th>delivery time <br>(working days)<\/th>\n\t\t<\/tr>\n\t<\/thead>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>France<\/td>\n\t\t\t<td>Colissimo<\/td>\n\t\t\t<td>2-3<\/td>\n\t\t<\/tr>\n\t\t<tr>\n\t\t\t<td>Germany<\/td>\n\t\t\t<td>DHL<\/td>\n\t\t\t<td>2-3<\/td>\n\t\t<\/tr>\n\t\t<tr>\n\t\t\t<td>Spain<\/td>\n\t\t\t<td>Celeritas<\/td>\n\t\t\t<td>3-4<\/td>\n\t\t<\/tr>\n\t\t<tr>\n\t\t\t<td>Italy<\/td>\n\t\t\t<td>SDA<\/td>\n\t\t\t<td>3-4<\/td>\n\t\t<\/tr>\n\t<\/tbody>\n<\/table>"
-            }
-          },
-          "66d765ae-12e4-4137-9c66-dfe1c79fbc18": {
-            "type": "faq",
-            "settings": {
-              "group": "shipping",
-              "question": "how much does shipping cost?",
-              "answer": "please refer to the shipping cost table to find the shipping details for your country. orders over €69 qualify for free shipping."
-            }
-          },
-          "9098c38b-1e4a-4c02-8ec9-0b5d8920da79": {
-            "type": "faq",
-            "settings": {
-              "group": "shipping",
-              "question": "how can I track my order?",
-              "answer": "you will receive an email with the tracking information of your parcel. you can also track your order by logging into your account."
-            }
-          },
-          "e8c44299-aad1-4f6a-8e63-07d041bb5462": {
-            "type": "faq",
-            "settings": {
-              "group": "returns",
-              "question": "what items are eligible for return?",
-              "answer": "<p>- all products that are unworn, unwashed, in their original condition with all tags attached &amp; inside their original compostable bag can be returned within 30 days after you have received your package. we reserve the right to refuse returns that show signs of wear or do not meet the above criteria. <\/p>\n<p>- we ask you to wear underwear when trying on our products for hygiene reasons.  panties with the hygienic sticker removed cannot be returned. <\/p>\n<p>- final sale items cannot be returned.<\/p>\n<p>- returns cannot be combined with multiple orders.<\/p>"
-            }
-          },
-          "47805e67-3177-46b1-af05-cfbabc2b4aff": {
-            "type": "faq",
-            "settings": {
-              "group": "returns",
-              "question": "how do I return an order?",
-              "answer": "<p>- complete the return request on our return portal &amp; you will receive a pre-paid (by scandale) return shipping label. <\/p>\n<p>- you would have to cover the cost of the return shipping, which will be then automatically deducted from the refunded amount. please see below for more information on the return shipping cost. <\/p>\n<p>- we encourage you to reuse the original mailer for your return!<\/p>"
-            }
-          },
-          "d6812384-50d6-47ad-95c2-f6ad74fac3cd": {
-            "type": "faq",
-            "settings": {
-              "group": "returns",
-              "question": "how long does it take to process my return?",
-              "answer": "<p>- once your return is received, we will notify you if your return is accepted. the process can take <u>up to 5 working days<\/u>. <\/p>\n<p>- refund amount will be credited to your original payment method <u>within 3-7 working days<\/u> after we have processed the return. <\/p>"
-            }
-          },
-          "80bc53bb-5eac-4e83-a4a3-ea24a10bbf2e": {
-            "type": "faq",
-            "settings": {
-              "group": "returns",
-              "question": "how can I receive my refund?",
-              "answer": "your refund will be credited back to the original form of payment"
-            }
-          },
-          "fe114479-6890-4aad-a40b-e3770b020b74": {
-            "type": "faq",
-            "settings": {
-              "group": "returns",
-              "question": "is the original shipping cost refundable on return orders?",
-              "answer": "no, the original shipping cost will not be refunded."
-            }
-          },
-          "4f3ce38e-901c-4fc3-bc79-8d7825d5bbdd": {
-            "type": "faq",
-            "settings": {
-              "group": "returns",
-              "question": "how do I exchange an order?",
-              "answer": "<p>- currently, we do not offer exchanges. you would have to make a return, ask for a refund &amp; then make a new order<\/p>"
-            }
-          },
-          "46d16ea8-26fd-4b90-8ff0-c8c80bf2f934": {
-            "type": "faq",
-            "disabled": true,
-            "settings": {
-              "group": "returns",
-              "question": "How can I make an exchange?",
-              "answer": "currently, we do not offer exchanges. you would have to make a return, ask for a refund &amp; then make a new order."
-            }
-          },
-          "bf9b5a40-95e3-48e9-86f7-519c0ec55315": {
-            "type": "faq",
-            "settings": {
-              "group": "account",
-              "question": "do I need an account to make a purchase?",
-              "answer": "you do not need an account to make a purchase"
-            }
-          },
-          "f44579e8-da9e-4bf7-ade8-d7b553200bc1": {
-            "type": "faq",
-            "settings": {
-              "group": "account",
-              "question": "how do I reset my password for my account?",
-              "answer": "you can request to reset your password by following the instructions for ‘forgotten password’ on the ‘sign in’ page."
-            }
-          },
-          "f87066ed-1352-4b34-b93b-4ce0df95094a": {
-            "type": "faq",
-            "settings": {
-              "group": "account",
-              "question": "what payment methods do you accept? \/ How can I pay for my order?",
-              "answer": "we currently accept the following payment methods:  Visa, MasterCard, American Express, Maestro, Shop Pay, Apple Pay and Google Pay."
-            }
-          },
-          "3ead1378-5c58-4df4-8adf-5fd457782e75": {
-            "type": "faq",
-            "settings": {
-              "group": "account",
-              "question": "do I need to pay for duties and taxes?",
-              "answer": "tax and duties are calculated according to your shipping destination. they are estimated and included as part of the final payment at time of checkout."
-            }
-          },
-          "adb71825-eb5f-4bf8-b8d4-7ec3610847e3": {
-            "type": "faq",
-            "settings": {
-              "group": "account",
-              "question": "how do I use a promotional code?",
-              "answer": "you can enter your promotional code before you checkout"
-            }
-          },
-          "e2556bb1-102a-4757-83cd-1735e4a0ee20": {
-            "type": "faq",
-            "settings": {
-              "group": "sustainability",
-              "question": "how do you choose your materials?",
-              "answer": "we prioritize using materials coming from a previous life &amp; their éco-impact. we will increase our locally-sourced materials to recycle &amp; increase the use of previous life materials for future collections to 90% by 2023."
-            }
-          },
-          "018520b3-c4ac-4436-993a-8082da5abe8a": {
-            "type": "faq",
-            "settings": {
-              "group": "sustainability",
-              "question": "what is carbon neutral?",
-              "answer": "1st - we use life-cycle assessment in our every process to minimise our carbon emissions\n\n2nd - we 'offset' our carbon emission upstream &amp; downstream through certified climate projects to achieve neutrality on our entire value chain"
-            }
-          },
-          "ad75d38c-b25d-496b-aa18-e5372b041dd9": {
-            "type": "faq",
-            "settings": {
-              "group": "contact",
-              "question": "can’t find what you need on our FAQ page? we are here to help",
-              "answer": "<p>leave us a message &amp; we will get back to you within 1 business day.<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "44b5011e-114c-4046-926a-9371cc60ddbf",
-          "a5eb1dc7-3001-4c3d-9e47-20029a522e2f",
-          "d802f9e6-f616-41c2-954e-58a533becf97",
-          "66d765ae-12e4-4137-9c66-dfe1c79fbc18",
-          "9098c38b-1e4a-4c02-8ec9-0b5d8920da79",
-          "e8c44299-aad1-4f6a-8e63-07d041bb5462",
-          "47805e67-3177-46b1-af05-cfbabc2b4aff",
-          "d6812384-50d6-47ad-95c2-f6ad74fac3cd",
-          "80bc53bb-5eac-4e83-a4a3-ea24a10bbf2e",
-          "fe114479-6890-4aad-a40b-e3770b020b74",
-          "4f3ce38e-901c-4fc3-bc79-8d7825d5bbdd",
-          "46d16ea8-26fd-4b90-8ff0-c8c80bf2f934",
-          "bf9b5a40-95e3-48e9-86f7-519c0ec55315",
-          "f44579e8-da9e-4bf7-ade8-d7b553200bc1",
-          "f87066ed-1352-4b34-b93b-4ce0df95094a",
-          "3ead1378-5c58-4df4-8adf-5fd457782e75",
-          "adb71825-eb5f-4bf8-b8d4-7ec3610847e3",
-          "e2556bb1-102a-4757-83cd-1735e4a0ee20",
-          "018520b3-c4ac-4436-993a-8082da5abe8a",
-          "ad75d38c-b25d-496b-aa18-e5372b041dd9"
-        ],
-        "settings": {}
-      },
-      "newsletter": {
+      "1617958177fcb3c967": {
         "type": "newsletter",
         "settings": {
-          "section_title": "how about 10% off?",
-          "subheading": "<p>sign up to save on your 1st order.<\/p>",
-          "show_background": true,
-          "background": "shopify:\/\/shop_images\/20210818_newsletter_bg.jpg"
+          "section_title": "",
+          "subheading": "<p>訂閱電子郵件，第一時間獲得康維<\/p><p>他™最新產品及活動資訊<\/p>",
+          "show_background": true
         }
       },
-      "tags": {
-        "type": "tags",
+      "16179593667d0b296c": {
+        "type": "image-bar",
         "blocks": {
-          "0041f0d2-fb68-4100-a27d-b4f3a4d44e27": {
-            "type": "blogtags",
+          "df0bdae0-5d4c-43ab-81d2-68c8619f3d5f": {
+            "type": "image",
             "settings": {
-              "color": "#ffffff",
-              "background": "#93282c",
-              "tag": "bra’s talk"
+              "image": "shopify:\/\/shop_images\/comvita-tile-1.png",
+              "cta_label": ""
             }
           },
-          "7c35c652-7bec-4a3c-b50e-eed624df10b9": {
-            "type": "blogtags",
+          "16179593667d0b296c-0": {
+            "type": "image",
             "settings": {
-              "color": "#000000",
-              "background": "#ccb5a1",
-              "tag": "social"
+              "image": "shopify:\/\/shop_images\/comvita-tile-2.png",
+              "cta_label": "• 皇牌產品 •"
             }
           },
-          "aff7f23f-e583-4ba1-81ec-84b3b1f258fd": {
-            "type": "blogtags",
+          "16179593667d0b296c-1": {
+            "type": "image",
             "settings": {
-              "color": "#000000",
-              "background": "#e5e3dd",
-              "tag": "sustainability"
+              "image": "shopify:\/\/shop_images\/comvita-tile-3.png",
+              "cta_label": "• 我們的故事 •"
             }
           },
-          "429a32e0-f811-44db-b4a2-c9e4b593def3": {
-            "type": "blogtags",
+          "16179593667d0b296c-2": {
+            "type": "image",
             "settings": {
-              "color": "#000000",
-              "background": "#98b6b8",
-              "tag": "carbon neutral"
+              "image": "shopify:\/\/shop_images\/comvita-tile-4.png",
+              "cta_label": "• UMF™麥蘆卡蜂蜜 •"
             }
           },
-          "ee63d9dd-f151-4f09-9100-9d3987516282": {
-            "type": "blogtags",
+          "84c9ca26-ae0e-43ab-9628-8068c0613edc": {
+            "type": "image",
             "settings": {
-              "color": "#000000",
-              "background": "#e5e3dd",
-              "tag": "100% éco-fabrics"
+              "image": "shopify:\/\/shop_images\/comvita-tile-5.png",
+              "cta_label": "• UMF™麥蘆卡蜂蜜 •"
             }
           },
-          "1520a00f-e601-4cf5-add8-9acb4bc5ba2e": {
-            "type": "blogtags",
+          "b683e421-c269-4208-b745-c1ecfe6ce88e": {
+            "type": "image",
             "settings": {
-              "color": "#000000",
-              "background": "#9d9d9d",
-              "tag": "traceability"
+              "image": "shopify:\/\/shop_images\/comvita-tile-6.png",
+              "cta_label": "• 橄欖葉精華 •"
             }
           },
-          "46fd7916-374e-4fc2-bf0e-5980fa30fb1d": {
-            "type": "blogtags",
+          "17b0b543-eadd-4411-bf68-f19580e32caf": {
+            "type": "image",
             "settings": {
-              "color": "#ffffff",
-              "background": "#cea461",
-              "tag": "ethical production"
+              "image": "shopify:\/\/shop_images\/comvita-tile-7.png",
+              "cta_label": "• 蜂膠 •"
             }
           },
-          "ea37aeea-8945-4881-b2c3-c5bafeb77aed": {
-            "type": "blogtags",
+          "52a3c648-5246-473e-badd-8d466de5ed37": {
+            "type": "image",
             "settings": {
-              "color": "#ffffff",
-              "background": "#5b6884",
-              "tag": "trending"
-            }
-          },
-          "28a9093a-c884-4d21-a96b-9a29bd38c418": {
-            "type": "blogtags",
-            "settings": {
-              "color": "#ffffff",
-              "background": "#93282c",
-              "tag": "behind the bra"
-            }
-          },
-          "d51ba536-b40f-4eef-98a4-f3ca78dbd3c8": {
-            "type": "blogtags",
-            "settings": {
-              "color": "#000000",
-              "background": "#a4876f",
-              "tag": "#ecolingerie"
+              "image": "shopify:\/\/shop_images\/comvita-tile-8.png",
+              "cta_label": ""
             }
           }
         },
         "block_order": [
-          "0041f0d2-fb68-4100-a27d-b4f3a4d44e27",
-          "7c35c652-7bec-4a3c-b50e-eed624df10b9",
-          "aff7f23f-e583-4ba1-81ec-84b3b1f258fd",
-          "429a32e0-f811-44db-b4a2-c9e4b593def3",
-          "ee63d9dd-f151-4f09-9100-9d3987516282",
-          "1520a00f-e601-4cf5-add8-9acb4bc5ba2e",
-          "46fd7916-374e-4fc2-bf0e-5980fa30fb1d",
-          "ea37aeea-8945-4881-b2c3-c5bafeb77aed",
-          "28a9093a-c884-4d21-a96b-9a29bd38c418",
-          "d51ba536-b40f-4eef-98a4-f3ca78dbd3c8"
-        ],
-        "settings": {}
-      },
-      "qr-code-package": {
-        "type": "qr-code-package",
-        "blocks": {
-          "61511c7c-9bf4-4561-9d6b-a67bd855972a": {
-            "type": "qrblock",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/20210825_QR_package_product_bag.jpg",
-              "title": "our product bags",
-              "description": "<p>are certified home compostable, using plant-based materials (corn starch)<\/p>",
-              "icon1": "Sustainability_icons_outlined_Corn.svg",
-              "text1": "plant-based",
-              "icon2": "Sustainability_icons_outlined_compostable.svg",
-              "text2": "compostable",
-              "icon3": "Sustainability_icons_outlined_CO2.svg",
-              "text3": "carbon neutral"
-            }
-          },
-          "a708745a-80b5-4781-8099-d3425ce6eac7": {
-            "type": "qrblock",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/20210825_QR_package_product_tag.jpg",
-              "title": "our product tags",
-              "description": "<p>are made with recycled paper in its natural colour, string made with certified organic cotton undyed. equipped with a QR code with product-specific on its éco & people<\/p>",
-              "icon1": "Sustainability_icons_outlined_recycled_paper.svg",
-              "text1": "recycled paper",
-              "icon2": "Sustainability_icons_outlined_compostable.svg",
-              "text2": "biodegradable",
-              "icon3": "Sustainability_icons_outlined_cotton.svg",
-              "text3": "organic cotton"
-            }
-          },
-          "c078adb9-eded-4976-82a4-5f43654c9f5b": {
-            "type": "qrblock",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/20210825_QR_package_mailer.jpg",
-              "title": "our mailers",
-              "description": "<p>are made with recycled paper in its natural colour, specially designed to be reused for returns or please recycle them<\/p>",
-              "icon1": "Sustainability_icons_outlined_recycled_paper.svg",
-              "text1": "recycled paper",
-              "icon2": "Sustainability_icons_outlined_compostable.svg",
-              "text2": "biodegradable",
-              "icon3": "Sustainability_icons_outlined_CO2.svg",
-              "text3": "carbon neutral"
-            }
-          }
-        },
-        "block_order": [
-          "61511c7c-9bf4-4561-9d6b-a67bd855972a",
-          "a708745a-80b5-4781-8099-d3425ce6eac7",
-          "c078adb9-eded-4976-82a4-5f43654c9f5b"
+          "df0bdae0-5d4c-43ab-81d2-68c8619f3d5f",
+          "16179593667d0b296c-0",
+          "16179593667d0b296c-1",
+          "16179593667d0b296c-2",
+          "84c9ca26-ae0e-43ab-9628-8068c0613edc",
+          "b683e421-c269-4208-b745-c1ecfe6ce88e",
+          "17b0b543-eadd-4411-bf68-f19580e32caf",
+          "52a3c648-5246-473e-badd-8d466de5ed37"
         ],
         "settings": {
-          "banner": "shopify:\/\/shop_images\/20210825_QR_package_hero.jpg",
+          "classes": "list-block-links"
+        }
+      },
+      "161796148974760aee": {
+        "type": "feature-columns",
+        "blocks": {
+          "161796148974760aee-0": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": false,
+              "icon": "shopify:\/\/shop_images\/securePay.png",
+              "title": "安全網上付款",
+              "text": "<ul class=\"info-rep\">     <li>本網站採用保安接層加密技術 (SSL)<\/li>     <li>您所提供的個人資料及信用卡資料將被加密，以免您的資料在互聯網上傳輸時被竊露。<\/li>     <li>本網站不會儲存任何信用卡號碼<\/li> <\/ul>",
+              "button_label": ""
+            }
+          },
+          "161796148974760aee-1": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": false,
+              "icon": "shopify:\/\/shop_images\/Localdelivery.png",
+              "title": "送貨服務",
+              "text": "<ul class=\"info-rep\">     <li>產品將於付款確認後的3-7個工作天(只限星期一至五，公眾假期除外)內送達收件地址。<\/li>     <li>訂購商品總金額超過港幣$500，即可享免運費; 未滿$500之訂單將收取港幣$50運費。<\/li>     <li>亦可選擇於13間指定康維他專門店取貨<\/li> <\/ul>",
+              "button_label": ""
+            }
+          },
+          "161796148974760aee-2": {
+            "type": "text_block",
+            "settings": {
+              "enable_image": false,
+              "icon": "shopify:\/\/shop_images\/Contactus.png",
+              "title": "顧客服務",
+              "text": "<ul class=\"info-rep\">     <li>如有任何查詢, 可致電我們的客戶服務電話(852) 2562 2335。辦公時間: 星期一至五9:30AM - 6:30PM<\/li> <\/ul>",
+              "button_label": ""
+            }
+          }
+        },
+        "block_order": [
+          "161796148974760aee-0",
+          "161796148974760aee-1",
+          "161796148974760aee-2"
+        ],
+        "settings": {
+          "show_background": false,
+          "classes": "info-blocks",
           "title": "",
-          "description": ""
-        }
-      },
-      "make_it_last": {
-        "type": "make_it_last",
-        "blocks": {
-          "58ca0a3f-2fad-4050-b13e-6722038899ba": {
-            "type": "make_it_last",
-            "settings": {
-              "icons": "Do_Not_Dry_Clean.svg",
-              "text": "avoid the dryer",
-              "number": 2
-            }
-          },
-          "7b6b7efe-9a0f-4376-aa03-b643d826a799": {
-            "type": "make_it_last",
-            "settings": {
-              "icons": "GUPPYFRIEND_washing_bag.svg",
-              "text": "use a GUPPYFRIEND washing bag",
-              "number": 3
-            }
-          },
-          "645fb71a-c527-4b0b-a7dc-61dfd8041bf5": {
-            "type": "make_it_last",
-            "settings": {
-              "icons": "Wash.svg",
-              "text": "short washing cycle at 30 degree",
-              "number": 4
-            }
-          },
-          "e6d2150a-6885-4727-823d-518fcb0b8364": {
-            "type": "make_it_last",
-            "settings": {
-              "icons": "handwash.svg",
-              "text": "hand wash",
-              "number": 1
-            }
-          }
-        },
-        "block_order": [
-          "58ca0a3f-2fad-4050-b13e-6722038899ba",
-          "7b6b7efe-9a0f-4376-aa03-b643d826a799",
-          "645fb71a-c527-4b0b-a7dc-61dfd8041bf5",
-          "e6d2150a-6885-4727-823d-518fcb0b8364"
-        ],
-        "settings": {}
-      },
-      "qr-map": {
-        "type": "qr-map",
-        "blocks": {
-          "6990e20e-dcf3-4d43-874e-cede88b9149e": {
-            "type": "qrmap",
-            "settings": {
-              "type": 1,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/ckte3kh5l1xxq17ppiao4bg74.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          },
-          "e4d9be80-5060-47f9-a72d-a95a1de133f8": {
-            "type": "qrmap",
-            "settings": {
-              "type": 2,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/ckte1xrdk1w5417pkcrcdysow.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          },
-          "50bb3b60-a3c7-433a-a281-3bd0537a14c2": {
-            "type": "qrmap",
-            "settings": {
-              "type": 3,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/cktdvinpj1q8y17p5z1ckfbfj.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          },
-          "26b77782-734e-47d0-8e2d-d3c07e0f669a": {
-            "type": "qrmap",
-            "settings": {
-              "type": 4,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/cktdvwx5a1qh817qaq2c14r6j.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          },
-          "976c218f-3a1b-4da2-b83e-5276cf38abf6": {
-            "type": "qrmap",
-            "settings": {
-              "type": 5,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/cktdztmgs040s17phefntv4o4.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          },
-          "6d2004f5-68ba-4b41-b90e-06d033364246": {
-            "type": "qrmap",
-            "settings": {
-              "type": 6,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/ckru43vqb97kz19o1cedp6zyd.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          },
-          "0e5f357c-b207-4df5-9fb2-db3ee4285166": {
-            "type": "qrmap",
-            "settings": {
-              "type": 7,
-              "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/ckte26bft1wdg17pkf64nqtt6.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-            }
-          }
-        },
-        "block_order": [
-          "6990e20e-dcf3-4d43-874e-cede88b9149e",
-          "e4d9be80-5060-47f9-a72d-a95a1de133f8",
-          "50bb3b60-a3c7-433a-a281-3bd0537a14c2",
-          "26b77782-734e-47d0-8e2d-d3c07e0f669a",
-          "976c218f-3a1b-4da2-b83e-5276cf38abf6",
-          "6d2004f5-68ba-4b41-b90e-06d033364246",
-          "0e5f357c-b207-4df5-9fb2-db3ee4285166"
-        ],
-        "settings": {}
-      },
-      "qr1": {
-        "type": "qr1",
-        "blocks": {
-          "ce6072e8-00b9-4866-bbae-1448353f20c2": {
-            "type": "qrblock1",
-            "settings": {
-              "thumb": "shopify:\/\/shop_images\/20210825_QR_product_recycled_nylon.jpg",
-              "title": "recycled nylon",
-              "description": "<p>from fabric wastes - PRC, Taiwan & Thailand<\/p>"
-            }
-          },
-          "4a0f526e-65da-4ba9-aafc-abd7fd85699f": {
-            "type": "qrblock1",
-            "settings": {
-              "thumb": "shopify:\/\/shop_images\/20210825_QR_product_recycled_polyester.jpg",
-              "title": "recycled polyester",
-              "description": "<p>from PET bottles - Thailand<\/p>"
-            }
-          },
-          "2dce1bec-b602-4529-9559-cdeba976894b": {
-            "type": "qrblock1",
-            "settings": {
-              "thumb": "shopify:\/\/shop_images\/20210825_QR_product_recycled_spandex.jpg",
-              "title": "recycled spandex",
-              "description": "<p>yarn wastes - PRC<\/p>"
-            }
-          },
-          "40c9b24a-7524-4fcb-881f-8be1ef26f2c6": {
-            "type": "qrblock1",
-            "settings": {
-              "thumb": "shopify:\/\/shop_images\/20210825_QR_product_organic_cotton.jpg",
-              "title": "organic cotton",
-              "description": "<p>grown organically - East PRC<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "ce6072e8-00b9-4866-bbae-1448353f20c2",
-          "4a0f526e-65da-4ba9-aafc-abd7fd85699f",
-          "2dce1bec-b602-4529-9559-cdeba976894b",
-          "40c9b24a-7524-4fcb-881f-8be1ef26f2c6"
-        ],
-        "settings": {
-          "subtitle": "i am",
-          "title": "made with 100% éco fabrics"
-        }
-      },
-      "qr2": {
-        "type": "qr2",
-        "blocks": {
-          "62843716-bc81-4326-bce8-e2d72a4d2aea": {
-            "type": "qrblock2",
-            "settings": {
-              "type": 1,
-              "subtitle": "i am",
-              "title": "made with people in mind",
-              "banner1": "shopify:\/\/shop_images\/scandale_lingerie_factory_cerie_026-medium.jpg",
-              "group_title": "Cerie International",
-              "table": "<table>\n<tbody>\n<tr>\n<th>founded<\/th>\n<td>1993<\/td>\n<\/tr>\n<tr>\n<th>employees<\/th>\n<td>950<\/td>\n<\/tr>\n<tr>\n<th>workplace well-being <\/th>\n<td>yes<\/td>\n<\/tr>\n<tr>\n<th>location<\/th>\n<td>Guangdong, PRC<\/td>\n<\/tr>\n\n<\/tbody>\n<\/table>",
-              "lable_btn": "more information",
-              "btn_link": "shopify:\/\/pages\/cerie",
-              "banner2": "shopify:\/\/shop_images\/scandale_lingerie_factory_cerie_036-medium_1.jpg",
-              "banner3": "shopify:\/\/shop_images\/factory_yisoor_gallery_02.jpg",
-              "description": ""
-            }
-          },
-          "dc1d1329-dfd0-4d9e-b858-eb533bfad99d": {
-            "type": "qrblock2",
-            "settings": {
-              "type": 2,
-              "subtitle": "i am",
-              "title": "made with people in mind",
-              "banner1": "shopify:\/\/shop_images\/scandale_lingerie_factory_yisoor_037-medium.jpg",
-              "group_title": "Yisoor Group Ltd",
-              "table": "<table>\n<tbody>\n<tr>\n<th>founded<\/th>\n<td>2016<\/td>\n<\/tr>\n<tr>\n<th> workplace well-being <\/th>\n<td>200<\/td>\n<\/tr>\n<tr>\n<th>paid overtime<\/th>\n<td>yes<\/td>\n<\/tr>\n<tr>\n<th>location<\/th>\n<td>Guangdong, PRC<\/td>\n<\/tr>\n\n<\/tbody>\n<\/table>",
-              "lable_btn": "more information",
-              "btn_link": "shopify:\/\/pages\/yisoor",
-              "banner2": "shopify:\/\/shop_images\/scandale_lingerie_factory_yisoor_019-medium.jpg",
-              "description": ""
-            }
-          }
-        },
-        "block_order": [
-          "62843716-bc81-4326-bce8-e2d72a4d2aea",
-          "dc1d1329-dfd0-4d9e-b858-eb533bfad99d"
-        ],
-        "settings": {}
-      },
-      "history": {
-        "type": "history",
-        "blocks": {
-          "af2d8d3f-72c8-49ce-95a1-0b6cc9ed12a3": {
-            "type": "history",
-            "settings": {
-              "year": "2021",
-              "title": "1st éco-lingerie with a 'French-touch' with people & planet in mind",
-              "description": "<p>committed to ré-inventing fashion lingerie with people & planet in mind, focusing on circularity & decarbonisation<\/p>",
-              "img": "shopify:\/\/shop_images\/history1.jpg",
-              "img1": "shopify:\/\/shop_images\/history2.jpg",
-              "img2": "shopify:\/\/shop_images\/history3.jpg"
-            }
-          },
-          "3f40d058-2e17-4a8a-b7bf-c599868d1323": {
-            "type": "history",
-            "settings": {
-              "year": "1960s",
-              "title": "",
-              "description": "<p>created the 1st underwear with lycra® <br\/>collaboration with Mr René Gruau French iconic illustrator, who co-designed scandale colour & logo <\/p>",
-              "img": "shopify:\/\/shop_images\/history_1960_01.jpg",
-              "img1": "shopify:\/\/shop_images\/history_1960_04.jpg",
-              "img2": "shopify:\/\/shop_images\/history_1960_02.jpg",
-              "img3": "shopify:\/\/shop_images\/history_1960_03.jpg",
-              "img4": "shopify:\/\/shop_images\/history_1960_05.jpg"
-            }
-          },
-          "6abfcb13-8d95-4e42-9ceb-7fc7eb714afd": {
-            "type": "history",
-            "settings": {
-              "year": "1950s",
-              "title": "collaboration with Mr. Christian Dior",
-              "description": "<p>with the inventor of the 'New Look' & projects with Jean Patou maison de couture, scandale continued to push boundaries with lightweight <br\/>tiles & elastics.<\/p>",
-              "img": "shopify:\/\/shop_images\/history_1950_03.jpg",
-              "img1": "shopify:\/\/shop_images\/history_1950_02.jpg",
-              "img2": "shopify:\/\/shop_images\/history_1950_01.jpg"
-            }
-          },
-          "7121b2cd-e24d-4888-938e-566ee01178f0": {
-            "type": "history",
-            "settings": {
-              "year": "1932",
-              "title": "1st elastic & lightweight girdle",
-              "description": "<p>invented in Lyon, turned latex liquid into latex yarn, liberated women from french corsetry & conventions. scandale has been seen as a pioneer of modern disruptive communication.<\/p>",
-              "img": "shopify:\/\/shop_images\/history_1932_01.jpg",
-              "img1": "shopify:\/\/shop_images\/history_1932_05.jpg",
-              "img2": "shopify:\/\/shop_images\/history_1932_03.jpg",
-              "img3": "shopify:\/\/shop_images\/history_1932_02.jpg",
-              "img4": "shopify:\/\/shop_images\/history_1932_04.jpg"
-            }
-          }
-        },
-        "block_order": [
-          "af2d8d3f-72c8-49ce-95a1-0b6cc9ed12a3",
-          "3f40d058-2e17-4a8a-b7bf-c599868d1323",
-          "6abfcb13-8d95-4e42-9ceb-7fc7eb714afd",
-          "7121b2cd-e24d-4888-938e-566ee01178f0"
-        ],
-        "settings": {
-          "collection": "all"
-        }
-      },
-      "quiz-size": {
-        "type": "quiz-size",
-        "settings": {
-          "banner1": "shopify:\/\/shop_images\/20210824_findmysize_step1_desktop.jpg",
-          "mbanner1": "shopify:\/\/shop_images\/20210824_findmysize_step1_tablet_mobile.jpg",
-          "banner2": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/20210824_findmysize_band_measurement_desktop_c.mp4?v=1629950307",
-          "mbanner2": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/20210824_findmysize_band_measurement_tablet_mobile.mp4?v=1629950308",
-          "banner3": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/20210824_findmysize_chest_measurement_desktop_c.mp4?v=1629950308",
-          "mbanner3": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/20210824_findmysize_chest_measurement_tablet_mobile.mp4?v=1629950307",
-          "banner4": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sizequit_result_video_11.mp4?v=1631847400",
-          "mbanner4": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/sizequit_result_video_2.mp4?v=1631847131"
-        }
-      },
-      "swatches-colors": {
-        "type": "swatches-colors",
-        "blocks": {
-          "d64b2df1-590d-4791-804b-1f4bae8d4be0": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "undyed",
-              "color": "#f9f8f7"
-            }
-          },
-          "a77d9c02-eddb-4c0e-a344-da9779099f7a": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "scandale red",
-              "color": "#b90e2f"
-            }
-          },
-          "cad19c59-dc63-4490-88fb-12b54c475c21": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "nude t17",
-              "color": "#bf9177"
-            }
-          },
-          "f1692b45-009e-46fb-80dd-d4f746fee8e3": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "nude b18",
-              "color": "#6d442e"
-            }
-          },
-          "004d5c31-5ffc-429c-ace7-ee87e7f5ba6a": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "nude a14",
-              "color": "#e2ccba"
-            }
-          },
-          "2735e732-8158-4b86-8917-d563677f3b59": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "nude",
-              "color": "#ccb5a1"
-            }
-          },
-          "d671a67b-c3e5-4c7f-a937-5eea008df07e": {
-            "type": "Colors",
-            "settings": {
-              "color_name": "black",
-              "color": "#000000"
-            }
-          }
-        },
-        "block_order": [
-          "d64b2df1-590d-4791-804b-1f4bae8d4be0",
-          "a77d9c02-eddb-4c0e-a344-da9779099f7a",
-          "cad19c59-dc63-4490-88fb-12b54c475c21",
-          "f1692b45-009e-46fb-80dd-d4f746fee8e3",
-          "004d5c31-5ffc-429c-ace7-ee87e7f5ba6a",
-          "2735e732-8158-4b86-8917-d563677f3b59",
-          "d671a67b-c3e5-4c7f-a937-5eea008df07e"
-        ],
-        "settings": {}
-      },
-      "audaciously-sustainable": {
-        "type": "audaciously-sustainable",
-        "blocks": {
-          "9fc6c033-9798-473a-94dc-d4724956b987": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_our_core.jpg",
-              "title": "previous life materials",
-              "description": "<p>focusing yarns from previous life, we design éco-lingerie with circularity in mind<\/p>",
-              "button_link": "shopify:\/\/pages\/sustainabiliy-radical-circular-at-our-core",
-              "button_label": "our recycled materials",
-              "width": "50"
-            }
-          },
-          "bf57ca36-3fa0-4d9a-8e38-277f98ffce71": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_planet.jpg",
-              "title": "planet in mind",
-              "description": "<p>100% éco-fabrics & carbon neutral from start, we put sustainability at the core of our business<\/p>",
-              "button_link": "shopify:\/\/pages\/low-planet-impact-eco-lingerie",
-              "button_label": "our planet footprint",
-              "width": "50"
-            }
-          },
-          "6c17d4ee-d7cb-4cdb-b015-e6b120c7668e": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_people.jpg",
-              "title": "people in mind",
-              "description": "<p>we are committed to care, educate & empowering our workers communities<\/p>",
-              "button_link": "shopify:\/\/pages\/people-commitments",
-              "button_label": "our people actions",
-              "width": "50"
-            }
-          },
-          "891cf495-4192-4485-8829-283078876cbb": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_transparent.jpg",
-              "title": "know your éco-lingerie",
-              "description": "<p>we owe you transparency about our manufacturers, their locations, their teams and their commitments.<\/p>",
-              "button_link": "shopify:\/\/pages\/traceable-transparent",
-              "button_label": "our traceability",
-              "width": "50"
-            }
-          },
-          "f4e3a970-20fb-4545-a54f-2f2f52ab39c5": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_report.jpg",
-              "title": "sustainability report 2021",
-              "description": "<p>we measure our progress to define the next steps of our éco-journey, being conscious of the challenges ahead of us.<\/p>",
-              "button_link": "shopify:\/\/pages\/sustainability-report-2021",
-              "button_label": "a year in review",
-              "width": "50"
-            }
-          },
-          "ea599d9d-a8ac-4664-814e-8c9c5e736700": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_much_to_do.jpg",
-              "title": "still much to do",
-              "description": "<p>we are on a journey of challenging ourselves to be even more sustainable & do more for our communities<\/p>",
-              "button_link": "shopify:\/\/pages\/on-a-journey",
-              "button_label": "our éco & people roadmap",
-              "width": "50"
-            }
-          },
-          "6d86f21c-7fd4-4407-9a6b-03f827592984": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_summary_bcrop.jpg",
-              "title": "a Pending B Corporation",
-              "description": "<p>B Corporation is a movement to redefine success in business and build a more inclusive and sustainable economy, certifying businesses that meet the highest standards of vitrified social & environmental standards.<br\/><br\/>As a big believer of this vision, we are happy & honoured to be official part of the movement. <\/p>",
-              "button_link": "",
-              "button_label": "",
-              "width": "100"
-            }
-          },
-          "9943162c-371a-4834-a480-b9c3ebfa426c": {
-            "type": "Static",
-            "settings": {
-              "title": "4%",
-              "sub_title": "",
-              "description": "<p>global greenhouse gas emission comes from fashion industry<\/p>"
-            }
-          },
-          "80fa1989-3232-4e74-a2a1-1d3ac11b9035": {
-            "type": "Static",
-            "settings": {
-              "title": "< 6%",
-              "sub_title": "",
-              "description": "<p>lingerie brands have <br\/>sustainability at their core<\/p>"
-            }
-          },
-          "e916a7e5-c943-4cd3-9cef-5ccf1000c448": {
-            "type": "Static",
-            "settings": {
-              "title": "1.9kg",
-              "sub_title": "CO2eq",
-              "description": "<p>to make conventional bra virgin materials<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "9fc6c033-9798-473a-94dc-d4724956b987",
-          "bf57ca36-3fa0-4d9a-8e38-277f98ffce71",
-          "6c17d4ee-d7cb-4cdb-b015-e6b120c7668e",
-          "891cf495-4192-4485-8829-283078876cbb",
-          "f4e3a970-20fb-4545-a54f-2f2f52ab39c5",
-          "ea599d9d-a8ac-4664-814e-8c9c5e736700",
-          "6d86f21c-7fd4-4407-9a6b-03f827592984",
-          "9943162c-371a-4834-a480-b9c3ebfa426c",
-          "80fa1989-3232-4e74-a2a1-1d3ac11b9035",
-          "e916a7e5-c943-4cd3-9cef-5ccf1000c448"
-        ],
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/IMG_d03e62e5-72d8-4e2f-932f-519167fc5f7a.jpg",
-          "main_banner_mobile": "shopify:\/\/shop_images\/sass.jpg",
-          "block_title": "act now",
-          "block_sub_title": "focusing on decarbonisation & circularity",
-          "block_short_desc": "<p>scandale éco-lingerie - a french touch with planet & people in mind<\/p>",
-          "show_center": true
-        }
-      },
-      "article_audaciously-sustainable": {
-        "type": "article_audaciously-sustainable",
-        "blocks": {
-          "32f9b30f-b24f-4a4f-b25b-a8a67ad52662": {
-            "type": "Article",
-            "disabled": true,
-            "settings": {
-              "article": "news\/vcycle-volunteering-1"
-            }
-          },
-          "33d2f1aa-7806-4c6b-aa8b-7c9740df4710": {
-            "type": "Article",
-            "disabled": true,
-            "settings": {
-              "article": "news\/vcycle-volunteeringm"
-            }
-          },
-          "ca8d8d5c-0446-48ab-8165-00e618d6891e": {
-            "type": "Article",
-            "disabled": true,
-            "settings": {
-              "article": "news\/our-packaging-a-case-study"
-            }
-          }
-        },
-        "block_order": [
-          "32f9b30f-b24f-4a4f-b25b-a8a67ad52662",
-          "33d2f1aa-7806-4c6b-aa8b-7c9740df4710",
-          "ca8d8d5c-0446-48ab-8165-00e618d6891e"
-        ],
-        "settings": {
-          "title": "our éco stories",
-          "button_link": "shopify:\/\/blogs\/news",
-          "button_label": "learn more"
-        }
-      },
-      "sustainabiliy-radical": {
-        "type": "sustainabiliy-radical",
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/banner_m.jpg",
-          "main_banner_mobile": "shopify:\/\/shop_images\/ba23.jpg",
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0576\/1974\/2871\/files\/home_hero_banner.mp4?v=1624593963",
-          "point": "9.1",
-          "text": "honors",
-          "show_center": false
-        }
-      },
-      "radical_our_circular_yarn": {
-        "type": "radical_our_circular_yarn",
-        "blocks": {
-          "e1aee87f-0b7d-404d-ad09-f9bd005b2e71": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-nylon-1.jpg",
-              "icons": "recycled-nylon",
-              "title": "recycled nylon",
-              "desc": "from yarn wastes - PRC, Taiwan & Thailand",
-              "link": ""
-            }
-          },
-          "8e0d0355-e62c-4bee-8bca-72ae85ae01cc": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-polyester-2.jpg",
-              "icons": "recycled-polyester",
-              "title": "recycled polyester",
-              "desc": "from PET bottles - Thailand",
-              "link": ""
-            }
-          },
-          "53d4a4b7-ffc9-41b8-916d-17a56d280df6": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-spandex-3.jpg",
-              "icons": "recycled-spandex",
-              "title": "recycled spandex",
-              "desc": "from yarn wastes - PRC",
-              "link": ""
-            }
-          }
-        },
-        "block_order": [
-          "e1aee87f-0b7d-404d-ad09-f9bd005b2e71",
-          "8e0d0355-e62c-4bee-8bca-72ae85ae01cc",
-          "53d4a4b7-ffc9-41b8-916d-17a56d280df6"
-        ],
-        "settings": {
-          "title": "our yarns from",
-          "sub_title": "previous life"
-        }
-      },
-      "radical_our_circular_fabrics": {
-        "type": "radical_our_circular_fabrics",
-        "blocks": {
-          "6adb9d95-cf8e-464f-ac38-0a7bb566a097": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_embroidery.jpg",
-              "icons": "recycled-nylon",
-              "title": "82%",
-              "sub_title": "exclusive embroidery",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "953ffd17-0dd5-475f-b4a3-f82cc6d7cbab": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_lace_01.jpg",
-              "icons": "recycled-nylon",
-              "title": "78%",
-              "sub_title": "exclusive galloon lace",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "045330e9-4c8c-45ea-8ae0-ff8693554d94": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_lace_02.jpg",
-              "icons": "recycled-polyester",
-              "title": "78%",
-              "sub_title": "exclusive gallon lace",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "0110d120-d416-4ba2-bedd-ccc2c78e009e": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_guipure.jpg",
-              "icons": "recycled-polyester",
-              "title": "87%",
-              "sub_title": "exclusive guipure",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "30ad5b97-3cb8-44bf-9db2-45d6653f296c": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_mesh.jpg",
-              "icons": "recycled-nylon",
-              "title": "83%",
-              "sub_title": "mesh",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "efe2d60f-42da-453c-8a55-3dec6176e414": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_power_mesh.jpg",
-              "icons": "cotton",
-              "title": "74%",
-              "sub_title": "power mesh",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "9bb8f7ce-80ab-45fb-b592-08d21decfbd1": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_micro.jpg",
-              "icons": "recycled-nylon",
-              "title": "78%",
-              "sub_title": "micro",
-              "sub_title_s": "recycled materials"
-            }
-          },
-          "a8c76697-6ba6-4329-ac75-ff888fa64ee4": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_cotton.jpg",
-              "icons": "recycled-nylon",
-              "title": "100%",
-              "sub_title": "organic cotton",
-              "sub_title_s": "organically grown"
-            }
-          }
-        },
-        "block_order": [
-          "6adb9d95-cf8e-464f-ac38-0a7bb566a097",
-          "953ffd17-0dd5-475f-b4a3-f82cc6d7cbab",
-          "045330e9-4c8c-45ea-8ae0-ff8693554d94",
-          "0110d120-d416-4ba2-bedd-ccc2c78e009e",
-          "30ad5b97-3cb8-44bf-9db2-45d6653f296c",
-          "efe2d60f-42da-453c-8a55-3dec6176e414",
-          "9bb8f7ce-80ab-45fb-b592-08d21decfbd1",
-          "a8c76697-6ba6-4329-ac75-ff888fa64ee4"
-        ],
-        "settings": {
-          "title": "our certified",
-          "sub_title": "éco-fabrics"
-        }
-      },
-      "radical_zero_fabric_waste": {
-        "type": "radical_zero_fabric_waste",
-        "blocks": {
-          "42543920-4a2e-41d5-9972-c813c29adc84": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_eco-conscious_design.jpg",
-              "title": "éco-conscious design",
-              "desc": "we focus on materials coming from previous life. only 8 éco-fabrics & 14 signature shapes to minimise our environmental impact."
-            }
-          },
-          "5d5d3435-a57c-4a5d-b05e-ddbf6b67fb12": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_upcycling_fabric_waste.jpg",
-              "title": "upcycling fabric waste",
-              "desc": "we are partnering with Anew Studios to collect fabric from our cutting tables, upcycling them for a 2nd life."
-            }
-          }
-        },
-        "block_order": [
-          "42543920-4a2e-41d5-9972-c813c29adc84",
-          "5d5d3435-a57c-4a5d-b05e-ddbf6b67fb12"
-        ],
-        "settings": {
-          "title": "designed with circularity in mind"
-        }
-      },
-      "radical_a_continuing_journey": {
-        "type": "radical_a_continuing_journey",
-        "blocks": {
-          "e02b962f-061b-4d5c-90be-06e6058ea241": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_locally-sourced.jpg",
-              "title": "locally sourced",
-              "link": "",
-              "desc": "increase locally sourced recycled materials & create a tighter regional recycling network."
-            }
-          },
-          "44ad412e-baee-4231-9e11-00b1f1a62aaa": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_circular_closing_the_loop.jpg",
-              "title": "closing the loop",
-              "link": "",
-              "desc": "finding solutions to give another life to your scandale éco-lingerie. for now, wash & donate to your beloved charity."
-            }
-          },
-          "f9c4171c-03a5-484c-b185-6e71f1053e63": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/3.jpg",
-              "title": "90% previous life materials",
-              "link": "",
-              "desc": "increasing the use of previous life materials for future collections from 80% to 90% by 2023."
-            }
-          }
-        },
-        "block_order": [
-          "e02b962f-061b-4d5c-90be-06e6058ea241",
-          "44ad412e-baee-4231-9e11-00b1f1a62aaa",
-          "f9c4171c-03a5-484c-b185-6e71f1053e63"
-        ],
-        "settings": {
-          "title": "still so much to do…"
-        }
-      },
-      "radical_our_circular_collection": {
-        "type": "radical_our_circular_collection",
-        "blocks": {
-          "fbb26b09-ccd1-4e56-8291-a336df188d87": {
-            "type": "Block",
-            "settings": {
-              "product": "le-plunge-side-sling-bra-sublime_scandale-red",
-              "title": "79%",
-              "sub_title": "recycled fibres",
-              "icon1": "recycled-nylon",
-              "text1": "recycled nylon",
-              "icon2": "recycled-polyester",
-              "text2": "recycled polyester",
-              "icon3": "recycled-spandex",
-              "text3": "recycled spandex"
-            }
-          },
-          "7caf60db-3252-440a-a45f-aa47f53415f5": {
-            "type": "Block",
-            "settings": {
-              "product": "le-balconnet-half-spacer-bra-sensual_undyed",
-              "title": "79%",
-              "sub_title": "recycled fibres",
-              "icon1": "recycled-nylon",
-              "text1": "recycled nylon",
-              "icon2": "recycled-polyester",
-              "text2": "recycled polyester",
-              "icon3": "recycled-spandex",
-              "text3": "recycled spandex"
-            }
-          },
-          "cb83aa38-0b54-469b-b6e0-0fe0d7da3aa3": {
-            "type": "Block",
-            "settings": {
-              "product": "le-triangle-back-detail-bra-sublime_black",
-              "title": "72%",
-              "sub_title": "recycled fibres",
-              "icon1": "recycled-nylon",
-              "text1": "recycled nylon",
-              "icon2": "recycled-polyester",
-              "text2": "recycled polyester",
-              "icon3": "recycled-spandex",
-              "text3": "recycled spandex"
-            }
-          }
-        },
-        "block_order": [
-          "fbb26b09-ccd1-4e56-8291-a336df188d87",
-          "7caf60db-3252-440a-a45f-aa47f53415f5",
-          "cb83aa38-0b54-469b-b6e0-0fe0d7da3aa3"
-        ],
-        "settings": {
-          "title": "our",
-          "sub_title": "éco-bras"
-        }
-      },
-      "sustainabiliy-radical_v1": {
-        "type": "sustainabiliy-radical_v1",
-        "blocks": {
-          "d46b0876-c213-4e93-af95-005ea32e3806": {
-            "type": "Block",
-            "settings": {
-              "icon": "CO2",
-              "weight": "48,446kg",
-              "text": "CO2 eq",
-              "icon_hover": "lightbulb",
-              "weight_hover": "2,081,300",
-              "text_hover": "hours LED"
-            }
-          },
-          "cb2dd602-5ccd-4454-a123-edee1f086e32": {
-            "type": "Block",
-            "settings": {
-              "icon": "H2O",
-              "weight": "523,729L",
-              "text": "water",
-              "icon_hover": "water-glass",
-              "weight_hover": "2,075,800",
-              "text_hover": "glasses of water"
-            }
-          },
-          "2785f718-a32f-4b0a-93e3-551ac078048e": {
-            "type": "Block",
-            "settings": {
-              "icon": "chemical-2",
-              "weight": "55,652",
-              "text": "PO4eq",
-              "icon_hover": "tomato",
-              "weight_hover": "2,775,400",
-              "text_hover": "tomatoes"
-            }
-          }
-        },
-        "block_order": [
-          "d46b0876-c213-4e93-af95-005ea32e3806",
-          "cb2dd602-5ccd-4454-a123-edee1f086e32",
-          "2785f718-a32f-4b0a-93e3-551ac078048e"
-        ],
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/mind.jpg",
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0576\/1974\/2871\/files\/home_hero_banner.mp4?v=1624593963",
-          "point": "7.8",
-          "text": "high",
-          "block_title": "planet resources preserved so far",
-          "show_center": false
-        }
-      },
-      "sustainabiliy-radical_v1_block1": {
-        "type": "sustainabiliy-radical_v1_block1",
-        "blocks": {
-          "460c2191-4d40-4b4c-9ade-97c5a7fbd793": {
-            "type": "Block",
-            "settings": {
-              "icon": "icon-co2",
-              "weight": "868,000 kg",
-              "text": "CO2 eq"
-            }
-          },
-          "bd6cd7ba-f144-471b-8fb6-dae7fbcaeaad": {
-            "type": "Block",
-            "settings": {
-              "icon": "icon-h2o",
-              "weight": "7,305,200 litres",
-              "text": "water"
-            }
-          },
-          "ef2b284b-fa2d-42f9-bde4-07b4f0f5041f": {
-            "type": "Block",
-            "settings": {
-              "icon": "icon-chemical",
-              "weight": "448,000 units",
-              "text": "PO4 eq"
-            }
-          }
-        },
-        "block_order": [
-          "460c2191-4d40-4b4c-9ade-97c5a7fbd793",
-          "bd6cd7ba-f144-471b-8fb6-dae7fbcaeaad",
-          "ef2b284b-fa2d-42f9-bde4-07b4f0f5041f"
-        ],
-        "settings": {
-          "title": "what if it is not sustainable?",
-          "short_description": "We work with XXX to collect all the fabric waste from the cutting table, recycling them into XXX & XXX.",
-          "button_label": "impact report 2021",
-          "button_url": "shopify:\/\/pages\/order-and-returns",
-          "color": "",
-          "background": "#000000"
-        }
-      },
-      "radical_our_circular_yarn_v1": {
-        "type": "radical_our_circular_yarn_v1",
-        "blocks": {
-          "62839be2-7cce-4306-b4bb-69ad604de740": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-nylon.jpg",
-              "title": "recycled nylon",
-              "sub_title": "from yarn wastes - PRC, Taiwan & Thailand",
-              "icon1": "icon-co2",
-              "text1": "-53.6% CO2eq",
-              "icon2": "icon-chemical",
-              "text2": "-25% PO4eq",
-              "icon3": "icon-chemical",
-              "text3": "",
-              "icon4": "icon-co2",
-              "text4": "",
-              "icon5": "icon-co2",
-              "text5": "",
-              "hasicon": "shopify:\/\/shop_images\/recycled_nylon.png"
-            }
-          },
-          "1a2706e8-7e59-4f90-8316-db0a4e312caa": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-polyester.jpg",
-              "title": "recycled polyester",
-              "sub_title": "from PET bottles - Thailand",
-              "icon1": "icon-co2",
-              "text1": "-25.8% CO2eq",
-              "icon2": "icon-h2o",
-              "text2": "-31.5% water",
-              "icon3": "icon-chemical",
-              "text3": "",
-              "icon4": "icon-co2",
-              "text4": "",
-              "icon5": "icon-co2",
-              "text5": "",
-              "hasicon": "shopify:\/\/shop_images\/Group_6629d404-f7b7-411b-b40c-ecc862f26e8f.png"
-            }
-          },
-          "d49a715c-c789-472a-8a89-97bcb4903b23": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-spandex.jpg",
-              "title": "recycled spandex",
-              "sub_title": "from yarn wastes - PRC",
-              "icon1": "icon-co2",
-              "text1": "-66.8% CO2eq",
-              "icon2": "icon-chemical",
-              "text2": "",
-              "icon3": "icon-co2",
-              "text3": "",
-              "icon4": "icon-co2",
-              "text4": "",
-              "icon5": "icon-co2",
-              "text5": "",
-              "hasicon": "shopify:\/\/shop_images\/Group_d5b1e653-a877-45d6-9d2e-e14a81c3a47e.png"
-            }
-          },
-          "28f1805d-e9da-4f9d-b03b-cfb9e240af85": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability-plannetinmind-cotton.jpg",
-              "title": "organic cotton",
-              "sub_title": "grown organically - East PRC",
-              "icon1": "icon-co2",
-              "text1": "-13.6% CO2eq",
-              "icon2": "icon-h2o",
-              "text2": "-87.9% water",
-              "icon3": "icon-chemical",
-              "text3": "-47% PO4eq",
-              "icon4": "icon-co2",
-              "text4": "",
-              "icon5": "icon-co2",
-              "text5": "",
-              "hasicon": "shopify:\/\/shop_images\/cotton_bd98b645-a252-42bf-bb69-8ad35e58f128.png"
-            }
-          }
-        },
-        "block_order": [
-          "62839be2-7cce-4306-b4bb-69ad604de740",
-          "1a2706e8-7e59-4f90-8316-db0a4e312caa",
-          "d49a715c-c789-472a-8a89-97bcb4903b23",
-          "28f1805d-e9da-4f9d-b03b-cfb9e240af85"
-        ],
-        "settings": {
-          "title": "our éco-yarn",
-          "designed_with": "vs conventional materials"
-        }
-      },
-      "radical_a_continuing_journey_v1": {
-        "type": "radical_a_continuing_journey_v1",
-        "blocks": {
-          "93433161-0b22-4f46-93f7-b0c4260dd9ca": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_planet_upstream_by_2024.jpg",
-              "title": "<0.5kg CO2eq upstream by 2024",
-              "title_over": "",
-              "sub_title_over": "",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>our goal is to reduce our CO2eq per unit by -40% (cradle to gate) & work together to reduce product use carbon footprint<\/p>"
-            }
-          },
-          "a983a6b4-e9bc-4f0d-a3f6-55592fbb3839": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_planet_renewable_energy_by_2025_1ab71688-ff00-4c87-94e0-b039af7baa38.jpg",
-              "title": "25% renewable energy by 2024",
-              "title_over": "",
-              "sub_title_over": "",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>work with our manufacturing partners to favour significantly higher adoption rate of renewable energy<\/p>"
-            }
-          },
-          "973a3ee2-30c2-4b7b-8418-f3f9219903cc": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_planet_alternative_dyes.jpg",
-              "title": "alternative dyes",
-              "title_over": "",
-              "sub_title_over": "",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>chemical dyes are a big challenge for us - we don't like them but they bring colour vibrancy & longevity to products. we continue investigating for more sustainable alternatives<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "93433161-0b22-4f46-93f7-b0c4260dd9ca",
-          "a983a6b4-e9bc-4f0d-a3f6-55592fbb3839",
-          "973a3ee2-30c2-4b7b-8418-f3f9219903cc"
-        ],
-        "settings": {
-          "title": "still so much to do…"
-        }
-      },
-      "radical_a_continuing_journey_v1_2": {
-        "type": "radical_a_continuing_journey_v1_2",
-        "blocks": {
-          "6088bcf5-e7ae-4551-a084-bf36967e4c80": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/1_e4966a42-9d77-4f4d-b243-a45d616a133b.jpg",
-              "title": "measure before you buy",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>we recommend you to use our <a href=\"\/size-quiz\" title=\"\/size-quiz\"><span style=\"text-decoration:underline\">bra size calculator<\/span><\/a> to find your right size & guarantee the best fit. it would avoid unnecessary returns & its planet impacts.<\/p>"
-            }
-          },
-          "9509d3d6-1ac5-479b-a0e2-ecb91e81bce9": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/2_0b5da607-3a62-4de7-b569-85c4842b25a8.jpg",
-              "title": "wash sustainably",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>we recommend hand wash. when machine wash, please use a short washing cycle at 30 degree<br\/><br\/>avoid the dryer as it consumes high energy & not the best friend of your lingerie<br\/> <br\/>always wash with planet-friendly biological soap flakes like 'Fer à Cheval' soap from Marseille, made with plant-based oils no preservatives, dyes, additives or animal fat<\/p>"
-            }
-          },
-          "c0335934-2d4d-4512-b822-4037d3d86eda": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/3_ce058a86-f459-4805-9242-aaf1cf3a731a.jpg",
-              "title": "stop microfibres",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>many microfibres can be released from a single load of laundry, polluting water bodies & entering the food chain. we recommend to always use a <a href=\"\/products\/guppyfriend-washing-bag_\" title=\"GUPPYFRIEND Washing Bag\"><span style=\"text-decoration:underline\">GUPPYFRIEND washing bag<\/span><\/a> to stop microfibers pollution. available for 29.75€ at check-out.<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "6088bcf5-e7ae-4551-a084-bf36967e4c80",
-          "9509d3d6-1ac5-479b-a0e2-ecb91e81bce9",
-          "c0335934-2d4d-4512-b822-4037d3d86eda"
-        ],
-        "settings": {
-          "title": "sustainability starts from you"
-        }
-      },
-      "sustainabiliy-radical_v1_mix_play": {
-        "type": "sustainabiliy-radical_v1_mix_play",
-        "settings": {
-          "title": "mix & play",
-          "sub_title": "multiplying the occasions",
-          "short_description": "<p>designed to bring endless possibilities of 2000+ combinations for continuous excitement - buying less, making them last & reducing waste<\/p>",
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/mix_play_video.mp4?v=1631270227"
-        }
-      },
-      "sustainabiliy-radical_v1_block2": {
-        "type": "sustainabiliy-radical_v1_block2",
-        "blocks": {
-          "032681af-d20a-4a7b-bee4-89fda3ba658a": {
-            "type": "Block",
-            "settings": {
-              "icon": "CO2",
-              "weight": "-55%",
-              "text": "CO2eq"
-            }
-          },
-          "f0505b84-4120-4313-a8a6-b6a305db24df": {
-            "type": "Block",
-            "settings": {
-              "icon": "H2O",
-              "weight": "-18%",
-              "text": "water"
-            }
-          },
-          "d57f1bb7-70c4-400e-8d5c-69cb1730d7ac": {
-            "type": "Block",
-            "settings": {
-              "icon": "chemical-2",
-              "weight": "-34%",
-              "text": "PO4eq"
-            }
-          }
-        },
-        "block_order": [
-          "032681af-d20a-4a7b-bee4-89fda3ba658a",
-          "f0505b84-4120-4313-a8a6-b6a305db24df",
-          "d57f1bb7-70c4-400e-8d5c-69cb1730d7ac"
-        ],
-        "settings": {
-          "title": "the most sustainable colour",
-          "short_description": "<p>we began our design with 'undyed' fabrics. amazed by the result, we decided to make it part of our permanent collection.<\/p>",
-          "button_label": "shop undyed",
-          "button_link": "shopify:\/\/collections\/undyed",
-          "main_banner": "shopify:\/\/shop_images\/undyed.jpg",
-          "designed_with": "vs conventional materials & colours"
-        }
-      },
-      "radical_a_continuing_journey_v1_3": {
-        "type": "radical_a_continuing_journey_v1_3",
-        "blocks": {
-          "2b2bd474-5f38-4080-bd7f-ed20146a4a5e": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_planet_permanent_collection.jpg",
-              "drop_img": false,
-              "title": "a permanent collection",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>105 styles based only on 14 signature shapes to maximize resources efficiency. we defy fast fashion rhythm & impact<\/p>"
-            }
-          },
-          "4317fd4c-0e50-4bdf-aa09-16947312e5c2": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_planet_packaged_responsibly.jpg",
-              "drop_img": false,
-              "title": "responsible & undyed packaging",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>from plant-based home compostable product bags to recycled & recyclable paper mailer. we avoid using mono-use plastic in our packaging<\/p>"
-            }
-          },
-          "a52670d5-6580-4c35-ad70-399d6cd14467": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/5.jpg",
-              "drop_img": false,
-              "title": "low-impact logistics",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>working with sustainable logistic partners, with our main warehouse powered by renewable energy <\/p>"
-            }
-          },
-          "56310231-25b3-4527-9d3f-0aae2bd13786": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_planet_zero-carbon_last_mile.jpg",
-              "drop_img": false,
-              "title": "certifications driven",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>creating the collection with certified éco-fabrics, including Standard 100 by OEKO-TEX® <\/p>"
-            }
-          },
-          "c5c22311-e0c4-40f8-a2cd-ccf6cb75a255": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/Rectangle_828.jpg",
-              "drop_img": true,
-              "title": "sea not air",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>we use low-emission sea freight whenever possible for all materials & finished garments<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "2b2bd474-5f38-4080-bd7f-ed20146a4a5e",
-          "4317fd4c-0e50-4bdf-aa09-16947312e5c2",
-          "a52670d5-6580-4c35-ad70-399d6cd14467",
-          "56310231-25b3-4527-9d3f-0aae2bd13786",
-          "c5c22311-e0c4-40f8-a2cd-ccf6cb75a255"
-        ],
-        "settings": {
-          "title": "sustainable at our core",
-          "sub_title": "Asia proximity sourcing",
-          "short_description": "<p>our concentrated network of suppliers allows us to go direct to the source & minimise éco-impact from transportation<\/p>",
-          "main_banner": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/ckte3kh5l1xxq17ppiao4bg74.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\" title=\"Mapbox Styles embed\">\n<\/iframe>"
-        }
-      },
-      "radical_a_carbon_v1": {
-        "type": "radical_a_carbon_v1",
-        "blocks": {
-          "a970a526-5d4b-4a02-a135-05707b9ce6be": {
-            "type": "Block",
-            "settings": {
-              "title": "on our way to net zero",
-              "sub_title": "<p>2023 <\/p><p>SBTi approved<\/p>",
-              "width_title": 4,
-              "short_desc": "<p>we are adapting science-based target - a clear, scientific, data-driven pathway for companies to reduce their greenhouse gas (GHG) emissions for a better future<\/p>",
-              "width_desc": 6
-            }
-          },
-          "59324981-902e-49cf-8fda-ba1eadca4c5f": {
-            "type": "Block",
-            "settings": {
-              "title": "2025 climate positive",
-              "sub_title": "<p>climate positive in our entire value chain by 2025<\/p>",
-              "width_title": 5,
-              "short_desc": "<p>we are working with our partners to further reduce our GHG emissions & reach a positive impact to our environment. we are working on a precise roadmap & will share our progress in our sustainability updates<\/p>",
-              "width_desc": 6
-            }
-          }
-        },
-        "block_order": [
-          "a970a526-5d4b-4a02-a135-05707b9ce6be",
-          "59324981-902e-49cf-8fda-ba1eadca4c5f"
-        ],
-        "settings": {}
-      },
-      "radical_a_carbon_our_climate_projects_v1": {
-        "type": "radical_a_carbon_our_climate_projects_v1",
-        "blocks": {
-          "c6f8f6ea-c443-45d6-94a1-c525bcc8234a": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainable-development-icons_7.gif"
-            }
-          },
-          "b7ad4b5c-76e2-4c61-afa5-35cdd007909e": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainable-development-icons_8.gif"
-            }
-          },
-          "761a8d12-f1dd-45cd-bc2b-cb8f1dcc3111": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainable-development-icons_9.gif"
-            }
-          },
-          "da739864-aa7f-48f3-87b3-c3264c7fa368": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainable-development-icons_13.gif"
-            }
-          },
-          "5d60ad9d-721e-441c-af6d-0061067248d6": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainable-development-icons_15.gif"
-            }
-          },
-          "d981b844-5126-4357-8393-00f2acce807d": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainable-development-icons_17.gif"
-            }
-          }
-        },
-        "block_order": [
-          "c6f8f6ea-c443-45d6-94a1-c525bcc8234a",
-          "b7ad4b5c-76e2-4c61-afa5-35cdd007909e",
-          "761a8d12-f1dd-45cd-bc2b-cb8f1dcc3111",
-          "da739864-aa7f-48f3-87b3-c3264c7fa368",
-          "5d60ad9d-721e-441c-af6d-0061067248d6",
-          "d981b844-5126-4357-8393-00f2acce807d"
-        ],
-        "settings": {
-          "title": "we offset all our CO2",
-          "main_banner": "shopify:\/\/shop_images\/sustainability_planet_we_offset_all_our_CO2.jpg",
-          "sub_title": "our project is Clean Wind Energy in Guyuan, PRC",
-          "short_desc": "<p>offsetting all our emission from our entire value chain, estimated <span style=\"text-decoration:underline\">1.14kg CO2eq<\/span> per product.<strong><br\/><\/strong>it creates renewable energy, increases responsible development & contributes to 6 UN sustainable development goals.<\/p>"
-        }
-      },
-      "radical_a_carbon_now_carbon_natural_v1": {
-        "type": "radical_a_carbon_now_carbon_natural_v1",
-        "settings": {
-          "title": "today…",
-          "main_banner": "shopify:\/\/shop_images\/sustainability_planet_how_come.jpg",
-          "sub_title": "how come?",
-          "short_desc": "<p><strong>1st<\/strong> - we use life-cycle assessment in our every process to minimise our carbon emissions<br\/><br\/><strong>2nd<\/strong> - we 'offset' our carbon emission upstream & downstream through certified climate projects to achieve neutrality on our entire value chain<br\/><br\/>our goal is to keep the rise in mean global temperature according to the Paris Agreement, COP21 validated by the UN<\/p>"
-        }
-      },
-      "p_people-community": {
-        "type": "p_people-community",
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/e.jpg",
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0576\/1974\/2871\/files\/home_hero_banner.mp4?v=1624593963",
-          "point": "7.0",
-          "text": "high",
-          "show_center": false
-        }
-      },
-      "p_people-community_block01": {
-        "type": "p_people-community_block01",
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/sustainability_people_how_we_select_our_factories.jpg",
-          "main_banner_mobile": "shopify:\/\/shop_images\/ba_m.jpg",
-          "title": "we only work with certified garment manufacturers that care for their people",
-          "subtitle": "how we select our factories",
-          "desc": "<p>we only work with partners who care, educate & empower the people making your lingerie<br\/><br\/>we developed our own methodology to screen all  potential suppliers - on transparency, social & environmental responsibilities. <br\/>only suppliers in the top tiers have been selected<\/p>",
-          "btn_link": "shopify:\/\/pages\/cerie",
-          "btn_label": "visit our factories for supply chain traceability"
-        }
-      },
-      "p_people-community_block02": {
-        "type": "p_people-community_block02",
-        "blocks": {
-          "da7762c7-a9ed-48e2-9996-78c7a5e4ee05": {
-            "type": "Block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/sustainability_people_we_care_for.jpg",
-              "title": "we care for our worker's communities",
-              "desc": "<p>thus, we are a member of BSR®, an global organization of sustainable businesses that works together to build a just and sustainable world<br\/>through HERproject™, we plan to invest into workplace-based programs to enhance knowledge & confidence. we empower our female worker community to promote health, financial inclusion & gender equality<\/p>"
-            }
-          },
-          "d26e495d-cb78-46da-9ed2-7a72baa7d2c0": {
-            "type": "Block",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/text.jpg",
-              "title": "a time commitment to our community",
-              "desc": "<p>we commit to volunteer for 300+ hours to serve our local community. we believe in helping whenever we can, doing every bits to help in any way possible<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "da7762c7-a9ed-48e2-9996-78c7a5e4ee05",
-          "d26e495d-cb78-46da-9ed2-7a72baa7d2c0"
-        ],
-        "settings": {
-          "title": "",
-          "desc": ""
-        }
-      },
-      "p_people-community_block03": {
-        "type": "p_people-community_block03",
-        "blocks": {
-          "3128b7dc-0f63-44f3-82f3-2c8badb83c59": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/B.jpg"
-            }
-          },
-          "5c317eaf-2aa7-4b96-a798-5b1dfc780d5c": {
-            "type": "Image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Rectangle_214_5eb9f236-e1cb-4910-a1de-e762f38ec63d.jpg"
-            }
-          }
-        },
-        "block_order": [
-          "3128b7dc-0f63-44f3-82f3-2c8badb83c59",
-          "5c317eaf-2aa7-4b96-a798-5b1dfc780d5c"
-        ],
-        "settings": {
-          "title": "our people project",
-          "subtitle": "a collaboration with XXX",
-          "desc": "<p>We only work with partners that shares the same values as us, hence we developed a system to score all our supplies & their suppliers, what we called a PPR analysis. Only manufacturers with a score above X is considered.<br\/><br\/>All our direct partners are required to adhere to our Code of Conduct and additional policies. We also require our suppliers to be audited by independent 3rd party to ensure a fair, safe & healthy working conditions throughout our supply chain.<\/p>"
-        }
-      },
-      "p_people-community_block04": {
-        "type": "p_people-community_block04",
-        "blocks": {
-          "e1ad2217-c238-4328-8b26-42c64e2d3d5f": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_people_interacting_with_our_female_workers.jpg",
-              "title": "interacting with our female workers",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>post-covid to reconnecting live with our factory workers & re-engage on future projects<\/p>"
-            }
-          },
-          "302caf99-8129-407e-b335-61acd4b0daed": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_people_HERproject.jpg",
-              "title": "HERproject™ activation 2022",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>our 1st women empowerment program through raising awareness & knowledge on critical health & well-being topics<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "e1ad2217-c238-4328-8b26-42c64e2d3d5f",
-          "302caf99-8129-407e-b335-61acd4b0daed"
-        ],
-        "settings": {
-          "title": "still so much to do…"
-        }
-      },
-      "p_traceable-transparent": {
-        "type": "p_traceable-transparent",
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/sustainability_traceable_hero.jpg",
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0576\/1974\/2871\/files\/home_hero_banner.mp4?v=1624593963",
-          "point": "8.1",
-          "text": "advanced",
-          "show_center": false
-        }
-      },
-      "p_traceable-transparent_block04": {
-        "type": "p_traceable-transparent_block04",
-        "blocks": {
-          "e9e4602f-fe89-466b-a7e3-9dfa0005cdce": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sust-transparency-reach100_tier3.jpg",
-              "title": "reach 100% tier-3 traceability by 2023",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>continue our traceability due diligence on tier-3 suppliers.<\/p>"
-            }
-          },
-          "3f2eecab-0bc9-4380-a5d7-56bbaf374555": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_traceable_expand_our_sciencific.jpg",
-              "title": "expand our scientific measurements",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>on our materials depending on available technologies.<\/p>"
-            }
-          },
-          "09728d61-b76c-4dc4-a175-d9b32407bd41": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sust-transparency-continueraisingbar.jpg",
-              "title": "continue raising the bar",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>obtain higher certifications in social & environmental.<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "e9e4602f-fe89-466b-a7e3-9dfa0005cdce",
-          "3f2eecab-0bc9-4380-a5d7-56bbaf374555",
-          "09728d61-b76c-4dc4-a175-d9b32407bd41"
-        ],
-        "settings": {
-          "title": "still so much to do…"
-        }
-      },
-      "p_our-factories": {
-        "type": "p_our-factories",
-        "blocks": {
-          "1ccd2fe8-cef9-417c-ab71-1230a3a1d11f": {
-            "type": "block",
-            "settings": {
-              "title": "2016",
-              "subtitle": "founded"
-            }
-          },
-          "747e9a4d-da43-4119-bc82-9b76282cbbde": {
-            "type": "block",
-            "settings": {
-              "title": "200",
-              "subtitle": "employees"
-            }
-          },
-          "6437a7ac-295b-410d-a869-d79067d40e46": {
-            "type": "block",
-            "settings": {
-              "title": "yes",
-              "subtitle": "workplace well-being"
-            }
-          },
-          "4c24b3e4-ee35-4473-8ed9-6192c7f07783": {
-            "type": "block",
-            "settings": {
-              "title": "Guangdong, PRC",
-              "subtitle": "location"
-            }
-          },
-          "389999fe-f0b1-4530-b007-04e1c4eb4078": {
-            "type": "list",
-            "settings": {
-              "title": "how we met?",
-              "content": "we contacted Anne. <br>\nAnne was passionate about our vision convinced their top management even though we were a new start-up. with an aligned vision of the future, we began our first step of our collaboration. <br> <br>\n \ngreat commitment from Anne &amp; her team."
-            }
-          },
-          "3f08bed1-c6b1-43ab-b35b-3a5830242b49": {
-            "type": "list",
-            "settings": {
-              "title": "a more éco future",
-              "content": "Yisoor measures their use of electricity, water &amp; waste with KPIs &amp; roadmap to reduce their impact and their carbon footprint."
-            }
-          },
-          "d96ce09b-b325-41a9-8c35-d7a55b9378bb": {
-            "type": "list",
-            "settings": {
-              "title": "certifications",
-              "content": "<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0576\/1974\/2871\/files\/Frame.png?v=1625213954\" alt=\"\"><br>\nBSCI, Standard 100 by OEKO-TEX®, Higg Index Facility Environmental Module <br>\n<a href=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_factory_list.pdf?v=1631267042\" target=\"_blank\"> <u>factory detail information<\/u><\/a>"
-            }
-          },
-          "c95a243f-7308-4f6a-8de7-37950f69ae3b": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_yisoor_gallery_01.jpg"
-            }
-          },
-          "ea5b5058-3fd1-4620-8e46-34535dd64d89": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_yisoor_gallery_02.jpg"
-            }
-          },
-          "809eb782-0f64-45d7-b9d1-a9c2127aec97": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_yisoor_gallery_03.jpg"
-            }
-          },
-          "da593bc6-68b5-4539-b117-f4d0fb71b219": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_yisoor_gallery_04.jpg"
-            }
-          },
-          "7e01a0a3-26ba-4966-a80a-7d755d7be0c4": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_yisoor_gallery_05.jpg"
-            }
-          },
-          "b1765b4a-7cbd-4101-b7b0-e84ceebd7373": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_yisoor_gallery_06.jpg"
-            }
-          }
-        },
-        "block_order": [
-          "1ccd2fe8-cef9-417c-ab71-1230a3a1d11f",
-          "747e9a4d-da43-4119-bc82-9b76282cbbde",
-          "6437a7ac-295b-410d-a869-d79067d40e46",
-          "4c24b3e4-ee35-4473-8ed9-6192c7f07783",
-          "389999fe-f0b1-4530-b007-04e1c4eb4078",
-          "3f08bed1-c6b1-43ab-b35b-3a5830242b49",
-          "d96ce09b-b325-41a9-8c35-d7a55b9378bb",
-          "c95a243f-7308-4f6a-8de7-37950f69ae3b",
-          "ea5b5058-3fd1-4620-8e46-34535dd64d89",
-          "809eb782-0f64-45d7-b9d1-a9c2127aec97",
-          "da593bc6-68b5-4539-b117-f4d0fb71b219",
-          "7e01a0a3-26ba-4966-a80a-7d755d7be0c4",
-          "b1765b4a-7cbd-4101-b7b0-e84ceebd7373"
-        ],
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/factory_yisoor_hero.jpg",
-          "desc": "<p>at scandale éco-lingerie, we work with partners who care, educate & empower the people making your lingerie. <br\/> <br\/>all our suppliers are adhere to the scandale <a href=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_code_of_conduct.pdf?v=1631267042\" target=\"_blank\" title=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_code_of_conduct.pdf?v=1631267042\">code of conduct<\/a>. They are regularly reviewed on their social & environmental responsibilities, and transparency.<\/p>"
-        }
-      },
-      "p_traceable-transparent_block03": {
-        "type": "p_traceable-transparent_block03",
-        "blocks": {
-          "2a05d15f-9762-40ec-987c-6a950ffa8c33": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_traceable_Cerie_International.jpg",
-              "title": "PRC",
-              "link_label": "Cerie International",
-              "link": "shopify:\/\/pages\/cerie"
-            }
-          },
-          "97c423c6-c9b6-4615-8d0e-c4a57556d91a": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/sustainability_traceable_Yisoor_Group_Limited.jpg",
-              "title": "PRC",
-              "link_label": "Yisoor Group Limited",
-              "link": "shopify:\/\/pages\/yisoor"
-            }
-          }
-        },
-        "block_order": [
-          "2a05d15f-9762-40ec-987c-6a950ffa8c33",
-          "97c423c6-c9b6-4615-8d0e-c4a57556d91a"
-        ],
-        "settings": {}
-      },
-      "p_traceable-transparent_block02": {
-        "type": "p_traceable-transparent_block02",
-        "blocks": {
-          "2d38f23f-cbc4-4c4b-b35f-989b96ff0aee": {
-            "type": "Block",
-            "settings": {
-              "title": "7.5",
-              "subtitle": "tier 1 supplier average score"
-            }
-          },
-          "c0a59e25-bdb9-4295-a5ab-47469467589f": {
-            "type": "Block",
-            "settings": {
-              "title": "7.5",
-              "subtitle": "tier 1 supplier average score"
-            }
-          },
-          "4ff2889d-453c-4579-b6c1-67d543b1723d": {
-            "type": "Block",
-            "settings": {
-              "title": "7.5",
-              "subtitle": "tier 2 supplier average score"
-            }
-          }
-        },
-        "block_order": [
-          "2d38f23f-cbc4-4c4b-b35f-989b96ff0aee",
-          "c0a59e25-bdb9-4295-a5ab-47469467589f",
-          "4ff2889d-453c-4579-b6c1-67d543b1723d"
-        ],
-        "settings": {
-          "title": "certified ethical production",
-          "desc_first": "<p>we only work with partners who care, educate & empower the people making your lingerie. <br\/><br\/>we developed our own methodology to screen all  potential suppliers - on transparency, social & environmental responsibilities. <br\/>only suppliers in the top tiers have been selected. <\/p>",
-          "desc": "<p>besides our methodology, suppliers are audited by independent 3rd parties (Sedex & BSCI) to ensure a fair, safe & healthy working conditions. we are participating in the Transparency Pledge & our tier-1 suppliers are registered on 'Open Apparel Registry' to expand the information that are made public.<\/p>",
-          "icon": "shopify:\/\/shop_images\/IMG.png",
-          "iconmobile": "shopify:\/\/shop_images\/logo.jpg",
-          "button_label": "how we score our suppliers",
-          "button_url": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_-_scoring_suppliers.pdf?v=1631267042"
-        }
-      },
-      "p_traceable-transparent_block": {
-        "type": "p_traceable-transparent_block",
-        "blocks": {
-          "c0aaf71a-2edd-438b-9163-eb7b7c6b5c10": {
-            "type": "Block",
-            "settings": {
-              "title": "100",
-              "subtitle": "tier1"
-            }
-          },
-          "98fb4d7d-16d9-431f-b1a3-e7785534d3f2": {
-            "type": "Block",
-            "settings": {
-              "title": "100",
-              "subtitle": "tier 2"
-            }
-          },
-          "36bba2ea-43ef-4b9a-a151-000f3b2c8bdd": {
-            "type": "Block",
-            "settings": {
-              "title": "49",
-              "subtitle": "tier 3"
-            }
-          }
-        },
-        "block_order": [
-          "c0aaf71a-2edd-438b-9163-eb7b7c6b5c10",
-          "98fb4d7d-16d9-431f-b1a3-e7785534d3f2",
-          "36bba2ea-43ef-4b9a-a151-000f3b2c8bdd"
-        ],
-        "settings": {
-          "title_qr": "it is your right to know what you are wearing",
-          "sub_qr": "every scandale éco-lingerie comes with a QR code on its hangtag & care label",
-          "desc": "<p>scan to learn about everything we know about your lingerie:<br\/>its éco-impact, factory & workers who assembled and sewed it, its éco-journey, our washing & drying recommendations & how to make it last<\/p>",
-          "mobile": "shopify:\/\/shop_images\/products.jpg",
-          "map_title": "we build our supply chain around traceability",
-          "desc_map": "<p>we are dedicated to know where our things come from, so we can stand by our values towards the people & planet<br\/><br\/>in fashion, supply chains are often fragmented & complex. we still have a lot to do to better track & evaluate the lower tiers of our supply chain. we now know 100% of our tier 1 & tier 2 suppliers and we are working to know more about our tier 3 suppliers<\/p>",
-          "map": "<iframe src=\"https:\/\/api.mapbox.com\/styles\/v1\/wellingtonlai\/ckte3kh5l1xxq17ppiao4bg74.html?fresh=true&amp;access_token=pk.eyJ1Ijoid2VsbGluZ3RvbmxhaSIsImEiOiJja3BtMWcwZmIzbXp1Mm9sYTM0djI2ZDl4In0.zQNNL6WndnIqhke_AfYlBw\" width=\"100%\" height=\"600px\">\n<\/iframe>"
-        }
-      },
-      "p_scientifically-measured": {
-        "type": "p_scientifically-measured",
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/sustainability_report_hero.jpg",
-          "description": "<p>we use life-cycle assessment to understand our environmental footprint in order to minimise our carbon emissions, so we can stand by our values towards people & planet. we achieve carbon neutrality for our entire value chain through projects that have a positive impact on the planet.<\/p>",
-          "show_center": true
-        }
-      },
-      "p_scientifically-measured-block01": {
-        "type": "p_scientifically-measured-block01",
-        "settings": {
-          "title": "measurement-driven sustainability",
-          "subtitle": "BCOME, our climate partner",
-          "desc": "<p>every scandale éco-lingerie is accessed of its impact. results are published to the public via the QR code on each garment & on our website. through the data, it drives our future business decisions to further challenge ourselves to be better. the goal is to reduce our CO2eq by unit by -40% to &lt;0.5kg CO2eq upstream<\/p>",
-          "btn_link": "",
-          "btn_label": "read our full methodology"
-        }
-      },
-      "p_scientifically-measured-block02": {
-        "type": "p_scientifically-measured-block02",
-        "blocks": {
-          "44be0c8b-2f38-4206-a700-99619bafe5d2": {
-            "type": "Block",
-            "settings": {
-              "icon": "icon-co2",
-              "text": "-55%"
-            }
-          },
-          "97813bad-8447-4851-b8fc-9317a9df8b9a": {
-            "type": "Block",
-            "settings": {
-              "icon": "icon-h2o",
-              "text": "-50%"
-            }
-          },
-          "507f7115-e738-4847-a5e5-62a3d0a99d79": {
-            "type": "Block",
-            "settings": {
-              "icon": "icon-chemical",
-              "text": "-20%"
-            }
-          }
-        },
-        "block_order": [
-          "44be0c8b-2f38-4206-a700-99619bafe5d2",
-          "97813bad-8447-4851-b8fc-9317a9df8b9a",
-          "507f7115-e738-4847-a5e5-62a3d0a99d79"
-        ],
-        "settings": {
-          "title": "biggest achievements this year",
-          "short_description": "<p><strong>planet - 100% éco-fabrics & carbon neutral<\/strong><br\/>using 100% certified éco-fabrics, we created our collection preserving planet resources with -55% CO2eq, -50% water, -20% chemicals. with our wind project with ClimatePartner, we achieved carbon neutral<\/p>"
-        }
-      },
-      "p_scientifically-measured-block03": {
-        "type": "p_scientifically-measured-block03",
-        "settings": {
-          "title": "carbon neutral",
-          "sub": "level 1 & level 2",
-          "short_description": "<p>We use scientific measurements in our every process and to reduce as much as we can our impact. Through our collaboration with ClimatePartner, we offset the remaining 1.8kg CO2e to achieve a net-zero impact to the environment.<\/p>"
-        }
-      },
-      "p_scientifically-measured-block05": {
-        "type": "p_scientifically-measured-block05",
-        "settings": {
-          "title": "advanced traceability",
-          "sub": "",
-          "short_description": "<p>We use scientific measurements in our every process and to reduce as much as we can our impact. Through our collaboration with ClimatePartner, we offset the remaining 1.8kg CO2e to achieve a net-zero impact to the environment.<\/p>"
-        }
-      },
-      "p_scientifically-measured-block04": {
-        "type": "p_scientifically-measured-block04",
-        "blocks": {
-          "2edc99c3-f40a-4796-9fcd-3779aafaad99": {
-            "type": "Block",
-            "settings": {
-              "title": "93",
-              "subtitle": "tier 1"
-            }
-          },
-          "c079b97a-f8fc-4693-8d3f-a0c0658d3277": {
-            "type": "Block",
-            "settings": {
-              "title": "80",
-              "subtitle": "tier 2"
-            }
-          },
-          "c9dfa585-d8d9-4bab-9ed9-cbfc4f0ea4f4": {
-            "type": "Block",
-            "settings": {
-              "title": "73",
-              "subtitle": "tier 3"
-            }
-          }
-        },
-        "block_order": [
-          "2edc99c3-f40a-4796-9fcd-3779aafaad99",
-          "c079b97a-f8fc-4693-8d3f-a0c0658d3277",
-          "c9dfa585-d8d9-4bab-9ed9-cbfc4f0ea4f4"
-        ],
-        "settings": {
-          "sub": "our traceability progress",
-          "desc": "<p>We use scientific measurements in our every process and to reduce as much as we can our impact. Through our collaboration with ClimatePartner, we offset the remaining 1.8kg CO2e to achieve a net-zero impact to the environment.<\/p>"
-        }
-      },
-      "p_scientifically-measured-block06": {
-        "type": "p_scientifically-measured-block06",
-        "blocks": {
-          "07506b9d-1015-44d2-b85e-4d5da189a520": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - 100% éco-fabrics & carbon neutral",
-              "desc": "<p>using 100% certified éco-fabrics, we created our collection preserving planet resources with -55% CO2eq, -50% water, -20% chemicals. with our wind project with ClimatePartner, we achieved carbon neutral<\/p>"
-            }
-          },
-          "272d1bdd-e711-4c48-b25e-0c32879c4575": {
-            "type": "Block",
-            "settings": {
-              "title": "people - a BSR member",
-              "desc": "<p>we are an official member of BSR, a global organisation of sustainable businesses that works together to build a just and sustainable world. next, we will invest into HERproject, to enhance our workers' knowledge & confidence<\/p>"
-            }
-          },
-          "72135a41-c068-4e4e-8fa2-e1c245f65be5": {
-            "type": "Block",
-            "settings": {
-              "title": "circularity - 80% previous life materials",
-              "desc": "<p>with our éco-fabrics & working hand-in-hand with manufacturers, we select materials with high level of previous life materials in our permanent collection.<\/p>"
-            }
-          },
-          "371ee354-cc5a-4f49-bfd5-c028812de6ea": {
-            "type": "Block",
-            "settings": {
-              "title": "transparency - 100% tier 1 & tier 2",
-              "desc": "<p>we are proud to know that we know today 100% of our suppliers & their suppliers & joining the transparency pledge to show our commitment in transparency of our value chain<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "07506b9d-1015-44d2-b85e-4d5da189a520",
-          "272d1bdd-e711-4c48-b25e-0c32879c4575",
-          "72135a41-c068-4e4e-8fa2-e1c245f65be5",
-          "371ee354-cc5a-4f49-bfd5-c028812de6ea"
-        ],
-        "settings": {
-          "title": "our methodology",
-          "sub_title": "biggest achievements this year"
-        }
-      },
-      "p_scientifically-measured-block07": {
-        "type": "p_scientifically-measured-block07",
-        "blocks": {
-          "aebdd0b9-520a-4b6f-b262-4cbfa043dced": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - more certifications",
-              "desc": "<p>strive to give more credits to our products, aiming &gt;50% of our product to be OEKO-TEX® certified<\/p>"
-            }
-          },
-          "4ed9e692-d07e-4940-bc01-06322d04be7e": {
-            "type": "Block",
-            "settings": {
-              "title": "people - HERproject™",
-              "desc": "<p>1st women empowerment program through raising awareness & knowledge on critical health & well-being topics<\/p>"
-            }
-          },
-          "00364b61-8e82-4e9c-b1fc-e816bbaeb01e": {
-            "type": "Block",
-            "settings": {
-              "title": "circularity - evaluate our current supply chain",
-              "desc": "<p>increase locally sourced materials to recycle & create a tighter regional recycling network<\/p>"
-            }
-          },
-          "3d22e543-34c5-453e-8a2d-9a301076372d": {
-            "type": "Block",
-            "settings": {
-              "title": "a certified B Corporation",
-              "desc": "<p>we are being certified to be an officially certified member of the movement adhering to the highest standard of verified social & environmental performance<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "aebdd0b9-520a-4b6f-b262-4cbfa043dced",
-          "4ed9e692-d07e-4940-bc01-06322d04be7e",
-          "00364b61-8e82-4e9c-b1fc-e816bbaeb01e",
-          "3d22e543-34c5-453e-8a2d-9a301076372d"
-        ],
-        "settings": {
-          "title": "our next steps",
-          "button_label": "read our full impact report 2021",
-          "button_url": ""
-        }
-      },
-      "p_scientifically-measured-block08": {
-        "type": "p_scientifically-measured-block08",
-        "blocks": {
-          "84f18de0-e921-48cc-bb53-b168c96e14c2": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/B1.jpg",
-              "title": "closing the loop",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>made with upcycled yarn and chips from Taiwan<\/p>"
-            }
-          },
-          "47e78412-f44f-4725-8e29-5fc395cf8b61": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/B2.jpg",
-              "title": "recycled polyster",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>made with post-consumer PET bottles from Japan & Thailand<\/p>"
-            }
-          },
-          "e6ed3ede-bed3-4b8e-848a-564ce9c58190": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/Rectangle_679.jpg",
-              "title": "recycled spandex",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>made with upcycled yarn & chips<br\/>from China<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "84f18de0-e921-48cc-bb53-b168c96e14c2",
-          "47e78412-f44f-4725-8e29-5fc395cf8b61",
-          "e6ed3ede-bed3-4b8e-848a-564ce9c58190"
-        ],
-        "settings": {
-          "title": "a continuing journey"
-        }
-      },
-      "p_journey": {
-        "type": "p_journey",
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/ba.jpg",
-          "description": "<p>we want to make ourselves accountable for our impact on planet & people. while we are building our climate goals based on a SBTi approved roadmap, we will continue to refine our goals & share our progress in regular sustainability updates. the goal is to reduce our GHG emissions in our value chain to reach a positive impact to our environment. we invite you to track our progress together.<\/p>",
-          "show_center": true
-        }
-      },
-      "p_journey_block01": {
-        "type": "p_journey_block01",
-        "blocks": {
-          "43c45499-3889-4f15-97a0-79833147f634": {
-            "type": "Block",
-            "settings": {
-              "title": "1. further reducing our carbon footprint",
-              "desc": "<p>next, we have to increase adoption of renewable energy upstream - in our factories & manufacturing process. for downstream, we will continue to promote a more sustainable way to take care of your éco lingerie: no dryer, no iron & wash by hand<\/p>"
-            }
-          },
-          "262fad88-16be-40dc-a4f7-ea1739ac9e3c": {
-            "type": "Block",
-            "settings": {
-              "title": "2. tier 3 traceability",
-              "desc": "<p>fashion supply chains are often fragmented & complex. <br\/>we know 100% of our tier-1 & tier-2 suppliers and continue investigating our tier-3 suppliers so we can stand by our values towards people & planet<\/p>"
-            }
-          },
-          "4284c994-7709-41aa-a2fb-62726b253816": {
-            "type": "Block",
-            "settings": {
-              "title": "3. chemical dyes",
-              "desc": "<p>would never be our best friends either but they bring colour vibrancy & longevity to products. we continue investigating for more sustainable alternatives<\/p>"
-            }
-          },
-          "a60b6f84-78cb-4eb9-a2d1-22d32afc564f": {
-            "type": "Block",
-            "settings": {
-              "title": "4. closing the loop",
-              "desc": "<p>because of the complexity of lingerie, as materials are in small pieces & often mixed, giving another life after product-life can be a challenge. we will continue to find solutions & partners to make it a reality<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "43c45499-3889-4f15-97a0-79833147f634",
-          "262fad88-16be-40dc-a4f7-ea1739ac9e3c",
-          "4284c994-7709-41aa-a2fb-62726b253816",
-          "a60b6f84-78cb-4eb9-a2d1-22d32afc564f"
-        ],
-        "settings": {
-          "title": "our biggest challenges"
-        }
-      },
-      "p_journey_block02": {
-        "type": "p_journey_block02",
-        "blocks": {
-          "5924a3d7-2432-4b96-a833-71e98e7dd2eb": {
-            "type": "Block",
-            "settings": {
-              "title": "people - BSR member",
-              "desc": "<p>become part of industrial collective effort to scale our impact for a more just & sustainable world<\/p>",
-              "year": "now"
-            }
-          },
-          "000e324d-c437-420f-b5d2-5320c4f686af": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - carbon neutral from start",
-              "desc": "<p>by using LCA to understand our carbon footprint and offsetting it, we are carbon neutral<\/p>",
-              "year": "now"
-            }
-          },
-          "9e0f693b-906a-4e1b-8b80-29fca93b6eb7": {
-            "type": "Block",
-            "settings": {
-              "title": "transparency - Transparency Pledge",
-              "desc": "<p>join the force in the fashion industry to demonstrate our commitment towards greater transparency in our manufacturing supply chain<\/p>",
-              "year": "now"
-            }
-          },
-          "9818c5d9-577c-49ac-bd28-49a11df3c54a": {
-            "type": "Block",
-            "settings": {
-              "title": "a Pending B Corporation",
-              "desc": "<p>a big believer in the B-Corp movement and are proud to be officially part of the movement<\/p>",
-              "year": "now"
-            }
-          },
-          "86e53b56-166f-4a33-90c3-12e833dd640c": {
-            "type": "Block",
-            "settings": {
-              "title": "people - HERproject",
-              "desc": "<p>1st women empowerment program through raising awareness & knowledge on critical health & well-being topics<\/p>",
-              "year": "2022"
-            }
-          },
-          "ae975150-798c-4c66-a18c-4a9110053103": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - more certifications",
-              "desc": "<p>strive to give more credits to our products, aiming &gt;50% of our product to be Standard 100 by OEKO-TEX® certified<\/p>",
-              "year": "2022"
-            }
-          },
-          "d790b496-a783-4e2d-a3d8-41b899ea870e": {
-            "type": "Block",
-            "settings": {
-              "title": "circularity - evaluate our current supply chain",
-              "desc": "<p>increase locally sourced recycled materials & create a tighter regional recycling network<\/p>",
-              "year": "2022"
-            }
-          },
-          "66d2a022-16d7-47f4-ad1e-5fe653c8252d": {
-            "type": "Block",
-            "settings": {
-              "title": "a certified B Corporation",
-              "desc": "<p>become a certified member of the movement adhering to the highest standard of verified social & environmental performance<\/p>",
-              "year": "2022"
-            }
-          },
-          "2c3f9cab-f029-40eb-81b5-b01e42ba49e2": {
-            "type": "Block",
-            "settings": {
-              "title": "people - a STeP forward",
-              "desc": "<p>obtain STeP by OEKO-TEX® certification for 80% of our tier-1 & tier-2 suppliers<\/p>",
-              "year": "2023"
-            }
-          },
-          "3577b4dd-951d-4a43-af67-9e55ffa58f9a": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - SBTi approved",
-              "desc": "<p>adopt science-based target to reduce our greenhouse gas (GHG) emissions with measurable KPIs<\/p>",
-              "year": "2023"
-            }
-          },
-          "1096c8de-91f9-4a67-adfa-51b41f0eeead": {
-            "type": "Block",
-            "settings": {
-              "title": "traceability - value chain transparency",
-              "desc": "<p>know 100% of our tier-3 & 50% tier-4 suppliers<\/p>",
-              "year": "2023"
-            }
-          },
-          "c69adb37-2725-4d5a-b7cb-ee27731cfa83": {
-            "type": "Block",
-            "settings": {
-              "title": "enhanced circularity",
-              "desc": "<p>increase use of previous life materials for future collections to 90%<\/p>",
-              "year": "2023"
-            }
-          },
-          "3d29465e-57e0-43c5-908c-db467e003af0": {
-            "type": "Block",
-            "settings": {
-              "title": "people - HERproject expansion",
-              "desc": "<p>to other countries & communities<\/p>",
-              "year": "2024"
-            }
-          },
-          "2ea82847-7db9-45a6-984b-0fae89d8ff21": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - reduce carbon footprint",
-              "desc": "<p>reduce our CO2eq by unit by -40% to &lt;0.5kg CO2eq upstream & &lt;1kg downstream<\/p>",
-              "year": "2024"
-            }
-          },
-          "b263b31a-6294-46d6-b1da-5f5e8716bbe7": {
-            "type": "Block",
-            "settings": {
-              "title": "traceability - further increase product transparency",
-              "desc": "<p>achieve 50% of our collection with Made in Green by OEKO-TEX® certification<\/p>",
-              "year": "2024"
-            }
-          },
-          "f2d2602e-f11d-44cf-b815-0566bb0dc221": {
-            "type": "Block",
-            "settings": {
-              "title": "circularity - renewable energy manufacturing",
-              "desc": "<p>reduce 25% GHG emission in our scope 3 by switching to renewable energy<\/p>",
-              "year": "2024"
-            }
-          },
-          "eb55f4e7-2253-45ad-96dc-766f60fbe1d4": {
-            "type": "Block",
-            "settings": {
-              "title": "people - beyond compliance",
-              "desc": "<p>expand worker well-being project, promote further health balance, gender equality & financial inclusion<\/p>",
-              "year": "2025"
-            }
-          },
-          "82e10f5e-f286-4ac4-9de2-d20ff2e393e7": {
-            "type": "Block",
-            "settings": {
-              "title": "planet - climate positive",
-              "desc": "<p>net positive impact on the environment by reducing more GHG emissions than we emits<\/p>",
-              "year": "2025"
-            }
-          },
-          "af7725f8-98a6-4c9b-98f1-a041450d00e5": {
-            "type": "Block",
-            "settings": {
-              "title": "traceability - the highest standard",
-              "desc": "<p>achieve 100% of our collection with Made in Green by OEKO-TEX® certification<\/p>",
-              "year": "2025"
-            }
-          },
-          "d8475991-a940-4491-93c6-f6681498aea3": {
-            "type": "Block",
-            "settings": {
-              "title": "circularity - full adoption of recycled materials",
-              "desc": "<p>accomplish 95% of our assortment made with recycled materials<\/p>",
-              "year": "2025"
-            }
-          }
-        },
-        "block_order": [
-          "5924a3d7-2432-4b96-a833-71e98e7dd2eb",
-          "000e324d-c437-420f-b5d2-5320c4f686af",
-          "9e0f693b-906a-4e1b-8b80-29fca93b6eb7",
-          "9818c5d9-577c-49ac-bd28-49a11df3c54a",
-          "86e53b56-166f-4a33-90c3-12e833dd640c",
-          "ae975150-798c-4c66-a18c-4a9110053103",
-          "d790b496-a783-4e2d-a3d8-41b899ea870e",
-          "66d2a022-16d7-47f4-ad1e-5fe653c8252d",
-          "2c3f9cab-f029-40eb-81b5-b01e42ba49e2",
-          "3577b4dd-951d-4a43-af67-9e55ffa58f9a",
-          "1096c8de-91f9-4a67-adfa-51b41f0eeead",
-          "c69adb37-2725-4d5a-b7cb-ee27731cfa83",
-          "3d29465e-57e0-43c5-908c-db467e003af0",
-          "2ea82847-7db9-45a6-984b-0fae89d8ff21",
-          "b263b31a-6294-46d6-b1da-5f5e8716bbe7",
-          "f2d2602e-f11d-44cf-b815-0566bb0dc221",
-          "eb55f4e7-2253-45ad-96dc-766f60fbe1d4",
-          "82e10f5e-f286-4ac4-9de2-d20ff2e393e7",
-          "af7725f8-98a6-4c9b-98f1-a041450d00e5",
-          "d8475991-a940-4491-93c6-f6681498aea3"
-        ],
-        "settings": {
-          "titlenow": "carbon neutral",
-          "title2022": "go further to empower women",
-          "title2023": "science-based targets driven",
-          "title2024": "25% renewable energy",
-          "title2025": "climate positive",
-          "title2030": "Net-Zero"
-        }
-      },
-      "p_journey_block03": {
-        "type": "p_journey_block03",
-        "blocks": {
-          "9684c214-fb8c-4452-a0bf-149cb6834d38": {
-            "type": "Block",
-            "disabled": true,
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/B1.jpg",
-              "title": "closing the loop",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>made with upcycled yarn and chips from Taiwan<\/p>"
-            }
-          },
-          "d5c7790f-8536-4611-9059-ab4ede650113": {
-            "type": "Block",
-            "disabled": true,
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/B2.jpg",
-              "title": "recycled polyster",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>made with post-consumer PET bottles from Japan & Thailand<\/p>"
-            }
-          },
-          "eebe6d78-0e8e-426c-9afb-b4cb38784712": {
-            "type": "Block",
-            "disabled": true,
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/Rectangle_679.jpg",
-              "title": "recycled spandex",
-              "link_label": "",
-              "link": "",
-              "desc": "<p>made with upcycled yarn & chips<br\/>from China<\/p>"
-            }
-          }
-        },
-        "block_order": [
-          "9684c214-fb8c-4452-a0bf-149cb6834d38",
-          "d5c7790f-8536-4611-9059-ab4ede650113",
-          "eebe6d78-0e8e-426c-9afb-b4cb38784712"
-        ],
-        "settings": {
-          "title": "a continuing journey"
-        }
-      },
-      "404": {
-        "type": "404",
-        "blocks": {
-          "1fd03362-62bb-49f8-87fa-385976a7c8a8": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/20210831_error_shopcat_bra.jpg",
-              "title": "éco-bras",
-              "link": "shopify:\/\/collections\/all-bras"
-            }
-          },
-          "302a731b-083c-43f6-bcb5-2a4063df8501": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/20210831_error_shopcat_panty.jpg",
-              "title": "éco-panties",
-              "link": "shopify:\/\/collections\/all-bottoms"
-            }
-          },
-          "d5cd054a-65c8-4bbc-b053-8cec99b8ad96": {
-            "type": "Block",
-            "settings": {
-              "banner": "shopify:\/\/shop_images\/20210831_error_shopcat_body.jpg",
-              "title": "éco-bodies",
-              "link": "shopify:\/\/collections\/all-bodies"
-            }
-          }
-        },
-        "block_order": [
-          "1fd03362-62bb-49f8-87fa-385976a7c8a8",
-          "302a731b-083c-43f6-bcb5-2a4063df8501",
-          "d5cd054a-65c8-4bbc-b053-8cec99b8ad96"
-        ],
-        "settings": {}
-      },
-      "162609499410be6f99": {
-        "type": "home-block",
-        "blocks": {
-          "457fcc43-77b7-4114-8a4e-4908e8a71bde": {
-            "type": "Block",
-            "settings": {
-              "title": "-55%",
-              "text": "carbon",
-              "icon": "icon-co2"
-            }
-          },
-          "4f054014-6a37-40a5-b254-c0fa13f3fa75": {
-            "type": "Block",
-            "settings": {
-              "title": "-50%",
-              "text": "water",
-              "icon": "icon-h2o"
-            }
-          },
-          "c2bc30bf-4471-43e0-a73d-1ad690531414": {
-            "type": "Block",
-            "settings": {
-              "title": "-20%",
-              "text": "chemicals",
-              "icon": "icon-chemical"
-            }
-          }
-        },
-        "block_order": [
-          "457fcc43-77b7-4114-8a4e-4908e8a71bde",
-          "4f054014-6a37-40a5-b254-c0fa13f3fa75",
-          "c2bc30bf-4471-43e0-a73d-1ad690531414"
-        ],
-        "settings": {
-          "title": "100% éco fabrics",
-          "subtitle": "preserving planet resources"
-        }
-      },
-      "page-mix-to-play": {
-        "type": "page-mix-to-play",
-        "settings": {
-          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/mix_play_video.mp4?v=1631270227",
-          "title": "mix & play",
-          "subtitle": "multiplying the occasions",
-          "shortdesc": "Discover 2600+ combinations",
-          "productLeft": "le-balconnet-half-spacer-bra-sensual_nude-a14",
-          "productRight": "le-balconnet-base-lift-bra-sleek_black",
-          "collection": "all"
-        }
-      },
-      "p_cerie-international": {
-        "type": "p_cerie-international",
-        "blocks": {
-          "6e08a455-2a01-463c-9736-e0bab42ddca7": {
-            "type": "block",
-            "settings": {
-              "title": "1993",
-              "subtitle": "founded"
-            }
-          },
-          "028a5ca8-022d-4f5e-97cc-39c5ac61ae16": {
-            "type": "block",
-            "settings": {
-              "title": "950",
-              "subtitle": "employees"
-            }
-          },
-          "9e9d7b75-01ad-472b-9fe3-9743f3d49797": {
-            "type": "block",
-            "settings": {
-              "title": "yes",
-              "subtitle": "workplace well-being"
-            }
-          },
-          "a1e7a07f-22ef-46d9-a8fe-e02ba94370d2": {
-            "type": "block",
-            "settings": {
-              "title": "Guangdong, PRC",
-              "subtitle": "location"
-            }
-          },
-          "fdb3edc1-25e0-4c87-947d-5e38b4e265b5": {
-            "type": "list",
-            "settings": {
-              "title": "how we met?",
-              "content": "one of us at scandale worked at Cerie. she kindly introduced scandale éco-lingerie to Cecilia, the daughter of founder Rita Wong. <br>\nwe realised that we share the same vision of making sensual lingerie &amp; sustainability to live together, then our partnership started &amp; we are thrilled to innovate together keeping people &amp; planet in mind."
-            }
-          },
-          "8e315ac3-3e9f-4d92-a1a1-037c2815b3e8": {
-            "type": "list",
-            "settings": {
-              "title": "a more éco future",
-              "content": "besides Cecilia, we work closely with Cerie's compliance manager, Kevin. <br><br>\n \nfocusing on reducing their environmental footprint - began with switching to renewable energy &amp; through various policies from resource efficiency &amp; packaging. <br><br>\n \nwe are actively involved in social projects with Cerie, introducing our first BSR HERproject in Cerie in early 2022 - raising awareness &amp; knowledge on critical health &amp; well-being topics. <br>\nCerie is in the progress of joining the WWF's Low Carbon Manufacturing Program (LCMP) through our introduction.<br>"
-            }
-          },
-          "5a970ba2-6c0f-49e4-b258-226941976469": {
-            "type": "list",
-            "settings": {
-              "title": "certifications & audits",
-              "content": "<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0576\/1974\/2871\/files\/Frame.png?\">\n<br>\nOCS 100, RCS 100, Standard 100 by OEKO-TEX®, Sedex, Higg Index Facility Environmental Module\n<br>\n<a href=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_factory_list.pdf?v=1631267042\" target=\"_blank\">factory detail information<\/a>"
-            }
-          },
-          "e4f3271f-aaea-4320-b7c1-e319c87aa5a7": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_cerie_gallery_01.jpg"
-            }
-          },
-          "daab754c-76ee-453d-8730-5235f2ec2e3f": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_cerie_gallery_02.jpg"
-            }
-          },
-          "2d582140-98f8-4411-a9c2-fde83f9a556d": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_cerie_gallery_03.jpg"
-            }
-          },
-          "0f172ab3-486f-40c8-a615-05313341efc6": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_cerie_gallery_04.jpg"
-            }
-          },
-          "63247e09-7eb3-4f80-86b9-ba3fcc0bb63d": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/factory_cerie_gallery_05.jpg"
-            }
-          }
-        },
-        "block_order": [
-          "6e08a455-2a01-463c-9736-e0bab42ddca7",
-          "028a5ca8-022d-4f5e-97cc-39c5ac61ae16",
-          "9e9d7b75-01ad-472b-9fe3-9743f3d49797",
-          "a1e7a07f-22ef-46d9-a8fe-e02ba94370d2",
-          "fdb3edc1-25e0-4c87-947d-5e38b4e265b5",
-          "8e315ac3-3e9f-4d92-a1a1-037c2815b3e8",
-          "5a970ba2-6c0f-49e4-b258-226941976469",
-          "e4f3271f-aaea-4320-b7c1-e319c87aa5a7",
-          "daab754c-76ee-453d-8730-5235f2ec2e3f",
-          "2d582140-98f8-4411-a9c2-fde83f9a556d",
-          "0f172ab3-486f-40c8-a615-05313341efc6",
-          "63247e09-7eb3-4f80-86b9-ba3fcc0bb63d"
-        ],
-        "settings": {
-          "main_banner": "shopify:\/\/shop_images\/factory_cerie_hero.jpg",
-          "desc": "<p>at scandale éco-lingerie, we work with partners who care, educate & empower the people making your lingerie. <br\/> <br\/>all our suppliers are adhere to the scandale <a href=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_code_of_conduct.pdf?v=1631267042\" target=\"_blank\" title=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0435\/7305\/1554\/files\/scandale_code_of_conduct.pdf?v=1631267042\">code of conduct<\/a>. They are regularly reviewed on their social & environmental responsibilities, and transparency.<\/p>"
-        }
-      },
-      "banner": {
-        "type": "banner",
-        "blocks": {
-          "de8e8389-3524-487b-bb43-6b7ec0542d1b": {
-            "type": "banner",
-            "settings": {
-              "main_banner": "shopify:\/\/shop_images\/20210819_contact_us_banner_79878452-1ad8-4a0e-b382-6d3cb1c372c9.jpg",
-              "page": "contact-us"
-            }
-          },
-          "a7ba02bb-938d-421b-ba02-5bd0065f5e19": {
-            "type": "banner",
-            "disabled": true,
-            "settings": {
-              "main_banner": "shopify:\/\/shop_images\/20210819_contact_us_banner.jpg",
-              "page": "contact-us"
-            }
-          },
-          "b8dbfdbe-4d4e-4c7a-8284-12b60836810c": {
-            "type": "banner",
-            "settings": {
-              "main_banner": "shopify:\/\/shop_images\/20210819_FAQ_banner_c674c016-a435-4008-aeae-7ba7237aae63.jpg",
-              "page": "faq"
-            }
-          },
-          "8e03cc35-39da-4005-a981-20628fb546a5": {
-            "type": "banner",
-            "disabled": true,
-            "settings": {
-              "main_banner": "shopify:\/\/shop_images\/20210819_FAQ_banner.jpg",
-              "page": "faq"
-            }
-          },
-          "845d8c3e-7fd2-46a0-8ccb-602c6cb5c2be": {
-            "type": "banner",
-            "settings": {
-              "main_banner": "shopify:\/\/shop_images\/order-return.jpg",
-              "page": "order-and-returns"
-            }
-          },
-          "605c4a06-0cd4-4c14-833c-b88026abae4e": {
-            "type": "banner",
-            "settings": {
-              "main_banner": "shopify:\/\/shop_images\/term-condition.jpg",
-              "page": "terms-and-conditions"
-            }
-          }
-        },
-        "block_order": [
-          "de8e8389-3524-487b-bb43-6b7ec0542d1b",
-          "a7ba02bb-938d-421b-ba02-5bd0065f5e19",
-          "b8dbfdbe-4d4e-4c7a-8284-12b60836810c",
-          "8e03cc35-39da-4005-a981-20628fb546a5",
-          "845d8c3e-7fd2-46a0-8ccb-602c6cb5c2be",
-          "605c4a06-0cd4-4c14-833c-b88026abae4e"
-        ],
-        "settings": {}
-      },
-      "password-header": {
-        "type": "password-header",
-        "settings": {
-          "logo": "shopify:\/\/shop_images\/scandale_logo_double_tagline.png",
-          "logo_max_width": 240,
-          "header": "coming soon"
-        }
-      },
-      "password-content": {
-        "type": "password-content",
-        "settings": {
-          "newsletter_enable": true,
-          "newsletter_form_heading": "french touch fashion lingerie with people & planet in mind",
-          "newsletter_form_subheading": "<p>carbon neutral - 100% éco fabrics - produced ethically<\/p>",
-          "newsletter_placeholder": "your email",
-          "newsletter_button_text": "let me know"
-        }
-      },
-      "password-footer": {
-        "type": "password-footer",
-        "settings": {
-          "show_share_buttons": true,
-          "social_message": "join the movement"
-        }
-      },
-      "1634865018483e1325": {
-        "type": "video-list",
-        "blocks": {
-          "06e90c4c-39b7-4827-b0c5-a725ce01f54e": {
-            "type": "video",
-            "settings": {
-              "poster": "shopify:\/\/shop_images\/Screenshot_2021-10-22_at_10.30.56_am.png",
-              "poster_mobile": "shopify:\/\/shop_images\/Screenshot_2021-10-27_at_10.00.31_am.png",
-              "autoplay": false,
-              "title": "éco-bras",
-              "subtitle": "shop now",
-              "video": "",
-              "video_mobile": "",
-              "link": "shopify:\/\/collections\/all-bras"
-            }
-          },
-          "2553945e-bee9-4dc5-9365-d16e7612508a": {
-            "type": "video",
-            "settings": {
-              "poster": "shopify:\/\/shop_images\/Screenshot_2021-10-22_at_10.30.49_am.png",
-              "poster_mobile": "shopify:\/\/shop_images\/Screenshot_2021-10-22_at_4.50.21_pm.png",
-              "autoplay": false,
-              "title": "éco-panties",
-              "subtitle": "shop now",
-              "video": "",
-              "video_mobile": "",
-              "link": "shopify:\/\/collections\/all-bottoms"
-            }
-          },
-          "0f37a2e3-c291-40f3-b9ae-a1c944825a5c": {
-            "type": "video",
-            "settings": {
-              "poster": "shopify:\/\/shop_images\/Screenshot_2021-10-22_at_10.31.04_am.png",
-              "poster_mobile": "shopify:\/\/shop_images\/Screenshot_2021-10-22_at_4.50.29_pm.png",
-              "autoplay": false,
-              "title": "éco-bodies",
-              "subtitle": "shop now",
-              "video": "",
-              "video_mobile": "",
-              "link": "shopify:\/\/collections\/all-bodies"
-            }
-          }
-        },
-        "block_order": [
-          "06e90c4c-39b7-4827-b0c5-a725ce01f54e",
-          "2553945e-bee9-4dc5-9365-d16e7612508a",
-          "0f37a2e3-c291-40f3-b9ae-a1c944825a5c"
-        ],
-        "settings": {
-          "title": "discover"
-        }
-      },
-      "163512817082c29d2f": {
-        "type": "hero",
-        "settings": {
-          "alignment": "center",
-          "hero_layout": "fixed_width",
-          "hero_size": "small",
-          "title": "free delivery",
-          "text": "<p>on your first order<\/p><p>use the code BIENVENUE<\/p>",
-          "button_label": "",
-          "button_link": ""
+          "align_text": "left"
         }
       }
     },
     "content_for_index": [
-      "161952267785a95a29",
-      "1619531054b7cc1c96",
+      "161795635995bca987",
+      "1617957154e00b76f5",
       "feature-columns",
-      "1619582937b26a3c0d",
-      "1634865018483e1325",
-      "162609499410be6f99",
+      "1617958177fcb3c967",
       "collection",
-      "16196097723b855b51",
-      "16196024367107cd08",
-      "163512817082c29d2f",
-      "161959455709590fc8",
-      "1619591983f4668ded",
-      "161958609347c28740",
-      "1619586112b6139ee7",
-      "1619593897b1d1d319"
+      "feature-row",
+      "16179593667d0b296c",
+      "161796148974760aee"
     ]
   },
   "presets": {
@@ -4212,7 +460,8 @@
         "hero-1": {
           "type": "hero",
           "settings": {
-            "hero_size": "large"
+            "hero_size": "large",
+            "text_size": "large"
           }
         },
         "feature-row": {
@@ -4252,7 +501,9 @@
         },
         "hero-2": {
           "type": "hero",
-          "settings": {}
+          "settings": {
+            "text_size": "large"
+          }
         },
         "quotes": {
           "type": "quotes",
@@ -4385,14 +636,18 @@
             "align_logo": "left",
             "logo": "",
             "logo_max_width": 135,
-            "main_linklist": "main-menu"
+            "main_linklist": "main-menu",
+            "message": true,
+            "color_bg": "#162950",
+            "color_text": "#ffffff"
           }
         },
         "hero": {
           "type": "hero",
           "settings": {
             "alignment": "center",
-            "hero_size": "x-large"
+            "hero_size": "x-large",
+            "text_size": "large"
           }
         },
         "slideshow": {
@@ -4401,12 +656,14 @@
             "slideshow-0": {
               "type": "image",
               "settings": {
+                "image": "",
                 "alignment": "center center"
               }
             },
             "1492095993817": {
               "type": "image",
               "settings": {
+                "image": "",
                 "alignment": "center"
               }
             }
@@ -4416,6 +673,7 @@
             "1492095993817"
           ],
           "settings": {
+            "slideshow_height": "medium",
             "text_size": "medium",
             "autorotate": false,
             "autorotate_speed": 5
@@ -4517,7 +775,9 @@
         "blog-template": {
           "type": "blog-template",
           "settings": {
-            "layout": "grid"
+            "layout": "grid",
+            "blog_show_author": true,
+            "blog_show_date": false
           }
         },
         "article-template": {

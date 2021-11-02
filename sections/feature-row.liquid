@@ -1,3 +1,8 @@
+{% if section.settings.title != blank %}
+<div class="section-header text-center">
+  <h2>{{ section.settings.title | escape }}</h2>
+</div>
+{% endif %}
 <div class="page-width feature-row">
   {% capture image_layout %}
     <div class="feature-row__item">
@@ -32,10 +37,8 @@
       {{ image_layout }}
     {% endif %}
 
-    <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
-      {% if section.settings.title != blank %}
-        <h2 class="h3">{{ section.settings.title | escape }}</h2>
-      {% endif %}
+    <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }} text-center">
+      
       {% if section.settings.text != blank %}
         <div class="rte rte-setting featured-row__subtext">{{ section.settings.text }}</div>
       {% endif %}

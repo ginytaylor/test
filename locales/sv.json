@@ -335,7 +335,7 @@
   },
   "homepage": {
     "general": {
-      "title": "Startsida"
+      "title": "Hemsida"
     },
     "onboarding": {
       "product_title": "Din produkts namn",
@@ -419,12 +419,5 @@
       "pick_up_available_at_html": "Hämtning tillgänglig på <strong>{{ location_name }}<\/strong>",
       "pick_up_unavailable_at_html": "Hämtning är för närvarande inte tillgängligt på <strong>{{ location_name }}<\/strong>"
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

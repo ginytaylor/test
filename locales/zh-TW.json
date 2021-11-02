@@ -301,7 +301,7 @@
       "shipping": "運送",
       "tax": "稅金",
       "product": "產品",
-      "sku": "存貨單位 (SKU)",
+      "sku": "SKU",
       "price": "價格",
       "quantity": "數量",
       "total": "總計",
@@ -419,12 +419,5 @@
       "pick_up_available_at_html": "可提供 <strong>{{ location_name }}<\/strong> 的取貨服務",
       "pick_up_unavailable_at_html": "目前無法提供 <strong>{{ location_name }}<\/strong> 的取貨服務"
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

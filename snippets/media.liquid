@@ -23,14 +23,15 @@
 {% capture media_id %}FeaturedMedia-{{ section.id }}-{{ media.id }}{% endcapture %}
 {% capture media_class %}product-featured-media{% endcapture %}
 {% capture media_wrapper_id %}{{ media_id }}-wrapper{% endcapture %}
+
 {%- comment -%}
   Load different poster image sizes depending on the product layout
 {%- endcomment -%}
 {% capture image_size %}{{ height }}x{{ height }}{% endcapture %}
 
 <div id="{{ media_wrapper_id }}"
-    class="product-single__media-wrapper js "
-    {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="true" {% endif %}
+    class="product-single__media-wrapper js{% unless featured_media == media %} hide{% endunless %}"
+    {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
     {% if media.media_type == 'model' %} data-product-media-type-model{% endif %}
     {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
     data-product-single-media-wrapper
@@ -39,21 +40,20 @@
   {% case media.media_type %}
     {% when 'image' %}
       {% capture zoom_media_id %}ImageZoom-{{ section.id }}-{{ media.id }}{% endcapture %}
-      {%- assign img_url = media | img_url: '1x1' -%}
-       {%- assign img_url = media | img_url: '657x825' , crop: 'center' -%}
-       {% comment %}
+      {%- assign img_url = media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
       {% include 'image-style', height: height, wrapper_id: media_wrapper_id, img_id: media_id, image: media.preview_image %}
-      {% endcomment %}
       <div
         id="{{ zoom_media_id }}"
         style="padding-top:{{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100}}%;"
         class="product-single__media{% if product.media.size > 1 %} product-single__media--has-thumbnails{% endif %}{% if enable_image_zoom %} js-zoom-enabled{% endif %}"
-        {% if enable_image_zoom %} data-image-zoom-wrapper data-zoom="{{ media | img_url: image_zoom_size, crop: 'center' }}"{% endif %}
+        {% if enable_image_zoom %} data-image-zoom-wrapper data-zoom="{{ media | img_url: image_zoom_size, scale: image_scale }}"{% endif %}
         data-image-loading-animation>
         <img id="{{ media_id }}"
           class="feature-row__image {{ media_class }} lazyload{% unless featured_media == media %} lazypreload{% endunless %}"
-          src="{{ img_url }}"
           data-src="{{ img_url }}"
+          data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+          data-aspectratio="{{ media.preview_image.aspect_ratio }}"
+          data-sizes="auto"
           {% if enable_image_zoom %} data-image-zoom {% endif %}
           alt="{{ media.alt | escape }}"
           {% if featured_media == media and request.page_type == 'product' %} onload="window.performance.mark('debut:product:image_visible');"{% endif %}>
@@ -64,7 +64,7 @@
       </div>
     {% when 'video' %}
       <div class="product-single__media product-single__media--video product-single__media--{{ media.id }}" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
-        {{ media | video_tag: class: 'media-video', image_size: image_size, loop: true, autoplay: true, muted: true }}
+        {{ media | video_tag: class: 'media-video', image_size: image_size }}
       </div>
     {% when 'model' %}
       <div class="product-single__media" style="padding-top: 100%">

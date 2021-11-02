@@ -406,7 +406,7 @@
       "shop_link": "Comece a comprar",
       "print": "Imprimir este cartão-presente",
       "remaining_html": "{{ balance }} restante(s)",
-      "add_to_apple_wallet": "Adicionar ao app Wallet da Apple",
+      "add_to_apple_wallet": "Adicionar ao Apple Wallet",
       "qr_image_alt": "código QR - digitalizar para resgatar cartão de presente"
     }
   },
@@ -419,12 +419,5 @@
       "pick_up_available_at_html": "Retirada disponível em <strong>{{ location_name }}<\/strong>",
       "pick_up_unavailable_at_html": "Retirada em <strong>{{ location_name }}<\/strong> indisponível no momento"
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

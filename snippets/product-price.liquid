@@ -20,7 +20,7 @@
     assign available = true
   endif
 
-  assign money_price = price | money_without_trailing_zeros 
+  assign money_price = price | money
 -%}
 
 <dl class="price
@@ -60,14 +60,6 @@
       </dd>
     </div>
     <div class="price__sale">
-       <dt>
-        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.regular_price' | t }}</span>
-      </dt>
-      <dd>
-        <s class="price-item price-item--regular" data-regular-price>
-          {{ compare_at_price | money_without_trailing_zeros  }}
-        </s>
-      </dd>
       <dt>
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.sale_price' | t }}</span>
       </dt>
@@ -76,7 +68,14 @@
           {{ money_price }}
         </span>
       </dd>
-     
+      <dt>
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.regular_price' | t }}</span>
+      </dt>
+      <dd>
+        <s class="price-item price-item--regular" data-regular-price>
+          {{ compare_at_price | money }}
+        </s>
+      </dd>
     </div>
     <div class="price__badges">
       <span class="price__badge price__badge--sale" aria-hidden="true">
@@ -106,7 +105,7 @@
         </span>
       {%- endcapture -%}
 
-      <span data-unit-price>{{ variant.unit_price | money_without_trailing_zeros  }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
+      <span data-unit-price>{{ variant.unit_price | money }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
     </dd>
   </div>
 </dl>

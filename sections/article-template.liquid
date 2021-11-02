@@ -1,22 +1,14 @@
-<div class="tags-top">
-  
-  {% if article.tags.size > 0 %}
-      <div class="article__tags">
-      {% for tag in article.tags %}
-          <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article__grid-tag b{{ tag | handle }}">{{ tag }}</a>
-      {% endfor %}
-      </div>
+<div class="section-header text-center">
+  <h1 class="article__title" id="title-0">{{ article.title }}</h1>
+  {% if section.settings.blog_show_author %}
+    <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
   {% endif %}
+
   {% if section.settings.blog_show_date %}
     <span class="article__date">
       {{ article.published_at | time_tag: format: 'date' }}
     </span>
   {% endif %}
-</div>
-
-<div class="section-header text-center">
-  <h1 class="article__title h2" id="title-0">{{ article.title }}</h1>
-
 </div>
 
 <div class="rte">
@@ -81,7 +73,7 @@
         "zh-CN": "显示作者",
         "zh-TW": "顯示作者"
       },
-      "default": false
+      "default": true
     },
     {
       "type": "checkbox",
@@ -137,7 +129,7 @@
         "zh-CN": "显示社交分享按钮",
         "zh-TW": "顯示社群分享按鈕"
       },
-      "default": false
+      "default": true
     }
   ]
 }

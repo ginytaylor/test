@@ -1,21 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Debut",
+    "theme_name": "comvita",
     "theme_author": "Shopify",
-    "theme_version": "17.12.0",
+    "theme_version": "17.9.2",
     "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/using-themes\/themes-by-shopify\/debut",
     "theme_support_url": "https:\/\/support.shopify.com\/"
-  },
-  {
-    "name": "pages",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "banner",
-        "label": "Banner"
-      }
-    ]
   },
   {
     "name": {
@@ -817,12 +807,6 @@
     },
     "settings": [
       {
-        "type": "text",
-        "id": "search_term",
-        "label": "popular search terms",
-        "info": "separate by commas"
-      },
-      {
         "type": "header",
         "content": {
           "cs": "Návrhy produktů",
@@ -916,7 +900,7 @@
           "nb": "Vis selger",
           "nl": "Leverancier weergeven",
           "pl": "Pokaż dostawcę",
-          "pt-BR": "Exibir fabricante",
+          "pt-BR": "Exibir fornecedor",
           "pt-PT": "Mostrar fornecedor",
           "sv": "Visa säljare",
           "th": "แสดงผู้ขาย",
@@ -1116,56 +1100,6 @@
           "vi": "Tài khoản mạng xã hội",
           "zh-CN": "社交媒体账户",
           "zh-TW": "社群帳戶"
-        }
-      },
-      {
-        "type": "text",
-        "id": "social_linked-in_link",
-        "label": {
-          "cs": "linked-in",
-          "da": "linked-in",
-          "de": "linked-in",
-          "en": "linked-in",
-          "es": "linked-in",
-          "fi": "linked-in",
-          "fr": "linked-in",
-          "it": "linked-in",
-          "ja": "linked-in",
-          "ko": "linked-in",
-          "nb": "linked-in",
-          "nl": "linked-in",
-          "pl": "linked-in",
-          "pt-BR": "linked-in",
-          "pt-PT": "linked-in",
-          "sv": "linked-in",
-          "th": "linked-in",
-          "tr": "linked-in",
-          "vi": "linked-in",
-          "zh-CN": "linked-in",
-          "zh-TW": "linked-in"
-        },
-        "info": {
-          "cs": "https:\/\/linkedin.com\/shopify",
-          "da": "https:\/\/linkedin.com\/shopify",
-          "de": "https:\/\/linkedin.com\/shopify",
-          "en": "https:\/\/linkedin.com\/shopify",
-          "es": "https:\/\/linkedin.com\/shopify",
-          "fi": "https:\/\/linkedin.com\/shopify",
-          "fr": "https:\/\/linkedin.com\/shopify",
-          "it": "https:\/\/linkedin.com\/shopify",
-          "ja": "https:\/\/linkedin.com\/shopify",
-          "ko": "https:\/\/linkedin.com\/shopify",
-          "nb": "https:\/\/linkedin.com\/shopify",
-          "nl": "https:\/\/linkedin.com\/shopify",
-          "pl": "https:\/\/linkedin.com\/shopify",
-          "pt-BR": "https:\/\/linkedin.com\/shopify",
-          "pt-PT": "https:\/\/linkedin.com\/shopify",
-          "sv": "https:\/\/linkedin.com\/shopify",
-          "th": "https:\/\/linkedin.com\/shopify",
-          "tr": "https:\/\/linkedin.com\/shopify",
-          "vi": "https:\/\/linkedin.com\/shopify",
-          "zh-CN": "https:\/\/linkedin.com\/shopify",
-          "zh-TW": "https:\/\/linkedin.com\/shopify"
         }
       },
       {
@@ -1672,24 +1606,6 @@
       "zh-TW": "「新增至購物車」通知"
     },
     "settings": [
-      {
-        "type": "number",
-        "id": "low_in_stock",
-        "label": "low in stock",
-        "default": 3
-      },
-      {
-        "type": "text",
-        "id": "note_shipping",
-        "label": "shipping note",
-        "default": "€ 51.9 left to unlock free shipping in UK"
-      },
-      {
-        "type": "text",
-        "id": "multiple_size",
-        "label": "Message",
-        "default": "to minimise planet impact on returns, consider using our size quiz to find your size."
-      },
       {
         "type": "checkbox",
         "id": "enable_ajax",

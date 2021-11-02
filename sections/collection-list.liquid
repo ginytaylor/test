@@ -1,4 +1,4 @@
-<div class="page-width">
+<div class="page-width {% if section.settings.show_background %} show-background{% endif %}">
   {% if section.settings.title != blank %}
     <div class="section-header text-center">
       <h2>{{ section.settings.title | escape }}</h2>
@@ -21,7 +21,8 @@
       {% for block in section.blocks limit: section.blocks.size %}
         <li class="grid__item {{ grid_item_width }}" {{ block.shopify_attributes }}>
           {%- assign collection = collections[block.settings.collection] -%}
-          {% include 'collection-grid-item', collection: collection %}
+          {%- assign image = block.settings.image -%}
+          {% include 'collection-grid-item', collection: collection, image: image %}
         </li>
       {% endfor %}
     </ul>
@@ -62,6 +63,34 @@
   "class": "index-section",
   "max_blocks": 12,
   "settings": [
+    {
+      "id": "show_background",
+      "type": "checkbox",
+      "label": {
+        "cs": "Zobrazit pozadí",
+        "da": "Vis baggrund",
+        "de": "Hintergrund anzeigen",
+        "en": "Show background",
+        "es": "Mostrar fondo",
+        "fi": "Näytä tausta",
+        "fr": "Afficher l'arrière-plan",
+        "it": "Mostra sfondo",
+        "ja": "背景を表示する",
+        "ko": "배경 표시",
+        "nb": "Vis bakgrunn",
+        "nl": "Toon achtergrond",
+        "pl": "Wyświetl tło",
+        "pt-BR": "Exibir plano de fundo",
+        "pt-PT": "Mostrar fundo",
+        "sv": "Visa bakgrund",
+        "th": "แสดงพื้นหลัง",
+        "tr": "Arka planı göster",
+        "vi": "Hiển thị nền",
+        "zh-CN": "显示背景",
+        "zh-TW": "顯示背景"
+      },
+      "default": false
+    },
     {
       "type": "text",
       "id": "title",
@@ -197,6 +226,33 @@
           },
           "id": "collection",
           "type": "collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": {
+            "cs": "Obrázek",
+            "da": "Billede",
+            "de": "Foto",
+            "en": "Image",
+            "es": "Imagen",
+            "fi": "Kuva",
+            "fr": "Image",
+            "it": "Immagine",
+            "ja": "画像",
+            "ko": "이미지",
+            "nb": "Bilde",
+            "nl": "Afbeelding",
+            "pl": "Obraz",
+            "pt-BR": "Imagem",
+            "pt-PT": "Imagem",
+            "sv": "Bild",
+            "th": "รูปภาพ",
+            "tr": "Görsel",
+            "vi": "Hình ảnh",
+            "zh-CN": "图片",
+            "zh-TW": "圖片"
+          }
         }
       ]
     }

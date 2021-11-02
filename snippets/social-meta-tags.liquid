@@ -22,7 +22,7 @@
 <meta property="og:url" content="{{ og_url }}">
 <meta property="og:title" content="{{ og_title }}">
 <meta property="og:type" content="{{ og_type }}">
-<meta property="og:description" content="{{ og_description | escape }}">
+<meta property="og:description" content="{{ og_description }}">
 
 {%- if page_image -%}
   <meta property="og:image" content="http:{{ page_image | img_url: 'master' }}">
@@ -41,4 +41,4 @@
 {% endunless %}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title }}">
-<meta name="twitter:description" content="{{ og_description | escape }}">
+<meta name="twitter:description" content="{{ og_description }}">

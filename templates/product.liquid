@@ -2,9 +2,17 @@
   The contents of the product.liquid template can be found in /sections/product-template.liquid
 {% endcomment %}
 
-<div id="product-content">
 {% section 'product-template' %}
-</div>
+{% section 'product-recommendations' %}
+
+{% if collection %}
+  <div class="text-center return-link-wrapper page-width">
+    <a href="{{ collection.url }}" class="btn btn--secondary btn--has-icon-before return-link">
+      {% include 'icon-arrow-left' %}
+      {{ 'products.product.back_to_collection' | t: title: collection.title }}
+    </a>
+  </div>
+{% endif %}
 
 <script>
   // Override default values of shop.strings for each template.
@@ -15,7 +23,6 @@
     soldOut: {{ 'products.product.sold_out' | t | json }},
     unavailable: {{ 'products.product.unavailable' | t | json }}
   }
-  var featuredImage = {{ product.featured_image | json }};
 </script>
 
 {% assign current_variant = product.selected_or_first_available_variant %}
@@ -56,33 +63,3 @@
   ]
 }
 </script>
-<!-- klaviyo -->
-<script type="text/javascript">
-  var _learnq = _learnq || [];
-
-  var item = {
-    Name: {{ product.title|json }},
-    ProductID: {{ product.id|json }},
-    Categories: {{ product.collections|map:'title'|json }},
-    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
-    URL: "{{ shop.secure_url }}{{ product.url }}",
-    Brand: {{ product.vendor|json }},
-    Price: {{ product.price|money|json }},
-    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
-  };
-
-  _learnq.push(['track', 'Viewed Product', item]);
-  _learnq.push(['trackViewedItem', {
-    Title: item.Name,
-    ItemId: item.ProductID,
-    Categories: item.Categories,
-    ImageUrl: item.ImageURL,
-    Url: item.URL,
-    Metadata: {
-      Brand: item.Brand,
-      Price: item.Price,
-      CompareAtPrice: item.CompareAtPrice
-    }
-  }]);
-</script>
-<!-- klaviyo -->

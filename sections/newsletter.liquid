@@ -1,20 +1,18 @@
-<div class="newsletter-section{% if section.settings.show_background %} index-section--newsletter-background {% endif %}" style="display: none; {% if section.settings.show_background and section.settings.background %}background-image:url({{ section.settings.background | img_url:'master' }}) {% endif %}">
+<div class="newsletter-section{% if section.settings.show_background %} index-section--newsletter-background{% endif %}">
   <div class="page-width">
-    <button class="p-close"><span class="icon-close"></span></button>
-    <div class="section-header text-center">
+    <div class="section-header">
       {% if section.settings.section_title != blank %}
-        <h2 class="h1">{{ section.settings.section_title | escape }}</h2>
+        <h2 class="h2">{{ section.settings.section_title | escape }}</h2>
       {% endif %}
       {% if section.settings.subheading != blank %}
-        <div class="p-large">{{ section.settings.subheading }}</div>
+        <div class="rte">{{ section.settings.subheading }}</div>
       {% endif %}
     </div>
     {%- assign formId = 'Contact_' | append: section.id -%}
     {% form 'customer', id: formId, novalidate: 'novalidate', class: 'contact-form form-single-field' %}
       {%- if form.posted_successfully? -%}
         <p class="form-message form-message--success" tabindex="-1" data-form-status>
-          <span>{% include 'success' %}</span>
-          <span>{{ 'general.newsletter_form.confirmation' | t }}</span>
+          {{ 'general.newsletter_form.confirmation' | t }}
         </p>
       {%- endif -%}
       <input type="hidden" name="contact[tags]" value="newsletter">
@@ -35,16 +33,12 @@
             data-form-status
           {% endif %}
           >
-      </div>   
-      <div class="input-group input-group-chk">
-        <input type="checkbox" checked value="agree" required id="agree"/>  <label for="agree">{{ 'general.newsletter_form.agree_html' | t }}</label>
-      </div> 
-      <div class="input-group__btn text-center">
-        <button type="submit" class="btn_light_second" name="commit">
-          <span>{{ 'general.newsletter_form.popup_submit' | t }}</span>
-        </button>
+        <span class="input-group__btn">
+          <button type="submit" class="btn" name="commit">
+            <span>{{ 'general.newsletter_form.submit' | t }}</span>
+          </button>
+        </span>
       </div>
-      
       {%- if form.errors contains 'email' -%}
         <span id="{{ formId }}-email-error" class="input-error-message">
           <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
@@ -83,7 +77,7 @@
     "zh-CN": "新闻通讯",
     "zh-TW": "電子報"
   },
-  "class": "section-newsletter",
+  "class": "index-section index-section--flush",
   "settings": [
     {
       "type": "text",
@@ -214,11 +208,6 @@
       "default": true
     },
     {
-          "type": "image_picker",
-          "id": "background",
-          "label": "Background"
-    },
-    {
       "type": "paragraph",
       "content": {
         "cs": "Pro všechny zákazníky, kteří se zaregistrují, se v Shopify vytvoří účet. [Zobrazit zákazníky](/admin/customers?query=&accepts_marketing=1)",
@@ -226,7 +215,7 @@
         "de": "Für alle Kunden, die sich anmelden, wird in Shopify ein Konto erstellt. [Kunden ansehen](/admin/customers?query=&accepts_marketing=1)",
         "en": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)",
         "es": "Todos los clientes que se registren tendrán una cuenta creada para ellos en Shopify. [Ver clientes](/admin/customers?query=&accepts_marketing=1)",
-        "fi": "Tilaaville asiakkaille luodaan tili Shopifyssa. [Näytä asiakkaat](/admin/customers?query=&accepts_marketing=1)",
+        "fi": "Tilaaville asiakkaille luodaan tili Shopify-palvelussa. [Näytä asiakkaat](/admin/customers?query=&accepts_marketing=1)",
         "fr": "Un compte sera créé dans Shopify pour les abonnés qui s'inscrivent. [Afficher les abonnés](/admin/customers?query=&accepts_marketing=1)",
         "it": "Qualsiasi cliente che si iscrive avrà un account creato appositamente per lui su Shopify. [Visualizza clienti](/admin/customers?query=&accepts_marketing=1)",
         "ja": "サインアップしたお客様は、Shopifyでアカウントが作成されます。[お客様を表示する](/admin/customers?query=&accepts_marketing=1)",

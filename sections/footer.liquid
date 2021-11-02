@@ -1,4 +1,3 @@
-{%- assign socials = "Twitter Pinterest Instagram Facebook linked-in  Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
 {%- assign social_icons = false -%}
 {%- assign inline_list = false -%}
 {%- assign locale_selector = false -%}
@@ -6,11 +5,11 @@
 {%- assign show_payment_icons = false -%}
 {%- assign show_selectors = false -%}
 
-{%- if section.settings.show_currency_selector and shop.enabled_currencies.size > 0 -%}
+{%- if section.settings.show_currency_selector and shop.enabled_currencies.size > 1 -%}
   {%- assign currency_selector = true -%}
 {%- endif -%}
 
-{%- if section.settings.show_locale_selector and shop.published_locales.size > 0 -%}
+{%- if section.settings.show_locale_selector and shop.published_locales.size > 1 -%}
   {%- assign locale_selector = true -%}
 {%- endif -%}
 
@@ -84,7 +83,7 @@
 {%- else -%}
   {%- assign footer_text_color_hover = footer_text_color | color_darken: 10 -%}
 {%- endif -%}
-
+{%- assign socials = "Facebook Twitter  Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
 <style>
   .site-footer__hr {
     border-bottom: 1px solid {{ section.settings.color_footer_bg | color_darken: 10 }};
@@ -109,6 +108,17 @@
   .site-footer__rte a {
     border-bottom: 1px solid {{ section.settings.color_footer_text }};
   }
+
+  .site-footer__rte a:hover,
+  .site-footer__linklist-item a:hover,
+  .site-footer__copyright-content a:hover {
+    color: {{ footer_text_color_hover }};
+    border-bottom: 1px solid {{ footer_text_color_hover }};
+  }
+
+  .site-footer__social-icons .social-icons__link:hover {
+    color: {{ footer_text_color_hover }};
+  }
 </style>
 
 
@@ -128,90 +138,30 @@
 {%- endcapture -%}
 
 <footer class="site-footer critical-hidden" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
-
-  <div class="mobile-menu">
-  <ul id="menu-clone"></ul>
   <div class="page-width">
-    <div class="site-footer__content grid ">
-      
+    <div class="site-footer__content">
       {%- for block in section.blocks -%}
-        {% if forloop.last == true %}
-            {% if shop.customer_accounts_enabled %}
-            <div class=" site-footer-item site-footer-item-wishlist grid__item col-small-6">
-              <p class="h8"><a href="/pages/wishlist"><span class="icon-wishlist"></span> wishlist</a> </p>
-            </div>
-            <div class=" site-footer-item site-footer-item-live-chat site-footer-item-live-account grid__item col-small-6">
-              <p class="h8"><span class="icon-account"></span> {{ 'layout.footer.member' | t }} </p>
-              
-              {% if customer %}
-                <a href="{{ routes.account_url }}" class="btn-chat">
-                  {{ 'layout.footer.logout' | t }}
-                </a>
-              {% else %}
-              <div class="account-block">
-                <a href="{{ routes.account_register_url }}" class="btn_light_second">
-                  {{ 'layout.footer.register' | t }}
-                </a>
-                <a href="{{ routes.account_login_url }}" class="btn-chat">
-                  {{ 'layout.footer.login' | t }}
-                </a>
-              </div>  
-              {% endif %}
-            
-            </div>  
-           {% endif %}
-          {%- if social_icons -%}
-          
-          <div class=" site-footer-item site-footer-item-live-chat grid__item col-3 col-md-3 col-small-6">
-            <p class="h8"><span class="icon-contact"></span> {{ 'layout.footer.live_chat' | t }} </p>
-            <a class="btn-chat btn-chat-s" href="#">{{ 'layout.footer.chat' | t }}</a>
-            <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
-            {%- for social in socials -%}
-              {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
-              {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
-              {%- if settings[social_link] != blank -%}
-                <li class="social-icons__item">
-                  <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
-      
-                    <span>{{ social }}</span>
-                  </a>
-                </li>
-              {%- endif -%}
-            {%- endfor -%}
 
-            {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
-              <li>
-                <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
-                  {% include 'icon-rss' %}
-                  <span class="icon__fallback-text">RSS</span>
-                </a>
-              </li>
-            {%- endif -%}
-          </ul>
-        </div>
-        {%- endif -%}
-
-      {% endif %}
-        <div class="site-footer-item grid__item  col-small-6 {% if block.type == 'newsletter' %} newsletter-block col-3 {% else %} col-2 {% endif %} ">
-          <div class=" site-footer__item-inner site-footer__item-inner--{{ block.type }}">
+        <div class="site-footer__item
+                    {% if section.blocks.size == 1 %} site-footer__item--center{% endif %}
+                    {{ footer_item }}
+                    {% if block.type == 'newsletter' and section.blocks.size == 3 %}site-footer-newsletter__one-half{% endif %}"
+             {{ block.shopify_attributes }}>
+          <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
 
             {%- if block.settings.title -%}
-              <p class="h8">{{ block.settings.title | escape }} <span class="icon-plus"></span></p>
+              <p class="h4">{{ block.settings.title | escape }}</p>
             {%- endif -%}
 
             {%- case block.type -%}
               {%- when 'newsletter' -%}
                 <div class="site-footer__newsletter
-                  {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
-                  {% if block.settings.sub-heading != blank %}
-                  <div class="p-xsmall">{{ block.settings.sub-heading }}</div>
-                  {% endif %}
+                          {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
                   {%- assign formId = 'ContactFooter' -%}
                   {% form 'customer', id: formId, novalidate: 'novalidate' %}
                     {%- if form.posted_successfully? -%}
                       <p class="form-message form-message--success" tabindex="-1" data-form-status>
-                        <span>{% include 'success' %}</span>
-                        <span>{{ 'general.newsletter_form.confirmation' | t }}</span>
+                        {{ 'general.newsletter_form.confirmation' | t }}
                       </p>
                     {%- endif -%}
                     <input type="hidden" name="contact[tags]" value="newsletter">
@@ -233,19 +183,36 @@
                           data-form-status
                         {% endif %}>
                       <span class="input-group__btn">
-                        <button type="submit" class=" newsletter__submit" name="commit" >
+                        <button type="submit" class="btn newsletter__submit" name="commit" >
                           <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
                         </button>
                       </span>
                     </div>
-                    <div id="footer-error" style="display:none">
+                    {% if form.errors contains 'email' %}
                       <span id="{{ formId }}-email-error" class="input-error-message">
                         <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
                         {% include 'icon-error' %}
-                        <span class="site-footer__newsletter-error"> email is invalid</span>
+                        <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
                       </span>
-                    </div>
+                    {% endif %}
                   {% endform %}
+                  {%- if social_icons -%}
+                      <p class="h4">追蹤我們的動態</p>
+                      <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
+                        {%- for social in socials -%}
+                          {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+                          {%- assign icon_link = social | prepend: 'icon-' | downcase -%}
+                          {%- if settings[social_link] != blank -%}
+                            <li class="social-icons__item">
+                              <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                                {%- include icon_link -%}
+                                <span class="icon__fallback-text">{{ social }}</span>
+                              </a>
+                            </li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
                 </div>
 
               {%- when 'text' -%}
@@ -268,7 +235,6 @@
                           {{ link.title | escape }}
                         </a>
                       </li>
-
                     {%- endfor -%}
                   </ul>
 
@@ -280,101 +246,78 @@
     </div>
   </div>
 
-  <hr class="site-footer__hr">
+
+
+
+
+
+
   <div class="page-width">
-    <div class="grid page-footer-bottom">
+    <div class="grid grid--no-gutters small--text-center grid--footer-float-right">
       {%- if show_selectors -%}
-        <div class="grid__item col-small-6 col-6">
-          <div id="footer-geo">
-            {%- form 'localization', id:'localization-d' , class: 'selectors-form', data-disclosure-form: '' -%}
-            <span class="geoLocalization">
-              <span class="currency_d"> {%- if form.current_currency.symbol and form.current_currency.symbol == '€' -%}
-              France ( {{ form.current_currency.iso_code }}  {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%} )
-              {% else %}
-              {{ form.current_currency.iso_code }}  {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
-              {% endif %}</span>
-              | <span>{{ form.current_locale.iso_code }} </span></span><span class="icon-arrow_down"></span>
-            {%- endform -%}
-          </div>
-          <div id="geo-show-mobile" class="hide">
-            {%- form 'localization', class: 'selectors-form', data-disclosure-form: '' -%}
-            <div class="selectors-form__items">
-               {%- if currency_selector -%}
-                <div class="selectors-form__item">
-                  <h2 class="visually-hidden" id="currency-heading">
-                    {{ 'general.currency.dropdown_label' | t }}
-                  </h2>
+        <div class="grid__item one-half small--one-whole">
+          {%- form 'localization', class: 'selectors-form', data-disclosure-form: '' -%}
+            {%- if locale_selector -%}
+              <div class="selectors-form__item">
+                <h2 class="visually-hidden" id="lang-heading">
+                  {{ 'general.language.dropdown_label' | t }}
+                </h2>
 
-                  <div class="disclosure" data-disclosure-currency>
-                    <button type="button" data-country="FR" class="disclosure__toggle disclosure__toggle__currency" aria-expanded="false" aria-controls="currency-list" aria-describedby="currency-heading" data-disclosure-toggle>
-                     {%- if form.current_currency.symbol and form.current_currency.symbol == '€' -%} France  <span>|&nbsp;</span>  {%- endif -%}{{ form.current_currency.iso_code }} {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
-                    </button>
-                    <ul id="currency-list" class="disclosure-list" data-disclosure-list>
-                      {% for country in localization.available_countries %}
-                     <!--  or  country.iso_code == 'GB' -->
-                        {% if country.iso_code == 'ES' or  country.iso_code == 'GB' or  country.iso_code == 'FR' or  country.iso_code == 'DE'  or  country.iso_code == 'IT' %}
-                        
-                        <li class="disclosure-list__item ">
-                          <a class="disclosure-list__option" data-country="{{ country.iso_code }}"  href="#" data-value="{{country.currency.iso_code}}" data-disclosure-option="" data-text="{{ country.name }} | {{country.currency.iso_code}}">{{ country.name }} <span>&nbsp;|&nbsp;</span> {{country.currency.iso_code}} {{ country.currency.symbol }}</a>
-                        </li>
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                    <input type="hidden" name="currency_code" id="CurrencySelector" value="{{ form.current_currency.iso_code }}" data-disclosure-input data-symbol="{{ form.current_currency.symbol }}" />
-                  </div>
+                <div class="disclosure" data-disclosure-locale>
+                  <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-disclosure-toggle>
+                    {{ form.current_locale.endonym_name }}
+                  </button>
+                  <ul id="lang-list" class="disclosure-list" data-disclosure-list>
+                    {% for locale in form.available_locales %}
+                      <li class="disclosure-list__item {% if locale.iso_code == form.current_locale.iso_code %}disclosure-list__item--current{% endif %}">
+                        <a class="disclosure-list__option" href="#" lang="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %} data-value="{{ locale.iso_code }}" data-disclosure-option>
+                          {{ locale.endonym_name }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                  <input type="hidden" name="locale_code" id="LocaleSelector" value="{{ form.current_locale.iso_code }}" data-disclosure-input/>
                 </div>
-              {%- endif -%}
-              {%- if locale_selector -%}
-                <div class="selectors-form__item">
-                  <h2 class="visually-hidden" id="lang-heading">
-                    {{ 'general.language.dropdown_label' | t }}
-                  </h2>
+              </div>
+            {%- endif -%}
 
-                  <div class="disclosure" data-disclosure-locale>
-                    <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="lang-list" aria-describedby="lang-heading" data-disclosure-toggle>
-                      {{ form.current_locale.endonym_name }}
-                    </button>
-                    <ul id="lang-list" class="disclosure-list" data-disclosure-list>
-                      {% for locale in form.available_locales %}
-                        {% assign nameLocale = 'general.language.en' | t  %} 
-                        {% case locale.iso_code %}
-                        {% when 'fr' %}
-                          {% assign nameLocale = 'general.language.fr' | t  %} 
-                        {% when 'de' %}
-                          {% assign nameLocale = 'general.language.de' | t  %} 
-                        {% endcase %}
-                        <li class="disclosure-list__item {% if locale.iso_code == form.current_locale.iso_code %}disclosure-list__item--current{% endif %}">
-                          <a class="disclosure-list__option" href="#" lang="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %} data-value="{{ locale.iso_code }}" data-disclosure-option data-text="{{ nameLocale }}">
-                            {{ nameLocale }}
-                          </a>
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-                    <input type="hidden" name="locale_code" id="LocaleSelector" value="{{ form.current_locale.iso_code }}" data-disclosure-input/>
-                  </div>
+            {%- if currency_selector -%}
+              <div class="selectors-form__item">
+                <h2 class="visually-hidden" id="currency-heading">
+                  {{ 'general.currency.dropdown_label' | t }}
+                </h2>
+
+                <div class="disclosure" data-disclosure-currency>
+                  <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="currency-list" aria-describedby="currency-heading" data-disclosure-toggle>
+                    {{ form.current_currency.iso_code }} {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
+                  </button>
+                  <ul id="currency-list" class="disclosure-list" data-disclosure-list>
+                    {% for currency in form.available_currencies %}
+                      <li class="disclosure-list__item {% if currency.iso_code == form.current_currency.iso_code %}disclosure-list__item--current{% endif %}">
+                        <a class="disclosure-list__option" href="#" {% if currency.iso_code == form.current_currency.iso_code %}aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
+                          {{ currency.iso_code }} {%- if currency.symbol -%}{{ currency.symbol }}{%- endif -%}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                  <input type="hidden" name="currency_code" id="CurrencySelector" value="{{ form.current_currency.iso_code }}" data-disclosure-input/>
                 </div>
-              {%- endif -%}
-            </div> 
-            {%- endform -%}
-          </div>
+              </div>
+            {%- endif -%}
+          {%- endform -%}
         </div>
       {%- else -%}
         <div class="grid__item small--hide {{ payment_width_class }} {% if show_payment_icons %}site-footer-item-center-vertically{% endif %}">{{ payment_icon_markup }}</div>
       {%- endif -%}
 
       {%- if show_selectors -%}
-        <div class="grid__item col-small-6 col-6 grid__item__copyright site-footer-item-align-left {% if show_payment_icons %}one-half{% endif %}">
-          <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url  | downcase}}. <span>{{ 'layout.footer.reserved' | t }}</span></small>
-          {% if section.settings.policy != blank %}
-            {%- for link in linklists[section.settings.policy].links -%}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {%- endfor -%}
-          {% endif %}
-        </div>
+        <div class="grid__item small--hide {{ payment_width_class }}">{{ payment_icon_markup }}</div>
       {%- endif -%}
+
+      <div class="grid__item medium-up--hide {{ payment_width_class }} small--one-whole">{{ payment_icon_markup }}</div>
+  
     </div>
   </div>
-</div>
 </footer>
 
 
@@ -404,7 +347,7 @@
     "zh-CN": "页脚",
     "zh-TW": "頁尾"
   },
-  "max_blocks": 4,
+  "max_blocks": 5,
   "settings": [
     {
       "type": "header",
@@ -695,11 +638,6 @@
         "zh-TW": "顯示幣別選擇器"
       },
       "default": true
-    },
-    {
-      "type": "link_list",
-      "id": "policy",
-      "label": "policy"
     }
   ],
   "blocks": [
@@ -1036,11 +974,6 @@
             "zh-CN": "新闻通讯",
             "zh-TW": "電子報"
           }
-        },
-        {
-          "type": "text",
-          "id": "sub-heading",
-          "label": "sub-heading"
         }
       ]
     }

@@ -1,5 +1,5 @@
 <div id="SearchDrawer" class="search-bar drawer drawer--top critical-hidden" role="dialog" aria-modal="true" aria-label="{{ 'general.search.placeholder' | t }}" data-predictive-search-drawer>
-  <div class="search-bar__interior page-width">
+  <div class="search-bar__interior">
     <div class="search-form__container" data-search-form-container>
       <form class="search-form search-bar__form" action="{{ routes.search_url }}" method="get" role="search">
         <div class="search-form__input-wrapper">
@@ -24,41 +24,16 @@
         <button class="search-bar__submit search-form__submit"
           type="submit"
           data-search-form-submit>
-          <span class="icon-search"></span>
+          {% include 'icon-search' %}
+          <span class="icon__fallback-text">{{ 'general.search.submit' | t }}</span>
         </button>
       </form>
 
       <div class="search-bar__actions">
         <button type="button" class="btn--link search-bar__close js-drawer-close">
-          <span class="icon-close"></span>
+          {% include 'icon-close' %}
+          <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
         </button>
-      </div>
-    </div>
-    <div class="search-form__container search-form__container__bottom">
-      {% if settings.search_term != blank %}
-        {% assign terms = settings.search_term | split: ',' %}
-        {% if terms.size > 0 %}
-        <div class="popuplar-search">
-          <h6 class="h6">{{ 'general.search.popular_title' | t  }}</h6>
-          <div class="popuplar-search-list">
-            <ul>
-              {% for term in terms %}
-              <li><a href="/search?q={{term}}" class="h6">{{ term }} </a></li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-        {% endif %}
-      {% endif %}
-      <div id="recenty-viewed">
-          <h6 class="h6">{{ 'general.search.recently_viewed' | t  }}</h6>
-          <div id="recenty-viewed-list"></div>
-      </div>
-      <div id="recent_searchs">
-          <h6 class="h6">{{ 'general.search.recent_searchs' | t  }} <a href="javascript:void(0);" class="h8">{{ 'general.search.clear_all' | t  }}</a></h6>
-          <div id="recent_searchs-list" class="popuplar-search-list">
-            <ul></ul>
-          </div>
       </div>
     </div>
   </div>

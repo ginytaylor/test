@@ -21,10 +21,10 @@
     assign available = true
   endif
 
-  assign money_price = price | money_without_trailing_zeros 
+  assign money_price = price | money
 -%}
 
-<dl class="price h8 price--listing
+<dl class="price price--listing
   {%- if available == false %} price--sold-out {% endif -%}
   {%- if compare_at_price > price %} price--on-sale {% endif -%}
   {%- if product.price_varies == false and product.compare_at_price_varies %} price--compare-price-hidden {% endif -%}
@@ -81,7 +81,7 @@
       </dt>
       <dd>
         <s class="price-item price-item--regular">
-          {{ compare_at_price | money_without_trailing_zeros  }}
+          {{ compare_at_price | money }}
         </s>
       </dd>
     </div>
@@ -105,22 +105,13 @@
         </span>
       {%- endcapture -%}
 
-      <span>{{ variant.unit_price | money_without_trailing_zeros  }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
+      <span>{{ variant.unit_price | money }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
     </dd>
   </div>
-  {% assign pricePercent = 0 %}
-  
-
   <div class="price__badges price__badges--listing">
-    {%- if compare_at_price > price %}  
-      {% assign pricePercent =  compare_at_price | minus: price | times: 100 | divided_by: compare_at_price | round %}
-      {% assign pricePercent = pricePercent | append: '% off' %}
-      <span class="price__badge price__badge--sale-off h7" aria-hidden="true"> <span>{{ pricePercent }} </span></span>
-    {% endif -%}
     <span class="price__badge price__badge--sale" aria-hidden="true">
       <span>{{ 'products.product.on_sale' | t }}</span>
     </span>
-    
     <span class="price__badge price__badge--sold-out">
       <span>{{ 'products.product.sold_out' | t }}</span>
     </span>

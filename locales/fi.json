@@ -158,7 +158,7 @@
   "cart": {
     "general": {
       "title": "Ostoskorisi",
-      "note": "Lisää kommentti tilaukseesi",
+      "note": "Lisää huomautus tilaukseesi",
       "removed_item_html": "<span class=\"cart__removed-product-details\">({{ quantity }}) {{ link }}<\/span> on poistettu ostoskorista.",
       "remove": "Poista",
       "subtotal": "Välisumma",
@@ -419,12 +419,5 @@
       "pick_up_available_at_html": "Nouto saatavilla paikassa <strong>{{ location_name }}<\/strong>",
       "pick_up_unavailable_at_html": "Nouto ei ole tällä hekellä saatavilla paikassa <strong>{{ location_name }}<\/strong>"
     }
-  },
-  "socialshopwave": {
-    "add_to_cart": "Add To Cart",
-    "adding_to_cart": "Adding...",
-    "sold_out": "Sold Out",
-    "description": "Description",
-    "view_on_instagram": "View on Instagram"
   }
 }

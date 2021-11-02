@@ -15,7 +15,6 @@
       Check if third-level nav exists on each parent link.
     {% endcomment %}
     {%- assign three_level_nav = false -%}
-
     {% if link.links != blank %}
       {% if link.levels == 2 %}
         {%- assign three_level_nav = true -%}
@@ -25,102 +24,69 @@
     {% if link.links != blank %}
       <li class="site-nav--has-dropdown{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
         <button class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
-          <span class="site-nav__label h7">{{ link.title | escape }}</span><span class="icon-plus"></span>
+          <span class="site-nav__label">{{ link.title | escape }}</span>{% include 'icon-chevron-down' %}
         </button>
+
         <div class="site-nav__dropdown{% if three_level_nav %} site-nav__dropdown--centered{% endif %} critical-hidden" id="SiteNavLabel-{{ child_list_handle }}">
           {% if three_level_nav %}
-          <div class="page-width">
-            <div class="site-nav__childlist grid">
+            <div class="site-nav__childlist">
+              <ul class="site-nav__childlist-grid">
                 {% if link.links != blank %}
                   {% for childlink in link.links %}
-                    {% unless childlink.links != blank %}
-                     {% if section.blocks.size > 0 %}
-                        {% for block in section.blocks %}
-                            {% if block.settings.banner != blank and block.settings.menu_link == childlink.url %} 
-                              <div class="medium-up--one-sixth grid__item ">
-                                <a href="{{ childlink.url }}"
-                                class="site-nav__link site-nav__child-link">
-                                  <img class="lazyload" data-src="{{ block.settings.banner | img_url: '202x150', scale: 2 }}" alt="{{ childlink.title }}" />
-                                  <span class="title h7">{{  block.settings.menu_title | default: childlink.title }}</span>
-                                  {% if block.settings.menu_desc != blank %}
-                                  <span class="short-des p-xsmall">{{ block.settings.menu_desc }}</span>
-                                  {% endif %}
-                                </a>
-                              </div>
-                            {% endif %}
-                        {% endfor %}
-                        {% endif %}
-                    {% endunless %}  
-                    
+                    <li class="site-nav__childlist-item">
+                      <a href="{{ childlink.url }}"
+                        class="site-nav__link site-nav__child-link site-nav__child-link--parent"
+                        {% if childlink.current %} aria-current="page"{% endif %}
+                      >
+                        <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                      </a>
+
                       {% if childlink.links != blank %}
-                      <div class="medium-up--one-sixth grid__item ">  
                         <ul>
                         {% for grandchildlink in childlink.links %}
                           <li>
                             <a href="{{ grandchildlink.url }}"
-                            class="site-nav__link site-nav__child-link {% if grandchildlink.current %} h6 {% else %} p-medium {% endif %}"
-                            {% if grandchildlink.current %} aria-current="page"{% endif %}>
+                            class="site-nav__link site-nav__child-link"
+                            {% if grandchildlink.current %} aria-current="page"{% endif %}
+                          >
                               <span class="site-nav__label">{{ grandchildlink.title | escape }}</span>
                             </a>
                           </li>
                         {% endfor %}
                         </ul>
-                        </div>
                       {% endif %}
-                    
+
+                    </li>
                   {% endfor %}
                 {% endif %}
+              </ul>
             </div>
-          </div>  
+
           {% else %}
-          <div class="page-width">
-            <div class="grid">
+            <ul>
               {% for childlink in link.links %}
-                {% if section.blocks.size > 0 %}
-                {% for block in section.blocks %}
-                    {% if block.settings.banner != blank and block.settings.menu_link == childlink.url %} 
-                      <div class="medium-up--one-sixth grid__item ">
-                        <a href="{{ childlink.url }}"
-                        class="site-nav__link site-nav__child-link">
-                          <img class="lazyload" data-src="{{ block.settings.banner | img_url: '202x150', scale: 2 }}" alt="{{ childlink.title }}" />
-                          <span class="title h7">{{  block.settings.menu_title | default: childlink.title }}</span>
-                          {% if block.settings.menu_desc != blank %}
-                          <span class="short-des p-xsmall">{{ block.settings.menu_desc }}</span>
-                          {% endif %}
-                        </a>
-                      </div>
-                    {% endif %}
-                {% endfor %}
-                {% endif %}
+                <li>
+                  <a href="{{ childlink.url }}"
+                  class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
+                  {% if childlink.current %} aria-current="page"{% endif %}
+                >
+                    <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                  </a>
+                </li>
               {% endfor %}
-            </div>
-            </div>
+            </ul>
           {% endif %}
         </div>
       </li>
-      {% if forloop.last == true %}
-        <li {% if request.path contains 'size-quiz' %} class="site-nav--active"{% endif %}>
-          <a href="/size-quiz" class="site-nav__link  h7 site-nav__link--main {% if request.path contains 'size-quiz' %} site-nav__link--active{% endif %}"{% if request.path contains 'size-quiz' %} aria-current="page"{% endif %}>
-            <span class="icon-rule"></span><span class="site-nav__label">{{ 'layout.navigation.size' | t }}</span>
-          </a>
-        </li>
-      {% endif %}
     {% else %}
       <li {% if link.active %} class="site-nav--active"{% endif %}>
         <a href="{{ link.url }}"
-          class="site-nav__link  h7 site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
           {% if link.current %} aria-current="page"{% endif %}
         >
           <span class="site-nav__label">{{ link.title | escape }}</span>
         </a>
       </li>
-      {% if forloop.last == true %}
-        <li {% if request.path contains 'size-quiz' %} class="site-nav--active"{% endif %}>
-          <a href="/size-quiz" class="site-nav__link  h7 site-nav__link--main {% if request.path contains 'size-quiz' %} site-nav__link--active{% endif %}"{% if request.path contains 'size-quiz' %} aria-current="page"{% endif %}>
-            <span class="icon-rule"></span><span class="site-nav__label">{{ 'layout.navigation.size' | t }}</span>
-          </a>
-        </li>
-      {% endif %}
     {% endif %}
   {% endfor %}
 </ul>
