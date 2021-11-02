@@ -1,0 +1,29 @@
+{% layout none %}
+{% paginate search.results by 1 %}
+{% if search.performed %}
+{% assign items = search.results %}
+    {% for item in items %}
+    	{% capture itemHTML %}
+    		{% unless item.featured_image.src == null %}
+    		<div class="grid__item col-4 col-md-3-ex col-small-3">
+		        <a href="{{ item.url }}" data-id="{{ item.id }}" class="right-product">
+		        	<span class="mix-this">{{ 'products.mixplay.mix_this' | t }}</span>
+		          	
+		            <img  class="image-main" src="{{ item.featured_image.src | img_url: '203x255', crop: 'center'}}" alt="">
+		        </a>
+		    </div>   
+		    {% endunless %} 
+        {% endcapture %}
+        {{ itemHTML }}
+        <!-- split -->
+        {% capture itemLeftHTML %}
+		        {% for media in item.media %}
+			        {% if media.media_type == 'image' %}
+			        	<div><img data-id="{{ item.id }}" src="{{ media.preview_image | img_url: '430x542', crop: 'center'}}" alt=""></div>
+			        {% endif %}
+		        {% endfor %}
+        {% endcapture %}
+        {{ itemLeftHTML }}
+    {% endfor %}
+{% endif %}
+{% endpaginate %}

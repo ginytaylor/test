@@ -1,0 +1,35 @@
+{% assign tags = product.tags %}
+{% assign mix_n_play = '' %}
+{% for tag in tags %}
+    {% if tag contains 'mix_n_play:' %}
+        {% assign mix_n_play = tag | split: 'mix_n_play:' %}
+    {% endif %}
+{% endfor %}
+{% if mix_n_play != '' %}
+    {% if mix_n_play.size  > 0 %}
+        <div class="mix-play page-width">
+            <div class="block-header">
+                <h2 class="h2 text-center">{{ 'products.mixplay.title' | t  }}</h2>
+                <p class="mix-lay-sub">{{ 'general.pages.qr_mix_lay_sub' | t  }}</p>
+            </div>
+            <div class="mix-play-content" data-products="{{mix_n_play}}">
+                <div class="grid">
+                    <div class="grid__item col-1 mix-hide col-md-1">&nbsp;</div>
+                    <div class="grid__item col-4 col-md-3 col-small-3  mix-play-left">
+                        <div class="mix-play-left-inner">
+                            <div id="list-images-mix-left"></div>
+                            <a href="javascript:void(0);" class="mix-n-play-btn"><span class="icon-refresh"></span>{{ 'products.mixplay.mix_it_up_button' | t }}</a>
+                        </div>
+                    </div>
+                    <div class="mix-play-right col-md-5 col-small-3 grid__item col-6">
+                        <div class="grid">
+                            <a href="javascript:void(0);" class="mix-n-play-btn"><span class="icon-refresh"></span>{{ 'products.mixplay.mix_it_up_button' | t }}</a>
+                            <div id="list-images-mix-right"></div>
+                        </div>
+                    </div>
+                    <div class="grid__item col-1 mix-hide col-md-1">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

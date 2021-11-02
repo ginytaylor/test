@@ -1,0 +1,25 @@
+<div class="grid">
+	{% if section.settings.banner4 != blank %}
+		{% assign mobileImg4 = section.settings.mbanner4 | default: section.settings.banner4  %}
+		<div class="grid__item col-6 grid__image">
+			<div class="grid__image__container">
+				<video preload="auto" class="video-step4 {% if section.settings.mbanner4 != blank %} hide-mobile {% endif %}" src="{{ section.settings.banner4 }}"  autoplay loop muted playsinline ></video>
+	              
+               {% if section.settings.mbanner3!= blank %}
+	                <video preload="auto" class="hide-desktop video-step4" src="{{ section.settings.mbanner4 }}"  autoplay loop muted playsinline ></video>
+	            {% endif %}
+			</div>
+		</div>
+	{% endif %}
+	<div class="grid__item col-6 col-md-6">
+		<div class="grid__item__info text-center grid__item__info_s">
+			
+			<p class="p-large">{{ 'general.size_quiz.your_size' | t }}</p>
+			<h2 class="h2"></h2>
+			<div class="btns">
+				<a href="/collections/bra" class="btn_light_second">{{ 'general.size_quiz.shop_all' | t }}</a>
+				<a href="#step3" class="back-step next_step">{{ 'general.size_quiz.prev' | t }}</a>
+			</div>
+		</div>
+	</div>
+</div>

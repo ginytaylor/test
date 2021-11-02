@@ -1,0 +1,11 @@
+{% layout none %}
+{% section 'product-template' %}
+{% include 'back-in-stock-helper' %}
+<script>
+	if(document. getElementById("back-in-stock-helper-i")!= null){
+		document. getElementById("back-in-stock-helper-i").remove();
+	}
+	if($('iframe#BIS_frame').length == 0){
+		BIS.domReady().then(BIS.init);
+	}
+</script>

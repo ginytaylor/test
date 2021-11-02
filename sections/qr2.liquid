@@ -1,0 +1,142 @@
+{% if search.results %}
+{% paginate search.results by 1 %}
+    {% if search.performed %}
+        {% assign product = search.results | first %}
+        {% assign fields =  product.metafields.saleslayer %}
+        {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+        {% assign factoryType =  block.settings.type | json %}
+        {% if factoryType == fields.qr_factories %}
+              <div class="qr-block qr-block-second">
+                <div class="page-width">
+                  {% if block.settings.title != blank %}
+                    <h3 class="text-center">
+                      {% if block.settings.subtitle != blank %}
+                      <span>{{ block.settings.subtitle }}</span> 
+                      {% endif %}
+                      {{ block.settings.title }}
+                    </h3>
+                  {% endif %}
+                    <div class="content-block">
+                      {% if block.settings.banner1 != blank %}
+                        <img data-src="{{ block.settings.banner1 | img_url: '345x207', crop: 'center'}}" src="{{ block.settings.banner1 | img_url: '2x' }}" alt=""  class="lazyload" />
+                      {% endif %}
+                      {% if block.settings.group_title != blank %}
+                        <h4>{{ block.settings.group_title }}</h4>
+                        {% if block.settings.table != blank %}
+                      {% endif %}
+                      {{ block.settings.table }}
+                      {% endif %}
+                      {% if block.settings.lable_btn != blank and block.settings.btn_link != blank %}
+                        <a class="btn_light" href="{{ block.settings.btn_link }}"><span>{% include 'icon-download' %}</span>{{  block.settings.lable_btn }}</a>
+                      {% endif %}
+                      {% if block.settings.banner2 != blank or block.settings.banner3 != blank %}
+                      <div class="ourPeopleProjectSliderOuter col-10 col-md-6 col-small-4">
+                        <div class="swiper-container ourPeopleProjectSlider">
+                          <div class="swiper-wrapper">
+                          {% if block.settings.banner2 != blank %}
+                            <div class="img-banner swiper-slide">
+                              <img data-src="{{ block.settings.banner2 | img_url: '227x285', crop: 'center'}}" src="{{ block.settings.banner2 | img_url: '2x' }}" alt=""  class="lazyload" />
+                            </div>
+                          {% endif %}
+                          {% if block.settings.banner3 != blank %}
+                            <div class="img-banner swiper-slide">
+                              <img data-src="{{ block.settings.banner3 | img_url: '227x285', crop: 'center'}}" src="{{ block.settings.banner3 | img_url: '2x' }}" alt=""  class="lazyload" />
+                            </div>
+                          {% endif %}
+                          </div> 
+                          
+                        </div> 
+                        <div class="swiper-button-prev-rs swiper-button">
+                                  {% include 'ico-prev' %}
+                          </div>
+                          <div class="swiper-button-next-rs swiper-button">
+                              {% include 'ico-next' %}
+                          </div>
+                      </div>  
+                      {% endif %}
+                      {% if block.settings.description != blank %}
+                        <p>{{ block.settings.description }} </p>
+                      {% endif %}
+                    </div>
+                </div>  
+              </div>
+        {% endif %}         
+        {% endfor %} 
+        {% endif %}      
+    {% endif %}
+{% endpaginate %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Qr Block2",
+    "blocks": [{
+      "type": "qrblock2",
+      "name": "qrblock2",
+      "settings": [
+        {
+            "type": "number",
+            "id": "type",
+            "label": "Type"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Sub title"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        
+        {
+          "type": "image_picker",
+          "id": "banner1",
+          "label": "banner 1"
+          
+        },
+       
+        {
+          "type": "text",
+          "id": "group_title",
+          "label": "Group Title"
+        },
+        {
+          "type": "html",
+          "id": "table",
+          "label": "Group Featured"
+        },
+        {
+            "type": "text",
+            "id": "lable_btn",
+            "label": "Lable Button"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button Link"
+        },
+        
+        {
+          "type": "image_picker",
+          "id": "banner2",
+          "label": "banner2"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner3",
+          "label": "banner3"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+      
+  ]    
+}
+{% endschema %}

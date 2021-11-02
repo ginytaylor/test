@@ -1,0 +1,30 @@
+<div class="block-radical">
+    <div class="page-width">
+        {% include 'block-text' %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "advanced traceability",
+  "class": "scientifically-measured-block",
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title" ,
+          "default": "advanced traceability"
+        },
+        {
+          "type": "text",
+          "id": "sub",
+          "label": "Sub" 
+        },
+        {
+          "type": "richtext",
+          "id": "short_description",
+          "label": "Short Description"
+        }
+    ]  
+}
+{% endschema %}

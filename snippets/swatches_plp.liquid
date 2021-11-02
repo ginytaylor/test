@@ -1,0 +1,120 @@
+
+{% assign variantCount = product.variants | size %}
+{% assign firstVariant = product.selected_or_first_available_variant.options %}
+
+{% assign sizeOptions = firstVariant.size | minus: 1 %}
+{% assign firstVariantOptions = firstVariant  | slice: 0, sizeOptions  %} 
+{% if variantCount > 0 and product.variants[0].title != 'Default Title'  %}
+  <div class="wrapper-options {% if product.options_with_values.size == 2 %} one-option {% endif %}">
+    {% assign indexOption = 0 %}
+    {%- for option in product.options_with_values -%}
+        {% assign index__Option = forloop.index %}
+        {% assign is_color = false %}
+        {% assign option_name = option.name | downcase %}
+        {% assign option_id = 'option' | append: forloop.index %}
+        {% if option_name contains 'color' or option_name contains 'colour' %}
+            {% assign is_color = true %}
+        {% endif %}
+        {% assign optionCurrent =  '' %}
+        {% capture list_Options %}
+            <div class="collection-selector-wrapper" id="ProductSelect-option-{{ forloop.index0 }}" name="{{ option.name | handleize }}">
+            
+            {% unless is_color %} 
+                <div class="collection-swatch-element collection-swatch-element-title"> 
+                    <label>{{option_name}} </label> 
+                </div> 
+            {% endunless %}
+            {% assign index_Option = forloop.index0 %}
+            {% unless is_color %}
+                {%- for value in option.values -%}
+
+                    {% assign disabledOption  = true %}
+                    {% assign tempPLL = '' %}
+                    {%- for valueFirst in firstVariant -%}
+                        {% if index__Option ==  forloop.index %}
+                            {% assign tempPLL = tempPLL | append:  '_-_' | append:  value %}
+                        {% else %}    
+                            {% assign tempPLL = tempPLL | append:  '_-_' | append:  valueFirst %}
+                        {% endif %}
+                    {% endfor %}
+                    {%- for variant  in product.variants -%}
+                        {% assign tempVaraintOption = variant.options | join: '_-_' | prepend: '_-_' %}
+                        {% if tempPLL == tempVaraintOption %}
+                            {% assign disabledOption  = false %}
+                        {% endif %}
+                    {%- endfor -%}
+                   
+                    {%- assign variant_label_state = true -%}
+                    {%- if product.options.size == 1 -%}
+                        {%- unless product.variants[forloop.index0].available -%}
+                            {%- assign variant_label_state = false -%}
+                        {%- endunless -%}
+                    {%- endif -%}
+                        <div data-value="{{ value | escape }}" class="collection-swatch-element {{ value | handle }}">
+                            <input type="radio"
+                              {% if option.selected_value == value %}  checked="checked"  {% assign optionCurrent =  value %}{% endif %}
+                              {% unless variant_label_state %} disabled="disabled"{% endunless %}
+                              value="{{ value | escape }}"
+                              data-name="{{ option.name | handleize }}"
+                              name="{{ option_id }}"
+                              disabledOption="{{ disabledOption  }}"
+                              {% if disabledOption %}
+                                disabled="disabled"
+                              {% endif %}
+                              id="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}-{{ product.id }}"
+                              class="collection-select-option">
+                            {% assign classHide = '' %}
+                            {% capture langageValue %}
+                                {% assign option_values = value | split: '/' %}  
+                                {% if option_values.size > 1 %}
+                                    {% for vl in option_values %}
+                                    <span class="lang_{{forloop.index}}">{{ vl }}</span>
+                                    {% if vl == '0' %}
+                                        {% assign classHide = classHide | append: ' hideLabel-' | append: forloop.index %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    
+                                {% else %}
+                                    {{ value | escape }} 
+                                {% endif %}
+                            {% endcapture %}
+                            <label tabindex="0" title="value" for="ProductSelect-option-{{ option.name | handleize }}-{{ value | escape }}-{{ product.id }}" class="{{ classHide }}">
+                                {{ langageValue }}
+                                <span class="icon-tick"></span>
+                            </label>
+                        </div>
+                    {%- endfor -%}
+                {% endunless %}
+            </div>
+        {% endcapture %}
+
+        {% unless is_color %}
+            <div class="swatches-group">
+                {% assign optionName  = option.name | downcase  %}
+                <div class="option-name h6">{{ option.name }} {% if optionName contains 'size' and  indexOption == 0 %} <a href="/size-table"> size chart</a>{% assign indexOption = indexOption | plus: 1 %}{% endif %}</div>
+                <div class="wrapper-option">
+                    <div class="collection-swatch-button-drowpdown"> 
+                        <a  href="javascript:void(0);"class="btn_light_second_outline">
+                            <span class="label">{% assign option_values_current = optionCurrent | split: '/' %}  
+                            {% if option_values_current.size > 1 %}
+                                {% for vl in option_values_current %}
+                                {% if vl != '0' %}
+                                <span class="lang_{{forloop.index}}">{{ vl }}</span>
+                                {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {{ optionCurrent | escape | default: optionName }} 
+                            {% endif %}
+                            </span>
+                            <span class="icon-arrow_down"></span>
+                        </a>
+                    </div> 
+                    {{ list_Options }}
+                </div>
+            </div>
+        {% endunless %} 
+
+    {%- endfor -%}
+    </div>
+
+{%- endif -%}

@@ -1,0 +1,18 @@
+{% if section.settings.title != blank or section.settings.short_description != blank %}
+<div class="grid">
+    {% if section.settings.title != blank %}
+    <div class="grid__item col-6 col-md-4">
+        <h2 class="h1 text-center slide-up">{{ section.settings.title }}</h2>
+        {% if section.settings.sub != blank %}
+        <h3 class="h5 sub-title text-center slide-up">{{ section.settings.sub }}</h3>
+        {% endif %}
+    </div>    
+    {% endif %}
+    {% if section.settings.short_description != blank %}
+    <div class="grid__item col-5 col-md-4">
+        <div class="p-large slide-up">{{ section.settings.short_description }}</div>
+    </div>    
+    {% endif %}
+</div>
+
+{% endif %}

@@ -1,0 +1,162 @@
+<div class="audaciously-sustainable">
+  {% include 'banner' ,breakWord: 2 %} 
+  {% include 'cms-video' %}
+</div>
+<div class="block-radical block-radical-planet slide-up">
+    <div class="page-width">
+        <div class="grid">
+            {% if section.settings.block_title != blank %}
+            <div class="grid__item col-5 col-md-4">
+                <h2 class="h2 slide-up">{{ section.settings.block_title }}</h2>
+            </div>    
+            {% endif %}
+            {% if section.blocks.size > 0 %}
+                <div class="grid__item col-6">
+                    <div class="grid planet__grid">
+                    {% for block in section.blocks %}
+                        <div class="grid__item col-4 col-md-2">
+                          <div class="item-icons">
+                            <div class="hide-hover">
+                              <span class="icon slide-up icon-Sustainability_icons_outlined_{{ block.settings.icon }}"></span>
+
+                              {% if block.settings.weight != blank %}
+                                  <div class="planet-text h4 slide-up">
+                                      {{ block.settings.weight }}
+                                      {% if block.settings.text != blank %}
+                                      <p class="h5">{{ block.settings.text }}</p>
+                                      {% endif %}
+                                  </div>
+                              {% endif %}
+                            </div>
+
+                            <div class="show-hover">
+                              <span class="icon slide-up icon-Sustainability_icons_outlined_{{ block.settings.icon_hover }}"></span>
+                              {% if block.settings.weight_hover != blank %}
+                                  <div class="planet-text h4 slide-up">
+                                      {{ block.settings.weight_hover }}
+                                      {% if block.settings.text_hover != blank %}
+                                      <p class="h5">{{ block.settings.text_hover }}</p>
+                                      {% endif %}
+                                  </div>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>  
+                    {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "low impact éco-lingerie",
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_banner_mobile",
+          "label": "Main banner mobile"
+        },
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "point",
+          "label": "Point"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "text"
+        },
+        {
+          "type": "text",
+          "id": "block_title",
+          "label": "Block title" 
+        },
+        {
+          "type": "checkbox",
+          "id": "show_center",
+          "label": "Align center title",
+          "default": true
+        }
+    ],
+    "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "icon",
+          "options": [
+            {
+              "value": "CO2",
+              "label": "CO2"
+            },
+            {
+              "value": "H2O",
+              "label": "H20"
+            },
+            {
+              "value": "chemical-2",
+              "label": "Chemical"
+            }
+          ],
+          "default": "CO2"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Weight"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "select",
+          "id": "icon_hover",
+          "label": "[hover]icon",
+          "options": [
+            {
+              "value": "lightbulb",
+              "label": "lightbulb"
+            },
+            {
+              "value": "water-glass",
+              "label": "water glass"
+            },
+            {
+              "value": "tomato",
+              "label": "tomato"
+            }
+          ],
+          "default": "lightbulb"
+        },
+        {
+          "type": "text",
+          "id": "weight_hover",
+          "label": "[hover]weight"
+        },
+        {
+          "type": "text",
+          "id": "text_hover",
+          "label": "[hover] Text"
+        }
+      ]
+    }
+    ]
+}
+{% endschema %}

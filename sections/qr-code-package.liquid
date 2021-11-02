@@ -1,0 +1,206 @@
+<div class="qr-code-page-banner">  
+  {% if section.settings.banner != blank %}
+  <img class="lazyload" data-src=" {{ section.settings.banner | img_url: '375x470', crop: 'center' }} " src=" {{ section.settings.banner | img_url: '2x2', crop: 'center' }} " alt="{{ page.title}}" />
+  {% endif %}
+  <h1 class="h2 text-center">{{ page.title}}</h1>
+</div>
+<div class="desc-qr-page">
+  <div class="page-width">
+    {{ page.content }}
+  </div>
+</div> 
+{% if section.blocks.size > 0 %}
+  
+    {% for block in section.blocks %}
+      <div class="block-slide">
+        <div class="page-width">
+          {% if block.settings.banner != blank %}
+            <img class="lazyload" data-src=" {{ block.settings.banner | img_url: '345x345', crop: 'center' }} " src=" {{ block.settings.banner | img_url: '2x2'}} " alt="{{ page.title}}" />
+          {% endif %}
+          {% if block.settings.title != blank %}
+            <h2>{{ block.settings.title }}</h2>
+          {% endif %}
+          {% if block.settings.description != blank %}
+            <div class="short-desc">{{ block.settings.description }}</div>
+          {% endif %}
+          {% if block.settings.icon1 != blank and  block.settings.text1 != blank %}
+            <div class="ico-list">
+              <img src=" {{ block.settings.icon1 | asset_url }} " alt="" />
+              <span>{{ block.settings.text1 }}</span>
+            </div>
+          {% endif %}
+          {% if block.settings.icon2 != blank and  block.settings.text2 != blank %}
+            <div class="ico-list">
+              <img src=" {{ block.settings.icon2 | asset_url }} " alt="" />
+              <span>{{ block.settings.text2 }}</span>
+            </div>
+          {% endif %}
+          {% if block.settings.icon3 != blank and  block.settings.text3 != blank %}
+            <div class="ico-list">
+              <img src=" {{ block.settings.icon3 | asset_url }} " alt="" />
+              <span>{{ block.settings.text3 }}</span>
+            </div>
+          {% endif %}
+          </div>
+      </div>
+    {% endfor %}
+        
+{% endif %}
+{% if section.settings.title != blank and section.settings.description  %}
+<div class="can-help">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="text-center"> {{section.settings.title}} </h2>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <div  class="can-help-desc"> {{section.settings.description}} </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "QR Code",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner",
+      "label": "Banner"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "you can help too",
+      "default": "you can help too!"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Return only when necessary. Use the size tool to find your size. </p><p>Recycle. Even though our packaging are compostable, we encourage recycling to give them a second life.</p><p>Reuse. Our plant based product bag is designed to be reused.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "qrblock",
+      "name": "qr code package",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type":"select",
+          "id": "icon1",
+          "label": "Icon2",
+          "default": "Sustainability_icons_outlined_Corn.svg",
+          "options":[
+              {
+                "value": "Sustainability_icons_outlined_Corn.svg",
+                "label": "Corn"
+              },
+              {
+                "value": "Sustainability_icons_outlined_compostable.svg",
+                "label": "compostable"
+              },
+              {
+                "value": "Sustainability_icons_outlined_CO2.svg",
+                "label": "CO2"
+              },
+              {
+                "value": "Sustainability_icons_outlined_cotton.svg",
+                "label": "cotton"
+              },
+              {
+                "value": "Sustainability_icons_outlined_recycled_paper.svg",
+                "label": "paper"
+              }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text1",
+          "label": "text1"
+        },
+        {
+          "type":"select",
+          "id": "icon2",
+          "label": "Icon2",
+          "default": "Sustainability_icons_outlined_Corn.svg",
+          "options":[
+              {
+                "value": "Sustainability_icons_outlined_Corn.svg",
+                "label": "Corn"
+              },
+              {
+                "value": "Sustainability_icons_outlined_compostable.svg",
+                "label": "compostable"
+              },
+              {
+                "value": "Sustainability_icons_outlined_CO2.svg",
+                "label": "CO2"
+              },
+              {
+                "value": "Sustainability_icons_outlined_cotton.svg",
+                "label": "cotton"
+              },
+              {
+                "value": "Sustainability_icons_outlined_recycled_paper.svg",
+                "label": "paper"
+              }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "text2"
+        },
+        {
+          "type":"select",
+          "id": "icon3",
+          "label": "Icon3",
+          "default": "Sustainability_icons_outlined_Corn.svg",
+          "options":[
+              {
+                "value": "Sustainability_icons_outlined_Corn.svg",
+                "label": "Corn"
+              },
+              {
+                "value": "Sustainability_icons_outlined_compostable.svg",
+                "label": "compostable"
+              },
+              {
+                "value": "Sustainability_icons_outlined_CO2.svg",
+                "label": "CO2"
+              },
+              {
+                "value": "Sustainability_icons_outlined_cotton.svg",
+                "label": "cotton"
+              },
+              {
+                "value": "Sustainability_icons_outlined_recycled_paper.svg",
+                "label": "paper"
+              }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text3",
+          "label": "text3"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

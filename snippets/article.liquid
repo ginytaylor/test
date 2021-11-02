@@ -1,0 +1,38 @@
+<a href="{{ article.url }}" class="article__link">
+  {% if article.image %}
+    {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+    {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+    {%- assign img_url = article.image | img_url: '430x300', crop: 'center'  -%}
+    <div id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js slide-up">
+      <div class="article__grid-image-container" data-image-loading-animation>
+        <img id="{{ img_id }}"
+            class="article__grid-image lazyload"
+            src="{{ img_url }}"
+            alt="">
+      </div>
+    </div>
+    <noscript>
+      <div class="article__grid-image-wrapper">
+        {{ article | img_url: '345x345', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+      </div>
+    </noscript>
+  {% endif %}
+</a>
+
+<div class="article__grid-meta slide-up">
+  {% if article.tags.size > 0 %}
+    <div class="article__tags">
+
+        {% for tag in article.tags %}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article__grid-tag b{{ tag | handle }}">{{ tag }}</a>
+        {% endfor %}
+    
+    </div>
+  {% endif %}
+  <h2 class="slide-up article__title h4{% if article.image %} article__title--has-image{% endif %}">
+     <a href="{{ article.url }}" class="article__link">{{ article.title | escape }}</a>
+  </h2>
+  <span class="slide-up article__date p-xsmall">
+      {{ article.published_at | time_tag: format: 'date' }}
+  </span>
+</div>

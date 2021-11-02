@@ -1,0 +1,82 @@
+
+{% if section.blocks.size > 0 %}
+<div class="block-radical block-radical-progress">
+    <div class="page-width">
+        <div class="grid d-flex d-flex-right">
+            {% if section.settings.desc != blank %}
+                <div class="grid__item col-4 col-md-6">
+                    <div class="p-large slide-up">{{ section.settings.desc }}</div>
+                </div>
+            {% endif %}
+            <div class="grid__item col-6 col-md-8">
+                <div class="grid d-flex d-flex-center">
+                    {% for block in section.blocks %}
+                        <div class="grid__item col-4 col-md-2 col-small-2">
+                            <div class="score">
+                                <div class="core-text slide-up">
+                                    {% if block.settings.title != blank %}
+                                        <strong class="h3" data-score="{{ block.settings.title }}">{{ block.settings.title }}% </strong>
+                                    {% endif %}
+                                    {% if block.settings.subtitle != blank %}
+                                    <p class="h4">{{ block.settings.subtitle }} </p>
+                                    {% endif %}
+                                </div>
+                                <svg viewBox="0 0 36 36" class="circular">
+                                    <path class="circle-bg" d="M18 2.0845
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                  <path class="circle" stroke-dasharray="{{ block.settings.title }}, 100" d="M18 2.0845
+                                      a 15.9155 15.9155 0 0 1 0 31.831
+                                      a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if section.settings.sub != blank %}
+                    <div class="grid__item col-12 text-center slide-up">
+                        <strong class="h5 slide-up">{{ section.settings.sub }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>        
+{% endif %}
+{% schema %}
+{
+  "name": "Static block",
+  "class": "scientifically-measured-block04",
+  "settings": [
+    {
+        "type": "text",
+        "id": "sub",
+        "label": "Sub"
+    },
+    {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+    }
+   
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

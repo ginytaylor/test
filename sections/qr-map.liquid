@@ -1,0 +1,50 @@
+{% if search.results %}
+{% paginate search.results by 1 %}
+    {% if search.performed %}
+        {% assign product = search.results | first %}
+        {% assign fields =  product.metafields.saleslayer %}
+        {% if fields.qr_map  %}
+            {% if section.blocks.size > 0 %}
+              {% for block in section.blocks %}
+                {% assign type = block.settings.type | append:'' %}
+                {% if fields.qr_map == type %}
+                <div class="qr-blocks">
+                <div class="page-width">
+                        <h2 class="qr-blocks-title text-center">{{ 'general.pages.qr_map_title' | t }}</h2>
+                    </div>
+                <div class="map-block">
+                {{ block.settings.map }}
+                </div>
+                {% endif %}
+                </div>
+              {% endfor %}
+          
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endpaginate %}
+{% endif %}
+{% schema %}
+{
+  "name": "Qr Map",
+  "blocks": [
+    {
+      "type": "qrmap",
+      "name": "qr_map",
+      "settings": [
+        {
+          "type": "number",
+          "id": "type",
+          "label": "Type",
+          "info": "Please enter a number"
+        },
+        {
+          "type": "html",
+          "id": "map",
+          "label": "Map"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

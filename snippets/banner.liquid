@@ -1,0 +1,40 @@
+<div class="banner-content">
+  {% if section.settings.main_banner != blank %}
+     {%- assign img_url = section.settings.main_banner | img_url: '1440x800', crop: 'center'  -%}
+     {%- assign img_url_mobile = section.settings.main_banner | img_url: '375x490', crop: 'center'  -%}
+     {% if section.settings.main_banner_mobile != blank %}
+     {%- assign img_url_mobile = section.settings.main_banner_mobile | img_url: '375x490', crop: 'center'  -%}
+     {% endif %}
+       <picture>
+          <source media="(min-width:1025px)" srcset="{{ img_url }}">
+          <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.main_banner | img_url: '768x600', crop: 'center' }}">
+          <source media="(max-width:599px)" srcset="{{ img_url_mobile }}">
+          <img  class="lazyload" src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+  
+      </picture>
+  {% endif %}
+  <div class="page-width">
+    <div class="page-title {% if section.settings.show_center  %} text-center  {% endif %} col-11">
+      {% assign titlePages = page.title | split: ' ' %}
+      {% assign titlePage = '' %}
+      {% for title in  titlePages %}
+      
+      {% if forloop.index == breakWord %}
+        {% if noBreak == true %}
+          {% assign titlePage = titlePage  | append: title  | append: '<br class="hide-mobile" /> ' %}
+        {% else %}
+          {% assign titlePage = titlePage | append: title | append: '<br/>' %}
+        {% endif %}
+      {% else %}
+        {% if forloop.index == breakMobile %}
+          {% assign titlePage = titlePage | append: title | append: '<br class="break-mobile"/> ' | append: ' '  %}
+        {% else %}
+          {% assign titlePage = titlePage | append: title | append: ' ' %}
+        {% endif %}
+      {% endif %}
+      {% endfor %}
+      <h1><span> i am</span>{{ titlePage }}</h1>
+      
+    </div>
+  </div>
+</div>

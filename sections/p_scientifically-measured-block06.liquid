@@ -1,0 +1,66 @@
+
+{% if section.blocks.size > 0 %}
+<div class="block-radical">
+    <div class="page-width">
+        {% if section.settings.title %}
+        <div class="text-center">
+            <h2 class="h2 text-center slide-up">{{ section.settings.title }}</h2>
+            {% if section.settings.sub_title %}
+            <h3 class="h4 slide-up">{{ section.settings.sub_title }}</h3>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="grid">
+            {% for block in section.blocks %}
+                <div class="grid__item col-3 col-md-4 ">
+                    {% if block.settings.title != blank %}
+                        <strong class="h5 slide-up">{{ block.settings.title }}</strong>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                    <div class="p-large slide-up">{{ block.settings.desc }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>        
+{% endif %}
+{% schema %}
+{
+  "name": "what do we ...?",
+  "class": "scientifically-measured-block06",
+  "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "what do we need to do better?"
+    },
+    {
+        "type": "text",
+        "id": "sub_title",
+        "label": "sub title",
+        "default": "biggest achievements this year"
+    }
+    
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+<div class="audaciously-sustainable">
+  {% include 'banner', breakWord: 2, breakMobile: 4 %}  
+  {% include 'cms-video' %}
+</div>
+{% schema %}
+{
+  "name": "sustainabiliy radical",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_banner",
+      "label": "Main banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_banner_mobile",
+      "label": "Main banner mobile"
+    },
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "text",
+      "id": "point",
+      "label": "Point"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_center",
+      "label": "Align center title",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

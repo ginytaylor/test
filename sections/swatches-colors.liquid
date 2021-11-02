@@ -1,0 +1,35 @@
+
+{% if section.blocks.size > 0 %}
+
+<style>
+  {% for block in section.blocks %}
+    .{{ block.settings.color_name | handle }}{
+      background-color: {{  block.settings.color }};
+    }
+  {% endfor %}
+</style>
+{% endif %}
+{% schema %}
+{
+  "name": "Swaches Colors",
+  "blocks": [
+    {
+      "type": "Colors",
+      "name": "colors",
+      "settings": [
+        {
+          "type": "text",
+          "id": "color_name",
+          "label": "color name"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color"
+        }
+        
+      ]
+    }
+  ]
+}
+{% endschema %}

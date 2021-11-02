@@ -1,0 +1,245 @@
+{% include 'banner' %}
+{% capture blockItems %}
+<div class="block-blocks">
+  <div class="page-width">
+  
+  {% if section.settings.block_title != blank %}
+    <h2 class="h1 text-center slide-up">{{ section.settings.block_title }}</h2>
+  {% endif %}
+  {% if section.settings.block_sub_title != blank %}
+    <h3 class="h4 text-center slide-up">{{ section.settings.block_sub_title }}</h3>
+  {% endif %}
+  {% if section.settings.block_short_desc != blank %}
+    <div class="block-short-description h3 text-center slide-up col-8">
+      {{ section.settings.block_short_desc }}
+    </div>
+  {% endif %}
+  {% assign staticHtml = '' %}
+ 
+  {% if section.blocks.size > 0 %}
+    <div class="block-items">
+      <div class="grid">
+      {% for block in section.blocks %}
+        {% if block.type  == 'Block' %}
+          {% if block.settings.width == '100' %}
+          {% capture item_width %}
+            <div class="item grid__item slide-up" style="width:{{- block.settings.width -}}%">
+              {% if block.settings.banner != blank %}
+              <div class="item-image-container">
+                {% if block.settings.width  == "100" %}
+                  <picture>
+                    <source media="(min-width:1025px)" srcset="{{ block.settings.banner | img_url: '707x510', crop: 'center' }}">
+                    <source media="(min-width:600px) and (max-width: 1204px)" srcset="{{ block.settings.banner | img_url: '371x400', crop: 'center' }}">
+                    <source media="(max-width:599px)" srcset="{{ block.settings.banner | img_url: '375x404', crop: 'center' }}">
+                    <img  class="lazyload" src="{{ block.settings.banner | img_url: '707x510', crop: 'center' }}" alt="{{ block.settings.banner.alt }}">
+                </picture>
+                  
+                {% else %}
+                <img  class="lazyload" src="{{ block.settings.banner | img_url: '316x400', crop: 'center' }}" alt="{{ block.settings.banner.alt }}">
+                {% endif %}
+              </div>
+              {% endif %}
+              <div class="item-info">
+                {% if block.settings.title != blank %}
+                  {% assign titlePages = block.settings.title | split: ' ' %}
+                  {% assign titlePage = '' %}
+                  {% for title in  titlePages %}
+                  {% if forloop.index == 2 %}
+                    {% assign titlePage = titlePage | append: title | append: '<br/>' %}
+                  {% else %}
+                    {% assign titlePage = titlePage | append: title | append: ' ' %}
+                  {% endif %}
+                  {% endfor %}
+                  <h4 class="h4">{{ titlePage }}</h4>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                <div class="p-large">{{ block.settings.description }}</div>
+                {% endif %}
+                {% if block.settings.button_label != blank and block.settings.button_link %}
+                   <a href="{{ block.settings.button_link }}" class="btn_light btn_light_large">{{ block.settings.button_label }}</a>
+                {% endif %}
+              </div>
+            </div>
+          {% endcapture %}
+          {% assign block_width = block_width | append :item_width  %}
+          {% else %}
+          <div class="item grid__item slide-up" style="width:{{- block.settings.width -}}%">
+            {% if block.settings.banner != blank %}
+            <div class="item-image-container">
+              {% if block.settings.width  == "100" %}
+                <picture>
+                  <source media="(min-width:1025px)" srcset="{{ block.settings.banner | img_url: '707x510', crop: 'center' }}">
+                  <source media="(min-width:600px) and (max-width: 1204px)" srcset="{{ block.settings.banner | img_url: '371x400', crop: 'center' }}">
+                  <source media="(max-width:599px)" srcset="{{ block.settings.banner | img_url: '375x404', crop: 'center' }}">
+                  <img  class="lazyload" src="{{ block.settings.banner | img_url: '707x510', crop: 'center' }}" alt="{{ block.settings.banner.alt }}">
+              </picture>
+                
+              {% else %}
+              <img  class="lazyload" src="{{ block.settings.banner | img_url: '316x400', crop: 'center' }}" alt="{{ block.settings.banner.alt }}">
+              {% endif %}
+            </div>
+            {% endif %}
+            <div class="item-info">
+              {% if block.settings.title != blank %}
+                <h4 class="h4">{{ block.settings.title }}</h4>
+              {% endif %}
+              {% if block.settings.description != blank %}
+              <div class="p-large">{{ block.settings.description }}</div>
+              {% endif %}
+              {% if block.settings.button_label != blank and block.settings.button_link %}
+                 <a href="{{ block.settings.button_link }}" class="btn_light btn_light_large">{{ block.settings.button_label }}</a>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+        {% else %} 
+        {% capture blockStatic %}
+        <div class="item-static slide-up">
+            {% if block.settings.title != blank %}
+              <div class="block-item-static-title">
+                <strong >{{ block.settings.title }}</strong>
+                {% if block.settings.sub_title != blank %}
+                <p class="h4">{{ block.settings.sub_title }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if block.settings.description != blank %}
+              <div class="block-item-static-desc h3">
+                {{ block.settings.description }}
+              </div>
+            {% endif %}
+        </div>
+        {% endcapture %} 
+        {% assign staticHtml = staticHtml | append: blockStatic  %}
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  </div>
+</div>
+{% endcapture %}
+<div class="block-statics">
+    <div class="page-width">
+      {{ staticHtml }}
+    </div>
+    <div class="Background_background__6S8B7">
+      <img id="canvasImg" class="Background_dummyTexture__3sg3U" src="{{ 'texture.png' | asset_img_url: 'master' }}" alt="">
+    </div>
+</div>
+ {{ blockItems }}
+
+ {% if block_width != '' %}
+  <div class="block-width">
+    <div class="page-width">
+      <div class="grid">
+        {{ block_width }}
+      </div>
+    </div>
+  </div>
+ {% endif %}
+{% schema %}
+{
+  "name": "Audaciously Sustainable",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_banner",
+      "label": "Main banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_banner_mobile",
+      "label": "Main banner mobile"
+    },
+    {
+      "type": "text",
+      "id": "block_title",
+      "label": "Block title"
+    },
+    {
+      "type": "text",
+      "id": "block_sub_title",
+      "label": "Block Sub title"
+    },
+    {
+      "type": "richtext",
+      "id": "block_short_desc",
+      "label": "Block short description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_center",
+      "label": "Align center title",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width",
+          "options": [
+            { "value": "33.3333", "label": "33.333333%"},
+            { "value": "50", "label": "50%"},
+            { "value": "100", "label": "100%"}
+         ],
+          "default": "50"
+        }
+      ]
+    },
+    {
+      "type": "Static",
+      "name": "static",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+       
+      ]
+    }
+  ]
+}
+{% endschema %}
+

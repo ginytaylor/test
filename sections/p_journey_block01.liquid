@@ -1,0 +1,60 @@
+{% if section.settings.title %}
+<div class="block-radical">
+    <div class="page-width">
+         <h2 class="h1 slide-up col-5">{{ section.settings.title }}</h2>
+    </div>
+</div>
+{% endif %}
+{% if section.blocks.size > 0 %}
+<div class="block-radical">
+    <div class="page-width">
+        <div class="d-flex d-flex-right col-10">
+            <div class="grid">
+            {% for block in section.blocks %}
+                <div class="grid__item col-6 col-md-4  block-item">
+                    {% if block.settings.title != blank %}
+                        <strong class="h3 slide-up">{{ block.settings.title }}</strong>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                    <div class="p-large slide-up">{{ block.settings.desc }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>        
+{% endif %}
+{% schema %}
+{
+  "name": "our challenges",
+  "class": "on-journey01",
+  "settings": [
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "our challenges"
+    }
+    
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

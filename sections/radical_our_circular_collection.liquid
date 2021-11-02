@@ -1,0 +1,261 @@
+<div class="block-radical block-radical-collection block-title-fixed">
+    <div class="page-width">
+        {% if section.blocks.size > 0 %}
+            {% assign leftHTML = '' %}
+            {% capture rightHTML %}
+                {% for block in section.blocks %}
+                    {% if block.settings.product != blank %}
+                    {% assign product = all_products[block.settings.product] %}
+                        <div class="item swiper-slide">
+                           
+                            <div class="img-banner">
+                                <a href="{{ product.url }}">
+                                 <img  class="lazyload" data-src="{{ product.featured_image.src   | img_url:'430x540', crop: "center" }}" src="{{ product.featured_image.src | img_url:'2x' }}" alt="{{ product.featured_image.alt }}">
+                                </a>
+                            </div>
+                           {% if block.settings.title != blank %}
+                            <div class="item-title">
+                                
+                                <h3 class="h2">{{ block.settings.title }}</h3>
+                                {% if block.settings.sub_title != blank %}
+                                    <span class="h5">{{ block.settings.sub_title }} </span>
+                                {% endif %}
+                                
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% capture leftInfo %}
+                            
+                                <div class="more-info swiper-slide">
+                                    <h3 class="h4">{{ product.title }}</h3>
+                                    <ul>
+                                        {% if block.settings.text1 != blank %}
+                                            <li>
+                                                <span class="img-banner"><span class="icon-Sustainability_icons_outlined_{{ block.settings.icon1 }}"></span></span>
+                                                {% if block.settings.text1 != blank %}
+                                                    <span>{{  block.settings.text1 }}</span>
+                                                {% endif %}
+                                            </li>
+                                        {% endif %}
+                                        {% if block.settings.text2 != blank %}
+                                            <li>
+                                                <span class="img-banner"><span class="icon-Sustainability_icons_outlined_{{ block.settings.icon2 }}"></span></span>
+                                                {% if block.settings.text2 != blank %}
+                                                    <span>{{  block.settings.text2 }}</span>
+                                                {% endif %}
+                                            </li>
+                                        {% endif %}
+                                        {% if block.settings.text3 != blank %}
+                                            <li>
+                                                <span class="img-banner"> <span class="icon-Sustainability_icons_outlined_{{ block.settings.icon3 }}"></span></span>
+                                                {% if block.settings.text3 != blank %}
+                                                    <span>{{  block.settings.text3 }}</span>
+                                                {% endif %}
+                                            </li>
+                                        {% endif %}
+                                        <li class="designed_with-fix"> <p class="designed_with h6">designed with circularity in mind</p></li>
+                                    </ul>
+                                </div>
+                            
+                        {% endcapture %}
+                        {% assign leftHTML = leftHTML | append: leftInfo  %}
+                    {% endif %}
+                {% endfor %}
+            {% endcapture %}
+            
+                {% capture blockTitlem %}
+                {% if section.settings.title != blank %}
+                <div class="title-scroll">
+                  <h2 class="h1">
+                    <div>
+                      {{ section.settings.title }}
+                    </div>
+                  </h2>
+                  {% if section.settings.sub_title != blank %}
+                  <h2 class="h1">
+                      <div><span>{{section.settings.sub_title}}</span></div>
+                  </h2>
+                  {% endif %}
+                </div>
+                {% endif %}
+                {% endcapture %}
+                <div class="block-title-mask grid__item__title">
+                  {{ blockTitlem }}
+                </div>
+      
+            <div class="block-radical-items ">
+                <div class="grid">
+                    <div class="grid__item col-7 col-md-4 ">
+                        {% capture blockTitle %}
+                        {% if section.settings.title != blank %}
+                        <div class="title-scroll">
+                          <h2 class="h1 title__desktop">
+                            <div>
+                              {{ section.settings.title }}
+                            </div>
+                          </h2>
+                          {% if section.settings.sub_title != blank %}
+                          <h2 class="h1 title__desktop">
+                              <div><span>{{section.settings.sub_title}}</span></div>
+                          </h2>
+                          {% endif %}
+                        </div>
+                        {% endif %}
+                        {% endcapture %}
+                        <div class="block-title-back">
+                          {{ blockTitle }}
+                        </div>
+<!--                      
+                        <div class="block-title-mask">
+                          {{ blockTitle }}
+                        </div>
+-->
+                        <div>
+                          {{ blockTitle }}
+                        </div>                      
+                        <div thumbsSlider="" class="swiper-container radicalThumb slide-up">
+                            <div class="swiper-wrapper"> {{ leftHTML }} </div>
+                        </div>
+                       
+                    </div>
+                    <div class="grid__item col-4 col-md-4">
+                        <div class="radicalSliderOuter slide-up">
+                            <div class="swiper-container radicalSlider">
+                                <div class="swiper-wrapper"> {{ rightHTML }} </div>
+                            </div>
+                            <div class="swiper-button-prev-r swiper-button">
+                                {% include 'ico-prev' %}
+                            </div>
+                            <div class="swiper-button-next-r swiper-button">
+                                {% include 'ico-next' %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "our circular collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "our circular"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+       "default": "collection"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "product"
+        },
+         {
+          "type": "text",
+          "id": "title",
+          "label": "title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub"
+        },
+        {
+          "type": "header",
+          "content": "More Info"
+        },
+        {
+          "type": "select",
+          "id": "icon1",
+          "label": "icon1",
+          "options": [
+            {
+              "value": "recycled-nylon",
+              "label": "recycled nylon"
+            },
+            {
+              "value": "recycled-spandex",
+              "label": "recycled spandex"
+            },
+            {
+              "value": "recycled-polyester",
+              "label": "recycled polyester"
+            }
+          ],
+          "default": "recycled-nylon"
+        },
+        {
+          "type": "text",
+          "id": "text1",
+          "label": "text1"
+        },
+        {
+          "type": "select",
+          "id": "icon2",
+          "label": "icon2",
+          "options": [
+            {
+              "value": "recycled-nylon",
+              "label": "recycled nylon"
+            },
+            {
+              "value": "recycled-spandex",
+              "label": "recycled spandex"
+            },
+            {
+              "value": "recycled-polyester",
+              "label": "recycled polyester"
+            }
+          ],
+          "default": "recycled-nylon"
+        },
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "text2"
+        },
+        {
+          "type": "select",
+          "id": "icon3",
+          "label": "icon3",
+          "options": [
+            {
+              "value": "recycled-nylon",
+              "label": "recycled nylon"
+            },
+            {
+              "value": "recycled-spandex",
+              "label": "recycled spandex"
+            },
+            {
+              "value": "recycled-polyester",
+              "label": "recycled polyester"
+            }
+          ],
+          "default": "recycled-nylon"
+        },
+        {
+          "type": "text",
+          "id": "text3",
+          "label": "text3"
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

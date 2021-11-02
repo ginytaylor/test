@@ -1,0 +1,109 @@
+
+{% if section.blocks.size > 0 %}
+<div class="page-width">
+    <div class="section-header text-center">
+        <h1 class="h2">{{ page.title }}</h1>
+    </div>
+    <div class="grid grid__page">
+        <div class="grid__item col-8 col-md-8 col-small-6">
+            {% assign sustainability = '' %}
+            {% assign account = '' %}
+            {% assign returns = '' %}
+            {% assign shipping = '' %}
+            {% assign contact = '' %}
+            {% for block in section.blocks %}
+                {% capture item %}
+                    <div class="item tab-v {% if forloop.index == 1 %} active {% endif %}">
+                        <div class="tab-title"><strong class="h6">{{ block.settings.question }}</strong><span class="icon-arrow_down"></span></div>
+                        <div class="tab-v-content p-medium">{{ block.settings.answer }}</div>
+                    </div>
+                {% endcapture %}
+                {%- case block.settings.group -%}
+                {%- when 'sustainability' -%}
+                    {% assign sustainability = sustainability | append: item  %}
+                {%- when 'account' -%}
+                    {% assign account = account | append: item  %}
+                {%- when 'returns' -%}
+                    {% assign returns = returns | append: item  %}
+                {%- when 'shipping' -%}
+                    {% assign shipping = shipping | append: item  %}
+                 {%- when 'contact' -%}
+                    {% assign contact = contact | append: item  %}    
+                {%- endcase -%}
+            {% endfor %}
+            {% if shipping != '' %}
+                <div class="h4 group-title"> {{ 'faq.group.option1'  | t }} </div>
+                <div class="group-content">{{ shipping }}</div>
+            {% endif %}
+            {% if returns != '' %}
+                <div class="h4 group-title"> {{ 'faq.group.option2'  | t }}  </div>
+                <div class="group-content">{{ returns }}</div>
+            {% endif %}
+            {% if account != '' %}
+                <div class="h4 group-title"> {{ 'faq.group.option3'  | t }}  </div>
+                <div class="group-content">{{ account }}</div>
+            {% endif %}
+            {% if sustainability != '' %}
+                <div class="h4 group-title"> {{ 'faq.group.option4'  | t }}  </div>
+                <div class="group-content">{{ sustainability }}</div>
+            {% endif %}
+            {% if contact != '' %}
+                <div class="h4 group-title">{{ 'faq.group.option5'  | t }}  </div>
+                <div class="group-content">{{ contact }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "class": "faq-list",
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "faq",
+      "settings": [
+        {
+          "type": "select",
+          "id": "group",
+          "label": "Group",
+          "options": [
+          {
+             "value": "sustainability",
+             "label": "sustainability"
+          },
+          {
+             "value": "account",
+             "label": "account"
+          },
+          {
+             "value": "returns",
+             "label": "returns"
+          },
+          {
+             "value": "shipping",
+             "label": "shipping"
+          },{
+             "value": "contact",
+             "label": "contact"
+          }
+         ],
+         "default": "sustainability"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "question"
+        },
+        {
+          "type": "html",
+          "id": "answer",
+          "label": "answer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,92 @@
+<div class="page-width">
+<div class="block-radical">
+    {% if section.settings.title != blank %}
+    <h2 class="h1 col-md-5 slide-up">{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="grid d-flex">
+        {% if section.settings.title != blank or section.settings.subtitle != blank  or section.settings.desc != blank %}
+            <div class="grid__item col-6 col-md-4">
+                <div class="col-10">
+                    {% if section.settings.title != blank %}
+                    <h2 class="h1 slide-up">{{ section.settings.title }}</h2>
+                    {% endif %}
+                    {% if section.settings.subtitle != blank %}
+                    <h3 class="h4 slide-up">{{ section.settings.subtitle }}</h3>
+                    {% endif %}
+                    {% if section.settings.desc != blank %}
+                    <div class="p-large slide-up">{{ section.settings.desc }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+            <div class="grid__item col-5 col-md-4 ">
+                <div class="block-radical-items slide-up">
+                    <div class="ourPeopleProjectSliderOuter col-small-4">
+                        <div class="swiper-container ourPeopleProjectSlider ">
+                            <div class="swiper-wrapper">
+                                {% for block in section.blocks %}
+                                    {% if block.settings.image != blank %}
+                                       {%- assign img_url = block.settings.image | img_url: '543x720', crop: 'center'  -%}
+                                       <div class="img-banner swiper-slide">
+                                            <picture>
+                                                <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                                                <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ block.settings.image | img_url: '337x447', crop: 'center' }}">
+                                                <source media="(max-width:599px)" srcset="{{ block.settings.image | img_url: '375x490', crop: 'center' }}">
+                                                <img  class="lazyload" src="{{  block.settings.image | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ block.settings.image.alt }}">
+                                            </picture>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev-rs swiper-button">
+                                {% include 'ico-prev' %}
+                        </div>
+                        <div class="swiper-button-next-rs swiper-button">
+                            {% include 'ico-next' %}
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+{% schema %}
+{
+  "name": "our people project",
+  "class": "people-comunity-block03",
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "Image",
+            "name": "Image",
+            "settings": [
+                {
+                  "type": "image_picker",
+                  "id": "image",
+                  "label": "Image"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

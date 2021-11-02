@@ -1,0 +1,23 @@
+{% if section.settings.banner %}
+<div class="banner contact-banner">
+    {%- assign img_url = section.settings.banner | img_url: '1440x460', crop: 'center', scale: 2   -%}
+     <picture>
+      <source media="(min-width:1025px)" srcset="{{ img_url }}">
+      <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.banner | img_url: '768x400', crop: 'center' }}">
+      <source media="(max-width:599px)" srcset="{{ section.settings.banner | img_url: '375x195', crop: 'center' }}">
+      <img id="{{ img_id }}" class="article__grid-image lazyload" src="{{ img_url }}" alt="">
+    </picture>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "contact us",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner",
+      "label": "Banner"
+    }
+  ]
+}
+{% endschema %}

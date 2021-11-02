@@ -1,0 +1,36 @@
+<div class="audaciously-sustainable">
+    {% include 'banner',breakMobile: 1 %}
+    {% if section.settings.description != blank %}
+    <div class="page-width">
+        <div class="block-radical d-flex d-flex-center grid">
+            <div class="grid__item col-8 col-md-6 text-center">
+                <div class="h3 measured-desc slide-up">{{ section.settings.description }}</div>
+            </div>
+        </div>
+    </div>    
+    {% endif %}
+</div>
+{% schema %}
+{
+  "name": "scientifically measured",
+  "class": "scientifically-measured",
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_center",
+          "label": "Align center title",
+          "default": true
+        }
+    ]
+}
+{% endschema %}

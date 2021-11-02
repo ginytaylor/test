@@ -1,0 +1,130 @@
+<div class="block-most-sustainable block-radical">
+    <div class="page-width">
+    <div class="grid">
+        {% if section.settings.main_banner != blank %}
+           {%- assign img_url = section.settings.main_banner | img_url: '707x620', crop: 'center'  -%}
+            <div class="grid__item col-6 col-md-4">
+                <div class="img-banner slide-up">
+                    <picture>
+                        <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.main_banner | img_url: '371x465', crop: 'center' }}">
+                        <source media="(max-width:599px)" srcset="{{ section.settings.main_banner | img_url: '375x470', crop: 'center' }}">
+                        <img  class="lazyload" src="{{  section.settings.main_banner | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+                    </picture>
+                </div>
+            </div>
+        {% endif %}
+        <div class="grid__item col-5 col-md-4 ">
+            {% if section.settings.title != blank %}
+                <h2 class="h2 slide-up">{{ section.settings.title }}</h2>    
+            {% endif %}
+            {% if section.settings.short_description != blank %}
+                <div class="p-large slide-up">{{ section.settings.short_description }}</div>    
+            {% endif %}
+            {% if section.settings.button_link != blank %}
+                <a href="{{ section.settings.button_link }}" class="btn_light slide-up">
+                {{ section.settings.link_label | default: 'shop undyed' }}
+                </a>
+            {% endif %} 
+            {% if section.blocks.size > 0 %}
+                <ul class="list-item-icons slide-up">
+                    {% for block in section.blocks %}
+                        <li class="item-icon">
+                            <div class="img-banner">
+                                <span class="ico icon-Sustainability_icons_outlined_{{ block.settings.icon }}"></span>
+                            </div>
+                            {% if block.settings.weight != blank %}
+                                <div class="planet-text p-large">
+                                    up to <span class="h5">{{ block.settings.weight }}</span>
+                                    {% if block.settings.weight != blank %}
+                                    <span>{{ block.settings.text }}</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <p class="designed_with h6">{{ section.settings.designed_with }}</p>
+        </div>
+    </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "the most sustainable ..",
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title" ,
+          "default": "the most sustainable white"
+        },
+        {
+          "type": "richtext",
+          "id": "short_description",
+          "label": "Short Description" 
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "shop undyed"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "text",
+          "id": "designed_with",
+          "label": "designed with",
+          "default": "vs conventional materials & colours"
+        }
+    ],
+    "blocks": [
+        {
+          "type": "Block",
+          "name": "Block",
+          "settings": [
+            {
+              "type": "select",
+              "id": "icon",
+              "label": "icon",
+              "options": [
+                {
+                  "value": "CO2",
+                  "label": "CO2"
+                },
+                {
+                  "value": "H2O",
+                  "label": "H2O"
+                },
+                {
+                  "value": "chemical-2",
+                  "label": "Chemical"
+                }
+              ],
+              "default": "CO2"
+            },
+            {
+              "type": "text",
+              "id": "weight",
+              "label": "Weight"
+            },
+            {
+              "type": "text",
+              "id": "text",
+              "label": "Text"
+            }
+          ]
+        }
+    ]
+}
+{% endschema %}

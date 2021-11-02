@@ -1,0 +1,155 @@
+
+{%- assign grid_item_width = 'col-3 col-md-2' -%}
+<div class="page-width">
+  <div class="grid">
+    {% for block in section.blocks %}
+      <div class="grid__item {{ grid_item_width }}">
+        <div class="grid__item__inner">
+          {% if block.settings.video != blank %}
+            <video preload="auto"  {% if block.settings.poster != blank %} poster="{{ block.settings.poster | img_url: '316x550', scale: 2 }}" {% endif %} class="styles_backgroundMedia__Ajqh9 styles_video__21QdD {% if block.settings.video_mobile != blank %} hide-mobile {% endif %}" src="{{ block.settings.video }}" {% if block.settings.autoplay %} autoplay {% else %}controls {% endif %}loop muted playsinline ></video>
+          {% endif %}
+          {% if block.settings.video_mobile != blank %}
+            <video preload="auto"  {% if block.settings.poster != blank %} poster="{{ block.settings.poster | img_url: '345x110', scale: 2 }}" {% endif %} class="styles_backgroundMedia__Ajqh9 styles_video__21QdD hide-desktop" src="{{ block.settings.video_mobile }}" {% if block.settings.autoplay %} autoplay {% else %}controls {% endif %}loop muted playsinline ></video>
+          {% endif %}
+          {% if block.settings.video_mobile == blank and block.settings.video == blank %}
+            {% if block.settings.poster != blank %}
+            {% assign posterMobile = block.settings.poster_mobile | default: block.settings.poster   %}
+              <picture>
+                    <source media="(min-width:600px)" srcset="{{ block.settings.poster | img_url: '316x550', crop: 'center',scale: 2 }}">
+                    <source media="(max-width:599px)" srcset="{{ posterMobile | img_url: '345x110', crop: 'center',scale: 2  }}">
+                    <img  class="lazyload" src="{{ block.settings.poster | img_url: '316x550', scale: 2 }}" alt="{{ block.settings.poster.alt }}">
+              </picture>
+            {% endif %}
+          {% endif %}
+          {% if block.settings.title != blank and block.settings.link != blank %}
+          {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
+            <strong class="h3">{{ block.settings.title }}</strong>
+            {% if block.settings.subtitle != blank %}
+            <span class="p-large">{{ block.settings.subtitle }}</span>
+            {% endif %}
+          {% if block.settings.link != blank %}</a>{% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    {% if section.settings.title != blank %}
+      <div class="grid__item {{ grid_item_width }}">
+        <h2 class="h2">{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video List",
+  "class": "index-section video-list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Paris inspired"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Poster"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_mobile",
+          "label": "Poster Mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Auto play",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video Link"
+        },
+        {
+          "type": "url",
+          "id": "video_mobile",
+          "label": "Video Mobile"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "cs": "Video List",
+        "da": "Video List",
+        "de": "Video List",
+        "en": "Video List",
+        "es": "Video List",
+        "fi": "Video List",
+        "fr": "Video List",
+        "it": "Video List",
+        "ja": "動画",
+        "ko": "동영상",
+        "nb": "Video List",
+        "nl": "Video List",
+        "pl": "Film",
+        "pt-BR": "Video List",
+        "pt-PT": "Video List",
+        "sv": "Video List",
+        "th": "วิดีโอ",
+        "tr": "Video List",
+        "vi": "Video List",
+        "zh-CN": "视频",
+        "zh-TW": "影片"
+      },
+      "category": {
+        "cs": "Video",
+        "da": "Video",
+        "de": "Video",
+        "en": "Video",
+        "es": "Video",
+        "fi": "Video",
+        "fr": "Vidéo",
+        "it": "Video",
+        "ja": "動画",
+        "ko": "동영상",
+        "nb": "Video",
+        "nl": "Video",
+        "pl": "Film",
+        "pt-BR": "Vídeo",
+        "pt-PT": "Vídeo",
+        "sv": "Video",
+        "th": "วิดีโอ",
+        "tr": "Video",
+        "vi": "Video",
+        "zh-CN": "视频",
+        "zh-TW": "影片"
+      }
+    }
+  ]
+}
+{% endschema %}

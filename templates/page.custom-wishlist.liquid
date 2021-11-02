@@ -1,0 +1,29 @@
+<script src="{{ 'custom-wishlist.js' | asset_url }}" defer="defer"></script>
+<div class="page-width">
+	<div class="page-wishlist">
+		<div id="wishlistList" class="grid">
+			<img src="{{ 'ajax-loader.gif' | asset_url }}" class="ajax-loader" />
+		</div>
+		{% if shop.customer_accounts_enabled %}
+            {% unless customer %}
+				<div class="info-page text-center d-flex d-flex-center">
+					<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M38.4581 41.9256L34.3748 23.0574C34.1141 21.8542 32.9479 20.9805 31.6003 20.9805H18.9945C17.6522 20.9805 16.486 21.8489 16.2218 23.0468L12.0557 41.915C11.8989 42.6249 12.0768 43.3665 12.5454 43.9478C13.0756 44.6084 13.93 45.0013 14.8284 45.0013H35.6836C36.5943 45.0013 37.4258 44.619 37.9631 43.9514C38.4317 43.3736 38.6113 42.6337 38.4581 41.9256ZM36.5926 42.8469C36.3935 43.0935 36.0535 43.2414 35.6836 43.2414H14.8266C14.4549 43.2414 14.1149 43.0935 13.9159 42.8451C13.8208 42.7271 13.7203 42.5368 13.7732 42.2955L17.9411 23.4273C18.0274 23.0362 18.4801 22.742 18.9945 22.742H31.6003C32.1164 22.742 32.5692 23.038 32.6537 23.4291L36.737 42.2972C36.7881 42.5386 36.686 42.7288 36.5926 42.8469Z" fill="black"/>
+					<path d="M25.4552 19.4378C29.4364 19.4378 32.6742 16.2001 32.6742 12.2189C32.6742 8.23777 29.4364 5 25.4552 5C21.4741 5 18.2363 8.23777 18.2363 12.2189C18.2363 16.2001 21.4741 19.4378 25.4552 19.4378ZM25.4552 6.76157C28.464 6.76157 30.9126 9.21016 30.9126 12.2189C30.9126 15.2277 28.464 17.6763 25.4552 17.6763C22.4465 17.6763 19.9979 15.2277 19.9979 12.2189C19.9979 9.21016 22.4465 6.76157 25.4552 6.76157Z" fill="black"/>
+					</svg>
+					<h2 class="h4 col-6 col-md-6">{{ 'general.wishlist.text' | t }}</h2>
+					<a href="{{ routes.account_login_url }}" class="btn_light_second_outline col-2 col-md-2 col-small-2">{{ 'general.wishlist.log_in' | t }}</a>
+				</div>
+			{% else %}
+			<script>
+				if(Shopify.locale != 'en'){
+					window.location = '/' + Shopify.locale + '/account';
+				}else{
+					window.location = '/account';
+				}
+				
+			</script>	
+			{% endunless %}	
+		{% endif %}
+	</div>
+</div>

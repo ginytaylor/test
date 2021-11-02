@@ -1,0 +1,15 @@
+<div class="extra-info">
+	{% if section.settings.size_guide != blank %}
+    <div class="extra-item p-xsmall">
+        <div>
+            <span class="icon-rule"></span>{{ section.settings.size_guide }}
+        </div>
+        <a href="/size-table">size chart</a>
+    </div>
+    {% endif %}
+    {% if section.settings.shipping_text != blank %}
+    <div class="extra-item p-xsmall">
+        <span class="icon-delivery"></span><span >{{ section.settings.shipping_text }}<span class="shipping-price" data-price="{{ section.settings.shipping_price }}"> {{ section.settings.shipping_price | times: 100 | money_without_trailing_zeros   }}</span></span>
+    </div>
+    {%  endif %}
+</div>

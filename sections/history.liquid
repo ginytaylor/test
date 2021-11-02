@@ -1,0 +1,134 @@
+{% if section.blocks.size > 0 %}
+  <div class="history-timeline">
+  {% for block in section.blocks %}
+    <div class="history-row component-container" id="decade-{{ block.settings.year | replace: 's','' }}">
+      <div class="grid-container">
+        <div class="history-year grid">
+          {% if block.settings.img != blank %}
+          <div class="row-img image-blank-space grid__item {% if block.settings.year == '1950s' %} block-1950 col-3 {% else %} col-5 {% endif %}" >
+            <div class="grid-image">
+              <img data-src="{{ block.settings.img | img_url: 'master'}}" src="{{ block.settings.img | img_url: '2x' }}" alt=""  class="lazyload" />
+            </div>  
+          </div>
+          {% endif %}
+          <div class="row-info grid__item col-6">
+            {% if block.settings.year != blank %}<div class="year">{{  block.settings.year }}</div>{% endif %}
+            {% if block.settings.title != blank %}<h2 class="h3">{{  block.settings.title }}</h2>{% endif %}
+            {% if block.settings.description != blank %}<div class="p-large">{{  block.settings.description }}</div>{% endif %}
+          </div>
+        </div>
+        <div class="images-row grid">
+            {% if block.settings.img1 != blank %}
+              <div class="row-img  image-blank-space grid__item">
+                <div class="grid-image">
+                  <img data-src="{{ block.settings.img1 | img_url: 'master'}}" src="{{ block.settings.img1 | img_url: '2x' }}" alt=""  class="lazyload" />
+                </div>
+              </div>
+            {% endif %}
+            {% if block.settings.img2 != blank %}
+              <div class="row-img  image-blank-space grid__item">
+                <div class="grid-image">
+                  <img data-src="{{ block.settings.img2 | img_url: 'master'}}" src="{{ block.settings.img2 | img_url: '2x' }}" alt=""  class="lazyload" />
+                </div>
+              </div>
+            {% endif %}
+            {% if block.settings.img3 != blank %}
+              <div class="row-img  image-blank-space grid__item">
+                <div class="grid-image">
+                  <img data-src="{{ block.settings.img3 | img_url: 'master'}}" src="{{ block.settings.img3| img_url: '2x' }}" alt=""  class="lazyload" />
+                </div>
+              </div>
+            {% endif %}
+            {% if block.settings.img4 != blank %}
+              <div class="row-img  image-blank-space grid__item">
+                <div class="grid-image">
+                  <img data-src="{{ block.settings.img4 | img_url: 'master'}}" src="{{ block.settings.img4 | img_url: '2x' }}" alt=""  class="lazyload" />
+                </div>
+              </div>
+            {% endif %}
+        </div>
+    </div>
+  </div>  
+  {% endfor %}
+  </div>
+{% endif %}
+{% if section.settings.collection != blank %}
+{%- assign collection = collections[section.settings.collection] -%}
+{%- assign max_height = 540 -%}
+{%- assign product_limit = 4 -%}
+<div class="collection-footer">
+  <div class="grid">
+    {% for product in collection.products limit: product_limit %}
+    <div class="grid__item col-3 col-md-4 col-small-3">
+      {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: false %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="text-center button-link">
+    <a href="{{ collection.url }}" class="btn_light_second_outline">{{ collection.title }}</a>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "History",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "history",
+      "name": "history",
+      "settings": [
+        {
+            "type": "text",
+            "id": "year",
+            "label": "Year"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+          
+        },
+        {
+          "type": "image_picker",
+          "id": "img1",
+          "label": "Image1"
+        },
+        {
+          "type": "image_picker",
+          "id": "img2",
+          "label": "Image2"
+          
+        },
+        {
+          "type": "image_picker",
+          "id": "img3",
+          "label": "Image3"
+        },
+        {
+          "type": "image_picker",
+          "id": "img4",
+          "label": "Image4"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

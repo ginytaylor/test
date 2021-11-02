@@ -1,0 +1,104 @@
+<div class="block-radical block-our-climate-projects">
+    <div class="page-width">
+        <div class="grid d-flex d-flex-right">
+            <div class="grid__item col-6">
+                {% if section.settings.title != blank %}
+                    <h2 class="h2 slide-up">{{section.settings.title}}</h2>
+                {% endif %}
+            </div>
+        </div>
+        <div class="grid d-flex d-flex-right grid__content">
+            {% if section.settings.main_banner != blank %}
+                <div class="grid__item col-6 col-md-4 col-small-5">
+                    <div class="img-banner slide-up">
+                        {%- assign img_url = section.settings.main_banner | img_url: '658x389', crop: 'center'  -%}
+                        <picture>
+                            <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                            <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.main_banner | img_url: '768x600', crop: 'center' }}">
+                            <source media="(max-width:599px)" srcset="{{ section.settings.main_banner | img_url: '226x185', crop: 'center' }}">
+                            <img  class="lazyload" src="{{  section.settings.main_banner | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+                        </picture>
+                    </div>
+                    <span class="hide-desktop">
+                        {% include 'climate' %}
+                    </span>
+                </div>    
+            {% endif %}
+            {% if section.settings.sub_title != blank or section.settings.short_desc != blank %}
+                <div class="grid__item col-4 col-md-3 col-small-4">
+                    <div class="grid d-flex d-flex-right">
+                        <div class="grid__item col-12">
+                            {% if section.settings.sub_title != blank %}
+                            <h3 class="h3 slide-up">{{ section.settings.sub_title }}</h3>
+                            {% endif %}
+                            {% if section.settings.short_desc != blank %}
+                            <div class="p-large slide-up">{{ section.settings.short_desc }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        {% if section.blocks.size > 0 %}
+            <div class="block-carbon-items-img">
+                <div class="grid d-flex d-flex-right">
+                    <div class="grid__item col-4 col-md-2 hide-tablet">
+                        {% include 'climate' %}
+                          
+                    </div>
+                    <div class="grid__item col-6 col-md-6">
+                        <div class="grid d-flex d-carbon-item-img">
+                        {% for block in section.blocks %}
+                            <div class="carbon-item-img grid__item col-4 col-md-3-ex col-small-2 slide-up">
+                                <img  class="lazyload" src="{{  block.settings.image | img_url: '2x' }}" data-src="{{ block.settings.image | img_url: '204x202' }}" alt="{{ block.settings.image.alt }}">
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "our climate projects",
+  "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub title"
+        },
+        {
+            "type": "richtext",
+            "id": "short_desc",
+            "label": "Short Description"
+        }
+  ],
+  "blocks": [
+    {
+      "type": "Image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

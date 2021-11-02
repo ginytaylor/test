@@ -1,0 +1,114 @@
+<div class="page-width">
+{% if section.settings.title != blank or section.settings.subtitle != blank  or section.settings.desc != blank %}
+<div class="block-radical">
+    <div class="grid d-flex d-flex-right">
+        {% if section.settings.title != blank or section.settings.subtitle != blank  or section.settings.desc != blank %}
+            <div class="grid__item col-4 col-md-4">
+                {% if section.settings.title != blank %}
+                <h2 class="h3 slide-up">{{ section.settings.title }}</h2>
+                {% endif %}
+                {% if section.settings.desc != blank %}
+                <div class="p-large slide-up">{{ section.settings.desc }}</div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if section.settings.main_banner != blank %}
+           {%- assign img_url = section.settings.main_banner | img_url: '771x500', crop: 'center'  -%}
+           <div class="grid__item col-7 col-md-4">
+                <div class="img-banner slide-up">
+                    <picture>
+                        <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.main_banner | img_url: '336x290', crop: 'center' }}">
+                        <source media="(max-width:599px)" srcset="{{ section.settings.main_banner | img_url: '343x296', crop: 'center' }}">
+                        <img  class="lazyload" src="{{  section.settings.main_banner | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+                    </picture>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>  
+{% endif %}  
+{% if section.blocks.size > 0 %}
+<div class="block-radical"> 
+        <div class="block-radical-items">    
+            <div class="grid">
+                {% for block in section.blocks %}
+                <div class="grid__item col-6 col-md-4 item slide-up">
+                    <div class="grid">
+                        {% if block.settings.image != blank %}
+                           {%- assign img_url_s = block.settings.image | img_url: '316x500', crop: 'center'  -%}
+                           <div class="grid__item col-6">
+                                <div class="img-banner slide-up">
+                                    <picture>
+                                        <source media="(min-width:1025px)" srcset="{{ img_url_s }}">
+                                        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ block.settings.image | img_url: '336x532', crop: 'center' }}">
+                                        <source media="(max-width:599px)" srcset="{{ block.settings.image | img_url: '344x545', crop: 'center' }}">
+                                        <img  class="lazyload" src="{{  block.settings.image | img_url: '2x' }}" data-src="{{ img_url_s }}" alt="{{ block.settings.image.alt }}">
+                                    </picture>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if block.settings.title != blank or block.settings.desc != blank %}
+                        <div class="grid__item col-6">
+                            {% if block.settings.title != blank %}
+                                <h3 class="h3 slide-up">{{ block.settings.title }}</h3>
+                            {% endif %}
+                            {% if block.settings.desc != blank %}
+                                <div class="p-large slide-up">{{ block.settings.desc }}</div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>    
+</div>        
+{% endif %}
+</div>
+{% schema %}
+{
+  "name": "a financial commitment...",
+  "class": "people-comunity-block02",
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        }
+    ],
+    "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Short Description"
+        }
+      ]
+    }
+    ]
+}
+{% endschema %}

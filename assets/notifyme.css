@@ -1,0 +1,138 @@
+.small-print.text-right { display: none;}
+#BISModal form .btn,
+#BISModal form select,
+#BISModal form input.form-control {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 10px;
+    box-shadow: 0 0 0;
+    outline: none;
+    border-radius: 0;
+    background: none;
+    border-color: #000;
+    color: #000;
+}
+#BISModal form select,
+#BISModal form input.form-control {
+    background: none;
+    max-width: 70%;
+    margin: 0 auto;
+}
+body #BISModal {
+    max-width: none;
+    width: 66.6666666667%;
+}
+#BISModal  #container {
+    border-radius: 0;
+    padding: 120px 115px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%,-50%);
+}
+#BISModal  #container .close {
+    color: #000;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+}
+#BISModal  #container hr {
+    display: none;
+}
+#BISModal  #container .modal-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 36px;
+}
+#BISModal  #container .modal-title + p {
+    margin: 0 0 20px;
+    font-size: 20px;
+    line-height: 35px;
+}
+#BISModal  #container .product-name {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    display: flex;
+    max-width: 70%;
+}
+#BISModal  #container img {
+    width: 89px;
+    margin-right: 25px;
+}
+#BISModal form .btn {
+    width: 40%;
+    background: #000;
+    color: #fff;
+    border: none;
+}
+#BISModal form .btn:hover{
+    background: #93282C;
+    border: none;
+}
+body.fadein {
+    background: rgba( 0,0,0, 0.4)!important;
+}
+body .form-group {
+    margin-bottom: 20px;
+} 
+.form-horizontal {
+    margin-bottom: 20px;
+}
+.small-print {
+    font-size: 12px;
+    line-height: 21px;
+    margin: 0;
+    opacity: 1;
+}
+@media only screen and (min-width: 768px) and (max-width: 1439px){
+    body #BISModal {
+        width: 100%;
+        padding: 0 35px;
+    }
+    #BISModal #container {
+        padding: 120px 90px;
+    }
+    #BISModal #container .modal-title {
+        font-size: 20px;
+        line-height: 31px;
+    }
+    #BISModal #container .modal-title + p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+    #BISModal form .btn,
+    #BISModal form input.form-control,
+    #BISModal #container .product-name {
+        width: 100%;
+        max-width: none;
+    }
+}
+@media (max-width: 767px){
+    body #BISModal {
+        width: 100%;
+        padding: 0;
+    }
+    #BISModal #container {
+        padding: 60px 15px;
+    }
+    #BISModal #container .modal-title {
+        font-size: 16px;
+        line-height: 25px;
+    }
+    #BISModal #container .modal-title + p {
+        font-size: 14px;
+        line-height: 25px;
+    }
+    #BISModal form .btn,
+    #BISModal form input.form-control,
+    #BISModal #container .product-name {
+        width: 100%;
+        max-width: none;
+    }
+}

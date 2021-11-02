@@ -1,0 +1,75 @@
+<div class="block-radical block-now-carbon-natural">
+    <div class="page-width">
+        <div class="grid d-flex d-flex-right">
+            <div class="grid__item col-4 col-md-8 ">
+                {% if section.settings.title != blank %}
+                    <h2 class="h1 slide-up" >{{section.settings.title}}</h2>
+                {% endif %}
+            </div>
+            <div class="grid__item col-8 col-small-4 col-small-4-flex-right">
+                <div class="grid block-sub-title">
+                    <div class="grid__item col-7 col-md-5  ">
+                        {% if section.settings.sub_title != blank %}
+                        <h3 class="h2" >{{ section.settings.sub_title }}</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="grid d-flex d-flex-right">
+                    <div class="grid__item col-10">
+                        <div class="grid">
+                        {% if section.settings.main_banner != blank %}
+                            <div class="grid__item col-6 col-md-3 text-right">
+                                <div class="img-banner slide-up">
+                                    {%- assign img_url = section.settings.main_banner | img_url: '316x400', crop: 'center'  -%}
+                                    <picture>
+                                        <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                                        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.main_banner | img_url: '768x600', crop: 'center' }}">
+                                        <source media="(max-width:599px)" srcset="{{ section.settings.main_banner | img_url: '168x268', crop: 'center' }}">
+                                        <img  class="lazyload" src="{{  section.settings.main_banner | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+                                    </picture>
+                                </div>
+                            </div>    
+                        {% endif %}
+                        {% if section.settings.short_desc != blank %}
+                            <div class="grid__item col-6 col-md-4 ">
+                               {% if section.settings.short_desc != blank %}
+                                <div class="p-large slide-up">{{ section.settings.short_desc }}</div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "now carbon neutral",
+  "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "now carbon neutral"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+            "type": "text",
+            "id": "sub_title",
+            "label": "Sub title"
+        },
+        {
+            "type": "richtext",
+            "id": "short_desc",
+            "label": "Short Description"
+        }
+  ]
+}
+{% endschema %}

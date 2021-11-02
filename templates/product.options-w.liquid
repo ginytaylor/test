@@ -1,0 +1,101 @@
+{% layout none %}
+    {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+    <div class="h7 grid-view-item__title product-card__title" aria-hidden="true"><a class="grid-view-item__link grid-view-item__image-container" href="{{ product.url }}">{{ product.title }}</a></div>
+    <!-- split -->
+   <script>
+        var productPLP = {{ product | json }}
+    </script>
+    {% assign current_variant = product.selected_or_first_available_variant %}
+    {% assign htmlCorlor = '' %}
+    <div class="collection-form-popup">
+    <div class="collection-form-{{ product.id }}" data-section-id="collection-form-{{ product.id }}"  data-section-type="collection-form-{{ product.id }}" data-enable-history-state="false" data-ajax-enabled="{{ settings.enable_ajax }}">
+      {%- comment -%}
+        Live region for announcing updated price and availability to screen readers
+      {%- endcomment -%}
+      <p class="visually-hidden" data-product-status
+        aria-live="polite"
+        role="status"
+      ></p>
+      <p class="visually-hidden" data-loader-status
+        aria-live="assertive"
+        role="alert"
+        aria-hidden="true"
+      >{{ 'products.product.loader_label' | t }}</p>
+
+      <div
+        class="product-single__store-availability-container"
+        data-store-availability-container
+        data-product-title="{{ product.title | escape }}"
+        data-has-only-default-variant="{{ product.has_only_default_variant }}"
+        data-base-url="{{ shop.url }}{{ routes.root_url }}"
+      >
+      </div>
+      <div class="product__price hide">
+        {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor %}
+      </div>
+    {% assign productIdForm =  'product-form-collection-form-' | append: product.id %}  
+    {% form 'product', product, id: productIdForm, class:' product-form product-form-collection-form', novalidate: 'novalidate', data-product-form: '' %}
+    <div class="hide">
+        {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+           <select class="single-option-selector single-option-selector-collection-form-{{ product.id }} product-form__input"
+                id="SingleOptionSelector-{{ product.id }}-{{ forloop.index0 }}"
+                data-index="option{{ forloop.index }}"
+              >
+                {% for value in option.values %}
+                  <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                {% endfor %}
+              </select>
+          {% endfor %}
+        {% endunless %}
+        <select name="id" id="ProductSelect-collection-form-{{ product.id }}" class="product-form__variants no-js">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}"
+              {%- if variant == current_variant %} selected="selected" {%- endif -%}
+            >
+              {{ variant.title }}  {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+            </option>
+          {% endfor %}
+        </select>
+    </div>
+
+    <div class="group-all">
+      
+      {% include 'swatches_plp' %}
+
+      <input type="hidden"  name="quantity" value="1" min="1"  pattern="[0-9]*" required>
+      <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden{% if section.settings.enable_payment_button %} product-form__error-message-wrapper--has-payment-button{% endif %}"
+        data-error-message-wrapper
+        role="alert"
+      >
+        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+        {% include 'icon-error' %}
+        <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
+      </div>
+      <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %}  class="btn_light_second_outline product-form__cart-submit" data-add-to-cart>
+        <span data-add-to-cart-text >
+          {% unless current_variant.available %} sold out 
+            {% else %} 
+            {{ 'general.pages.move_to_bag' | t }}
+          {% endunless %}
+        </span>
+        <span class="hide" data-loader="">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-spinner" viewBox="0 0 20 20"><path d="M7.229 1.173a9.25 9.25 0 1 0 11.655 11.412 1.25 1.25 0 1 0-2.4-.698 6.75 6.75 0 1 1-8.506-8.329 1.25 1.25 0 1 0-.75-2.385z" fill="#919EAB"></path></svg>
+        </span>
+      </button>
+      <a href="#" class="BIS_trigger btn_light_second_outline" data-product-data="{{ product | json | escape }}">
+        notify me
+      </a>
+    </div>
+
+    {% endform %}
+    </div>
+        <script type="application/json" id="ProductJson-collection-form-{{ product.id }}">
+            {{ product | json }}
+        </script>
+    </div>
+    <script type="text/javascript">
+      var sectionss = new theme.Sections();
+      var sectionNames = 'collection-form-{{ product.id }}';
+      sectionss.register(sectionNames , theme.Product);
+    </script>

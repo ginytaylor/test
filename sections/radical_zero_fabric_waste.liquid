@@ -1,0 +1,74 @@
+<div class="block-radical block-radical-zero">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="h1 text-center d-flex d-flex-center">
+        <span class="col-8">
+          {{ section.settings.title }}
+          </span>
+      </h2>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+    <div class="block-radical-items slide-up">
+      <div class="grid">
+      {% for block in section.blocks %}
+      <div class="item grid__item col-6 col-md-4">
+          {% if block.settings.banner != blank %}
+          <div class="img-banner">
+            <img  class="lazyload" data-src="{{ block.settings.banner | img_url:'316x400' }}" src="{{ block.settings.banner | img_url:'2x' }}" alt="{{ block.settings.banner.alt }}">
+          </div>
+          {% endif %}
+          <div class="item-info">
+          {% if block.settings.title != blank %}
+          <h3 class="h3">
+            {{ block.settings.title }} 
+          </h3>
+          {% endif %}
+          {% if block.settings.desc != blank %}
+          <p class="p-large">
+            {{ block.settings.desc }} 
+          </p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "zero fabric waste",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "zero fabric waste"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "desc",
+          "label": "Short Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

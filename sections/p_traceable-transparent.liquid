@@ -1,0 +1,38 @@
+<div class="audaciously-sustainable">
+  {% include 'banner' , breakWord: 2, breakMobile: 4  %} 
+  {% include 'cms-video' %}
+</div>
+{% schema %}
+{
+  "name": "traceable transparent",
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "point",
+          "label": "Point"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "text"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_center",
+          "label": "Align center title",
+          "default": true
+        }
+    ]
+}
+
+{% endschema %}

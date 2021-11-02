@@ -1,0 +1,25 @@
+<div class="grid">
+	{% if section.settings.banner1 != blank %}
+		{% assign mobileImg = section.settings.mbanner1 | default: section.settings.banner1  %}
+		<div class="grid__item col-6 grid__image">
+			<div class="grid__image__container">
+				<picture>
+                  <source media="(min-width:1025px)" srcset="{{ section.settings.banner1 | img_url: '707x1040',crop: 'center' }}">
+                  <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ mobileImg | img_url: '768x470',crop: 'center' }}">
+                  <source media="(max-width:599px)" srcset="{{ mobileImg | img_url: '375x220',crop: 'center' }}">
+                  <img class="lazyload" data-src="{{ section.settings.banner1 | img_url: '707x1040',crop: 'center' }}" src="{{ section.settings.banner1 | img_url: '1x',crop: 'center' }}" alt="" />
+                </picture>
+				
+			</div>
+		</div>
+	{% endif %}
+	<div class="grid__item col-6 col-md-6">
+		<div class="grid__item__info grid__item__info_w">
+			<h2 class="h2 text-center">{{ 'general.size_quiz.title' | t }}</h2>
+			<p class="p-large text-center">{{ 'general.size_quiz.desc' | t }}</p>
+			<div class="btns">
+				<a href="#step2" class="btn_light_second next_step">{{ 'general.size_quiz.start' | t }}</a>
+			</div>
+		</div>
+	</div>
+</div>

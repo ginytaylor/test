@@ -1,0 +1,133 @@
+
+
+<div class="page-width grid-flex grid-flex-account">
+
+    <div class="grid">
+      <div class="grid__item col-8 col-md-8 col-small-6">
+        <div class="CustomerLoginForm myaccountPage">
+          <div class="section-header text-center form-vertical">
+            <h1 class="h2">{{ 'customer.account.title' | t }}</h1>
+            {{ 'layout.customer.log_out' | t | customer_logout_link }}
+          </div>
+
+          <div class="myaccount">
+            <div class="tab">
+              <button class="tablinks p-xsmall active" data-tab="myaccount__order-history">{{ 'customer.orders.title' | t }}</button>
+              <button class="tablinks p-xsmall" data-tab="myaccount__account-details">{{ 'customer.account.details' | t }}</button>
+              <button class="tablinks p-xsmall" data-tab="myaccount__account-wishlist">{{ 'customer.account.wishlist' | t }}</button>
+            </div>
+            <div class="tabs-content">
+              <div class="myaccount__order-history tabcontent" id="myaccount__order-history" style="display: block;">
+                {% paginate customer.orders by 50 %}
+                  {% if customer.orders.size != 0 %}
+                    {% assign co2 = 0 %}
+                    {% assign chem = 0 %}
+                    {% assign water = 0 %}
+                    {% assign fabric = 0 %}
+                    {% capture ordersHTML %}
+                      <p class="total-order h8">{{ 'customer.account.total' | t: order_count:  customer.orders.size }}</p>
+                      <div  class="responsive-table-orders">
+                        <tbody>
+                          {% for order in customer.orders %}
+                            <div class="order-item">
+                              <div class="order-item-top">
+                                <div class="h6"><span>{{ order.created_at | time_tag: format: 'date' }}</span><span>{{ 'customer.account.order_no' | t }}: {{ order.name }} </span></div>
+                                
+                              </div>
+                              <div class="order-item-bottom">
+                                <div class="order-images">
+                                  {% assign items = order.line_items %}
+                                  {% for line_item in items %}
+                                    {%- assign product = line_item.product -%}
+                                    {%- assign fields =  product.metafields.saleslayer -%}
+                                    {%- if fields.co2_kg  -%} 
+                                      {% assign  temp = fields.co2_kg | times: line_item.quantity %}
+                                      {% assign co2 = co2 | plus: temp  %}
+                                    {%- endif -%}
+
+                                    {%- if fields.chem_gram -%} 
+                                      {% assign  temp = fields.chem_gram | times: line_item.quantity %}
+                                      {% assign chem = chem | plus: temp  %}
+                                    {%- endif -%}
+
+                                    {%- if fields.h2o_litre -%} 
+                                      {% assign  temp = fields.h2o_litre | times: line_item.quantity %}
+                                      {% assign water = water | plus: temp  %}
+                                    {%- endif -%}
+
+                                    {%- if fields.waste_kg -%} 
+                                      {% assign  temp = fields.waste_kg | times: line_item.quantity %}
+                                      {% assign fabric = fabric | plus: temp  %}
+                                    {%- endif -%}
+                                    {% if forloop.index < 6 %}
+                                      <div class="item">
+                                          <a href="{{ line_item.url }}">
+                                            {{ line_item.image | img_url: '87x109' | img_tag }}
+                                          </a>
+                                      </div>
+                                    {% endif %}
+                                  {% endfor %}
+                                </div>
+                                <div class="order-info">
+                                  <div class="status p-medium">{{ order.fulfillment_status_label }}</div>
+                                  <span class="total-price h4">{{ order.total_price | money_without_trailing_zeros }}</span>
+                                  <a href="{{ order.customer_url }}" class="btn_light_second" aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}">
+                                  {{ 'customer.account.order_detail' | t }}</a>
+                                </div>
+                              </div>
+                              {% comment %}
+                              <div data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</div>
+                              {% endcomment %}
+                            </div>
+                          {% endfor %}
+                        </tbody>
+                      </div>
+                    {% endcapture %}
+                    <div class="reducing-planet-impact-account">
+                      <div class="h5 text-center block-title">{{ 'customer.account.planet_title' | t }}</div>
+                      <div class="reducing-planet-impact-content">
+                        <div class="item">
+                          <span class="icon-co2"></span>
+                          <strong class="h5">{{co2}} kg</strong>
+                          <p>CO2 eq</p>
+                        </div>
+                        <div class="item">
+                          <span class="icon-Sustainability_icons_outlined_H2O"></span>
+                          <strong class="h5">{{water}} litres</strong>
+                          <p>water</p>
+                        </div>
+                        <div class="item">
+                          <span class="icon-chemical"></span>
+                          <strong class="h5">{{chem}} units</strong>
+                          <p>CO2 eq</p>
+                        </div>
+                        <div class="item">
+                          <span class="icon-Sustainability_icons_outlined_fabric-waste"></span>
+                          <strong class="h5">{{fabric}} m</strong>
+                          <p>fabrics waste</p>
+                        </div>
+                      </div>
+                    </div>
+                    {{ ordersHTML }} 
+                    {% else %}
+                      <p class="h8">{{ 'customer.orders.none' | t }}</p>
+                    {% endif %}
+                    {%- if paginate.pages > 1 -%}
+                      {% include 'pagination', paginate: paginate %}
+                    {%- endif -%}
+                  
+                  
+                  
+                {% endpaginate %}
+              </div>
+              <div class="myaccount__account-details tabcontent" id="myaccount__account-details">
+                {% include 'account_address' %}
+              </div>
+              <div class="myaccount__account-details tabcontent" id="myaccount__account-wishlist">
+                <div class="my-wishlist"><div id="wishlistList" class="grid"></div></div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>  
+</div>

@@ -1,0 +1,104 @@
+
+{% if section.settings.show_box %}    
+    <div id="show-form-language"  data-section-id="geo" data-section-type="geo-section">
+      <div class="page-width">
+        <div class="grid">
+          <div class="grid__item col-8 col-md-8 col-small-6">
+          {%- form 'localization', class: 'selectors-form', id: 'localizationForm', data-disclosure-form: '' -%}
+              <div class="form-geo"> 
+                <span class="icon-close"></span>
+                  <div class="geo-title"><strong class="text-center h4">{{ 'sections.geo.title' | t }} </strong></div>
+                <div class="selectors-form__item">
+                  <h2 class=" visually-hidden" id="currency-heading-geo">
+                    {{ 'general.currency.dropdown_label' | t }}
+                  </h2>
+
+                  <div class="disclosure" data-disclosure-currency>
+                    <button type="button" data-country="FR" class="disclosure__toggle disclosure__toggle-currency" aria-expanded="false" aria-controls="currency-list-geo" aria-describedby="currency-heading-geo" data-disclosure-toggle data-text="">
+                      {% if form.current_currency.symbol and form.current_currency.symbol == '€' %} France |  {% endif %} {{ form.current_currency.iso_code }} {%- if form.current_currency.symbol -%}{{ form.current_currency.symbol }}{%- endif -%}
+                    </button>
+                    <ul id="currency-list-geo" class="disclosure-list" data-disclosure-list>
+                        {% for country in localization.available_countries %}
+                        <!-- or  country.iso_code == 'GB' -->
+                          {% if country.iso_code == 'ES'  or  country.iso_code == 'GB' or country.iso_code == 'FR' or  country.iso_code == 'DE'  or  country.iso_code == 'IT' %}
+                          <li class="disclosure-list__item ">
+                            <a class="disclosure-list__option" href="#"  data-value="{{country.currency.iso_code}}"  data-country="{{ country.iso_code }}"data-disclosure-option="" data-text="{{ country.name }} | {{country.currency.iso_code}} {{ country.currency.symbol }}">{{ country.name }} <span>&nbsp;|&nbsp;</span> {{country.currency.iso_code}} {{ country.currency.symbol }}</a>
+                          </li>
+                          {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <input type="hidden"  name="currency_code" id="CurrencySelectorGeo" value="{{ form.current_currency.iso_code }}" data-disclosure-input/>
+                  </div>
+                </div>
+            
+                <div class="selectors-form__item">
+                  <h2 class="visually-hidden" id="lang-heading-geo">
+                    {{ 'general.language.dropdown_label' | t }}
+                  </h2>
+
+                  <div class="disclosure" data-disclosure-locale>
+                    <button type="button" class="disclosure__toggle" aria-expanded="false" aria-controls="lang-list-geo" aria-describedby="lang-heading-geo" data-disclosure-toggle>
+                      {{ form.current_locale.name }}
+                    </button>
+                    <ul id="lang-list-geo" class="disclosure-list" data-disclosure-list>
+                      {% for locale in form.available_locales %}
+                      {% assign nameLocale = 'general.language.en' | t  %} 
+                        {% case locale.iso_code %}
+                        {% when 'fr' %}
+                          {% assign nameLocale = 'general.language.fr' | t  %} 
+                        {% when 'de' %}
+                          {% assign nameLocale = 'general.language.de' | t  %} 
+                        {% endcase %}
+                        <li class="disclosure-list__item {% if locale.iso_code == form.current_locale.iso_code %}disclosure-list__item--current{% endif %}">
+                          <a class="disclosure-list__option" href="#" lang="{{ locale.iso_code }}" {% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %} data-value="{{ locale.iso_code }}" data-disclosure-option data-text="{{ nameLocale }}">
+                            {{ nameLocale }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                    <input type="hidden" name="locale_code" id="LocaleSelectorGeo" value="{{ form.current_locale.iso_code }}" data-disclosure-input/>
+                  </div>
+                </div>
+              
+              <button type="submit" class=" geo__submit btn_light_second" name="commit">
+                <span class="newsletter__submit-text--large">go</span>
+                <span class="newsletter__submit-text--large hide">{{ 'sections.geo.update' | t }}</span>
+              </button>
+              </div>
+            {%- endform -%}
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+  //document.getElementsByName("commit").click();
+</script>
+{% endif %}
+{% if section.settings.background != blank %}
+<style>
+    .form-geo {
+      background-image: url({{- section.settings.background | img_url: 'master'-}});
+      background-size: cover;
+      background-position: center;
+    }
+</style>
+{% endif %}    
+{% schema %}
+{
+  "name": "GEO",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_box",
+      "label": "show Geo box",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    }
+  ]
+}
+{% endschema %}
+

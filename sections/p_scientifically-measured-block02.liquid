@@ -1,0 +1,87 @@
+<div class="block-radical">
+    <div class="page-width">
+        {% if section.settings.title != blank %}
+            <div class="d-flex d-flex-center">
+                <h2 class="h2 col-6 col-md-8 text-center slide-up">{{ section.settings.title }}</h2>
+            </div>    
+        {% endif %}
+        <div class="grid d-flex d-flex-right">
+            {% if section.settings.short_description != blank %}
+            <div class="grid__item short-desc p-large col-md-2 col-3 slide-up">
+                {{ section.settings.short_description }}
+            </div>
+            {% endif %}
+            <div class="grid__item col-6 col-md-6">
+            {% if section.blocks.size > 0 %}
+                    <div class="grid">
+                    {% for block in section.blocks %}
+                        <div class="grid__item col-4 col-md-3-ex col-small-2 text-center">
+                            <span class="icon slide-up {{ block.settings.icon }}"></span>
+                            {% if block.settings.text != blank %}
+                                <div class="planet-text slide-up">
+                                    <strong class="h3">{{ block.settings.text }}</strong>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    </div>
+            {% endif %}
+            
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "what have...?",
+  "class": "scientifically-measured-block02",
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title" ,
+          "default": "what have we done this year?"
+        },
+        {
+          "type": "richtext",
+          "id": "short_description",
+          "label": "Short Description"
+        }
+    ],
+    "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "icon",
+          "options": [
+            {
+              "value": "icon-co2",
+              "label": "CO2"
+            },
+            {
+              "value": "icon-h2o",
+              "label": "H20"
+            },
+            {
+              "value": "icon-chemical",
+              "label": "Chemical"
+            }
+          ],
+          "default": "icon-co2"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+    ]
+}
+{% endschema %}

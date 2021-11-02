@@ -1,0 +1,29 @@
+<div class="grid">
+	{% if section.settings.banner3 != blank %}
+		<div class="grid__item col-6 grid__image">
+			<div class="grid__image__container">
+				<video preload="auto" class="video-step3 {% if section.settings.mbanner3 != blank %} hide-mobile {% endif %}" src="{{ section.settings.banner3 }}"  autoplay loop muted playsinline ></video>
+	              
+               {% if section.settings.mbanner3!= blank %}
+	                <video preload="auto" class="hide-desktop video-step3" src="{{ section.settings.mbanner3 }}"  autoplay loop muted playsinline ></video>
+	            {% endif %}
+			</div>
+		</div>
+	{% endif %}
+	<div class="grid__item col-6 col-md-6">
+		<div class="grid__item__info  grid__item__info_w">
+			
+			<p class="p-large">{{ 'general.size_quiz.desc_step3' | t }}</p>
+			<h2 class="h3 text-center">{{ 'general.size_quiz.title_step3' | t }}</h2>
+			<p class="p-large">{{ 'general.size_quiz.subdesc_step3' | t }}</p>
+			<div class="inputs">
+				<input placeholder="{{ 'general.size_quiz.input_size' | t }}" name="mchest" type="number" />
+				<p class="noted p-xsmall">{{ 'general.size_quiz.note_step3' | t }}</p>
+			</div>
+			<div class="btns">
+				<a href="#step4" class="btn_light_second next_step">{{ 'general.size_quiz.next' | t }}</a>
+				<a href="#step2" class="back-step next_step">{{ 'general.size_quiz.prev' | t }}</a>
+			</div>
+		</div>
+	</div>
+</div>

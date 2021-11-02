@@ -1,0 +1,51 @@
+{% if section.blocks.size > 0 %}
+<div class="block-radical block-radical-journey">
+  {% include 'cms-journey' %}
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "a continuing journey",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "a continuing journey"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Short Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

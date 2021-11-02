@@ -1,0 +1,8 @@
+<div class="his-item grid__item col-5 col-md-4">
+    {% if block.settings.title != blank %}
+    <h4 class="h4">{{ block.settings.title }}</h4>
+    {% endif %}
+    {% if block.settings.desc != blank %}
+    <div class="p-large">{{ block.settings.desc }}</div>
+    {% endif %}
+</div>

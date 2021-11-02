@@ -1,0 +1,60 @@
+{% if section.blocks.size > 0 %}
+<div class="page-width">
+    <div class="block-title slide-up">
+        {% if section.settings.title != blank %}
+        <h2 class="h2">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.button_link != blank and section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn_light btn_light_large">{{ section.settings.button_label }}</a>
+        {% endif %}
+    </div>
+    
+    <div class="article-list ">
+        <div class="grid">
+            {% for block in section.blocks %}
+                <div class="grid__item col-4 col-md-4 slide-up">
+                    {% assign article = articles[block.settings.article] %}
+                    {% include 'article', article: article %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Audaciously Article",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Article",
+      "name": "Article",
+      "settings": [
+            {
+                "type": "article",
+                "id":"article",
+                "label": "Article"
+            }
+      ]
+    }
+  ]
+}
+{% endschema %}

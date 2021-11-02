@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+    <link rel="shortcut icon" href="{{ '20210709_scandale_favicon.svg' | asset_url }}" type="image/png">
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    {% include 'css' %}
+    <link rel="stylesheet" type="text/css" href="{{ 'checkout.css' | asset_url }}">
+
+    <!-- Hotjar Tracking Code for https://scandale-dev.myshopify.com/ -->
+    <script>
+    (function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:2442255,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-202542273-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-202542273-1');
+    </script>
+
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W34H8J8');</script>
+    <!-- End Google Tag Manager -->
+ 
+    <script>
+        let checkoutNoted = 'Note: We are experiencing longer than normal transit times. If this order requires timely delivery, please select an Expedited or Priority Shipping method.';
+    </script>
+  
+  </head>
+  <body>
+    {% if first_time_accessed %}
+        <div class="thank-you-page-confirm ">
+            {{ content_for_logo }}
+            <p class="order-name">order number: {{ order.name }}</p>
+            <div class="h1">thank you</div>
+            <div class="desc">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</div>
+            <div class="btns">
+                <a href="/">enjoy shopping</a>
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="page-content">
+        {{ skip_to_content_link }}
+        <header class="banner" data-header role="banner">
+          <div class="wrap">
+            {{ content_for_logo }}
+
+          </div>
+        </header>
+        {{ order_summary_toggle }}
+        <div class="content" data-content>
+          <div class="wrap">
+            <div class="main">
+              <header class="main__header" role="banner">
+                {{ content_for_logo }}
+                {{ breadcrumb }}
+                {{ alternative_payment_methods }}
+              </header>
+              <main class="main__content" role="main">
+                {{ content_for_layout }}
+              </main>
+            </div>
+            <aside class="sidebar" role="complementary">
+              <div class="sidebar__header">
+                {{ content_for_logo }}
+              </div>
+              <div class="sidebar__content">
+                {{ content_for_order_summary }}
+              </div>
+            </aside>
+          </div>
+        </div>
+        
+        {{ tracking_code }}
+    </div>    
+    <div class="footer-copyright">
+      <div class="page-width">© 2021 scandale. all rights reserved.</div>
+    </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W34H8J8"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <script src="{{ 'checkout.js' | asset_url }}"></script>
+    <script>
+      function discountHTML(){
+        
+        {%- capture discountHTML -%}
+        {%- for discount_application in checkout.discount_applications -%}<tr class="total-line total-line--reduction" data-discount-type="percentage"><th class="total-line__name" scope="row"><span>Discount</span><span class="reduction-code"><svg class="icon-svg icon-svg--color-adaptive-light icon-svg--size-18 reduction-code__icon" aria-hidden="true" focusable="false"> <use xlink:href="#tags-filled"></use> </svg><span class="reduction-code__text">{{- discount_application.title -}}</span></span></th><td class="total-line__price"><span class="order-summary__emphasis skeleton-while-loading" aria-hidden="true" data-checkout-discount-amount-target="{{- discount_application.total_allocated_amount -}}">-{{- discount_application.total_allocated_amount | money_without_trailing_zeros -}}</span></td></tr>
+        {%- endfor -%}
+        {%- endcapture -1%}
+        $('.total-line--reduction').remove();
+        var HTML = '{{- discountHTML -}}';
+        $(HTML).insertAfter('.total-line-table .total-line--subtotal')
+      }
+      function optionList(){
+        var variantOptions = $('.order-summary__section__content .product__description__variant');
+        var logo = "{{ 'logo_tag.svg' | asset_url  }}";
+        $('.logo__image').attr('src',logo);
+        {%- for item in checkout.line_items -%}
+        var variantOption = variantOptions[{{- forloop.index | minus: 1 -}}];
+          {%- assign variant_options = 'template ' | split: ' ' -%}
+          {%- if item.product.has_only_default_variant != true -%}
+            {%- assign variant_options = item.options_with_values -%}
+          {%- endif -%}
+          {%- assign sizeOptions = '' - %}
+          {%- capture variantOptionHTML -%}
+          {%- for option in variant_options -%}
+            {%- assign optionName = option.name | downcase -%}
+            {%- if optionName  contains 'size' -%}
+                {%- assign checkHasSize = false  -%}
+                {%- assign optionValues = option.value | split: '/' -%}
+                {%- assign optionValuesHTML = '' -%}
+                {%- if optionValues.size > 1 -%}
+                    {%- for op in optionValues -%}
+                        {%- if op != '0' -%}
+                    {%- capture myOp -%}
+                    <span class="lang_{{- forloop.index -}}">{{- op -}}</span>
+                  {%- endcapture -%}
+                  {%- assign optionValuesHTML = optionValuesHTML | append: myOp -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {%- assign sizeOptions = sizeOptions | append: ',' | append:  optionValuesHTML -%}
+                {%- else -%}
+                    {%- assign sizeOptions = sizeOptions | append: ',' | append:  option.value -%}
+                {%- endif -%}
+            {%- endif -%}
+            {%- unless optionName  contains 'size' -%}<span><span>{{- option.name -}}</span><span>{{- option.value -}}</span></span>{%-endunless -%}{%- endfor -%}{%- if sizeOptions != '' -%}<span><span>size</span><span> {{- sizeOptions | split: ',' | join: '' -}}</span></span>{%- endif -%}{%- endcapture -%}
+          $(variantOption).html('{{- variantOptionHTML -}}');
+        {%- endfor -%}
+      }
+      discountHTML();
+      optionList();
+      $(document).on("page:load page:change", function() {
+        optionList();
+        discountHTML();
+      })
+    </script>
+  </body>
+
+</html>

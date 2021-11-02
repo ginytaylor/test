@@ -1,0 +1,64 @@
+{%- if cart.item_count > 0 -%}
+<div class="reducing-planet-impact">
+	<div class="block-title h6">{{ "general.cart.reducing" | t }}</div>
+	<div id="reducing-planet-impact">
+		<div class="list-attr">
+			{% assign co2 = 0 %}
+			{% assign chem = 0 %}
+			{% assign water = 0 %}
+			{% assign fabric = 0 %}
+
+			{%- for item in cart.items -%}
+				{%- assign product = item.product -%}
+				{%- assign fields =  product.metafields.saleslayer -%}
+				  	
+	  			{%- if fields.co2_kg  -%} 
+	  				{% assign  temp = fields.co2_kg | times: item.quantity %}
+		  			{% assign co2 = co2 | plus: temp  %}
+	  			{%- endif -%}
+
+	  			{%- if fields.chem_gram -%} 
+	  				{% assign  temp = fields.chem_gram | times: item.quantity %}
+	  				{% assign chem = chem | plus: temp  %}
+	  			{%- endif -%}
+
+	  			{%- if fields.h2o_litre -%} 
+	  				{% assign  temp = fields.h2o_litre | times: item.quantity %}
+		  			{% assign water = water | plus: temp  %}
+	  			{%- endif -%}
+
+	  			{%- if fields.waste_kg -%} 
+	  				{% assign  temp = fields.waste_kg | times: item.quantity %}
+		  			{% assign fabric = fabric | plus: temp  %}
+	  			{%- endif -%}
+			{%- endfor -%}
+			<div class="block-item" data-re-item-index="{{ forloop.index }}">
+		  		<div class="item">
+	  				<span class="icon-co2"></span>
+	  				<span>
+		  				<strong><span data-re-co>{{ co2 }}</span> kg</strong> {{ 'general.cart.co2_eq' | t }}
+		  			</span>
+	  			</div>
+  				<div class="item">
+	  				<span class="icon-chemical"></span>
+	  				<span>
+		  				<strong><span data-re-chem>{{ chem }}</span> g</strong> {{ 'general.cart.p04_eq' | t }}
+  					</span>
+	  			</div>
+	  			<div class="item">
+	  				<span class="icon-Sustainability_icons_outlined_H2O"></span>
+	  				<span>
+	  					<strong><span data-re-water>{{ water }}</span> litres</strong> {{ 'general.cart.water' | t }}
+	  				</span>
+	  			</div>
+	  			<div class="item">
+	  				<span class="icon-Sustainability_icons_outlined_fabric-waste"></span> 
+	  				<span>
+	  					<strong><span data-re-fabric>{{ fabric }}</span> m </strong>{{ 'general.cart.fabric_waste' | t }}
+	  				</span>
+	  			</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%- endif -%}

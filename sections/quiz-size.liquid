@@ -1,0 +1,69 @@
+<div class="popup-page" id="quiz-size">
+    <div class="page-width">
+        <div class="quiz-size-content">
+            <span class="icon-close"></span>
+            <div id="step1" class="step">
+                {% include 'quiz-size-step-1' %}
+            </div>
+            <div id="step2" class="step">
+                {% include 'quiz-size-step-2' %}
+            </div>
+            <div id="step3" class="step">
+                {% include 'quiz-size-step-3' %}
+            </div>
+            <div id="step4" class="step">
+                {% include 'quiz-size-step-4' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quiz size",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner1",
+      "label": "Banner of Step 1"   
+    },
+    {
+      "type": "image_picker",
+      "id": "mbanner1",
+      "label": "mobile Banner of Step 1"  
+    },
+    {
+      "type": "url",
+      "id": "banner2",
+      "label": "Video of Step 2" 
+    },
+    {
+      "type": "url",
+      "id": "mbanner2",
+      "label": "[mobile] video of Step 2"
+    },
+    {
+      "type": "url",
+      "id": "banner3",
+      "label": "Video of Step 3" 
+    },
+    {
+      "type": "url",
+      "id": "mbanner3",
+      "label": "[mobile] video of Step 3"
+    },
+    {
+      "type": "url",
+      "id": "banner4",
+      "label": "Banner of Step 4"
+      
+    },
+    {
+      "type": "url",
+      "id": "mbanner4",
+      "label": "mobile Banner of Step 4"
+      
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1032 @@
+<div class="info-left">
+	{% assign fields =  product.metafields.saleslayer %}
+	{% assign show_tabsu = false %}
+	{% assign show_tabdes =  false %}
+	{% assign show_tabfa = false %}
+	<!-- Tab links -->
+	
+	{% capture data_content %}
+	<!-- Tab content -->
+
+	<div class="tabs-content">
+		{% if fields.panet_score or fields.people_score or fields.transparency_score or fields.circularity_store %}
+			{% assign show_tabsu = true %}
+			<div class="tabs-title hide first-tab">
+				<button class="tablinks p-xsmall" data-tab="sustainability">sustainability<span class="icon-plus"></span></button>
+			</div>
+			<div id="sustainability" class="tabcontent" style="display: block;">
+				<!-- circularity at our core -->
+				{% if fields.circularity_store %}
+				  	<div class="tab-v active">
+				  		<div class="tab-title">
+				  			<span class="score">
+				  				<svg viewBox="0 0 36 36" class="circular">
+							      	<path class="circle-bg"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							      <path class="circle"
+							        stroke-dasharray="{{ fields.circularity_store | times: 10 }}, 100"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							    </svg>
+							    <span class="percentage">{{ fields.circularity_store | plus: 0 | divided_by: 1.0 }}</span>
+		    				</span>
+				  			<span class="title h6">
+				  				circularity
+				  				<span class="p-xsmall"><em class="cl-red">i am</em> made from previous life fibres</span>
+				  			</span>
+				  			<span class="icon-plus"></span>
+				  		</div>
+				  		<div class="tab-v-content">
+				  			{% if fields.circularity_percentage  %} 
+					  			<div class="item">
+					  				<span class="icon-Sustainability_icons_outlined_eco-fabric"></span>
+					  				<span>
+						  				<strong> {{ fields.circularity_percentage}}% </strong>of my fabrics come from previous life*
+					  				</span>
+					  				
+					  			</div>
+				  			{% endif %}
+				  		</div>
+				  	</div>
+			 	{% endif %}
+			  	<!-- PLANET TAB -->
+			  	{% if fields.panet_score %}
+				  	<div class="tab-v ">
+				  		<div class="tab-title">
+				  			<span class="score">
+				  				<svg viewBox="0 0 36 36" class="circular">
+							      	<path class="circle-bg"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							      <path class="circle"
+							        stroke-dasharray="{{ fields.panet_score | times: 10 }}, 100"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							    </svg>
+							    <span class="percentage">{{ fields.panet_score | plus: 0 | divided_by: 1.0 }}</span>
+		    				</span>
+				  			<span class="title h6">
+				  				planet in mind
+				  				<span class="p-xsmall"><em class="cl-red">i am</em> made with 100% éco-fabrics</span>
+				  			</span>
+				  			<span class="icon-plus"></span>
+				  		</div>
+				  		<div class="tab-v-content">
+				  			{% if fields.co2_km or fields.co2_kg or field.co2_saved  %} 
+					  			<div class="item">
+					  				
+					  				<span class="hide-small">
+
+					  				{% capture co2 %}
+						  				<span class="hide-hover" >
+						  					<span class="icon-Sustainability_icons_outlined_CO2"></span>
+							  				{% if fields.co2_kg %}
+							  					<strong> {{ fields.co2_kg }}kg </strong>CO2 eq
+							  				{% endif %}
+							  				{% if fields.co2_saved %}
+							  					,<strong> {{ fields.co2_saved }}% </strong>preserved
+							  				{% endif %}
+							  			</span>
+							  			<span class="show-hover">
+						  				{% if fields.co2_km %}
+						  					<span class="icon-Sustainability_icons_outlined_lightbulb"></span>
+							  				<strong> = {{ fields.co2_km }} <span> hours of light bulbs on (LED) preserved</span> </strong>  
+						  				{% endif %}
+						  				</span>
+					  				{% endcapture %}
+					  				{{ co2 }}
+					  				</span>
+					  				<span class="show-small">
+						  				<span>
+						  					<span class="icon-Sustainability_icons_outlined_CO2"></span>
+						  					<span>
+								  				{% if fields.co2_kg %}
+								  					<strong> {{ fields.co2_kg }}</strong>kg CO2 e
+								  				{% endif %}
+								  				{% if fields.co2_saved %}
+								  					,<strong> {{ fields.co2_saved }}% </strong>preserved
+								  				{% endif %}
+								  				<br />
+								  				{% if fields.co2_km %}
+									  				<strong> = {{ fields.co2_km }}</strong><span> hours of light bulbs on (LED) preserved</span>  
+								  				{% endif %}  
+								  			</span>
+						  				</span>
+					  				</span>
+					  			</div>
+				  			{% endif %}
+				  			{% if fields.h2o_litre or fields.h2o_saved or field.h2o_day  %} 
+					  			<div class="item">
+					  				
+					  				<span class="hide-small">
+					  				{% capture h2o %}
+					  					<span class="hide-hover" >
+					  						<span class="icon-Sustainability_icons_outlined_H2O"></span>
+							  				{% if fields.h2o_litre %}
+							  					<strong>{{ fields.h2o_litre }}L </strong> <span> of water</span> 
+							  				{% endif %}
+							  				{% if fields.h2o_saved %}
+							  					,<strong> {{ fields.h2o_saved }}% </strong>preserved
+							  				{% endif %}
+							  			</span>
+						  				<span class="show-hover">
+
+						  					{% if fields.water_glasses %}
+						  					<span class="icon-Sustainability_icons_outlined_water-glass"></span>
+							  				<strong>= {{ fields.water_glasses }} <span>glasses</span></strong> of water preserved 
+							  				{% else %}
+							  					<span class="icon-Sustainability_icons_outlined_H2O"></span>
+								  				{% if fields.h2o_litre %}
+								  					<strong>{{ fields.h2o_litre }}L </strong> <span> of water</span>
+								  				{% endif %}
+								  				{% if fields.h2o_saved %}
+								  					,<strong> {{ fields.h2o_saved }}% </strong> preserved
+								  				{% endif %}
+							  				{% endif %}
+							  			</span>
+					  				{% endcapture %}
+					  				{{ h2o }}
+					  				</span>
+					  				<span class="show-small">
+					  					<span>
+					  						<span class="icon-Sustainability_icons_outlined_H2O"></span>
+					  						<span>
+					  							{% if fields.h2o_litre %}
+							  					<strong>{{ fields.h2o_litre }}</strong>L <span>of water</span> 
+								  				{% endif %}
+								  				{% if fields.h2o_saved %}
+								  					,<strong> {{ fields.h2o_saved }}% </strong> preserved
+								  				{% endif %} <br/>
+								  				{% if fields.water_glasses %}
+								  				<strong>= {{ fields.water_glasses }}</strong> glasses of water preserved
+								  				{% endif %}
+					  						</span>
+					  					</span>
+					  				</span>
+					  			</div>
+				  			{% endif %}
+
+				  			{% if fields.chem_gram or fields.chem_saved or field.chem_tomato  %} 
+				  				<div class="item">
+					  				
+					  				<span class="hide-small">
+					  				{% capture chemical %}
+					  					<span class="hide-hover" >
+					  						<span class="icon-Sustainability_icons_outlined_chemical-3"></span>
+							  				{% if fields.chem_gram %}
+							  					<strong>{{ fields.chem_gram }}g </strong>PO4 eq  
+							  				{% endif %}
+							  				{% if fields.chem_saved %}
+							  					,<strong> {{ fields.chem_saved }}% </strong>preserved
+							  				{% endif %}
+							  			</span>
+							  			<span class="show-hover">
+							  				<span class="icon-Sustainability_icons_outlined_tomato"></span>
+							  				{% if fields.chem_tomato %}
+								  				= <span>nutrients for </span> <strong class="tomatoes">{{fields.chem_tomato}} <span>tomatoes</span> </strong>
+							  				{% endif %} preserved
+							  			</span>
+						  				
+					  				{% endcapture %}
+					  				{{ chemical  }}
+					  				</span>
+					  				<span class="show-small">
+					  					<span>
+					  						<span class="icon-Sustainability_icons_outlined_chemical-3"></span>
+					  						<span>
+					  							{% if fields.chem_gram %}
+								  					<strong>{{ fields.chem_gram }}</strong>g PO4 eq  
+								  				{% endif %}
+								  				{% if fields.chem_saved %}
+								  					,<strong> {{ fields.chem_saved }}% </strong>preserved
+								  				{% endif %}<br />
+								  				{% if fields.chem_tomato %}
+								  				= <span>nutrients for </span> <strong class="tomatoes"> {{fields.chem_tomato}} </strong> <span>tomatoes preserved</span>
+							  				{% endif %}
+					  						</span>
+					  					</span>
+					  				</span>
+					  			</div>
+				  			{% endif %}
+				  			{% if fields.waste_tshirt or fields.waste_kg or field.waste_saved  %} 
+					  			<div class="item">
+					  				
+					  				<span class="hide-small">
+					  				{% capture fabric %}
+					  					<span class="hide-hover" >
+					  						<span class="icon-Sustainability_icons_outlined_fabric-waste"></span>
+							  				{% if fields.waste_kg %}
+							  					zero fabric waste
+							  				{% endif %}
+							  			</span>
+						  				<span class="show-hover">
+						  					<span class="icon-Sustainability_icons_outlined_fabric-waste"></span>
+							  				recycled for a 2nd life
+							  			</span>
+					  				{% endcapture %}
+					  				{{ fabric }}
+					  				</span>
+					  				<span class="show-small">
+					  					<span>
+					  						<span class="icon-Sustainability_icons_outlined_fabric-waste"></span>
+					  						{% if fields.waste_kg %}
+							  					zero fabric waste
+							  				{% endif %}<br/>
+							  				recycled for a 2nd life
+					  					</span>
+					  				</span>
+					  			</div>
+				  			{% endif %}
+				  		</div>
+				  	</div>
+			  	{% endif %}
+			  	<!-- PEOPLE TAB -->
+			  	{% if fields.people_score %}
+				  	<div class="tab-v">
+				  		<div class="tab-title">
+				  			<span class="score">
+				  				<svg viewBox="0 0 36 36" class="circular">
+							      	<path class="circle-bg"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							      <path class="circle"
+							        stroke-dasharray="{{ fields.people_score | times: 10 }}, 100"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							    </svg>
+							    <span class="percentage">{{ fields.people_score | plus: 0 | divided_by: 1.0 }}</span>
+		    				</span>
+				  			<span class="title h6">
+				  				people in mind
+				  				<span class="p-xsmall"><em class="cl-red">i am</em> ethically produced</span>
+				  			</span>
+				  			<span class="icon-plus"></span>
+				  		</div>
+				  		<div class="tab-v-content">
+				  			{% if fields.people_behind %} 
+					  			<div class="item">
+					  				<span class="icon-Sustainability_icons_outlined_people"></span>
+					  				<span class="hide-small">
+					  					<span class="hide-hover" ><strong>{{ fields.people_behind }} <span>people</span> </strong> behind </span>
+					  					<span class="show-hover" >commit to safe & better living conditions</span>
+					  				</span>
+					  				<span class="show-small">
+					  					<strong>{{ fields.people_behind }}  </strong>people behind<br/>
+					  					commit to safe & better living conditions
+					  				</span>
+					  			</div>
+				  			{% endif %}
+				  			{% if fields.people_process %} 
+					  			<div class="item">
+					  				<span class="icon-Sustainability_icons_outlined_Process"></span>
+					  				<span class="hide-small">
+						  				<span class="hide-hover">
+						  					<strong>{{ fields.people_process }} <span>process</span></strong> from design to you 
+						  				</span>
+						  				<span class="show-hover">ethically designed & produced</span>
+						  			</span>
+						  			<span class="show-small">
+						  				<strong>{{ fields.people_process }} </strong>process from design to you <br/>
+						  				ethically designed & produced
+						  			</span>
+					  			</div>
+				  			{% endif %}
+				  		</div>
+				  	</div>
+			  	{% endif %}
+
+			  	{% if fields.transparency_score %}
+				  	<div class="tab-v">
+				  		<div class="tab-title">
+				  			<span class="score">
+				  				<svg viewBox="0 0 36 36" class="circular">
+							      	<path class="circle-bg"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							      <path class="circle"
+							        stroke-dasharray="{{ fields.transparency_score | times: 10 }}, 100"
+							        d="M18 2.0845
+							          a 15.9155 15.9155 0 0 1 0 31.831
+							          a 15.9155 15.9155 0 0 1 0 -31.831"
+							      />
+							    </svg>
+							    <span class="percentage">{{ fields.transparency_score | plus: 0 | divided_by: 1.0 }}</span>
+		    				</span>
+				  			<span class="title h6">
+				  				transparency
+				  				<span class="p-xsmall"><em class="cl-red">i am</em> traceable</span>
+				  			</span>
+				  			<span class="icon-plus"></span>
+				  		</div>
+				  		<div class="tab-v-content">
+				  			{% if fields.transparency_km %} 
+					  			<div class="item">
+					  				<span class="icon-Sustainability_icons_outlined_shipping"></span>
+					  				<span class="hide-small">
+						  				<span class="hide-hover">
+						  					<!--<strong>{{ fields.transparency_km | times: 100 | money_without_currency | remove: ',00' | replace: '.', ','  }}km </strong> from origin to warehouse-->
+                                          <strong>{{ fields.transparency_km | times: 100 | money_without_currency | remove: '.00' }}km </strong> from origin to warehouse
+						  				</span>
+						  				<span class="show-hover">with sustainability commitments</span>
+						  			</span>
+						  			<span class="show-small">
+						  				<!--<strong>{{ fields.transparency_km |  times: 100 | money_without_currency | remove: ',00' | replace: '.', ','  }} </strong>km from origin to warehouse <br/>-->
+                                      <strong>{{ fields.transparency_km |  times: 100 | money_without_currency | remove: '.00' }} </strong>km from origin to warehouse <br/>
+						  				with sustainability commitments
+						  			</span>
+					  			</div>
+				  			{% endif %}
+				  			{% if fields.tranparency_factory_location %} 
+					  			<div class="item">
+					  				<span class="icon-Sustainability_icons_outlined_warehouse"></span>
+					  				<span class="hide-small">
+						  				<span class="hide-hover">ethically produced in {{ fields.tranparency_factory_location }}</span>
+						  				{% if fields.transparency_factory_url %} 
+								  			<span class="show-hover"><a href="{{ fields.transparency_factory_url }}" target="_blank">visit the factory</a> for supply chain traceability</span>
+								  		{% else %}
+								  		<span class="show-hover">ethically produced in {{ fields.tranparency_factory_location }}</span>	
+							  			{% endif %}
+						  			</span>
+						  			<span class="show-small">
+						  				<span>ethically produced in {{ fields.tranparency_factory_location }}</span>
+						  				{% if fields.transparency_factory_url %} 
+								  			<span><a href="{{ fields.transparency_factory_url }}" target="_blank">visit the factory</a> for supply chain traceability</span>
+							  			{% endif %}
+						  			</span>
+					  			</div>
+				  			{% endif %}
+				  			
+				  		</div>
+				  	</div>
+			  	{% endif %}
+			  	<div class=" certified">powered by <span class="h8">BCOME</span> (*scandale internal assessments)</div>
+			</div>
+		{% endif %}
+		{% if  product.description and  product.description != blank %}
+			{% assign show_tabdes =  true %}
+			<div class="tabs-title hide">
+				<button class="tablinks p-xsmall" data-tab="description">{{ 'products.product.description' | t }}<span class="icon-plus"></span></button>
+			</div>
+			<div id="description" class="tabcontent">
+			  <div class="p-xsmall">{{ product.description }}</div>
+			</div>
+		{% endif %}
+		{% if fields.fabric or fields.fabric_set1 or fields.fabric_set2 or fields.fabric_set3 or fields.fabric_set4 %}
+			{% assign show_tabfa = true %}
+			<div class="tabs-title hide">
+				<button class="tablinks p-xsmall" data-tab="fabric">{{ 'products.product.detail' | t }}<span class="icon-plus"></span></button>
+			</div>
+			<div id="fabric" class="tabcontent">
+			  {% if fields.fabric %}
+			  	<div class="p-xsmall fabric-desc"> {{ fields.fabric }} </div>
+			  	<div class="fabric-items">
+			  		{% if fields.fabric_set1 %}
+			  			{% assign fab = fields.fabric_set1 | plus: 0 %}
+			  			<div class="item">
+			  				{% case fab %}
+							  {% when 1 %}
+							    {% if section.settings.icon1 != blank %}
+							    	<img src="{{ section.settings.icon1 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title1 != blank %}
+								    	{{ section.settings.title1 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description1 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description1}}</span>
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 2 %}
+							    {% if section.settings.icon2 != blank %}
+							    	<img src="{{ section.settings.icon2 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_polyester"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title2 != blank %}
+								    	{{ section.settings.title2 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description2 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description2}}</span>
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 3 %}
+							    {% if section.settings.icon3 != blank %}
+							    	<img src="{{ section.settings.icon3 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title3 != blank %}
+								    	{{ section.settings.title3 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description3 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description3}}</span>
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 4 %}
+							  	{% if section.settings.icon4 != blank %}
+							  		<img src="{{ section.settings.icon4 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title4 != blank %}
+								    	{{ section.settings.title4 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description4 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description4}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+							    </span>
+							  {% when 5 %}
+							  	{% if section.settings.icon5 != blank %}
+							  		<img src="{{ section.settings.icon5 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title5 != blank %}
+								    	{{ section.settings.title5 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description5 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description5}}</span>
+								    	
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 6 %}
+							  	{% if section.settings.icon6 != blank %}
+							  		<img src="{{ section.settings.icon6 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title6 != blank %}
+								    	{{ section.settings.title6 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description6 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description6}}</span>
+								    	
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 7 %}
+							  	{% if section.settings.icon7 != blank %}
+							  		<img src="{{ section.settings.icon7 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title7 != blank %}
+								    	{{ section.settings.title7 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description7 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description7}}</span>
+								    	
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 8 %}
+							  	{% if section.settings.icon8 != blank %}
+							  		<img src="{{ section.settings.icon8 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title8 != blank %}
+								    	{{ section.settings.title8 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description8 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description8}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+								</span>
+							{% endcase %}
+			  			</div>
+			  		{% endif %}
+			  		{% if fields.fabric_set2 %}
+			  			{% assign fab = fields.fabric_set2 | plus: 0 %}
+			  			<div class="item">
+			  				{% case fab %}
+							  {% when 1 %}
+							    {% if section.settings.icon1 != blank %}
+							    	<img src="{{ section.settings.icon1 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title1 != blank %}
+								    	{{ section.settings.title1 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description1 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description1}}</span>
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 2 %}
+							    {% if section.settings.icon2 != blank %}
+							    	<img src="{{ section.settings.icon2 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_polyester"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title2 != blank %}
+								    	{{ section.settings.title2 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description2 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description2}}</span>
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 3 %}
+							    {% if section.settings.icon3 != blank %}
+							    	<img src="{{ section.settings.icon3 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title3 != blank %}
+								    	{{ section.settings.title3 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description3 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description3}}</span>
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 4 %}
+							  	{% if section.settings.icon4 != blank %}
+							  		<img src="{{ section.settings.icon4 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title4 != blank %}
+								    	{{ section.settings.title4 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description4 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description4}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+							    </span>
+							  {% when 5 %}
+							  	{% if section.settings.icon5 != blank %}
+							  		<img src="{{ section.settings.icon5 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title5 != blank %}
+								    	{{ section.settings.title5 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description5 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description5}}</span>
+								    	
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 6 %}
+							  	{% if section.settings.icon6 != blank %}
+							  		<img src="{{ section.settings.icon6 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title6 != blank %}
+								    	{{ section.settings.title6 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description6 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description6}}</span>
+								    	
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 7 %}
+							  	{% if section.settings.icon7 != blank %}
+							  		<img src="{{ section.settings.icon7 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title7 != blank %}
+								    	{{ section.settings.title7 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description7 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description7}}</span>
+								    	
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 8 %}
+							  	{% if section.settings.icon8 != blank %}
+							  		<img src="{{ section.settings.icon8 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title8 != blank %}
+								    	{{ section.settings.title8 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description8 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description8}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+								</span>
+							{% endcase %}
+			  			</div>
+			  		{% endif %}
+			  		{% if fields.fabric_set3 %}
+			  			{% assign fab = fields.fabric_set3 | plus: 0 %}
+			  			<div class="item">
+			  				{% case fab %}
+							  {% when 1 %}
+							    {% if section.settings.icon1 != blank %}
+							    	<img src="{{ section.settings.icon1 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title1 != blank %}
+								    	{{ section.settings.title1 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description1 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description1}}</span>
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 2 %}
+							    {% if section.settings.icon2 != blank %}
+							    	<img src="{{ section.settings.icon2 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_polyester"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title2 != blank %}
+								    	{{ section.settings.title2 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description2 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description2}}</span>
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 3 %}
+							    {% if section.settings.icon3 != blank %}
+							    	<img src="{{ section.settings.icon3 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title3 != blank %}
+								    	{{ section.settings.title3 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description3 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description3}}</span>
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 4 %}
+							  	{% if section.settings.icon4 != blank %}
+							  		<img src="{{ section.settings.icon4 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title4 != blank %}
+								    	{{ section.settings.title4 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description4 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description4}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+							    </span>
+							  {% when 5 %}
+							  	{% if section.settings.icon5 != blank %}
+							  		<img src="{{ section.settings.icon5 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title5 != blank %}
+								    	{{ section.settings.title5 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description5 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description5}}</span>
+								    	
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 6 %}
+							  	{% if section.settings.icon6 != blank %}
+							  		<img src="{{ section.settings.icon6 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title6 != blank %}
+								    	{{ section.settings.title6 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description6 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description6}}</span>
+								    	
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 7 %}
+							  	{% if section.settings.icon7 != blank %}
+							  		<img src="{{ section.settings.icon7 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title7 != blank %}
+								    	{{ section.settings.title7 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description7 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description7}}</span>
+								    	
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 8 %}
+							  	{% if section.settings.icon8 != blank %}
+							  		<img src="{{ section.settings.icon8 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title8 != blank %}
+								    	{{ section.settings.title8 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description8 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description8}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+								</span>
+							{% endcase %}
+			  			</div>
+			  		{% endif %}
+			  		{% if fields.fabric_set4 %}
+			  			{% assign fab = fields.fabric_set4 | plus: 0 %}
+			  			<div class="item">
+			  				{% case fab %}
+							  {% when 1 %}
+							    {% if section.settings.icon1 != blank %}
+							    	<img src="{{ section.settings.icon1 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title1 != blank %}
+								    	{{ section.settings.title1 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description1 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description1}}</span>
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 2 %}
+							    {% if section.settings.icon2 != blank %}
+							    	<img src="{{ section.settings.icon2 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_polyester"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title2 != blank %}
+								    	{{ section.settings.title2 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description2 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description2}}</span>
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 3 %}
+							    {% if section.settings.icon3 != blank %}
+							    	<img src="{{ section.settings.icon3 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title3 != blank %}
+								    	{{ section.settings.title3 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description3 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description3}}</span>
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 4 %}
+							  	{% if section.settings.icon4 != blank %}
+							  		<img src="{{ section.settings.icon4 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title4 != blank %}
+								    	{{ section.settings.title4 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description4 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description4}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+							    </span>
+							  {% when 5 %}
+							  	{% if section.settings.icon5 != blank %}
+							  		<img src="{{ section.settings.icon5 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title5 != blank %}
+								    	{{ section.settings.title5 }}
+								    {% else %}
+								    	recycled Nylon
+								    {% endif %}
+								    {% if section.settings.description5 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description5}}</span>
+								    	
+								    {% else %}
+								    	Our recycled nylon is upcycled from yarn & chip wastes from Taiwan.
+								    {% endif %}
+							    </span>
+							  {% when 6 %}
+							  	{% if section.settings.icon6 != blank %}
+							  		<img src="{{ section.settings.icon6 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title6 != blank %}
+								    	{{ section.settings.title6 }}
+								    {% else %}
+								    	recycled Polyester
+								    {% endif %}
+								    {% if section.settings.description6 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description6}}</span>
+								    	
+								    {% else %}
+								    	Our recycled polyester is upcycled from post-consumer PET bottles from Japan & Thailand.
+								    {% endif %}
+							    </span>
+							  {% when 7 %}
+							  	{% if section.settings.icon7 != blank %}
+							  		<img src="{{ section.settings.icon7 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-recycled_spandex"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title7 != blank %}
+								    	{{ section.settings.title7 }}
+								    {% else %}
+								    	recycled Spandex
+								    {% endif %}
+								    {% if section.settings.description7 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description7}}</span>
+								    	
+								    {% else %}
+								    	Our recycled spandex is upcycled from yarn & chip wastes from China.
+								    {% endif %}
+							    </span>
+							  {% when 8 %}
+							  	{% if section.settings.icon8 != blank %}
+							  		<img src="{{ section.settings.icon8 | img_url:'50x50' }} " alt="" />
+							    {% else %}
+							    	<span class="icon-cotton"></span>
+							    {% endif %}
+							    <span class="h8">
+								    {% if section.settings.title8 != blank %}
+								    	{{ section.settings.title8 }}
+								    {% else %}
+								    	organic cotton
+								    {% endif %}
+								    {% if section.settings.description8 != blank %}
+								    	<span class="p-xsmall">{{section.settings.description8}}</span>
+								    {% else %}
+								    	All our cotton are certified to be grown organically. Only 1% of cotton in the world is grown this way.
+								    {% endif %}
+								</span>
+							{% endcase %}
+			  			</div>
+			  		{% endif %}
+			  	</div>
+			  {% endif %}
+			</div>
+		{% endif %}
+	</div>
+	{% endcapture %}
+	<div class="tab">
+		{% if show_tabsu %}
+	  		<button class="tablinks p-xsmall active" data-tab="sustainability">sustainability</button>
+	  	{% endif %}
+	  	{% if show_tabdes %}
+	  		<button class="tablinks p-xsmall" data-tab="description">{{ 'products.product.description' | t }}</button>
+	  	{% endif %}
+	  	{% if show_tabfa %}
+	  		<button class="tablinks p-xsmall" data-tab="fabric">{{ 'products.product.detail' | t }}</button>
+	  	{% endif %}
+	</div>
+	{{ data_content }}
+</div>

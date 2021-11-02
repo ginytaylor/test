@@ -1,0 +1,35 @@
+{% assign file_extension = 'png' %}
+{% assign tags = product.tags %}
+{% assign colours = '' %}
+{% for tag in tags %}
+	{% if tag contains 'colour:' %}
+		{% assign colours = tag  %}
+	{% endif %}
+{% endfor %}
+{% assign colours = colours | split: 'colour:' | last | split: ';' %}
+{% assign handleProduct = product.url | split: '_' | reverse %}
+{% assign productOption = '_' | append: handleProduct[0] %}
+{% assign colour_current = '' %}
+
+	{% if colours != '' %}
+		{% if colours.size > 0 %}
+		<div class="swatch">
+			{% capture content %}
+				<div class="grid-colour grid-option-items">
+					{% for colour in colours %}
+						{% assign value_colour_lower = colour | downcase | handle  %}
+						<div class="option-item" >
+							<a  title="{{ colour }}"  class="{{ colour | handle }} {%- if handleProduct[0] == value_colour_lower -%} checked {%- assign colour_current = colour -%} {%- endif -%} "  href="{{- product.url | replace: productOption , '' | append: '_' | append: value_colour_lower -}}">
+								<span>{{- colour -}}</span>
+
+							</a>
+						</div>
+					{% endfor %}
+				</div>	
+			{% endcapture %}
+			<div class="option-title"><span class="h6">colour</span><span class="current-colour p-xsmall" ><span class="{{ colour_current | handle }}"></span>{{ colour_current }}</span></div>	
+			{{ content }}
+			</div>
+		{% endif %}
+		
+	{% endif %}

@@ -1,0 +1,74 @@
+{% if section.blocks.size > 0 %}
+<div class="block-carbon-items">
+    <div class="page-width">
+        {% for block in section.blocks %}
+        <div class="carbon-item">
+            <div class="grid d-flex">
+                {% if block.settings.title != blank %}
+                <div class="grid__item col-{{ block.settings.width_title}} col-md-3 col-small-4 ">
+                    <h2 class="h1 slide-up">{{ block.settings.title }}</h2>
+                </div>
+                {% endif %}
+                {% if block.settings.short_desc != blank %}
+                <div class="grid__item col-{{ block.settings.width_desc}} col-md-5 col-small-5">
+                    {% if block.settings.sub_title != blank %}
+                    <h3 class="h3">{{  block.settings.sub_title }}</h3>
+                    {% endif %}
+                    <div class="p-large slide-up">{{ block.settings.short_desc }}</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "carbon neutral",
+  "settings": [
+    
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "sub_title",
+          "label": "sub title"
+        },
+        {
+          "type": "range",
+          "id": "width_title",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "label": "Width title",
+          "default": 1
+        },
+        {
+          "type": "richtext",
+          "id": "short_desc",
+          "label": "Short description"
+        },
+        {
+          "type": "range",
+          "id": "width_desc",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "label": "Width short description",
+          "default": 1
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

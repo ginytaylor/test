@@ -1,0 +1,136 @@
+<div class="block-radical block-radical-planet block-radical-planet-01 block-statics">
+    <div class="page-width">
+        <div class="grid">
+            {% if section.settings.title != blank %}
+            <div class="grid__item col-6 col-md-4 slide-up">
+                <h2 class="h1">{{ section.settings.title }}</h2>
+            </div>    
+            {% endif %}
+            <div class="grid__item col-6 slide-up">
+            {% if section.blocks.size > 0 %}
+                    <div class="grid planet__grid">
+                    {% for block in section.blocks %}
+                        <div class="grid__item col-4 col-md-2">
+                            <span class="icon slide-up {{ block.settings.icon }}"></span>
+                            {% if block.settings.weight != blank %}
+                                <div class="planet-text h4 slide-up">
+                                    {{ block.settings.weight }}
+                                    {% if block.settings.weight != blank %}
+                                    <p class="h5">{{ block.settings.text }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    </div>
+            {% endif %}
+            {% if section.settings.short_description != blank %}
+            <div class="short-desc p-large col-md-6 slide-up">
+                    {{ section.settings.short_description }}
+            </div>
+            {% endif %}
+            {% if section.settings.button_url != blank %}
+                <div class="import-buton col-6 col-md-4">
+                    <a href="{{ section.settings.button_url }}" target="_blank" class="btn_dark_second_outline slide-up">
+                        <span class="im-ico">
+                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.5012 15.3828C18.2473 15.3828 18.0477 15.5819 18.0477 15.8352V17.6447C18.0205 17.9252 17.7757 18.1242 17.4945 18.0971H1.46014C1.179 18.1242 0.934129 17.9252 0.906921 17.6447V15.8352C0.906921 15.5819 0.707399 15.3828 0.453461 15.3828C0.199523 15.3828 0 15.5819 0 15.8352V17.6447C0.0272076 18.4228 0.680191 19.029 1.46014 19.0019H17.4945C18.2745 19.0561 18.9456 18.459 19 17.6809C19 17.6719 19 17.6538 19 17.6447V15.8352C19 15.5819 18.8005 15.3828 18.5465 15.3828C18.5284 15.3828 18.5193 15.3828 18.5012 15.3828Z" fill="white"/>
+                                <path d="M9.16037 15.8695C9.32361 16.0414 9.60476 16.0505 9.77707 15.8876C9.78614 15.8786 9.78614 15.8786 9.79521 15.8695L15.5451 10.1424C15.7174 9.96143 15.7174 9.68095 15.5451 9.5C15.3728 9.31905 15.0826 9.31905 14.9012 9.5L9.93125 14.4762V0.452381C9.93125 0.199048 9.73173 0 9.47779 0C9.22385 0 9.02433 0.199048 9.02433 0.452381V14.4762L4.0544 9.5C3.88209 9.31905 3.59187 9.31905 3.41049 9.5C3.23817 9.68095 3.23817 9.96143 3.41049 10.1424L9.16037 15.8695Z" fill="white"/>
+                            </svg>
+                        </span>
+                        <span>
+                            {{ section.settings.button_label | default: 'impact report 2021'  }}
+                        </span>
+                     </a>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="Background_background__6S8B7">
+      <img id="canvasImg" class="Background_dummyTexture__3sg3U" src="{{ 'texture.png' | asset_img_url: 'master' }}" alt="">
+    </div>
+</div>
+<style>
+    .block-radical-planet-01 {
+        background-color: {{ section.settings.background | default: '#545454' }};
+    }
+    .block-radical-planet-01 * {
+        color: {{ section.settings.color | default: '#fff' }};
+    }
+</style>
+{% schema %}
+{
+  "name": "what if it ..",
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title" 
+        },
+        {
+          "type": "text",
+          "id": "short_description",
+          "label": "Short Description" 
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label" 
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button url" 
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color" 
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background" 
+        }
+    ],
+    "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "icon",
+          "options": [
+            {
+              "value": "icon-co2",
+              "label": "CO2"
+            },
+            {
+              "value": "icon-h2o",
+              "label": "H20"
+            },
+            {
+              "value": "icon-chemical",
+              "label": "Chemical"
+            }
+          ],
+          "default": "icon-co2"
+        },
+        {
+          "type": "text",
+          "id": "weight",
+          "label": "Weight"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+    ]
+}
+{% endschema %}

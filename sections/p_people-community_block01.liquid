@@ -1,0 +1,88 @@
+<div class="block-radical">
+    <div class="page-width">
+        {% if section.settings.title != blank %}
+            <h2 class="h2 col-md-6 slide-up" >{{ section.settings.title }}</h2>
+        {% endif %}
+    </div>
+    <div class="grid d-flex d-flex-center">
+        {% if section.settings.main_banner != blank %}
+           {%- assign img_url = section.settings.main_banner | img_url: '707x640', crop: 'center'  -%}
+           
+           {% if section.settings.main_banner_mobile != blank %}
+            {%- assign img_url_mobile = section.settings.main_banner_mobile | img_url: '375x505', crop: 'center'  -%}
+           {% endif %}
+           <div class="grid__item col-5 col-md-4">
+                <div class="img-banner slide-up">
+                    <picture>
+                        <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ section.settings.main_banner | img_url: '371x500', crop: 'center' }}">
+                        <source media="(max-width:599px)" srcset="{{ img_url_mobile }}">
+                        <img  class="lazyload" src="{{  section.settings.main_banner | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+                    </picture>
+                </div>
+            </div>
+        {% endif %}
+        {% if section.settings.title != blank or section.settings.subtitle != blank  or section.settings.desc != blank %}
+            <div class="grid__item col-6 col-md-4">
+                <div class="grid__item_block01">
+                    {% if section.settings.title != blank %}
+                    <h2 class="h2 col-10 slide-up">{{ section.settings.title }}</h2>
+                    {% endif %}
+                    {% if section.settings.subtitle != blank %}
+                    <h3 class="h4 slide-up">{{ section.settings.subtitle }}</h3>
+                    {% endif %}
+                    {% if section.settings.desc != blank %}
+                    <div class="p-large slide-up col-10">{{ section.settings.desc }}</div>
+                    {% endif %}
+                    {% if section.settings.btn_link != blank %}
+                    <a href="{{ section.settings.btn_link }}" class="btn_light slide-up">{{ section.settings.btn_label | default: 'take a look at inside our factories' }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "we only work...",
+  "class": "people-comunity-block01",
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_banner_mobile",
+          "label": "Main banner mobile"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "btn_label",
+          "label": "Button label"
+        }
+    ]
+}
+{% endschema %}

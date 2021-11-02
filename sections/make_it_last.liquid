@@ -1,0 +1,86 @@
+{% if search.results %}
+{% paginate search.results by 1 %}
+    {% if search.performed %}
+        {% assign product = search.results | first %}
+        {% assign fields =  product.metafields.saleslayer %}
+        {% if fields.make_it_last != '' %}
+          <div class="qr-blocks">
+              <div class="page-width">
+                  <h2 class="qr-blocks-title text-center">{{ 'general.pages.make_it_last' | t }}</h2>
+                  <div class="make-it">
+                        {% assign makeItLast = fields.make_it_last | split: ',' %}
+
+                        {% if makeItLast.size > 0 %}
+                          <ul>
+                            {% for icon in  makeItLast %}
+                            <li>
+                              {% if section.blocks.size > 0 %}
+
+                                {% for block in section.blocks %}
+                                  {% assign number = block.settings.number | append: ""  %}
+                                  {% if number == icon %}
+                                  <img class="lazyload" data-src=" {{ block.settings.icons | asset_url }} " src="{{ block.settings.icon | img_url: '2x2'}} " alt="" />
+                                  <span>{{ block.settings.text }}</span>
+                                  {% endif %}
+                                {% endfor %}
+                              {% endif %}
+                              
+                            </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                  </div>
+              </div>
+          </div>
+        {% endif %}
+    {% endif %}
+{% endpaginate %}
+{% endif %}
+{% schema %}
+{
+  "name": "Make it last",
+  "blocks": [
+    {
+      "type": "make_it_last",
+      "name": "Icons",
+      "settings": [
+        {
+          "type":"select",
+          "id": "icons",
+          "label": "Icon",
+          "default": "Do_Not_Dry_Clean.svg",
+          "options":[
+              {
+                "value": "Do_Not_Dry_Clean.svg",
+                "label": "Do Not Dry Clean"
+              },
+              {
+                "value": "GUPPYFRIEND_washing_bag.svg",
+                "label": "GUPPYFRIEND washing bag"
+              },
+              {
+                "value": "handwash.svg",
+                "label": "handwash"
+              },
+              {
+                "value": "Wash.svg",
+                "label": "Wash at or below 30°C"
+              }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "text"
+        },
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Template",
+          "info": "Please enter a number"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

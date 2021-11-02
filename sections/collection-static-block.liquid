@@ -1,0 +1,72 @@
+{% if template contains 'collection' %}
+    {% if section.blocks.size > 0 %}
+            <script>
+            var blocks = [];
+                var position = 3;
+                {% for block in section.blocks %}
+                    {% if block.settings.collection != blank and collection.handle == block.settings.collection %}
+                        var object = {};
+                        object.title = {{ block.settings.title | default: '' | json }};
+                        object.link = {{ block.settings.link | default: '' | json }};
+                        object.button_text = {{ block.settings.button_text | default: '' | json }};
+                        object.image = {{ block.settings.image | img_url: '317x470', crop: 'center' | default: '' | json }};
+                        object.position = position;
+                        object.use_a_video = {{ block.settings.use_video | json }};
+                        object.video = {{ block.settings.video | json }};
+                        blocks.push(object ); 
+                        position += 7;   
+                    {% endif %}
+                {% endfor %}
+            </script> 
+        
+    {% endif %}
+{% endif %}
+{% schema %}
+{
+    "name": "Collection static block",
+    "blocks": [
+        {
+          "type": "static_block",
+          "name": "static block",
+          "settings": [
+                {
+                  "type": "richtext",
+                  "id": "title",
+                  "label": "title"
+                },
+                {
+                  "type": "url",
+                  "id": "link",
+                  "label": "Link" 
+                 
+                },
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "button text"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "use_video",
+                    "label": "use a video"
+                },
+                {
+                    "type": "url",
+                    "id": "video",
+                    "label": "video"
+                },
+                {
+                    "id": "collection",
+                    "type": "collection",
+                    "label": "collection"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

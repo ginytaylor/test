@@ -1,0 +1,234 @@
+<div class="block-radical block-radical-qr">
+    <div class="page-width">
+        {% if section.settings.title_qr != blank %}
+            <h2 class="h3 hide col-small-4">{{ section.settings.title_qr }}</h2>
+        {% endif %}
+        <div class="grid d-flex d-flex-center">
+            <div class="grid__item col-4 col-md-4 col-small-4">
+                <div class="qr-code text-center col-md-5 col-7 slide-up">
+                    <div class="main_box">
+                        {% include 'qr-code' %}
+                    </div>
+                    
+                </div>
+                <div class="qr-code-time-line">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                {% if section.settings.mobile != blank %}
+                <div class="mobile-screen" id="mobile-screen">
+                    <div class="content-screen">
+                        <img src="{{ 'qr_top.jpg' | asset_img_url: 'master' }}" alt="" />
+                        <div class="content-screen-mobile">
+                            <div class="image-slider">
+                                <img src="{{ 'block01.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block02.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block03.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block04_1.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block04.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block05.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block06.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block07.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block08.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block09.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block10.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block11.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block12.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block13.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block14.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block15.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                            <div class="image-slider">
+                                <img src="{{ 'block16.jpg' | asset_img_url: 'master' }}" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <img src="{{ 'fframe.png' | asset_img_url: 'master' }}" alt="" class="frame" />
+                </div>
+                {% endif %}
+            </div>
+            <div class="grid__item col-6 col-md-4">
+                {% if section.settings.title_qr != blank %}
+                <h2 class="h2 slide-up">{{ section.settings.title_qr }}</h2>
+                {% endif %}
+                {% if section.settings.sub_qr != blank or section.settings.desc %}
+                    <div class="grid d-flex d-flex-right">
+                        <div class="grid__item col-8">
+                            {% if section.settings.sub_qr  %}
+                            <h3 class="h3 slide-up">{{ section.settings.sub_qr }}</h3>
+                            {% endif %}
+                            {% if section.settings.desc  %}
+                            <div class="p-large slide-up">{{ section.settings.desc }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% if section.settings.map_title != blank or section.settings.map != blank  or section.settings.desc_map  != blank  %}
+<div class="block-radical block-radical-map">
+    <div class="page-width">
+        {% if section.settings.map_title != blank  or section.settings.desc_map != blank %}
+            <div class="grid">
+                
+                {% if section.settings.map_title != blank  %}
+                    <div class="grid__item col-7 col-md-4">
+                        <div class="col-10">
+                            <h2 class="h2 slide-up">{{ section.settings.map_title }}</h2>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if section.settings.desc_map != blank  %}
+                    <div class="grid__item col-5 col-md-4">
+                        <div class="p-large slide-up">{{ section.settings.desc_map }}</div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if section.settings.map != blank  %}
+            <div class="cms-map slide-up">{{ section.settings.map }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% if section.blocks.size > 0 %}
+<div class="block-radical block-radical-progress">
+    <div class="page-width">
+        <div class="grid">
+            <div class="grid__item col-8 col-md-6">
+                <div class="grid d-flex d-flex-center">
+                {% for block in section.blocks %}
+                    <div class="grid__item col-3 col-md-3-ex">
+                        <div class="score slide-up">
+                            <div class="core-text">
+                                {% if block.settings.title != blank %}
+                                    <strong class="h3" data-score="{{ block.settings.title }}">{{ block.settings.title }}% </strong>
+                                {% endif %}
+                                {% if block.settings.subtitle != blank %}
+                                <p class="h4">{{ block.settings.subtitle }} </p>
+                                {% endif %}
+                            </div>
+                            <svg viewBox="0 0 36 36" class="circular">
+                                <path class="circle-bg" d="M18 2.0845
+                                  a 15.9155 15.9155 0 0 1 0 31.831
+                                  a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                              <path class="circle" stroke-dasharray="{{ block.settings.title }}, 100" d="M18 2.0845
+                                  a 15.9155 15.9155 0 0 1 0 31.831
+                                  a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                            </svg>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <div class="grid__item col-4 col-md-2">
+                <h2 class="slide-up">our traceability progress</h2>
+            </div>
+        </div>
+    </div>
+
+</div>    
+<div id="traceable-transparent-factories">&nbsp;</div>    
+{% endif %}
+
+{% schema %}
+{
+  "name": "Static block",
+  "class": "traceable-transparent_block02",
+  "settings": [
+    {
+        "type": "text",
+        "id": "title_qr",
+        "label": "QR title"
+    },
+    {
+        "type": "text",
+        "id": "sub_qr",
+        "label": "QR sub title"
+    },
+    {
+        "type": "richtext",
+        "id": "desc",
+        "label": "QR description"
+    },
+    {
+        "type": "image_picker",
+        "id": "mobile",
+        "label": "Image"
+    },
+    {
+        "type": "text",
+        "id": "map_title",
+        "label": "Map title"
+    },
+    {    
+        "type": "richtext",
+        "id": "desc_map",
+        "label": "Map description"
+    },
+    {    
+        "type": "html",
+        "id": "map",
+        "label": "Map"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

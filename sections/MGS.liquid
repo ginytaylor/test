@@ -1,0 +1,249 @@
+
+  {% if section.blocks.size > 0 %}
+  
+      <style>
+        .mgs-bar {
+          background-color: {{ section.settings.color_bg }};
+        }
+        .msg-bar-text {
+          color: {{ section.settings.color_text }};
+        }
+      </style>
+      <div class="mgs-bar-outer">
+        <div class="mgs-bar">
+          <div class="page-width">
+            <div class="grid">
+              <div class="grid__item  col-6 col-md-6">
+                <div class="msg-bar-text {% if section.blocks.size > 0 %} addSlider {% endif %}" >
+                  {% if section.blocks.size > 0 %}
+                  <span class="icon-arrow_down mgs-bar-prev"></span>
+                  <div class="swiper-container msgBarSlider">
+                    <div class="swiper-wrapper">
+                      {% for block in  section.blocks %}
+                        <div class="swiper-slide msg-bar-text-inner h7">
+                          {%- assign unit = block.settings.unit -%} 
+                          {%- case unit -%}
+                            {%- when 'kg' -%}
+                              <span class="icon-co2"></span>
+                            {%- when 'm' -%}
+                              <span class="icon-Sustainability_icons_outlined_eco-fabric"></span>
+                            {%- when 'L' -%}
+                              <span class="icon-Sustainability_icons_outlined_H2O"></span>
+                            {%- when 'g' -%}
+                              <span class="icon-chemical"></span>
+                          {%- endcase -%}
+                          {{- block.settings.desc -}}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <span class="icon-arrow_down mgs-bar-next"></span>
+                  {% endif %}
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="show-up">
+            {% if section.settings.use_video and section.settings.video != blank %}
+              <video preload="auto" class="{% if section.settings.video_mobile != blank %} hide-mobile {% endif %} styles_backgroundMedia__Ajqh9 styles_video__21QdD" src="{{ section.settings.video }}"  autoplay loop muted playsinline ></video>
+              {% if section.settings.video_mobile != blank %}
+                <video preload="auto" class="hide-desktop styles_backgroundMedia__Ajqh9 styles_video__21QdD" src="{{ section.settings.video_mobile }}"  autoplay loop muted playsinline ></video>
+              {% endif %}
+            {% else %}
+              {% if section.settings.background != blank %}
+                <picture>
+                  <source media="(max-width:559px)" srcset="{{ section.settings.background_mobile | default: section.settings.background | img_url: '768x459', crop: 'center' }}">
+                  <source srcset="{{ section.settings.background | img_url: '1440x543', crop: 'center'}}">
+                  <img src="{{ section.settings.background | img_url: '1440x543', crop: 'center'}}" alt="" />
+                </picture>
+              {% endif %}
+            {% endif %}
+            <div class="show-up-content page-width">
+              <div class="close-up"><span class="icon-arrow_up"></span><span class="h7">{{ 'sections.mgs.close' | t }}</span><span class="icon-arrow_up"></span></div>
+              {% if section.settings.heading != blank %}
+                <div class="h3 heading">
+                    {{section.settings.heading}}
+                </div>
+              {% endif %}
+              {% if section.settings.sub-heading != blank %}
+                <div class="h3 sub-heading">
+                    {{section.settings.sub-heading}}
+                </div>
+              {% endif %}
+              <ul class="grid">
+              {% for block in  section.blocks %}
+              <li class="grid__item col-3 col-md-2">
+                {%- assign unit = block.settings.unit -%} 
+                  {%- case unit -%}
+                    {%- when 'kg' -%}
+                      <span class="icon-co2"></span>
+                    {%- when 'm' -%}
+                      <span class="icon-fabric"></span>
+                    {%- when 'L' -%}
+                      <span class="icon-h2o"></span>
+                    {%- when 'g' -%}
+                      <span class="icon-chemical"></span>
+                  {%- endcase -%}
+                {% if block.settings.number != blank %}
+                  <div class="msg_number h3"  ><span data-number=" {{ block.settings.number }}">{{ block.settings.number }}</span> {{ block.settings.unit }}</div>
+                {% endif %}
+                {% if block.settings.small_text != blank %}
+                  <div class="small_text h5">{{ block.settings.small_text }}</div>
+                {% endif %}
+              </li>
+              {% endfor %}
+              </ul>
+              {% if section.settings.btn_label != blank and  section.settings.link != blank %}
+                <div class="more-btn">
+                  <a class="btn_dark_large btn_dark" href="{{section.settings.link}}">{{ section.settings.btn_label }}</a>
+                </div>
+              {% endif %}
+            </div>
+        </div>
+        
+      </div>
+  {% endif %}
+
+{% schema %}
+{
+  "name": "MGS",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_mobile",
+      "label": "Background Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_video",
+      "label": "Use a vieo"
+    },
+    {
+      "type": "text",
+      "id": "video",
+      "label": "Video url"
+    },
+    {
+      "type": "text",
+      "id": "video_mobile",
+      "label": "Video Mobile url"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "sub-heading",
+      "label": "Sub-heading"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "color_bg",
+      "label": "Bar",
+      "default": "#3a3a3a"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Text",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mgs",
+      "name": "MGS",
+      "settings": [
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Number"
+        },
+        {
+           "type": "select",
+           "id": "unit",
+           "label": "Unit",
+           "options": [
+             {
+               "value": "kg",
+               "label": "kg"
+             },
+             {
+               "value": "L",
+               "label": "L"
+             },
+             {
+               "value": "g",
+               "label": "g"
+             },
+             {
+               "value": "m",
+               "label": "m"
+             }
+           ],
+           "default": "kg"
+        },
+        {
+          "type": "text",
+          "id": "small_text",
+          "label": "Small text"
+        },
+        {
+          "type": "text",
+          "id": "desc",
+          "label": "Description",
+          "default": "2,4000 international flights equivalent reduced"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+
+      "name": "MGS",
+      "category": {
+        "cs": "Obrázek",
+        "da": "Billede",
+        "de": "Foto",
+        "en": "Image",
+        "es": "Imagen",
+        "fi": "Kuva",
+        "fr": "Image",
+        "it": "Immagine",
+        "ja": "画像",
+        "ko": "이미지",
+        "nb": "Bilde",
+        "nl": "Afbeelding",
+        "pl": "Obraz",
+        "pt-BR": "Imagem",
+        "pt-PT": "Imagem",
+        "sv": "Bild",
+        "th": "รูปภาพ",
+        "tr": "Görsel",
+        "vi": "Hình ảnh",
+        "zh-CN": "图片",
+        "zh-TW": "圖片"
+      }
+    }
+  ]
+}
+{% endschema %}

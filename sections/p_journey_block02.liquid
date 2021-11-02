@@ -1,0 +1,220 @@
+{% assign itemNow = '' %}
+{% assign item2022 = '' %}
+{% assign item2023 = '' %}
+{% assign item2024 = '' %}
+{% assign item2025 = '' %}
+{% assign item20230 = '' %}
+{% assign years = 'now,2022,2023,2024,2025,2030' | split:',' %}
+
+{% if section.blocks.size > 0 %}
+{% for block in section.blocks %}
+
+    {% if block.settings.year == "now" %}
+        {% capture item %}
+            {% if block.settings.title != blank or block.settings.desc != blank %}
+                <div class="his-item grid__item col-5 col-md-4">
+                    {% if block.settings.title != blank %}
+                    <h4 class="h4">{{ block.settings.title }}</h4>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                    <div class="p-large">{{ block.settings.desc }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endcapture %}
+        {% assign itemNow = itemNow | append: item %}
+    {% endif %}
+    {% if block.settings.year == "2022" %}
+        {% capture item %}
+            {% if block.settings.title != blank or block.settings.desc != blank %}
+                {% include 'h-item', block: block %}
+            {% endif %}
+        {% endcapture %}
+        {% assign item2022 = item2022 | append: item %}
+    {% endif %}
+    {% if block.settings.year == "2023" %}
+        {% capture item %}
+            {% if block.settings.title != blank or block.settings.desc != blank %}
+                {% include 'h-item', block: block %}
+            {% endif %}
+        {% endcapture %}
+        {% assign item2023 = item2023 | append: item %}
+    {% endif %}
+    {% if block.settings.year == "2024" %}
+        {% capture item %}
+            {% if block.settings.title != blank or block.settings.desc != blank %}
+                {% include 'h-item', block: block %}
+            {% endif %}
+        {% endcapture %}
+        {% assign item2024 = item2024 | append: item %}
+    {% endif %}
+    {% if block.settings.year == "2025" %}
+        {% capture item %}
+            {% if block.settings.title != blank or block.settings.desc != blank %}
+                {% include 'h-item', block: block %}
+            {% endif %}
+        {% endcapture %}
+        {% assign item2025 = item2025 | append: item %}
+    {% endif %}
+    {% if block.settings.year == "2030" %}
+        {% capture item %}
+            {% if block.settings.title != blank or block.settings.desc != blank %}
+                {% include 'h-item', block: block %}
+            {% endif %}
+        {% endcapture %}
+        {% assign item2030 = item2030 | append: item %}
+    {% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="block-journey ">
+    <div class="page-width">
+        {% for year in years %}
+            <div class="journey-{{ year }} journey-block">
+                <div class="block-blank-space">
+                    <div class="grid-image">
+                        <div class="grid-image-inner">
+                            <div class="grid">
+                                <div class="grid__item col-3 col-md-2 text-center">
+                                    {% include 'timeline', year: year %}
+                                </div>
+                                 <div class="grid__item col-1">&nbsp;</div>
+                                <div class="grid__item col-7 col-md-6">
+                                    <div class="block-content">
+                                        {% case year %}
+                                        {% when 'now' %}
+                                            <h2 class="h1">{{ section.settings.titlenow }} </h2>
+                                            <div class="grid">
+                                                {{ itemNow }}
+                                            </div>
+                                        {% when '2022' %}
+                                            <h2 class="h1">{{ section.settings.title2022 }} </h2>
+                                            <div class="grid">
+                                                {{ item2022 }}
+                                            </div>
+                                        {% when '2023' %}
+                                            <h2 class="h1">{{ section.settings.title2023 }} </h2>
+                                            <div class="grid">
+                                                {{ item2023 }}
+                                            </div>
+                                        {% when '2024' %}
+                                            <h2 class="h1">{{ section.settings.title2024 }} </h2>
+                                            <div class="grid">
+                                                {{ item2024 }}
+                                            </div>
+                                        {% when '2025' %}
+                                            <h2 class="h1">{{ section.settings.title2025 }} </h2>
+                                            <div class="grid">
+                                                {{ item2025 }}
+                                            </div>
+                                        {% else %}
+                                            <h2 class="h1">{{ section.settings.title2030 }}</h2>
+                                            <div class="grid">
+                                                {{ item2030 }}
+                                            </div>
+                                        {% endcase %}    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "history",
+  "class": "journey-history-block block-radical",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titlenow",
+      "label": "now title",
+      "default": "carbon neutral"
+    },
+    {
+      "type": "text",
+      "id": "title2022",
+      "label": "2022 title",
+      "default": "our female further empowerment"
+    },
+    {
+      "type": "text",
+      "id": "title2023",
+      "label": "2023 title",
+      "default": "science-based targets driven"
+    },
+    {
+      "type": "text",
+      "id": "title2024",
+      "label": "2024 title",
+      "default": "25% renewable energy"
+    },
+    {
+      "type": "text",
+      "id": "title2025",
+      "label": "2025 title",
+      "default": "climate positive"
+    },
+    {
+      "type": "text",
+      "id": "title2030",
+      "label": "2030 title",
+      "default": "NET ZERO"
+    }
+    
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Short Description"
+        },
+        {
+          "type": "select",
+          "id": "year",
+          "label": "year",
+          "options": [
+            {
+              "value": "now",
+              "label": "now"
+            },
+            {
+              "value": "2022",
+              "label": "2022"
+            },
+            {
+              "value": "2023",
+              "label": "2023"
+            },
+            {
+              "value": "2024",
+              "label": "2024"
+            },
+            {
+              "value": "2025",
+              "label": "2025"
+            },
+            {
+              "value": "2030",
+              "label": "2030"
+            }
+          ],
+          "default": "now"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

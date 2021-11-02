@@ -1,0 +1,44 @@
+<div class="block-radical block-radical-journey">
+  {% include 'cms-journey' %}
+</div>
+{% schema %}
+{
+  "name": "a continuing journey",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "a continuing journey"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "desc",
+          "label": "Short Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

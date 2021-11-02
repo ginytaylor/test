@@ -1,0 +1,191 @@
+
+<div class="video-pages">
+    <div class="video-pages-inner ">
+        {% if section.settings.video != blank %}
+        <div class="video-page ">
+            <div class="video-page-inner ">
+                <div class="video-trigger__wrapper__inner">
+                    <div class="video-trigger__wrapper video__open">
+                        <div class="video-trigger">
+                            <svg width="89" height="89" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44.5 89C19.9619 89 0 69.0381 0 44.5C0 19.9619 19.9619 0 44.5 0C69.0381 0 89 19.9619 89 44.5C89 69.0381 69.0381 89 44.5 89ZM44.5 3.94504C22.1395 3.94504 3.94504 22.1395 3.94504 44.5C3.94504 66.8605 22.1395 85.055 44.5 85.055C66.8605 85.055 85.055 66.8605 85.055 44.5C85.055 22.1395 66.8605 3.94504 44.5 3.94504Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="video-trigger__icon">  
+                            <svg width="47" height="51" viewBox="0 0 47 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.36377 50.9738C6.25521 50.9738 5.13877 50.7095 4.11306 50.173C1.79732 48.9618 0.361328 46.583 0.361328 43.9714V7.03005C0.361328 4.41844 1.80127 2.03958 4.11306 0.828457C6.40512 -0.370834 9.14298 -0.213032 11.2812 1.23085L42.9559 19.666C42.9993 19.6936 43.0466 19.7212 43.0861 19.7488C44.9718 21.0547 46.0961 23.2086 46.0961 25.5007C46.0961 27.7967 44.9718 29.9468 43.0861 31.2526C43.0427 31.2841 42.9993 31.3117 42.9559 31.3354L11.2812 49.7706C10.0977 50.5675 8.73664 50.9738 7.36377 50.9738ZM7.36771 3.96476C6.88642 3.96476 6.39723 4.08311 5.94355 4.31981C4.91785 4.85634 4.30636 5.87021 4.30636 7.02611V43.9635C4.30636 45.1233 4.91785 46.1332 5.94355 46.6698C6.96926 47.2063 8.14883 47.1353 9.10353 46.4725C9.14692 46.441 9.19032 46.4133 9.23371 46.3897L40.8926 27.9624C41.6935 27.3825 42.1511 26.483 42.1511 25.4928C42.1511 24.4987 41.6935 23.6031 40.8926 23.0232L9.23371 4.60386C9.19032 4.57624 9.14298 4.54863 9.10353 4.52101C8.57489 4.15018 7.97525 3.96476 7.36771 3.96476Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-inner">
+                    <video src="{{ section.settings.video }}" preload="auto" autoplay loop muted playsinline >
+                    </video>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div> 
+<div id="mix-to-play">
+    <div class="page-width">
+
+        <div class="mix-to-play-inner">
+            <a href="javascript:void(0);" class="btn-close-popup"><span class="icon-close"></span></a>
+            <div class="grid d-flex d-flex-center">
+                <div class="grid__item col-4 col-md-3 col-small-4">
+                    <div id="list-images-mix-left"></div>
+                </div>
+                <div class="grid__item col-6 col-md-3 col-small-6">
+                    <div id="list-images-mix-right" class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-width page-width-mix-to-play">
+
+    <div class="block-page-mix-play-top">
+        <div class="grid">
+            <div class="grid__item col-3 col-md-2 col-small-1 text-center">
+                {% if section.settings.productLeft != blank %}
+                    {% assign productLeft = all_products[section.settings.productLeft] %}
+                    {% assign tagsLeft = productLeft.tags %}
+                    {% assign mix_n_playLeft = '' %}
+                    {% for tag in tagsLeft %}
+                        {% if tag contains 'mix_n_play:' %}
+                            {% assign mix_n_playLeft = tag | split: 'mix_n_play:' %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if productLeft.featured_image != blank %}
+                    <a href="{{ productLeft.url }}" class="mix-play-item" data-products="{{mix_n_playLeft}}">
+                        <img src="{{ productLeft.featured_image | img_url:'204x256' }}" alt="{{ productLeft.title }}" />
+                    </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="grid__item col-6 col-md-4 col-small-4">
+                
+                <div class="block-page-title text-center block-page-title-mask"> 
+                    {% if section.settings.title != blank %}
+                        <div class="h1">{{ section.settings.title }}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle != blank %}
+                        <div class="h2">{{ section.settings.subtitle }}</div>
+                    {% endif %}
+                    {% if section.settings.shortdesc != blank %}
+                        <div class="p-large">{{ section.settings.shortdesc }}</div>
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="grid__item  col-md-2 col-3 col-small-1 text-center">
+                {% if section.settings.productRight != blank %}
+                    {% assign productRight = all_products[section.settings.productRight] %}
+                    {% assign tagsRight = productRight.tags %}
+                    {% assign mix_n_playRight = '' %}
+                    {% for tag in tagsRight %}
+                        {% if tag contains 'mix_n_play:' %}
+                            {% assign mix_n_playRight = tag | split: 'mix_n_play:' %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if productRight.featured_image != blank %}
+                    <a href="{{ productRight.url }}" class="mix-play-item" data-products="{{mix_n_playRight}}">
+                        <img src="{{ productRight.featured_image | img_url:'316x397' }}" alt="{{ productRight.title }}" />
+                    </a>    
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- end -->
+
+    {% if section.settings.collection != blank %}
+    {% assign min = 0 %}
+    {% assign max = sort.size %}
+    {% assign diff = max | minus: min %}
+    {% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+    {% assign sort_by = sort[ randomNumber ] %}
+    {% assign collection = collections[section.settings.collection] %}
+    
+        {% if collection.all_products_count  > 0 %}
+            {% paginate collection.products by limit: 20 %}
+                <div class="block-items-mix-play" data-url="{{ collection.url }}" data-total-page="{{ paginate.pages }}" data-current-page="{{ current_page }}">
+                    <div class="block-page-title text-center block-page-title-fixed">
+                        <div class="block-page-title-fixed-inner"> 
+                            {% if section.settings.title != blank %}
+                                <h1 class="h1"><span>{{ section.settings.title }}</span></h1>
+                            {% endif %}
+                            {% if section.settings.subtitle != blank %}
+                                <h2 class="h2"><span>{{ section.settings.subtitle }}</span></h1>
+                            {% endif %}
+                            {% if section.settings.shortdesc != blank %}
+                                <div class="p-large"><span>{{ section.settings.shortdesc }}</span></div>
+                            {% endif %}
+                        </div>    
+                    </div>
+                    <div class="grid">
+                        {% for product in collection.products  %}
+                        {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+                        <div class="grid__item col-3 col-small-3  {% if thecycle == 'odd' %} col-md-3 {% else %} col-md-2 {% endif %} text-center">
+                            {% assign tags = product.tags %}
+                            {% assign mix_n_play = '' %}
+                            {% for tag in tags %}
+                                {% if tag contains 'mix_n_play:' %}
+                                    {% assign mix_n_play = tag | split: 'mix_n_play:' %}
+                                {% endif %}
+                            {% endfor %}
+                            <a href="{{ product.url }}" class="mix-play-item" data-products="{{mix_n_play}}">
+                                <img src="{{ product.featured_image | img_url:'316x397' }}" alt="{{ product.title }}" />
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endpaginate %}    
+        {% endif %}
+    {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Mix to play",
+  "settings": [
+        {
+          "type": "text",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+        },
+        {
+          "type": "text",
+          "id": "shortdesc",
+          "label": "Short description"
+        },
+        {
+            "type": "product",
+            "id": "productLeft",
+            "label": "Product left"
+        },
+        {
+            "type": "product",
+            "id": "productRight",
+            "label": "Product Right"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Mix to play"
+        }
+    ]
+}
+{% endschema %}

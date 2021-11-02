@@ -1,0 +1,63 @@
+{% if request.page_type == 'collection' %}
+{% assign hasUrl  = false %}
+<div class="breadrumb">
+	<div class="page-width">
+		<ul class="p-xsmall">
+			<li> <a href="/">{{ 'homepage.general.title'  | t }} </a> <span> > </span></li>
+			{% for link in linklists['main-menu'].links %}
+				{% if link.url == collection.url %}
+					<li> {{ collection.title }}</li>
+					{% assign hasUrl  = true %}
+				{% else %}	
+					{% if link.levels == 2 %}
+						{% for childlink in link.links %}
+							{% for grandchildlink in childlink.links %}
+	                          {% if grandchildlink.url == collection.url %}
+								<li> <a href="{{ link.url }}">{{ link.title }}</a> <span> > </span> </li>
+								<li> {{ collection.title }}</li>
+								{% assign hasUrl  = true %}
+								{% endif %}
+	                        {% endfor %}
+						{% endfor %}
+					{% else %}
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+			{% if hasUrl == false %}
+				<li> {{ collection.title }}</li>
+			{% endif %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if request.page_type == 'page' %}
+<div class="breadrumb">
+	<div class="page-width">
+		<ul class="p-xsmall">
+			<li> <a href="/">{{ 'homepage.general.title'  | t }}</a><span> >  </span></li>
+			<li>  {{ page.title }}</li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if request.page_type == 'product' %}
+<div class="breadrumb">
+	<div class="page-width">
+		<ul class="p-xsmall">
+          <li> <a href="/">{{ 'homepage.general.title'  | t }}</a> <span> > </span></li>
+          <li> <a href="/">{{ product.type }}</a> <span> > </span></li>
+          {% for t in product.tags %}
+            {% if t contains 'Signature' %}
+          		{% assign strsignatureName = t | remove: 'Signature:' %}
+          		{% for collection in product.collections %}
+          			{% if strsignatureName == collection.title %}
+          			<li> <a href="{{ collection.url }}">{{ t | remove: 'Signature:' }}</a> <span> > </span></li>
+          			{% endif %}
+          		{% endfor %}
+            {% endif %}
+          {% endfor %}
+          <li> <a href="{{ product.url }}">{{ product.title }}</a></li>
+      </ul>
+	</div>
+</div>
+{% endif %}

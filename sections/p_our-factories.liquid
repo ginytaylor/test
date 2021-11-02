@@ -1,0 +1,174 @@
+{% if section.settings.main_banner != blank %}
+<div class="banner slide-up">
+   {%- assign img_url = section.settings.main_banner | img_url: '1440x382', crop: 'center'  -%}
+   {%- assign img_url_mobile = section.settings.main_banner_mobile | default: section.settings.main_banner  -%}
+    <picture>
+        <source media="(min-width:1025px)" srcset="{{ img_url }}">
+        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ img_url_mobile | img_url: '768x400', crop: 'center' }}">
+        <source media="(max-width:599px)" srcset="{{ img_url_mobile | img_url: '375x490', crop: 'center' }}">
+        <img  class="lazyload" src="{{  section.settings.main_banner | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ section.settings.main_banner.alt }}">
+    </picture>
+</div>
+{% assign slideItems = '' %}
+{% assign blockItems = '' %}
+{% assign listItems = '' %}
+{% if section.blocks.size > 0 %}
+    {% for block in section.blocks %}
+        {% assign blockType = block.type %} 
+        {% case blockType %}
+        {% when 'slide' %}
+            {% capture slide %}
+                {% if block.settings.image != blank %}
+                   {%- assign img_url = block.settings.image | img_url: '1112x700', crop: 'center'  -%}
+                   <div class="img-banner swiper-slide">
+                        <picture>
+                            <source media="(min-width:1025px)" srcset="{{ img_url }}">
+                            <source media="(min-width:600px) and (max-width: 1204px)" srcset="{{ block.settings.image | img_url: '518x326', crop: 'center' }}">
+                            <source media="(max-width:599px)" srcset="{{ block.settings.image | img_url: '227x285', crop: 'center' }}">
+                            <img  class="lazyload" src="{{  block.settings.image | img_url: '2x' }}" data-src="{{ img_url }}" alt="{{ block.settings.image.alt }}">
+                        </picture>
+                    </div>
+                {% endif %}
+            {% endcapture %}
+            {% assign slideItems =  slideItems | append: slide %}
+        {% when 'block' %}
+            {% capture blockHTML %}
+                {% if block.settings.title != blank %}
+                   <div class="grid__item item col-2 col-md-2 col-small-3 slide-up">
+                        <div class="item-inner text-center">
+                            {% if block.settings.subtitle != blank %}
+                            <span class="p-large">{{  block.settings.subtitle }}</span>
+                            {% endif %}
+                            <p class="h4">{{ block.settings.title }}</p>
+                        </div>
+                   </div>
+                {% endif %}
+            {% endcapture %}
+            {% assign blockItems =  blockItems | append: blockHTML %}
+        {% else %} 
+            {% capture listHTML %}
+                {% if block.settings.title != blank %}
+                    <div class="grid">
+                       <div class="grid__item item col-3 col-md-2 slide-up">
+                            <h3 class="h3">{{ block.settings.title }}</h3>
+                       </div>
+                       <div class="grid__item item col-7 col-md-6 slide-up">
+                            <div class="p-large">{{ block.settings.content }}</div>
+                       </div>
+                    </div>   
+                {% endif %}
+            {% endcapture %}
+            {% assign listItems =  listItems | append: listHTML %}   
+        {% endcase %}
+    {% endfor %}    
+{% endif %}
+
+<div class="yisoor-content">
+    <div class="page-width"> 
+        <div class="yisoor-block">
+            <h1 class="h2 text-center slide-up"> {{ page.title }}</h1>
+            {% if blockItems != '' %}
+                <div class="list-items"><div class="grid"> {{ blockItems }} </div></div>
+            {% endif %}   
+            <div class="d-flex d-flex-center slide-up">    
+                <div class="col-8 col-md-6">
+                    {% if section.settings.desc != blank %}
+                    <div class="p-large">{{ section.settings.desc }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </div>
+        {% if listItems != '' %}
+            <div class="yisoor-block">
+                <div class="block-list-items"> {{ listItems }} </div>
+            </div>    
+        {% endif %}
+        {% if slideItems != '' %}
+        <div class="yisoor-block ">
+            <div class="ourPeopleProjectSliderOuter col-10 col-md-6 col-small-4 slide-up">
+                <div class="swiper-container ourPeopleProjectSlider ">
+                    <div class="swiper-wrapper">
+                        {{ slideItems }}
+                    </div>
+                </div>
+                <div class="swiper-button-prev-rs swiper-button">
+                        {% include 'ico-prev' %}
+                </div>
+                <div class="swiper-button-next-rs swiper-button">
+                    {% include 'ico-next' %}
+                </div>
+            </div>
+        </div>    
+        {% endif %}
+    </div>
+</div>    
+{% endif %}
+
+{% schema %}
+{
+  "name": "Yisoor Group Limited",
+  "settings": [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_banner_mobile",
+          "label": "Main banner mobile"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description"
+        }
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      },
+      {
+        "type": "block",
+        "name": "block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Sub title"
+          }
+        ]
+      },
+      {
+        "type": "list",
+        "name": "list",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "html",
+            "id": "content",
+            "label": "content"
+          }
+        ]
+      }
+    ]
+}
+{% endschema %}

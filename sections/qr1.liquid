@@ -1,0 +1,87 @@
+{% if search.results %}
+{% paginate search.results by 1 %}
+    {% if search.performed %}
+        {% assign product = search.results | first %}
+        <div class="qr-block qr-block-first">
+          <div class="page-width">
+            {% if section.settings.title != blank %}
+              <h3 class="text-center">
+                {% if section.settings.subtitle != blank %}
+                <span>{{ section.settings.subtitle }}</span> 
+                {% endif %}
+                {{ section.settings.title }}
+              </h3>
+            {% endif %}
+            {% if section.blocks.size > 0 %}
+              <div class="content-block">
+                <div class="swiper-container swiper-container-slider ">
+                  <div class="swiper-wrapper">
+                    {% for block in section.blocks %}
+                   
+                    <div class="swiper-slide">
+                      <div class="wrap-thumb">
+                        {% if block.settings.thumb != blank %}
+                          <img data-src="{{ block.settings.thumb | img_url: '227x227', crop: 'center'}}" src="{{ block.settings.thumb | img_url: '2x' }}" alt=""  class="lazyload" />
+                        {% endif %}
+                      </div>
+                      {% if block.settings.title != blank %} 
+                        <div class="sh5">{{ block.settings.title }}</div>
+                      {% endif %}
+                      {% if block.settings.description != blank %}
+                        <div class="des">{{ block.settings.description }} </div>
+                      {% endif %}
+                    </div>
+                   
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+          </div>  
+        </div>    
+        {% endif %}
+    {% endif %}
+{% endpaginate %}
+{% endif %}
+{% schema %}
+{
+  "name": "Qr Block 1",
+  "settings": [
+      
+      {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub title"
+      },
+      {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "qrblock1",
+      "name": "qrblock1",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "thumb",
+          "label": "thumb"
+          
+        },
+        
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

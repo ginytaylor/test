@@ -1,0 +1,69 @@
+<div class="radical-mix-play block-radical">
+    <div class="page-width">
+    <div class="grid">
+        {% if section.settings.video != blank %}
+            <div class="grid__item col-7 video-page">
+                <div class="video-page-inner slide-up">
+                    <div class="video-trigger__wrapper__inner">
+                      <div class="video-trigger__wrapper video__open">
+                          <div class="video-trigger">
+                            <svg width="89" height="89" viewBox="0 0 89 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44.5 89C19.9619 89 0 69.0381 0 44.5C0 19.9619 19.9619 0 44.5 0C69.0381 0 89 19.9619 89 44.5C89 69.0381 69.0381 89 44.5 89ZM44.5 3.94504C22.1395 3.94504 3.94504 22.1395 3.94504 44.5C3.94504 66.8605 22.1395 85.055 44.5 85.055C66.8605 85.055 85.055 66.8605 85.055 44.5C85.055 22.1395 66.8605 3.94504 44.5 3.94504Z" fill="white"/>
+                            </svg>
+                          </div>
+                          <div class="video-trigger__icon">  
+                            <svg width="47" height="51" viewBox="0 0 47 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M7.36377 50.9738C6.25521 50.9738 5.13877 50.7095 4.11306 50.173C1.79732 48.9618 0.361328 46.583 0.361328 43.9714V7.03005C0.361328 4.41844 1.80127 2.03958 4.11306 0.828457C6.40512 -0.370834 9.14298 -0.213032 11.2812 1.23085L42.9559 19.666C42.9993 19.6936 43.0466 19.7212 43.0861 19.7488C44.9718 21.0547 46.0961 23.2086 46.0961 25.5007C46.0961 27.7967 44.9718 29.9468 43.0861 31.2526C43.0427 31.2841 42.9993 31.3117 42.9559 31.3354L11.2812 49.7706C10.0977 50.5675 8.73664 50.9738 7.36377 50.9738ZM7.36771 3.96476C6.88642 3.96476 6.39723 4.08311 5.94355 4.31981C4.91785 4.85634 4.30636 5.87021 4.30636 7.02611V43.9635C4.30636 45.1233 4.91785 46.1332 5.94355 46.6698C6.96926 47.2063 8.14883 47.1353 9.10353 46.4725C9.14692 46.441 9.19032 46.4133 9.23371 46.3897L40.8926 27.9624C41.6935 27.3825 42.1511 26.483 42.1511 25.4928C42.1511 24.4987 41.6935 23.6031 40.8926 23.0232L9.23371 4.60386C9.19032 4.57624 9.14298 4.54863 9.10353 4.52101C8.57489 4.15018 7.97525 3.96476 7.36771 3.96476Z" fill="white"/>
+                            </svg>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="video-inner">
+                      <video src="{{  section.settings.video }}" preload="auto" autoplay loop muted playsinline ></video>
+                    </div>
+                  </div>
+            </div>
+        {% endif %}
+        <div class="grid__item col-5 col-md-6 grid__info">
+            {% if section.settings.title != blank %}
+                <h2 class="h1 slide-up">{{ section.settings.title }}</h2>    
+            {% endif %}
+            {% if section.settings.sub_title != blank %}
+                <h3 class="h4 slide-up">{{ section.settings.sub_title }}</h3>    
+            {% endif %}
+            {% if section.settings.short_description != blank %}
+                <div class="p-large slide-up">{{ section.settings.short_description }}</div>    
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</div>
+{% schema %}
+{
+  "name": "mix & play",
+  "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title" ,
+          "default": "mix & play"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub title" ,
+          "default": "a continuous excitment"
+        },
+        {
+          "type": "richtext",
+          "id": "short_description",
+          "label": "Short Description" 
+        },
+        {
+          "type": "url",
+          "id": "video",
+          "label": "Video"
+        }
+    ]
+}
+{% endschema %}

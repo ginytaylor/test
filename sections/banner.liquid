@@ -1,0 +1,51 @@
+{% if section.blocks.size > 0 %}
+  {% for  block in section.blocks %}
+    {% if block.settings.page == page.handle %}
+        <div class="banner contact-banner">
+            {%- assign img_url = block.settings.main_banner | img_url: '1440x382', crop: 'center'   -%}
+             <picture>
+              <source media="(min-width:1025px)" srcset="{{ img_url }}">
+              <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ settings.banner | img_url: '768x400', crop: 'center' }}">
+              <source media="(max-width:599px)" srcset="{{ settings.banner | img_url: '375x195', crop: 'center' }}">
+              <img id="{{ img_id }}" class="article__grid-image lazyload" src="{{ img_url }}" alt="">
+            </picture>
+            {% include 'breadrumb' %}
+        </div>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  {% if settings.banner %}
+  <div class="banner contact-banner">
+      {%- assign img_url = settings.banner | img_url: '1440x382', crop: 'center'   -%}
+       <picture>
+        <source media="(min-width:1025px)" srcset="{{ img_url }}">
+        <source media="(min-width:600px) and (max-width: 1024px)" srcset="{{ settings.banner | img_url: '768x400', crop: 'center' }}">
+        <source media="(max-width:599px)" srcset="{{ settings.banner | img_url: '375x195', crop: 'center' }}">
+        <img id="{{ img_id }}" class="article__grid-image lazyload" src="{{ img_url }}" alt="">
+      </picture>
+      {% include 'breadrumb' %}
+  </div>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Banners",
+  "blocks": [{
+      "type": "banner",
+      "name": "banner",
+      "settings" : [
+        {
+          "type": "image_picker",
+          "id": "main_banner",
+          "label": "Main banner"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        }
+      ]  
+  }  ]
+}
+{% endschema %}

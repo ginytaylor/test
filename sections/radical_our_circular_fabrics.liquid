@@ -1,0 +1,151 @@
+<div class="block-radical radical_our_circular_fabrics block-title-fixed">
+  <div class="page-width">
+    {% capture blockTitle %}
+      {% if section.settings.title != blank %}
+      <div class="title-scroll">
+        <h2 class="h1">
+          <div>
+            {{ section.settings.title }}
+          </div>
+        </h2>
+        {% if section.settings.sub_title != blank %}
+        <h2 class="h1">
+            <div><span>{{section.settings.sub_title}}</span></div>
+        </h2>
+        {% endif %}
+      </div>
+      {% endif %}
+    {% endcapture %}
+    <div class="block-title-back">
+      {{ blockTitle }}
+    </div>
+    {% if section.blocks.size > 0 %}
+    <div class="block-fixed">
+<!--
+      <div class="block-title-mask">
+      {{ blockTitle }}
+      </div>
+-->
+      <div>
+      {{ blockTitle }}
+      </div>      
+    <div class="block-radical-items block-radical-items-farics ">
+      <div class="grid">
+        <div class="grid__item col-2 col-md-2 ">&nbsp;</div>
+        <div class="grid__item col-10 col-md-6">
+          <div class="grid">
+            <div class=" grid__item col-6 col-md-4 col-small-5">
+              {% assign colCountMod = section.blocks.size | modulo: 2 %}
+              {% assign colCount = section.blocks.size | divided_by: 2 | plus: colCountMod %}
+              {% for block in section.blocks %}
+              
+                <div class="item slide-up">
+                    {% if block.settings.banner != blank %}
+                    <div class="img-banner">
+                        <img  class="lazyload" data-src="{{ block.settings.banner | img_url:'203x203' }}" src="{{ block.settings.banner | img_url:'2x' }}" alt="{{ block.settings.banner.alt }}">
+                        <span class="icon-Sustainability_icons_outlined_{{ block.settings.icons }} planet-icon"></span>
+                    </div>
+                    {% endif %}
+                    <div class="item-info">
+                    {% if block.settings.sub_title != blank %}
+                    <p class="h5">
+                      {{ block.settings.sub_title }} 
+                    </p>
+                    {% endif %}
+                    {% if block.settings.title != blank %}
+                    <h3 class="h2">
+                      {{ block.settings.title }} 
+                    </h3>
+                    {% endif %}
+                    {% if block.settings.sub_title_s != blank %}
+                    <p class="h5">
+                      {{ block.settings.sub_title_s }} 
+                    </p>
+                    {% endif %}
+                  </div>
+                </div>
+                {% if forloop.index == colCount %}
+                </div>
+                <div class=" grid__item col-6 col-md-4 col-small-5">
+                {% endif %}
+              {% endfor %}
+            </div>  
+            </div> 
+      </div>
+      </div>
+    </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Our Circular fabrics",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Circular"
+    },
+    {
+      "type": "text",
+      "id": "sub_title",
+      "label": "Sub Title",
+       "default": "fabrics"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner",
+          "label": "Banner"
+        },
+        {
+          "type":"select",
+          "id": "icons",
+          "label": "Icon",
+          "default": "recycled-nylon",
+          "options":[
+              {
+                "value": "recycled-nylon",
+                "label": "recycled-nylon"
+              },
+              {
+                "value": "recycled-spandex",
+                "label": "recycled-spandex"
+              },
+              {
+                "value": "recycled-polyester",
+                "label": "recycled-polyester"
+              },
+              {
+                "value": "cotton",
+                "label": "cotton"
+              }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub Title"
+        },
+        {
+          "type": "text",
+          "id": "sub_title_s",
+          "label": "Sub Title"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+
+{% if section.blocks.size > 0 %}
+    <style>
+      {% for block in section.blocks %}
+      .b{{ block.settings.tag | handle }} { 
+          background-color: {{  block.settings.background  | default:  'transparent' }} ; 
+          color: {{  block.settings.color  | default:  '#000' }} ; 
+      }
+      {% endfor %}
+    </style>
+    
+{% endif %}
+{% schema %}
+{
+  "name": "Blog tags",
+  "blocks": [
+    {
+      "type": "blogtags",
+      "name": "Tag",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag"
+        }
+      ]
+    }  
+  ]
+}
+{% endschema %}
