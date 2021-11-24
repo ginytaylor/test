@@ -1,6 +1,7 @@
-{% comment %}
-  The contents of the cart.liquid template can be found in /sections/cart-template.liquid
-{% endcomment %}
-
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
 {% section 'cart-template' %}
+{% section 'recently-viewed-products' %}
 
+{% comment %}
+{% include 'cart-add-on' %}
+{% endcomment %}

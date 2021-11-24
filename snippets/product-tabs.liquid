@@ -1,0 +1,44 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+{% include 'ly-description' with product %}
+{% assign product_content_parts = ly_translation | split: '<h6>' %}
+<div class="Product__Tabs" id="anchor">
+      {% for accordion in product_content_parts %}
+      {% if accordion != blank %}
+        {% assign accordion_tilte = accordion | split: '</h6' | first %}
+        {% assign accordion_content = accordion | split: '</h6>' | last %}
+      <div class="Collapsible Collapsible--large">
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+        {{accordion_tilte}} <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div class="Rte">
+            {{ accordion_content }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {%- endif -%}
+
+      {%- endfor -%}
+
+    {%- if section.settings.reviews_enabled -%}
+      <div class="Collapsible Collapsible--large">
+        {%- comment -%}<ly-as-16346875>We parse from metafields the number of reviews</ly-as-16346875>{%- endcomment -%}
+        {%- assign reviews_count = product.metafields.spr.reviews | split: '<meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
+
+        <button class="Collapsible__Button Heading u-h6" data-action="toggle-collapsible" aria-expanded="false">
+          <span>{% comment %}ly_i18n_replace_for_[ 'product.tabs.reviews' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'product.tabs.reviews' | t }}{% endcapture %}{% include 'ly-static-string' with '16346876' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %} <span class="text--light">({{ reviews_count | default: 0 }})</span></span>
+          <span class="Collapsible__Plus"></span>
+        </button>
+
+        <div class="Collapsible__Inner">
+          <div class="Collapsible__Content">
+            <div id="shopify-product-reviews" data-id="{{product.id}}">{% comment %}ly_code_replace_for_[ product.metafields.spr.reviews ]_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign ns = language | append: 'spr' %}{% assign key = 'reviews' %}{% if product.metafields[ns][key] %}{% assign ly_translation = product.metafields[ns][key] %}{% else %}{% assign ly_translation =  product.metafields.spr.reviews  %}{% endif %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>

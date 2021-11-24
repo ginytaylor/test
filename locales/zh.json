@@ -1,0 +1,371 @@
+{
+  "shopify": {
+    "checkout": {
+      "general": {
+        "page_title": "付款",
+        "address1_label": "地址*",
+        "address1_placeholder": "地址*",
+        "skip_to_content": "跳到內容",
+        "continue_button_label": "繼續",
+        "complete_purchase_button_label": "完成訂單",
+        "authenticate_purchase_button_label": "驗證付款",
+        "edit_link_label": "編輯",
+        "print_policies_link_label": "打印",
+        "cart": "購物車",
+        "close_modal_label": "關",
+        "close_notice_label": "關",
+        "continue_to_shipping_method": "繼續編輯送貨選項",
+        "continue_to_payment_method": "繼續編輯付款方式",
+        "continue_to_review": "查看訂單",
+        "back_to_cart": "回到購物車",
+        "back_to_contact_information": "返回賬戶資訊",
+        "back_to_shipping_method": "返回送貨選項",
+        "back_to_payment_method": "返回付款方式",
+        "edit_shipping_address": "修改送貨地址",
+        "edit_contact_information": "編輯賬戶資訊",
+        "edit_shipping_method": "修改送貨選項",
+        "edit_payment_method": "修改付款方式",
+        "edit_billing_address": "修改帳單郵寄地址",
+        "choose_shipping_method": "選擇送貨選項",
+        "choose_payment_method": "選擇付款方式",
+        "choose_billing_address": "選擇帳單地址",
+        "phone_label": "電話*",
+        "phone_placeholder": "電話*",
+        "contact_us_html": "聯繫我們",
+        "autocomplete_title": "建議",
+        "autocomplete_single_item": "一件現有的產品",
+        "autocomplete_close": "關閉建議",
+        "all_rights_reserved": "保留所有權利 {{ shop_name }}",
+        "autocomplete_multi_item": "{{number}} 件現有的產品",
+        "autocomplete_selection": "{{number}} 件，一共{{total}} 件",
+        "footer": "罝頂",
+        "forwarding_indicator": {
+          "new_window": "以新分頁開啟",
+          "external": "打開 Francfranc 以外的網站。",
+          "external_and_new_window": "以新分頁開啟Francfranc 以外的網站。"
+        },
+        "checkout_context": {
+          "step_one": "{{ shop_name }} - 付款"
+        }
+      },
+      "contact": {
+        "title": "賬戶資訊",
+        "address_title": "地址",
+        "country_placeholder": "國家",
+        "shipping_address_title": "送貨地址",
+        "contact_method_title": "賬戶資訊",
+        "email_label": "電郵地址",
+        "email_placeholder": "電郵地址",
+        "email_or_phone_label": "電郵地址或手機號碼",
+        "email_or_phone_placeholder": "電郵地址或手機號碼",
+        "stored_addresses_label": "已存儲的地址",
+        "new_address_label": "更新地址...",
+        "first_name_label": "名",
+        "optional_first_name_label": "名 (自選的)",
+        "first_name_placeholder": "名",
+        "optional_first_name_placeholder": "名 (自選的)",
+        "last_name_label": "姓氏",
+        "last_name_placeholder": "姓氏",
+        "company_label": "公司名稱",
+        "optional_company_label": "公司名稱  (可選填)",
+        "company_placeholder": "公司名稱",
+        "optional_company_placeholder": "公司名稱 (可選填)",
+        "address1_label": "地址",
+        "address1_placeholder": "地址",
+        "address2_label": "公寓, 房間號碼, 等",
+        "optional_address2_label": "公寓, 房間號碼, 等",
+        "address2_placeholder": "公寓, 房間號碼, 等",
+        "optional_address2_placeholder": "公寓, 房間號碼, 等 (如有)",
+        "city_label": "城市",
+        "city_placeholder": "城市",
+        "country_label": "國家",
+        "phone_label": "電話*",
+        "optional_phone_label": "電話*",
+        "phone_placeholder": "電話",
+        "optional_phone_placeholder": "電話",
+        "country_code": "國家地區代碼",
+        "province_label": "省份",
+        "province_placeholder": "省份",
+        "zip_code_placeholder": "郵區編號",
+        "postal_code_placeholder": "郵政編碼",
+        "postcode_placeholder": "郵遞區號",
+        "pincode_placeholder": "PIN碼"
+      },
+      "customer_account": {
+        "have_an_account_label": "已有賬號？",
+        "sign_in_link_label": "登入",
+        "sign_out_link_label": "登出",
+        "save_my_information_label": "保存此資訊以供下次使用",
+        "not_user_label": "不是 {{ first_name }}?"
+      },
+      "stock": {
+        "title": "暫時缺貨",
+        "items_unavailable_notice": "部分產品暫時缺貨。同時我們已更新你的購物車。",
+        "product_column_header": "產品",
+        "quantity_column_header": "數量",
+        "price_column_header": "價錢",
+        "status_column_header": "狀態",
+        "removed_from_cart_notice": "從購物車中移除",
+        "sold_out_label": "暫時缺貨",
+        "remove_from_cart_button_label": "從購物車中移除",
+        "continue_shopping_button_label": "繼續",
+        "go_back_to_cart_button_label": "回到我的購物車",
+        "page_title": "庫存資料更新中",
+        "reduced_label": "減價貨品",
+        "reduced_with_quantity_label": "剩餘 {{ quantity_available }} 件貨品"
+      },
+      "order_summary": {
+        "title": "訂單概覽",
+        "shopping_cart_label": "購物車",
+        "discount_title": "折扣",
+        "discount_label": "優惠碼",
+        "discount_placeholder": "優惠碼",
+        "gift_card_and_discount_title": "禮品卡或折扣代碼",
+        "gift_card_and_discount_label": "優惠碼",
+        "gift_card_and_discount_placeholder": "禮品卡或折扣代碼",
+        "show_discount_form_link_label": "有折扣代碼？點擊這裡輸入",
+        "remove_gift_card_label": "清除禮品卡",
+        "remove_discount_label": "刪除折扣",
+        "free_shipping_discount_label": "免運費",
+        "apply_discount_button_label": "驗證",
+        "discount_has_been_applied": "折扣已被使用",
+        "discount_has_been_removed": "折扣已被刪除",
+        "total_label": "總計",
+        "partial_total_label": "總計",
+        "free_total_label": "免運費",
+        "paid_label": "付費",
+        "subtotal_label": "小計",
+        "order_name_label": "訂單 {{ name }}",
+        "gift_card_title": "禮物卡",
+        "gift_card_label": "禮物卡",
+        "gift_card_placeholder": "禮物卡",
+        "gift_card_has_been_applied": "禮品卡已被使用",
+        "gift_card_has_been_removed": "禮品卡已被刪除",
+        "discount_already_applied": "相關折扣已被使用",
+        "cart_does_not_meet_discount_requirements_notice": "<strong>{{ code }}<\/strong> 折扣不適用於你購物車內部分的產品",
+        "discount_requires_customer_notice": "輸入您的送貨資料以使用<strong> {{code}} <\/ strong>折扣代碼",
+        "customer_does_not_meet_discount_requirements_notice": "您現在無法使用<strong> {{code}} <\/ strong>折扣代碼",
+        "shipping_information_does_not_meet_discount_requirements_notice": "<strong> {{code}} <\/ strong>折扣代碼不適用於您的送貨地址",
+        "customer_already_used_once_per_customer_discount_notice": "{{ code }} 折扣已被使用",
+        "shipping_label": "送貨",
+        "tip_label": "小費",
+        "shipping_default_value": "在下一步結算",
+        "shipping_pending_value": "One",
+        "shipping_pending_message": "尚不可用",
+        "shipping_policy_link": "運費",
+        "taxes_label": "稅項",
+        "payment_due_label": "付費期限",
+        "vat_label_html": "連 {{ amount }} 稅項",
+        "discount_and_gift_card_savings_notice": "折扣後{{discount_amount}}和禮品卡中的{{gift_card_amount}}",
+        "discount_savings_notice": "{{discount_amount}}折扣後",
+        "gift_card_savings_notice": "在禮品卡中{{gift_card_amount}}之後",
+        "cost_table_title": "成本摘要",
+        "description_label": "描述",
+        "price_label": "價錢",
+        "quantity_label": "數量",
+        "product_image_label": "產品圖片",
+        "scroll_order_summary": "滾動查看更多項目",
+        "expand_order_summary": "顯示訂單摘要",
+        "collapse_order_summary": "隱藏訂單摘要",
+        "total_updated_label": "更新後價格："
+      },
+      "payment": {
+        "title": "付款方法",
+        "card_security_notice": "所有交易都是安全和經過加密的",
+        "name_on_card_label": "持卡人姓名",
+        "name_on_card_placeholder": "持卡人姓名",
+        "card_expiry_month_label": "有效日期(月)",
+        "card_expiry_month_placeholder": "月",
+        "card_expiry_year_label": "有效日期(年)",
+        "card_expiry_year_placeholder": "年",
+        "card_expiry_label": "有效日期",
+        "card_expiry_short_label": "月 \/ 年",
+        "card_expiry_long_label": "有效日期 (月 \/ 年)",
+        "card_expiry_placeholder": "月 \/ 年",
+        "card_verification_value_label": "安全碼",
+        "card_verification_value_placeholder": "安全碼",
+        "card_expiry_date_explanation": "卡到期日的格式：月，月，年，年",
+        "card_verification_value_explanation": "通常位於卡背面的3位數安全碼。美國運通卡的正面有4位數代碼。",
+        "card_verification_value_explanation_amex": "卡背面有4位數的安全密碼",
+        "card_verification_value_explanation_other": "卡背面有3位數的安全密碼",
+        "billing_address_title": "帳單地址",
+        "same_billing_address_label": "跟送貨地址一樣",
+        "card_change_label": "更改",
+        "card_number_label": "信用卡號",
+        "different_billing_address_label": "使用其他帳單郵寄地址",
+        "apply_gift_card_button_label": "使用",
+        "amazon_payments_login_hint": "您將被要求使用Amazon登入。",
+        "amazon_payments_logout": "從Amazon登出",
+        "amount_left_to_pay_label": "餘下結欠",
+        "discount_button_action_label": "使用優惠碼",
+        "gift_card_code_label": "使用禮品卡代碼",
+        "gift_card_balance_label": "餘額:",
+        "show_gift_card_form_link_label": "有禮品卡? 按這裡輸入",
+        "supported_card_brands_more_label": "更多...",
+        "detected_card_brand": "檢測到的信用卡",
+        "card_number_placeholder": "卡號碼",
+        "card_pay_with": "使用:",
+        "card_start_month_label": "開始使用月份",
+        "card_start_month_placeholder": "月",
+        "card_start_year_label": "開始使用年份",
+        "card_start_year_placeholder": "年",
+        "card_start_label": "開始",
+        "card_start_long_label": "發卡日期 (月 \/ 年)",
+        "card_start_placeholder": "(月 \/ 年)",
+        "card_issue_number_label": "發卡號碼",
+        "card_issue_number_placeholder": "發卡號碼",
+        "ends_with_label": "結尾為 {{ last_digits }}",
+        "masked_digits_label": "•••• {{ last_digits }}",
+        "saved_by_payment_method": "保存 {{ payment_method }}",
+        "pay_with_payment_method": "使用 {{ payment_method }} 支付",
+        "free_order_notice_html": "你的訂單是 <strong>free<\/strong>。無需付款。",
+        "offsite_gateway_redirect_hint": "點擊 “{{ button_label }}”後，你將會被帶到 {{ gateway_label }} 安全地完成購買。",
+        "offsite_gateway_redirect_hint_multi_currency_html": "{{ gateway_label }} 一共 {{ total_shop_price }}",
+        "no_js_credit_card_fields_redirect_hint": "你將會被帶到您的付款信息。",
+        "card_fields_container_prefix": "現場容器：",
+        "card_fields_processing_error": "處理付款時出現問題。請嘗試其他付款方式或稍後再試。",
+        "technical_error": "由於技術問題，目前無法處理交易。",
+        "no_method_error": "目前無法處理交易, 聯絡我們以便完成您的訂單。",
+        "not_configured_error": "目前無法處理交易, 聯絡我們以便完成您的訂單。",
+        "missing_credit_card_error": "輸入您的信用卡資料以完成付款。",
+        "generic_incorrect_card_info": "您的付款詳細信息無法驗證。請檢查信用卡資料或稍後再試。",
+        "sofort_label": "Sofort 銀行轉帳",
+        "klarna_label": "稍後付款",
+        "order_covered_by_gift_cards_notice": {
+          "one": "您的訂單已由您的禮品卡支付。",
+          "other": "您的訂單已由您的禮品卡支付。"
+        },
+        "card_fields_unavailable_html": {
+          "one": "目前無法使用信用卡和銀行卡付款。<br><a href=\"javascript:window.location.reload();\"> 刷新此頁面<\/a> 或稍後再試。",
+          "other": "目前無法使用信用卡和銀行卡付款。<br><a href=\"javascript:window.location.reload();\">刷新此頁面<\/a> 或稍後使用其仔他付款方法。"
+        }
+      },
+      "thank_you": {
+        "shipping_address_title": "收件地址",
+        "marker": {
+          "shipping": "收件地址"
+        },
+        "contact_information_title": "賬戶資訊",
+        "payment_method_title": "付款方法",
+        "shipping_method_title": "送貨選項"
+      },
+      "shipping": {
+        "title": "送貨選項",
+        "no_rates_for_cart_or_destination_notice": "您的購物車或地址沒有可用的送貨選項",
+        "shipping_method_title": "送貨選項",
+        "waiting_on_rate_notice": "獲取運費中......",
+        "no_rates_for_country_notice": "我們沒有提供送貨服務至 {{ country }}.",
+        "no_rates_contact_notice": "聯繫我們",
+        "free_rate_label": "免運費",
+        "cheapest_rate_label": "便宜",
+        "please_enter_your_shipping_information_notice": "請輸入您的送貨資料。",
+        "estimated_delivery_date_range": "{{ minimum }} 至 {{ maximum }} 工作天",
+        "shipping_line_phone_label": "手機號碼（必填）",
+        "shipping_line_phone": "您的派遞員可以使用此號碼與您聯繫。",
+        "shipping_rate_discounted_amount": "原價: {{ original_amount }}. 折扣後: {{ amount }}",
+        "estimated_delivery_date": {
+          "one": "一個工作天",
+          "other": "{{ count }} 個工作天"
+        },
+        "other_method": {
+          "zero": "暫時沒有可用",
+          "one": "現時可以提供的一個\/其他方法",
+          "other": "{{ count }} 個\/其他方法可在"
+        }
+      },
+      "review": {
+        "blocks": {
+          "change_contact_method_link_label": "更改賬戶資訊",
+          "shipping_address_title": "運送到",
+          "change_link_label": "更改",
+          "change_shipping_method_link_label": "更改送貨選項",
+          "shipping_method_title": "送貨選項",
+          "change_payment_method_link_label": "更改付款方式"
+        },
+        "checkout_as_guest": "以訪客身份付款"
+      },
+      "marketing": {
+        "accept_marketing_checkbox_label": "我想收到最新資訊及獨家優惠"
+      },
+      "remember_me": {
+        "modal": {
+          "errors": {
+            "shipping_address": {
+              "title": "無法運送到您的地區"
+            }
+          }
+        },
+        "label": "儲存我的資訊以便特快付款"
+      },
+      "payment_summary": {
+        "billing_address_title": "帳單地址",
+        "gift_card_current_balance_notice": "餘額 {{ amount }}",
+        "credit_card_expires_on_notice": "到期日 {{ month }}\/{{ year }}",
+        "express_payment_gateway_label": "特快",
+        "manual_payment_gateway_label": "人手操作",
+        "free_label": "免"
+      },
+      "field_errors": {
+        "credit_card_number_invalid": "請輸入一個有效的信用卡號碼",
+        "handle_phone_invalid": "請輸入有效的電話號碼",
+        "handle_email_invalid": "請輸入有效的電子郵件",
+        "email_invalid": "請輸入有效的電子郵件",
+        "email_or_phone_blank": "請輸入電子郵件或手機號碼",
+        "email_or_phone_invalid": "請輸入有效的電子郵件或手機號碼",
+        "address_first_name_blank": "輸入名字",
+        "address_last_name_blank": "輸入姓氏",
+        "address_address1_blank": "輸入地址",
+        "address_address2_blank": "輸入公寓, 房間號碼, 等",
+        "address_city_blank": "輸入城市名稱",
+        "address_country_blank": "輸入國家名稱",
+        "address_province_blank": "選擇州份\/省份",
+        "address_company_blank": "輸入公司名稱",
+        "address_phone_blank": "請輸入有效的電話號碼",
+        "address_zip_blank": "請輸入郵區編號 \/ 郵政編碼",
+        "address_zip_invalid_for_country": "請輸入 {{ country }} 有效的郵區編號 \/ 郵政編碼",
+        "address_zip_invalid_for_country_and_province": "請輸入r {{ province }}, {{ country }}有效的郵區編號 \/ 郵政編碼",
+        "credit_card_name_blank": "請輸入信用卡上顯示的姓名",
+        "credit_card_name_invalid": "請輸入信用卡上顯示的姓名",
+        "credit_card_expiry_invalid": "請輸入卡上有效的到期日",
+        "credit_card_month_invalid": "請輸入卡上有效的到期月份",
+        "credit_card_year_invalid": "請輸入卡上有效的到期年份",
+        "credit_card_start_invalid": "請輸入卡上有效的開始日",
+        "credit_card_start_month_invalid": "請輸入卡上有效的開始月份",
+        "credit_card_start_year_invalid": "請輸入卡上有效的開始年份",
+        "credit_card_verification_value_blank": "xxxxxx",
+        "reduction_code_code_not_found": "此禮品卡或折扣代碼不正確。請重新輸入!"
+      },
+      "payment_gateway": {
+        "credit_card_label": "信用卡"
+      },
+      "alternative_payment_method_banner": {
+        "express_checkout": "特快付款"
+      },
+      "alternative_payment_method": {
+        "button_html": "付款使用: {{ method }}",
+        "button_label": "付款使用: {{ method }}"
+      },
+      "paypal": {
+        "button_html": "付款使用 {{ logo }}"
+      },
+      "shipping_errors": {
+        "shipping_method": "您的購物車經已修改，之前選擇的運費已不再適用。請重新選擇你的運費。"
+      }
+    },
+    "addresses": {
+      "region": "地區"
+    }
+  },
+  "home_page": {
+    "newsletter": {
+      "input": "",
+      "submit": "訂閱",
+      "success": ""
+    }
+  },
+  "customer": {
+    "login": {
+      "forgot": "忘记密码了吗?"
+    }
+  }
+}

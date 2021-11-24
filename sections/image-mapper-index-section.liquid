@@ -1,0 +1,21 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<!-- Image mapper code -->
+{{ section.settings.html }}
+<!-- /Image mapper code -->
+{% schema %}
+  {
+    "name": "Image Mapper",
+    "settings": [
+		{
+			"type": "html",
+			"id": "html",
+			"label": "Mapper Code"
+		}
+    ],
+    "presets": [
+      	{
+        	"name": "Image Mapper",
+        	"category": "Image Mapper"
+        }
+    ]
+  }
+{% endschema %}

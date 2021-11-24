@@ -1,0 +1,57 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}{% comment %}
+  Replace the text below with the handle of your add-on product.
+{% endcomment %}
+
+{% assign product = all_products['shipping-fee'] %}
+
+{% unless cart.item_count == 0 or product.empty? or product.variants.first.available == false %}
+
+{% assign variant_id = product.variants.first.id %}
+  <script>
+  (function($) {
+    var hadShippingFee = false,
+        cart_total = {{cart.total_price }},
+        cartItems = {{ cart.items | json }},
+        qtyInTheCart = 0,
+        cartUpdates = {},
+        isFreeShipping = 0,
+        hadShippingFeeInCart = false;
+      
+    for (var i=0; i<cartItems.length; i++) {
+      if ( cartItems[i].id === {{ variant_id }} ) {
+        qtyInTheCart = cartItems[i].quantity;
+        hadShippingFeeInCart = true;
+        break;
+      }
+    }
+      isFreeShipping = cart_total > (hadShippingFeeInCart ? 440000 : 400000);
+      console.log(`Cart total ${cart_total}`);
+      console.log(`Free shipping: ${isFreeShipping}`);
+      if((isFreeShipping && !hadShippingFeeInCart) || (!isFreeShipping && hadShippingFeeInCart)) {
+        console.log('Freeshipping do nothing')
+        return;
+      }
+    if ( cartItems.length > 0  && hadShippingFeeInCart   ) {
+      cartUpdates = { {{ variant_id }}: 0 };
+      console.log('Free shipping, now remove shipping fee product');
+    }
+    else if ( ( cartItems.length > 0 ) && ( !hadShippingFeeInCart ) ) {
+      cartUpdates = { {{ variant_id }}: 1 }
+      console.log('Add shipping fee product to cart.')
+    }
+    console.log(cartUpdates)
+    var params = {
+      type: 'POST',
+      url: '/cart/update.js',
+      data: { updates: cartUpdates },
+      dataType: 'json',
+      success: function(stuff) { 
+        window.location.href = '/cart';
+      }
+    };
+
+    $.ajax(params);
+  })(jQuery);
+  </script>
+
+{% endunless %}

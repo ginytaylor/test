@@ -1,12 +1,31 @@
-{% comment %}
-<!-- DO NOT EDIT!! - Auto generated file->
-<!-- To add modifications, create a separate file and include in theme.liquid after {% include swymSnippet %}-->
-{% endcomment %}
-<link rel="dns-prefetch" href="https://swymstore-v3pro-01.swymrelay.com" crossorigin>
-<link rel="dns-prefetch" href="//swymv3pro-01.azureedge.net/code/swym-shopify.js">
-<link rel="preconnect" href="//swymv3pro-01.azureedge.net/code/swym-shopify.js">
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<link rel="dns-prefetch" href="https://store.swymrelay.com" crossorigin>
+<link rel="dns-prefetch" href="//swymprod.azureedge.net/code/swym-shopify.js">
+<link rel="preconnect" href="//swymprod.azureedge.net/code/swym-shopify.js">
 <script id="swym-snippet">
   window.swymLandingURL = document.URL;
+  (function loadSwymFaster(){
+    var elScripts = document.querySelectorAll("script:not([src]):not([class]):not([id])"), scriptLoadScript, scriptLoadScriptText;
+    for(var i = 0; i < elScripts.length; i++){
+      var elScript = elScripts[i];
+      // TODO change swym- check to script metafield
+      if(elScript.innerText.indexOf('swym-shopify.js') > -1){
+        scriptLoadScriptText = elScript.innerText;
+        break;
+      }
+    }
+    if(scriptLoadScriptText) {
+      var startStr = 'var urls =';
+      var startIdx = scriptLoadScriptText.indexOf(startStr);
+      var endStr = '"];';
+      var endIdx = scriptLoadScriptText.indexOf(endStr,startIdx);
+      var listOfUrlsText = scriptLoadScriptText.slice(startIdx + startStr.length, endIdx + endStr.length);
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = ({% comment %}ly_code_replace_for_[ shop.metafields.swym.js_path | json ]_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign ns = language | append: 'swym' %}{% assign key = 'js_path' %}{% if shop.metafields[ns][key] %}{% assign ly_translation = shop.metafields[ns][key] %}{% else %}{% assign ly_translation =  shop.metafields.swym.js_path | json  %}{% endif %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %} || "//swymprod.azureedge.net/code/swym-shopify.js") + "?shop={{shop.permanent_domain | url_encode}}";
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+  })();
   window.swymCart = {{ cart | json }};
   window.swymPageLoad = function(){
     window.SwymProductVariants = window.SwymProductVariants || {};
@@ -28,22 +47,22 @@
       {% endif %}
       SwymProductVariants[{{variant.id|json}}] = {
         empi:window.SwymProductInfo.product.id,epi:{{variant.id|json}},
-        dt: {{ product.title | json }},
+        dt: {% comment %}ly_code_replace_for_[ product.title | json ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %},
         du: "{{ shop.url }}{{ product.url }}",
         iu: {% if variant.image %} {{ variant | img_url: '620x620' | json }} {% else %} piu {% endif %},
         stk: {{variant.inventory_quantity}},
         pr: {{variant.price}}/100,
         ct: window.SwymProductInfo.product.type,
         {% if variant.compare_at_price %} op: {{variant.compare_at_price}}/100, {% endif %}
-        variants: [{ {{ variant.title | json }} : {{variant.id|json}}}]
+        variants: [{ {% comment %}ly_code_replace_for_[ variant.title | json ]_begin{% endcomment %}{% include 'ly-title' with variant %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %} : {{variant.id|json}}}]
       };
     {%- endfor -%}
     window.SwymProductInfo.currentVariant = {{currentVariant.id | json}};
     var product_data = {
       et: 1, empi: window.SwymProductInfo.product.id, epi: window.SwymProductInfo.currentVariant,
-      dt: {{ product.title | json }}, du: "{{ shop.url }}{{ product.url }}",
+      dt: {% comment %}ly_code_replace_for_[ product.title | json ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %}, du: "{{ shop.url }}{{ product.url }}",
       ct: window.SwymProductInfo.product.type, pr: {{ currentVariant.price }}/100,
-      iu: {% if currentVariant.image %} {{ currentVariant | img_url: '620x620' | json }} {% else %} piu {% endif %}, variants: [{ {{currentVariant.title | json}} : {{currentVariant.id | json}} }],
+      iu: {% if currentVariant.image %} {{ currentVariant | img_url: '620x620' | json }} {% else %} piu {% endif %}, variants: [{ {% comment %}ly_code_replace_for_[currentVariant.title | json]_begin{% endcomment %}{% include 'ly-title' with currentVariant %}{{ly_translation | json}}{% comment %}ly_code_replace_end{% endcomment %} : {{currentVariant.id | json}} }],
       stk:{{ currentVariant.inventory_quantity }} {% if currentVariant.compare_at_price %} ,op:{{currentVariant.compare_at_price}}/100 {% endif %}
     };
     window.SwymPageData = product_data;
@@ -57,7 +76,7 @@
       if (typeof collection.image === "undefined" || collection.image == null || collection.image.toString().trim() == ""){}
       else{image = collection.image.src;}
       var collection_data = {
-        et: 2, dt: {{ collection.title | json}},
+        et: 2, dt: {% comment %}ly_code_replace_for_[ collection.title | json]_begin{% endcomment %}{% include 'ly-title' with collection %}{{ ly_translation | json}}{% comment %}ly_code_replace_end{% endcomment %},
         du: "{{shop.url}}/collections/{{collection.handle}}", iu: image
       }
       window.SwymPageData = collection_data;
@@ -86,11 +105,9 @@
     })();
   }
   window.swymCustomerId = {% if customer %}"{{ customer.id }}"{% else %}null{% endif %};
-  window.swymCustomerExtraCheck = {% if customer and customer.tags.size > 0 %}true{% else %}null{% endif %};
-
-  var swappName = ({{ shop.metafields.swym.app | json }} || "Wishlist");
+  var swappName = ({% comment %}ly_code_replace_for_[ shop.metafields.swym.app | json ]_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign ns = language | append: 'swym' %}{% assign key = 'app' %}{% if shop.metafields[ns][key] %}{% assign ly_translation = shop.metafields[ns][key] %}{% else %}{% assign ly_translation =  shop.metafields.swym.app | json  %}{% endif %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %} || "Wishlist");
   var swymJSObject = {
-    pid: {{ shop.metafields.swym.pid | json }} || "NK9Mt/uD7RYsYb6Ny+NyWvxC8NteLo9WLsf/ZLiD9xQ=",
+    pid: {% comment %}ly_code_replace_for_[ shop.metafields.swym.pid | json ]_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign ns = language | append: 'swym' %}{% assign key = 'pid' %}{% if shop.metafields[ns][key] %}{% assign ly_translation = shop.metafields[ns][key] %}{% else %}{% assign ly_translation =  shop.metafields.swym.pid | json  %}{% endif %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %} || "1aLmxI1ixmKFJMdDnDoPVXUiGwnCMnpNU2mn0tI2Yjc=",
     interface: "/apps/swym" + swappName + "/interfaces/interfaceStore.php?appname=" + swappName
   };
   window.swymJSShopifyLoad = function(){
@@ -142,20 +159,6 @@
     {% endif %}
   }
 </script>
-{% if customer %}
-<script id="swym-wrap-login-handler">
-window.SwymCallbacks = window.SwymCallbacks || [];
-window.SwymCallbacks.push(function(swat) {
-  if(swat.isAlreadyAuth()) {
-    var postLoginRedirect = swat.storage.get(swat.key.POSTLOGINRD);
-    if(postLoginRedirect && postLoginRedirect != window.location) {
-      swat.storage.remove(swat.key.POSTLOGINRD);
-      window.location = postLoginRedirect;
-    }
-  }
-});
-</script>
-{% endif %}
 <style id="safari-flasher-pre"></style>
 <script>
   if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {

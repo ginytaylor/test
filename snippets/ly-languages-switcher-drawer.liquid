@@ -1,0 +1,22 @@
+<div class="ly-drawer-template" style="display: none;"
+    data-align="{% if lysd_align %}{{ lysd_align }}{% else %}left{% endif %}"
+    data-target="{% if lysd_target %}{{ lysd_target }}{% endif %}"
+    data-target-is-container="{% if lysd_target_is_container %}{{ lysd_target_is_container }}{% else %}true{% endif %}"
+    data-type="{% if lysd_type %}{{ lysd_type }}{% endif %}"
+    data-css="{% if lysd_css %}{{ lysd_css }}{% endif %}"
+    data-class="{% if lysd_class %}{{ lysd_class }}{% endif %}">
+  {%- case lysd_type -%}
+  {%- when 'dropdown' -%}
+  	{%- include 'ly-languages-switcher-custom' style:'switcher-dropdown' theme: lysd_theme uppercase: lysd_uppercase -%}
+  {%- when 'image-dropdown' -%}
+  	{%- include 'ly-languages-switcher-custom' style:'image-dropdown' theme: lysd_theme uppercase: lysd_uppercase dropup: lysd_dropup -%}
+  {%- when 'image-dropdown-icons' -%}
+  	{%- include 'ly-languages-switcher-custom' style: 'image-dropdown-icons' theme: lysd_theme uppercase: lysd_uppercase dropup: lysd_dropup -%}
+  {%- when 'links' -%}
+  	{%- include 'ly-languages-switcher-custom' style: 'links' theme: lysd_theme uppercase: lysd_uppercase -%}
+  {%- when 'links-icons' -%}
+  	{%- include 'ly-languages-switcher-custom' style: 'links-icons' theme: lysd_theme uppercase: lysd_uppercase -%}
+  {%- else -%}
+  	{%- include 'ly-languages-switcher-custom' style:'switcher-dropdown' theme: lysd_theme uppercase: lysd_uppercase -%}
+  {%- endcase -%}
+</div>

@@ -1,78 +1,118 @@
-$(document).ready(function(){
-    $('body').on('click','.saso-ul li',function(){
-        $('.saso-ul li').removeClass('selected');
-        $(this).addClass('selected');
-        var qty =  parseInt($(this).find('.qty').html());
-        $('#Quantity-product-template_2').val(qty);
-        $('#Quantity-product-template').val(qty);
-        var price_new = $(this).find('.saso-price').html();
-        $('.product-pages .product_meta .product_price .or_price').parent().html('<span class="or_price price-item price-item--sale"><span class="class="money pre-money">' + price_new +'</span></span>');
+/**
+ * Include your custom JavaScript here.
+ *
+ * We also offer some hooks so you can plug your own logic. For instance, if you want to be notified when the variant
+ * changes on product page, you can attach a listener to the document:
+ *
+ * document.addEventListener('variant:changed', function(event) {
+ *   var variant = event.detail.variant; // Gives you access to the whole variant details
+ * });
+ *
+ * You can also add a listener whenever a product is added to the cart:
+ *
+ * document.addEventListener('product:added', function(event) {
+ *   var variant = event.detail.variant; // Get the variant that was added
+ *   var quantity = event.detail.quantity; // Get the quantity that was added
+ * });
+ */
 
-    });
-   var qtyParam = getUrlParameter('qty');
-    if(qtyParam != undefined){
-        $('.saso-ul li').each(function(){
-            var qty = parseInt($(this).find('.qty').html());
-            var price = $(this).find('.saso-price').html()
-            $(this).find('.bold-bundles-widget-item__price--new').html(price);
-            if(qtyParam == qty){
-                $(this).addClass('selected');
-                $('.product-pages .product_meta .product_price .or_price').parent().html('<span class="or_price price-item price-item--sale"><span class="class="money pre-money">' + price +'</span></span>');
-            }
-        });
-        $('#Quantity-product-template_2').val(qtyParam);
-        $('#Quantity-product-template').val(qtyParam);
-    }
-    
-    function getUrlParameter(sParam) {
-        var sPageURL = window.location.search.substring(1),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
+const $doc = $(document);
 
-          for (i = 0; i < sURLVariables.length; i++) {
-              sParameterName = sURLVariables[i].split('=');
+$doc.on('click', '[data-action="add-to-cart"] ', function(e) {
+	var _this8 = $(this).closest('.ProductItem');
 
-              if (sParameterName[0] === sParam) {
-                  return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-              }
-          }
-    }
-        setTimeout(function(){
-            $('.cart__submit').attr('disabled','disabled');
-        },500);
-        setTimeout(function(){
-            $('.cart__submit').removeAttr('disabled');
-        },4500);
-          $(document).on('click','.close-popup',function(){
-        	$('.mfp-close').click();
-            $('body.template-cart').removeClass('showQuickInterval');
-        });
-        var popup = setInterval(function(){ 
-          	var itemCount = $('.saso-product-container').length;
-            var totalPrice = 0;
-            if(itemCount > 0 && $('body').hasClass('template-cart')){
-              if(!$('body.template-cart').hasClass('quickInterval')){
-                $('body.template-cart').addClass('quickInterval');
-                $('body.template-cart').addClass('showQuickInterval');
-                $('.saso-product-container').each(function(){
-                  var price = $(this).data('price');
-                  price = price.replace( /^\D+/g, '');
-                  price = price.replace( /,/g, '');
-                  price = parseInt(price);
-                  totalPrice += price;
-                  if(price == 0){
-                      $(this).find('.saso-add-to-cart.saso-crosssell-nav').click();
-                  }
-                });
-                if(totalPrice == 0){
-                    $('.mfp-close').click();
-                }else{
-                  $('body.template-cart').addClass('m_showQuickInterval');
-                }
-                
-              }
-            }
-			
-        }, 1);
+	event.preventDefault(); // Prevent form to be submitted
+
+	var addToCartButton = _this8.find('.ProductForm__AddToCart');
+
+	// First, we switch the status of the button
+	addToCartButton.prop('disabled', true);
+	document.dispatchEvent(new CustomEvent('theme:loading:start'));
+
+	// Then we add the product in Ajax
+	var formElement = _this8.find('form[action^="/cart/add"]');
+
+	var serializeData = formElement.serialize();
+
+	$.ajax({
+		url: formElement.attr('action'),
+		data: serializeData,
+		dataType: 'json',
+		method: 'POST'
+	})
+		.done(function(response) {
+			document.dispatchEvent(new CustomEvent('theme:loading:end'));
+			addToCartButton.prop('disabled', false);
+			// We simply trigger an event so the mini-cart can re-render
+
+			$.ajax({
+				url: '/',
+				dataType: 'html'
+			}).done(function(data) {
+				let drawerNew;
+
+				$(data).each(function() {
+					if ($(this).attr('id') == 'sidebar-cart') {
+						const $this = $(this);
+						drawerNew = $(this).html();
+					}
+				});
+
+				$('#sidebar-cart').html(drawerNew);
+
+				$('.Header__CartCount').text(
+					$(data)
+						.find('.Header__CartCount')
+						.html()
+				);
+				console.log($('[data-action="open-drawer"][data-drawer-id="sidebar-cart"]'));
+
+				$('.Header__SecondaryNav [data-action="open-drawer"][data-drawer-id="sidebar-cart"]')[0].click();
+			});
+		})
+		.fail(function(content) {
+			document.dispatchEvent(new CustomEvent('theme:loading:end'));
+
+			var errorMessageElement = document.createElement('span');
+			errorMessageElement.className = 'ProductForm__Error Alert Alert--error';
+			errorMessageElement.innerHTML = content.responseJSON.errors;
+			addToCartButton.prop('disabled', false);
+			addToCartButton.after(errorMessageElement);
+			setTimeout(function() {
+				errorMessageElement.remove();
+			}, 2500);
+
+			console.log(content.responseJSON);
+		});
+});
+
+
+document.body.addEventListener("afterAddItem.imageMapper", function (lineItem) {
+	console.log('Product added to cart');
+	$.ajax({
+		url: '/',
+		dataType: 'html'
+	}).done(function (data) {
+		let drawerNew;
+
+		$(data).each(function () {
+			if ($(this).attr('id') == 'sidebar-cart') {
+				const $this = $(this);
+				drawerNew = $(this).html();
+			}
+		});
+
+		$('#sidebar-cart').html(drawerNew);
+
+		$('.Header__CartCount').text(
+			$(data)
+				.find('.Header__CartCount')
+				.html()
+		);
+		console.log($('[data-action="open-drawer"][data-drawer-id="sidebar-cart"]'));
+
+		// $('.Header__SecondaryNav [data-action="open-drawer"][data-drawer-id="sidebar-cart"]')[0].click();
+		$('[data-action="open-drawer"]')[1].click()
+	});
+
 });

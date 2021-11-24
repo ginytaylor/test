@@ -1,224 +1,191 @@
-<div class="page-width">
-  <div class="section-header text-center">
-    <h1>{{ 'customer.account.title' | t }}</h1>
-    <p><a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a></p>
-  </div>
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}{%- assign is_entirely_fulfilled = false -%}
+{%- assign has_one_fulfillment = false -%}
 
-  <div class="grid myaccount">
-    <div class="grid__item myaccount__order-history">
-      <h2>{{ 'customer.order.title' | t: name: order.name }}</h2>
+{%- if order.fulfillment_status == 'fulfilled' -%}
+  {%- assign is_entirely_fulfilled = true -%}
+  {%- assign tracking_numbers = '' -%}
 
-      {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%}
-      <p>{{ 'customer.order.date_html' | t: date: order_date }}</p>
+  {%- for line_item in order.line_items -%}
+    {%- assign tracking_numbers = tracking_numbers | append: line_item.fulfillment.tracking_number | append: ',' -%}
+  {%- endfor -%}
+
+  {%- assign tracking_numbers = tracking_numbers | split: ',' | compact | uniq -%}
+
+  {%- if tracking_numbers.size == 1 -%}
+    {%- assign has_one_fulfillment = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+<div class="Container Container--narrow">
+  <header class="PageHeader">
+    <a href="/account" class="PageHeader__Back Heading Text--subdued Link Link--primary u-h7">{% include 'icon' with 'select-arrow-left' %} {% comment %}ly_i18n_replace_for_[ 'customer.account.back_to_account' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.account.back_to_account' | t }}{% endcapture %}{% include 'ly-static-string' with '16346961' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
+
+    <div class="SectionHeader">
+      {%- assign placed_at = order.created_at | date: format: 'month_day_year_time' -%}
+
+      <h1 class="SectionHeader__Heading Heading u-h1">{% comment %}ly_i18n_replace_for_[ 'customer.order.title' | t: order_number: order.name ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.title' | t: order_number: order.name }}{% endcapture %}{% include 'ly-static-string' with '16346963' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = order.name  %}{% assign ly_template = ly_template | replace: '[[order_number]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h1>
+      <p class="SectionHeader__Description">{% comment %}ly_i18n_replace_for_[ 'customer.order.placed_at' | t: date: placed_at ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.placed_at' | t: date: placed_at }}{% endcapture %}{% include 'ly-static-string' with '16346965' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = placed_at  %}{% assign ly_template = ly_template | replace: '[[date]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
 
       {%- if order.cancelled -%}
-        <div class="order--cancelled">
-          {%- assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" -%}
-          <p>{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
-          <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
-        </div>
+        {%- assign cancelled_at = order.cancelled_at | date: format: 'month_day_year_time' -%}
+        <p class="Alert Alert--large Alert--error">{% comment %}ly_i18n_replace_for_[ 'customer.order.cancelled_at' | t: date: cancelled_at ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.cancelled_at' | t: date: cancelled_at }}{% endcapture %}{% include 'ly-static-string' with '16346967' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = cancelled_at  %}{% assign ly_template = ly_template | replace: '[[date]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
       {%- endif -%}
 
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th scope="col">{{ 'customer.order.product' | t }}</th>
-            <th scope="col">{{ 'customer.order.sku' | t }}</th>
-            <th class="text-right" scope="col">{{ 'customer.order.price' | t }}</th>
-            <th class="text-right" scope="col">{{ 'customer.order.quantity' | t }}</th>
-            <th class="text-right" scope="col">{{ 'customer.order.total' | t }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {%- for line_item in order.line_items -%}
-            <tr id="{{ line_item.key }}">
-              <th class="order-table__product" scope="row" data-label="{{ 'customer.order.product' | t }}">
-                <div>
-                  {{ line_item.title | link_to: line_item.product.url }}
-                  {%- assign property_size = line_item.properties | size -%}
-                  {% unless line_item.selling_plan_allocation == nil and property_size == 0 %}
-                    <div class="item-props">
-                      {% unless line_item.selling_plan_allocation == nil  %}
-                        <span class="item-props__property">
-                          {{ line_item.selling_plan_allocation.selling_plan.name }}
-                        </span>
-                      {% endunless %}
-                      {% if property_size != 0 %}
-                        {% for property in line_item.properties %}
-                          {% assign property_first_char = property.first | slice: 0 %}
-                          {% if property.last != blank and property_first_char != '_' %}
-                            <span class="item-props__property">
-                              {{ property.first }}:&nbsp;
-                              {%- if property.last contains '/uploads/' -%}
-                                <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
-                              {%- else -%}
-                                {{ property.last }}
-                              {%- endif -%}
-                            </span>
-                          {% endif %}
-                        {% endfor %}
-                      {% endif %}
+      {%- if is_entirely_fulfilled and has_one_fulfillment -%}
+        {%- assign fulfillment = '' -%}
+
+        {%- for line_item in order.line_items -%}
+          {%- if line_item.fulfillment -%}
+            {%- assign fulfillment = line_item.fulfillment -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        <p class="Alert Alert--large Alert--success">{% comment %}ly_i18n_replace_for_[ 'customer.order.fulfillment_html' | t: tracking_url: fulfillment.tracking_url, tracking_number: fulfillment.tracking_number ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.fulfillment_html' | t: tracking_url: fulfillment.tracking_url, tracking_number: fulfillment.tracking_number }}{% endcapture %}{% include 'ly-static-string' with '16346970' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = fulfillment.tracking_url %}{% assign ly_template = ly_template | replace: '[[tracking_url]]', replacement %}{% assign replacement = fulfillment.tracking_number  %}{% assign ly_template = ly_template | replace: '[[tracking_number]]', replacement %}{% if escape_content %}{{ ly_template}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+      {%- endif -%}
+    </div>
+  </header>
+
+  <div class="PageLayout PageLayout--breakLap">
+    <div class="PageLayout__Section">
+      <div class="TableWrapper">
+        <table class="AccountTable Table Table--noBorder">
+          <thead class="Text--subdued">
+            <tr>
+              <th>{% comment %}ly_i18n_replace_for_[ 'customer.order.product' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.product' | t }}{% endcapture %}{% include 'ly-static-string' with '16346971' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</th>
+              <th class="Text--alignCenter hidden-phone">{% comment %}ly_i18n_replace_for_[ 'customer.order.quantity' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.quantity' | t }}{% endcapture %}{% include 'ly-static-string' with '16346972' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</th>
+              <th class="Text--alignRight">{% comment %}ly_i18n_replace_for_[ 'customer.order.line_price' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.line_price' | t }}{% endcapture %}{% include 'ly-static-string' with '16346973' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {%- for line_item in order.line_items -%}
+              <tr>
+                <td>
+                  <div class="CartItem__ImageWrapper AspectRatio">
+                    <div class="AspectRatio" style="--aspect-ratio: {{ line_item.image.aspect_ratio }}">
+                      <img class="CartItem__Image" src="{{ line_item.image | img_url: '240x' }}" alt="{{ line_item.image.alt | escape }}">
                     </div>
-                  {% endunless %}
-                  {%- if line_item.line_level_discount_allocations != blank -%}
-                    <ul class="order-discount order-discount--list order-discount--title" aria-label="{{ 'customer.order.discount' | t }}">
-                      {%- for discount_allocation in line_item.line_level_discount_allocations -%}
-                        <li class="order-discount__item">
-                          {% include 'icon-saletag' %}{{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-                  {%- endif -%}
-                </div>
-                {%- if line_item.fulfillment -%}
-                  <div class="note">
-                    {%- assign created_at = line_item.fulfillment.created_at | time_tag: format: 'date' -%}
-                    {{ 'customer.order.fulfilled_at_html' | t: date: created_at }}
-                    <div>
-                      {%- if line_item.fulfillment.tracking_url -%}
-                        <a href="{{ line_item.fulfillment.tracking_url }}">
-                          {{ 'customer.order.track_shipment' | t }}
-                        </a>
+                  </div>
+
+                  <div class="CartItem__Info">
+                    <h2 class="CartItem__Title Heading">
+                      <a href="{{ line_item.url }}">{% comment %}ly_code_replace_for_[ line_item.product.title ]_begin{% endcomment %}{% include 'ly-title' with line_item.product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+                    </h2>
+
+                    <div class="CartItem__Meta Heading Text--subdued">
+                      {%- unless line_item.product.has_only_default_variant -%}
+                        <p class="CartItem__Variant">{% comment %}ly_code_replace_for_[ line_item.variant.title ]_begin{% endcomment %}{% include 'ly-title' with line_item.variant %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</p>
+                      {%- endunless -%}
+
+                      {%- if line_item.properties != empty -%}
+                        <ul class="CartItem__PropertyList">
+                          {%- for property in line_item.properties -%}
+                            {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+
+                            {%- if property.last == blank or first_character_in_key == '_' -%}
+                              {%- continue -%}
+                            {%- endif -%}
+
+                            <li class="CartItem__Property">{{ property.first }}: {{ property.last }}</li>
+                          {%- endfor -%}
+                        </ul>
                       {%- endif -%}
-                      <div>
-                        {{ line_item.fulfillment.tracking_company }}
-                        {%- if line_item.fulfillment.tracking_number -%} #{{ line_item.fulfillment.tracking_number }} {%- endif -%}
+
+                      <div class="CartItem__PriceList">
+                        {%- if line_item.original_price > line_item.price -%}
+                          <span class="CartItem__Price Price Price--highlight">{{ line_item.price | money_without_trailing_zeros }}</span>
+                          <span class="CartItem__OriginalPrice Price Price--compareAt">{{ line_item.original_price | money_without_trailing_zeros }}</span>
+                        {%- else -%}
+                          <span class="CartItem__Price Price">{{ line_item.price | money_without_trailing_zeros }}</span>
+                        {%- endif -%}
                       </div>
                     </div>
                   </div>
-                {%- endif -%}
-              </th>
-              <td data-label="{{ 'customer.order.sku' | t }}">{{ line_item.sku }}</td>
-              <td class="text-right" data-label="{{ 'customer.order.price' | t }}">
-                <dl>
-                  {%- if line_item.original_price != line_item.final_price -%}
-                    <dt>
-                      <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                    </dt>
-                    <dd>
-                      <s>{{ line_item.original_price | money }}</s>
-                    </dd>
-                    <dt>
-                      <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
-                    </dt>
-                    <dd>
-                      <span class="order-discount">{{ line_item.final_price | money }}</span>
-                    </dd>
-                  {%- else -%}
-                    <dt>
-                      <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                    </dt>
-                    <dd>
-                      {{ line_item.original_price | money }}
-                    </dd>
-                  {%- endif -%}
-
-                  {%- if line_item.unit_price_measurement -%}
-                    <dt>
-                      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.unit_price_label' | t }}</span>
-                    </dt>
-                    <dd>
-                      <span class="price-unit-price">
-                        {%- capture unit_price_separator -%}
-                          <span aria-hidden="true">/</span><span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}&nbsp;</span>
-                        {%- endcapture -%}
-                        {%- capture unit_price_base_unit -%}
-                          {%- if line_item.unit_price_measurement.reference_value != 1 -%}
-                            {{- line_item.unit_price_measurement.reference_value -}}
-                          {%- endif -%}
-                          {{ line_item.unit_price_measurement.reference_unit }}
-                        {%- endcapture -%}
-
-                        <span data-unit-price>{{ line_item.unit_price | money }}</span>{{- unit_price_separator -}}{{- unit_price_base_unit -}}
-                      </span>
-                    </dd>
-                  {%- endif -%}
-                </dl>
-              </td>
-              <td class="text-right" data-label="{{ 'customer.order.quantity' | t }}">{{ line_item.quantity }}</td>
-              <td class="text-right" data-label="{{ 'customer.order.total' | t }}">
-                {%- if line_item.original_line_price != line_item.final_line_price -%}
-                  <dl>
-                    <dt>
-                      <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                    </dt>
-                    <dd>
-                      <s>{{ line_item.original_line_price | money }}</s>
-                    </dd>
-                    <dt>
-                      <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
-                    </dt>
-                    <dd>
-                      <span class="order-discount">{{ line_item.final_line_price | money }}</span>
-                    </dd>
-                  </dl>
-                {%- else -%}
-                  {{ line_item.original_line_price | money }}
-                {%- endif -%}
-              </td>
-            </tr>
-          {%- endfor -%}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th class="small--hide" scope="row" colspan="4">{{ 'customer.order.subtotal' | t }}</th>
-            <td class="text-right" data-label="{{ 'customer.order.subtotal' | t }}">{{ order.line_items_subtotal_price | money }}</td>
-          </tr>
-
-          {%- if order.cart_level_discount_applications != blank -%}
-            <tr>
-              {%- for discount_application in order.cart_level_discount_applications -%}
-                <th class="small--hide" scope="row" colspan="4">
-                  {{ 'customer.order.discount' | t }}
-                  <span class="order-discount order-discount--title">
-                    {% include 'icon-saletag' %}{{- discount_application.title -}}
-                  </span>
-                </th>
-                <td class="text-right" data-label="{{ 'customer.order.discount' | t }}">
-                  <div class="order-discount-wrapper">
-                    <span class="order-discount order-discount--title text-left medium-up--hide">
-                      {% include 'icon-saletag' %}{{- discount_application.title -}}
-                    </span>
-                    <span class="order-discount">-{{ discount_application.total_allocated_amount | money }}</span>
-                  </div>
                 </td>
-              {%- endfor -%}
-            </tr>
-          {%- endif -%}
 
-          {%- for shipping_method in order.shipping_methods -%}
+                <td class="Text--alignCenter Heading Text--subdued hidden-phone">{{ line_item.quantity }}</td>
+
+                <td class="Text--alignRight Heading Text--subdued">{{ line_item.line_price | money_without_trailing_zeros }}</td>
+              </tr>
+
+              {%- if line_item.fulfillment and has_one_fulfillment == false -%}
+                <tr>
+                  <td colspan="3">
+                    <p class="Alert Alert--large Alert--success">{% comment %}ly_i18n_replace_for_[ 'customer.order.line_fulfillment_html' | t: product_title: line_item.product.title, tracking_url: line_item.fulfillment.tracking_url, tracking_number: line_item.fulfillment.tracking_number ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.line_fulfillment_html' | t: product_title: line_item.product.title, tracking_url: line_item.fulfillment.tracking_url, tracking_number: line_item.fulfillment.tracking_number }}{% endcapture %}{% include 'ly-static-string' with '16346977' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% include 'ly-title' with line_item.product %}{% assign replacement = ly_translation %}{% assign ly_template = ly_template | replace: '[[product_title]]', replacement %}{% assign replacement = line_item.fulfillment.tracking_url %}{% assign ly_template = ly_template | replace: '[[tracking_url]]', replacement %}{% assign replacement = line_item.fulfillment.tracking_number  %}{% assign ly_template = ly_template | replace: '[[tracking_number]]', replacement %}{% if escape_content %}{{ ly_template}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+                  </td>
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+
+          <tfoot>
+            {%- for discount in order.discounts -%}
+              <tr>
+                <td class="hidden-phone"></td>
+                <td><span class="Heading Text--subdued u-h7">{% comment %}ly_i18n_replace_for_[ 'customer.order.discount' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.discount' | t }}{% endcapture %}{% include 'ly-static-string' with '16346978' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span> <span class="Text--subdued">({{ discount.code }})</span></td>
+                <td class="Heading Text--subdued Text--alignRight u-h7">{{ discount.savings | money_without_trailing_zeros }}</td>
+              </tr>
+            {%- endfor -%}
+
             <tr>
-              <th class="small--hide" scope="row" colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</th>
-              <td class="text-right" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
+              <td class="hidden-phone"></td>
+              <td class="Heading Text--subdued u-h7">{% comment %}ly_i18n_replace_for_[ 'customer.order.subtotal' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.subtotal' | t }}{% endcapture %}{% include 'ly-static-string' with '16346979' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</td>
+              <td class="Heading Text--subdued Text--alignRight u-h7">{{ order.subtotal_price | money_without_trailing_zeros }}</td>
             </tr>
-          {%- endfor -%}
 
-          {%- for tax_line in order.tax_lines -%}
+            {%- for shipping_method in order.shipping_methods -%}
+              <tr>
+                <td class="hidden-phone"></td>
+                <td><span class="Heading Text--subdued u-h7">{% comment %}ly_i18n_replace_for_[ 'customer.order.shipping' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.shipping' | t }}{% endcapture %}{% include 'ly-static-string' with '16346980' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span> <span class="Text--subdued">({% comment %}ly_code_replace_for_[ shipping_method.title ]_begin{% endcomment %}{% include 'ly-title' with shipping_method %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %})</span></td>
+                <td class="Heading Text--subdued Text--alignRight u-h7">{{ shipping_method.price | money_without_trailing_zeros }}</td>
+              </tr>
+            {%- endfor -%}
+
+            {%- for tax_line in order.tax_lines -%}
+              <tr>
+                <td class="hidden-phone"></td>
+                <td><span class="Heading Text--subdued u-h7">{% comment %}ly_i18n_replace_for_[ 'customer.order.tax' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.tax' | t }}{% endcapture %}{% include 'ly-static-string' with '16346981' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span> <span class="Text--subdued">({% comment %}ly_code_replace_for_[ tax_line.title ]_begin{% endcomment %}{% include 'ly-title' with tax_line %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %} {{ tax_line.rate_percentage }}%)</span></td>
+                <td class="Heading Text--subdued Text--alignRight u-h7">{{ tax_line.price | money_without_trailing_zeros }}</td>
+              </tr>
+            {%- endfor -%}
+
             <tr>
-              <th class="small--hide" scope="row" colspan="4">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</th>
-              <td class="text-right" data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">{{ tax_line.price | money }}</td>
+              <td class="hidden-phone"></td>
+              <td class="Heading u-h6">{% comment %}ly_i18n_replace_for_[ 'customer.order.total' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.total' | t }}{% endcapture %}{% include 'ly-static-string' with '16346982' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</td>
+              <td class="Heading Text--alignRight u-h6">{{ order.total_price | money_without_trailing_zeros }}</td>
             </tr>
-          {%- endfor -%}
-
-          <tr>
-            <th class="small--hide" scope="row" colspan="4">{{ 'customer.order.total' | t }}</th>
-            <td class="text-right" data-label="{{ 'customer.order.total' | t }}">{{ order.total_price | money_with_currency }}</td>
-          </tr>
-        </tfoot>
-      </table>
+          </tfoot>
+        </table>
+      </div>
     </div>
-    <div class="grid__item myaccount__account-details">
-      <h3>{{ 'customer.order.billing_address' | t }}</h3>
 
-      <p><strong>{{ 'customer.order.payment_status' | t }}:</strong> {{ order.financial_status_label }}</p>
+    <div class="OrderAddresses PageLayout__Section PageLayout__Section--secondary">
+      <div class="Grid Grid--l">
+        <div class="Grid__Cell 1/2--tablet">
+          <div class="Segment">
+            <h2 class="Segment__Title Heading u-h7">{% comment %}ly_i18n_replace_for_[ 'customer.order.shipping_address' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.shipping_address' | t }}{% endcapture %}{% include 'ly-static-string' with '16346983' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
 
-      {{ order.billing_address | format_address }}
+            <div class="Segment__Content">
+              {%- if order.shipping_address -%}
+                {{ order.shipping_address | format_address | replace: '<p>', '<p class="AccountAddress"><span><ly-as-16346960>' | replace_first: '</ly-as-16346960><br>', '</span><br>' }}
+              {%- else -%}
+                <p>{% comment %}ly_i18n_replace_for_[ 'customer.order.no_shipping_address' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.no_shipping_address' | t }}{% endcapture %}{% include 'ly-static-string' with '16346984' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
 
-      <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+        <div class="Grid__Cell 1/2--tablet">
+          <div class="Segment">
+            <h2 class="Segment__Title Heading u-h7">{% comment %}ly_i18n_replace_for_[ 'customer.order.billing_address' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.order.billing_address' | t }}{% endcapture %}{% include 'ly-static-string' with '16346985' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
 
-      <p><strong>{{ 'customer.order.fulfillment_status' | t }}:</strong> {{ order.fulfillment_status_label }}</p>
-
-      {{ order.shipping_address | format_address }}
+            <div class="Segment__Content">
+              {{ order.billing_address | format_address | replace: '<p>', '<p class="AccountAddress"><span><ly-as-16346960>' | replace_first: '</ly-as-16346960><br>', '</span><br>' }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

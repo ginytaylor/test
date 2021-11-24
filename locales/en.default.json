@@ -1,423 +1,532 @@
 {
   "general": {
-    "accessibility": {
-      "skip_to_content": "Skip to content",
-      "close_modal": "Close",
-      "link_messages": {
-        "new_window": "Opens in a new window.",
-        "external": "Opens external website.",
-        "new_window_and_external": "Opens external website in a new window."
-      },
-      "refresh_page": "Choosing a selection results in a full page refresh.",
-      "selection_help": "Press the space key then arrow keys to make a selection.",
-      "unit_price_separator": "per",
-      "error": "Error"
-    },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page }}"
     },
-    "404": {
-      "title": "404 Page Not Found",
-      "subtext": "The page you requested does not exist.",
-      "link": "Continue shopping"
+    "accessibility": {
+      "scroll_to_content": "Scroll to content"
     },
-    "pagination": {
-      "previous": "Previous page",
-      "next": "Next page",
-      "current_page": "Page {{ current }} of {{ total }}"
-    },
-    "password_page": {
-      "opening_soon": "Opening Soon",
-      "login_form_heading": "Enter store using password",
-      "login_form_password_label": "Password",
-      "login_form_password_placeholder": "Your password",
-      "login_form_submit": "Enter",
-      "signup_form_email_label": "Email",
-      "signup_form_success": "We will send you an email right before we open!",
-      "admin_link_html": "Are you the store owner? <a href=\"\/admin\" class=\"text-link\">Log in here<\/a>",
-      "password_link": "Enter using password"
-    },
-    "social": {
-      "share_on_facebook": "Share",
-      "share_on_twitter": "Tweet",
-      "share_on_pinterest": "Pin it",
-      "alt_text": {
-        "share_on_facebook": "Share on Facebook",
-        "share_on_twitter": "Tweet on Twitter",
-        "share_on_pinterest": "Pin on Pinterest"
-      }
-    },
-    "search": {
-      "no_results": "Try checking your spelling or using different words.",
-      "empty_search_message": "Search field cannot be empty",
-      "results_with_count": {
-        "one": "{{ count }} result for “{{ terms }}”",
-        "other": "{{ count }} results for “{{ terms }}”"
-      },
-      "title": "Search our site",
-      "placeholder": "Search",
-      "submit": "Submit",
-      "close": "Close search",
-      "heading": {
-        "one": "Search result",
-        "other": "Search results"
-      },
-      "search_for": "Search for",
-      "products": "Products",
-      "loading": "Loading",
-      "clear_search_term": "Clear search term",
-      "number_of_results": "{{ result_number }} of {{ results_count }}",
-      "number_of_results_found": "{{ results_count }} results found",
-      "one_result_found": "1 result found"
-    },
-    "newsletter_form": {
-      "newsletter_email": "Subscribe to our mailing list",
-      "email_placeholder": "Email address",
-      "confirmation": "Thanks for subscribing!",
-      "submit": "Subscribe"
-    },
-    "filters": {
-      "show_more": "Show More",
-      "show_less": "Show Less"
-    },
-    "payment": {
-      "method": "Payment methods"
-    },
-    "currency": {
-      "dropdown_label": "Currency"
-    },
-    "language": {
-      "dropdown_label": "Language"
-    }
-  },
-  "sections": {
-    "header": {
-      "announcement_bar_label": "Announcement"
-    },
-    "slideshow": {
-      "next_slide": "Next slide",
-      "previous_slide": "Previous slide",
-      "pause_slideshow": "Pause slideshow",
-      "rotate_slideshow": "Play slideshow",
-      "load_slide": "Load slide {{ slide_number }}",
-      "navigation_instructions": "Use left\/right arrows to navigate the slideshow or swipe left\/right if using a mobile device"
-    },
-    "featured_product": {
-      "title": "Featured product",
-      "gallery_thumbnail_alt": "Load image into Gallery viewer, {{ imageAlt }}",
-      "video_thumbnail_alt": "Load and play video in Gallery viewer, {{ imageAlt }}",
-      "model_thumbnail_alt": "Load 3D model into Gallery viewer, {{ imageAlt }}"
-    },
-    "map": {
-      "address_error": "Error looking up that address",
-      "address_no_results": "No results for that address",
-      "address_query_limit_html": "You have exceeded the Google API usage limit. Consider upgrading to a <a href=\"https:\/\/developers.google.com\/maps\/premium\/usage-limits\">Premium Plan<\/a>.",
-      "auth_error_html": "There was a problem authenticating your Google Maps account.",
-      "section_heading": "Location"
-    },
-    "video": {
-      "play": "Play {{ video_title }} video",
-      "pause": "Pause {{ video_title }} video",
-      "resume": "Resume {{ video_title }} video",
-      "close": "Close {{ video_title }} video"
-    }
-  },
-  "blogs": {
-    "article": {
-      "view_all": "View all",
-      "view_all_blogs": "View all blogs",
-      "all_topics": "All topics",
-      "by_author": "by {{ author }}",
-      "posted_in": "Posted in",
-      "read_more": "Read more",
-      "read_more_title": "Read more: {{ title }}",
-      "back_to_blog": "Back to {{ title }}",
-      "tags": "Tags",
-      "article_with_count": {
-        "one": "{{ count }} article",
-        "other": "{{ count }} articles"
-      }
-    },
-    "comments": {
-      "title": "Leave a comment",
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "post": "Post comment",
-      "moderated": "Please note, comments must be approved before they are published",
-      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
-      "success": "Your comment was posted successfully! Thank you!",
-      "unapproved": "The email address provided is not approved for posting comments.",
-      "comments_with_count": {
-        "one": "{{ count }} comment",
-        "other": "{{ count }} comments"
-      }
-    }
-  },
-  "cart": {
-    "general": {
-      "title": "Your cart",
-      "note": "Add a note to your order",
-      "removed_item_html": "Removed <span class=\"cart__removed-product-details\">({{ quantity }}) {{ link }}<\/span> from your cart.",
-      "remove": "Remove",
-      "subtotal": "Subtotal",
-      "savings": "You're saving",
-      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout",
-      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
-      "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping<\/a> calculated at checkout.",
-      "update": "Update",
-      "checkout": "Check out",
-      "empty": "Your cart is currently empty.",
-      "cookies_required": "Enable cookies to use the shopping cart",
-      "continue_shopping": "Continue shopping",
-      "cart_error": "There was an error while updating your cart. Please try again."
-    },
-    "label": {
-      "discounted_total": "Discounted total",
-      "product": "Product",
-      "price": "Price",
-      "price_column": "See Price column for discount details.",
-      "product_details": "Product details",
-      "quantity": "Quantity",
-      "qty": "Qty",
-      "regular_total": "Regular total",
-      "remove": "Remove {{ product }}",
-      "total": "Total",
-      "update": "Update"
+    "announcement_bar": {
+      "close": "Close"
     },
     "popup": {
-      "added_to_cart": "Just added to your cart",
-      "cart_count": {
-        "one": "{{ count }} item",
-        "other": "{{ count }} items"
-      },
-      "product_details": "Product details",
-      "quantity": "Qty",
-      "quantity_label": "Quantity: {{ quantity_count }}"
+      "close": "Close",
+      "email_placeholder": "輸入您的電子郵件",
+      "submit": "訂閱",
+      "success": "您已訂閱我們的通訊。"
+    },
+    "password": {
+      "enter_password": "輸入密碼",
+      "password_input": "您的密碼",
+      "password_submit": "輸入",
+      "newsletter_input": "您的電子郵件",
+      "newsletter_submit": "通知我",
+      "newsletter_success": "感謝您的註冊！",
+      "powered_by_html": "這家商店將由 {{shopify_link}}",
+      "login_title": "您是商店店主嗎？",
+      "login_link": "在這登入"
+    },
+    "pagination": {
+      "previous_page": "前一頁",
+      "next_page": "下一頁",
+      "go_to_page": "Navigate to page {{page}}"
     }
   },
-  "collections": {
+  "header": {
+    "navigation": {
+      "title": "Main navigation",
+      "sidebar_title": "Sidebar navigation",
+      "open_sidebar": "Open navigation",
+      "close_sidebar": "Close navigation",
+      "account": "帳號",
+      "search": "搜尋",
+      "cart": "購物車",
+      "open_cart": "打開購物車",
+      "close_cart": "離開購物車",
+      "skip_to_content": "Skip to content",
+      "currency_selector": "Currency selector"
+    }
+  },
+  "footer": {
     "general": {
-      "view_all": "View all",
-      "view_all_label": "View all products in the {{ collection_name }} collection",
-      "no_matches": "Sorry, there are no products in this collection",
-      "items_with_count": {
-        "one": "{{ count }} product",
-        "other": "{{ count }} products"
-      },
-      "collection_label": "Collection"
+      "credits_html": "Theme by Maestrooo | {{powered_by_link}}"
     },
-    "catalog": {
-      "title": "Catalog"
+    "newsletter": {
+      "success": "您已訂閱我們的通訊。",
+      "input": "請輸入您的電子郵件",
+      "submit": "訂閱"
+    }
+  },
+  "search": {
+    "general": {
+      "title": "搜尋",
+      "content": "輸入一字尋找你的產品",
+      "input_placeholder": "搜尋",
+      "view_all": "瀏覽所有",
+      "no_results": "No results could be found",
+      "no_results_with_terms": "No results could be found for {{terms}}",
+      "pages": "Pages",
+      "articles": "Journal",
+      "pages_and_articles": "Pages & Journal",
+      "results_count": {
+        "zero": "Products",
+        "one": "1 result",
+        "other": "{{count}} results"
+      },
+      "results_with_terms_count": {
+        "zero": "0 results for \"{{terms}}\"",
+        "one": "1 result for \"{{terms}}\"",
+        "other": "{{count}} results for \"{{terms}}\""
+      }
+    }
+  },
+  "404": {
+    "general": {
+      "title": "404",
+      "content": "找不到您要查找的頁面。",
+      "button": "返回主頁"
+    }
+  },
+  "home_page": {
+    "onboarding": {
+      "vendor_title": "品牌",
+      "product_title": "產品名稱",
+      "product_description": "查看產品說明有助明白產品的功能及使用細則。 您可以瀏覽Shopify的電子商務博客，查看產品相關的資訊。",
+      "collection_title": "Collection's name",
+      "article_name": "Post's name",
+      "article_category": "Category",
+      "article_excerpt": "Your store hasn’t published any blog posts yet. A blog can be used to talk about new product launches, tips, or other news you want to share with your customers. You can check out Shopify’s ecommerce blog for inspiration and advice for your own store and blog."
+    },
+    "featured_product": {
+      "view_product": "瀏覽產品詳請"
+    },
+    "shop_the_look": {
+      "view_product": "瀏覽此產品",
+      "view_products": "瀏覽產品",
+      "popover_title": "Shop the look"
+    },
+    "featured_video": {
+      "play": "Play video"
+    },
+    "newsletter": {
+      "input": "請輸入你的電子郵件",
+      "submit": "訂閱",
+      "success": "您已成功訂閱我們的通訊。"
+    }
+  },
+  "collection_list": {
+    "general": {
+      "title": "All collections",
+      "empty_title": "No collections",
+      "empty_button": "返回主頁"
+    }
+  },
+  "collection": {
+    "general": {
+      "all_products": "所有產品",
+      "no_products": "No products",
+      "empty": "Collection {{collection_title}} is empty",
+      "empty_button": "返回主頁",
+      "reset": "重設 分類",
+      "view_products": "瀏覽產品"
+    },
+    "filter": {
+      "title": "分類",
+      "show_filter": "Show filters",
+      "all": "分類",
+      "reset": "重設",
+      "apply": "Apply"
     },
     "sorting": {
-      "title": "Sort by"
+      "title": "類別",
+      "show_sort": "Show sort by",
+      "manual": "精選",
+      "best_selling": "最暢銷",
+      "title_ascending": "按字母順序：A-Z",
+      "title_descending": "按字母順序：Z-A",
+      "price_ascending": "價格：從低到高",
+      "price_descending": "價格：從高到低",
+      "created_ascending": "最舊到最新",
+      "created_descending": "最新到最舊"
     },
-    "filters": {
-      "title_tags": "Filter by",
-      "all_tags": "All products"
-    }
-  },
-  "contact": {
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone Number",
-      "message": "Message",
-      "submit": "Send",
-      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
-      "error_heading": "Please adjust the following:"
+    "layout": {
+      "show_one_per_row": "Show one product per row",
+      "show_two_per_row": "Show two products per row",
+      "show_four_per_row": "每行顯示四個產品"
+    },
+    "product": {
+      "from_price_html": "From {{min_price}}",
+      "view_product": "瀏覽產品"
     }
   },
   "customer": {
     "account": {
-      "title": "My Account",
-      "details": "Account Details",
-      "view_addresses": "View Addresses",
-      "return": "Return to Account Details"
-    },
-    "activate_account": {
-      "title": "Activate Account",
-      "subtext": "Create your password to activate your account.",
-      "password": "Password",
-      "password_confirm": "Confirm Password",
-      "submit": "Activate Account",
-      "cancel": "Decline Invitation"
-    },
-    "addresses": {
-      "title": "Your Addresses",
-      "default": "Default",
-      "add_new": "Add a New Address",
-      "edit_address": "Edit address",
-      "first_name": "First Name",
-      "last_name": "Last Name",
-      "company": "Company",
-      "address1": "Address",
-      "address2": "Apartment, suite, etc.",
-      "city": "City",
-      "country": "Country\/Region",
-      "province": "Province",
-      "zip": "Postal\/Zip Code",
-      "phone": "Phone",
-      "set_default": "Set as default address",
-      "add": "Add Address",
-      "update": "Update Address",
-      "cancel": "Cancel",
-      "edit": "Edit",
-      "delete": "Delete",
-      "delete_confirm": "Are you sure you wish to delete this address?"
+      "title": "我的帳號",
+      "welcome": "歡迎回來, {{first_name}}!",
+      "logout": "登出",
+      "back_to_account": "Back to account",
+      "no_orders_title": "我的訂單",
+      "no_orders_content": "您尚未下任何訂單",
+      "no_addresses_title": "No addresses",
+      "no_addresses_content": "No addresses are currently saved",
+      "default_address": "My Details",
+      "edit_addresses": "Edit Details",
+      "manage_addresses": "Manage addresses"
     },
     "login": {
-      "title": "Login",
-      "email": "Email",
-      "password": "Password",
-      "forgot_password": "Forgot your password?",
-      "sign_in": "Sign In",
-      "guest_title": "Continue as a guest",
-      "guest_continue": "Continue"
+      "title": "登入",
+      "description": "請輸入您的電子郵件和密碼：",
+      "email": "電子郵件",
+      "password": "密碼",
+      "forgot": "忘記密碼？",
+      "submit": "登入",
+      "register_label": "沒有帳號？",
+      "register_link": "註冊"
     },
     "orders": {
-      "title": "Order History",
-      "order_number": "Order",
-      "order_number_link": "Order number {{ number }}",
-      "date": "Date",
-      "payment_status": "Payment Status",
-      "fulfillment_status": "Fulfillment Status",
-      "total": "Total",
-      "none": "You haven't placed any orders yet."
+      "order_number": "訂單",
+      "date": "日期",
+      "payment_status": "付款情況",
+      "fulfillment_status": "完成情況",
+      "total": "總額"
     },
     "order": {
-      "title": "Order {{ name }}",
-      "date_html": "Placed on {{ date }}",
-      "cancelled_html": "Order Cancelled on {{ date }}",
-      "cancelled_reason": "Reason: {{ reason }}",
-      "billing_address": "Billing Address",
-      "payment_status": "Payment Status",
-      "shipping_address": "Shipping Address",
-      "fulfillment_status": "Fulfillment Status",
-      "discount": "Discount",
-      "shipping": "Shipping",
-      "tax": "Tax",
-      "product": "Product",
-      "sku": "SKU",
-      "price": "Price",
-      "quantity": "Quantity",
-      "total": "Total",
-      "fulfilled_at_html": "Fulfilled {{ date }}",
-      "subtotal": "Subtotal",
-      "track_shipment": "Track shipment"
+      "title": "訂單 {{order_number}}",
+      "back_to_account": "返回帳號",
+      "cancelled_at": "訂單已取消 {{ date }}",
+      "placed_at": "已下訂單 {{ date }}",
+      "fulfillment_html": "您的訂單已發送， 追踪貨件編號 {{tracking_number}} 或點擊這裡: <a href=\"{{tracking_url}}\" class=\"Link Link--underlineNative\" target=\"_blank\">{{tracking_url}}<\/a>",
+      "line_fulfillment_html": "您的產品 \"{{product_title}}\" 已發送。追踪貨件編號 {{tracking_number}} 或點擊這裡: <a href=\"{{tracking_url}}\" class=\"Link Link--underlineNative\" target=\"_blank\">{{tracking_url}}<\/a>",
+      "product": "產品",
+      "quantity": "數量",
+      "line_price": "總額",
+      "subtotal": "小計",
+      "discount": "折扣",
+      "shipping": "送貨",
+      "tax": "稅項",
+      "total": "總額",
+      "shipping_address": "送貨地址",
+      "billing_address": "帳單地址",
+      "no_shipping_address": "此訂單不需要送貨地址。"
+    },
+    "activate_account": {
+      "title": "Activate account",
+      "description": "請輸入密碼建立帳號",
+      "password": "密碼",
+      "password_confirmation": "確認密碼",
+      "submit": "Activate",
+      "decline": "Decline"
     },
     "recover_password": {
-      "title": "Reset your password",
-      "email": "Email",
-      "submit": "Submit",
-      "cancel": "Cancel",
-      "subtext": "We will send you an email to reset your password.",
-      "success": "We've sent you an email with a link to update your password."
+      "title": "恢復密碼",
+      "description": "請輸入您的電子郵件和密碼：",
+      "email": "電子郵件",
+      "submit": "恢復",
+      "success": "我們已向您發送了一封電子郵件，其中包含有關重置密碼的說明。",
+      "login_label": "忘記密碼",
+      "login_link": "返回登入"
     },
     "reset_password": {
-      "title": "Reset account password",
-      "subtext": "Enter a new password for {{ email }}",
-      "password": "Password",
-      "password_confirm": "Confirm Password",
-      "submit": "Reset Password"
+      "title": "重設密碼",
+      "description": "輸入新密碼",
+      "password": "密碼",
+      "password_confirmation": "確認密碼",
+      "submit": "重設"
+    },
+    "addresses": {
+      "title": "My addresses",
+      "empty": "No addresses were saved yet",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add_address": "Add a new address",
+      "edit_address": "Edit an address",
+      "form_subtitle": "Please fill in the information below:",
+      "default_address_label": "Default address",
+      "address_label": "Address {{position}}",
+      "first_name": "名字",
+      "last_name": "姓氏",
+      "company": "公司",
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "city": "城市",
+      "country": "國家",
+      "province": "Province",
+      "zip": "Zip code",
+      "phone": "電話",
+      "set_default": "Set as default address"
     },
     "register": {
-      "title": "Create Account",
-      "first_name": "First Name",
-      "last_name": "Last Name",
-      "email": "Email",
-      "password": "Password",
-      "submit": "Create"
+      "title": "註冊",
+      "description": "請填寫以下信息：",
+      "first_name": "名字*",
+      "last_name": "姓氏*",
+      "email": "電子郵件*",
+      "password": "密碼，至少5個字*",
+      "submit": "註冊我的帳戶",
+      "enter_vip": "請輸入您的VIP號碼"
     }
   },
-  "homepage": {
+  "cart": {
     "general": {
-      "title": "Homepage"
+      "title": "購物車",
+      "empty": "您的購物車中沒有產品",
+      "empty_button": "購買產品",
+      "add_note": "新增訂單備註",
+      "edit_note": "修改訂單備註",
+      "save_note": "Save",
+      "note_placeholder": "How can we help you?",
+      "free_shipping": "You are eligible to free shipping!",
+      "free_shipping_remaining_html": "購物 {{remaining_amount}} 並獲得免費送貨！",
+      "shipping_and_taxes_notice": "結帳時計算的運費&稅金",
+      "total": "總額",
+      "currency_notice": "所有訂單均以商店的貨幣{{shop_currency}}處理，您的購物車中的產品可能會以其他貨幣以最新匯率顯示。",
+      "checkout": "結帳"
     },
-    "onboarding": {
-      "product_title": "Your product's name",
-      "product_description": "This area is used to describe your product’s details. Tell customers about the look, feel, and style of your product. Add details on color, materials used, sizing, and where it was made.",
-      "collection_title": "Your collection's name",
-      "blog_title": "Your post's title",
-      "blog_excerpt": "Your store hasn’t published any blog posts yet. A blog can be used to talk about new product launches, tips, or other news you want to share with your customers. You can check out Shopify’s ecommerce blog for inspiration and advice for your own store and blog.",
-      "blog_author": "Author name",
-      "no_content": "This section doesn’t currently include any content. Add content to this section using the sidebar."
+    "items": {
+      "product": "產品",
+      "quantity": "數量",
+      "total": "價錢",
+      "set_quantity": "Set quantity to {{new_quantity}}",
+      "remove": "移除"
+    },
+    "shipping_estimator": {
+      "title": "Estimate shipping",
+      "country": "國家",
+      "province": "Province",
+      "zip_code": "Zip code",
+      "estimate": "Estimate",
+      "one_result_title": "1 option available:",
+      "more_results_title": "{{count}} options available:",
+      "no_results_title": "No shipping could be found"
     }
   },
-  "layout": {
-    "navigation": {
-      "search": "Search",
-      "expand": "expand",
-      "collapse": "collapse",
-      "menu": "Menu"
+  "product": {
+    "labels": {
+      "sold_out": "Sold Out",
+      "on_sale": "特價"
     },
-    "cart": {
-      "title": "Cart",
-      "items_count": {
-        "one": "item",
-        "other": "items"
+    "slideshow": {
+      "close": "Close (Esc)",
+      "previous": "Previous (left arrow)",
+      "next": "Next (right arrow)",
+      "image_loading_error": "無法顯示該圖片，請嘗試重新加載頁面。"
+    },
+    "form": {
+      "variant_label": "Variant",
+      "price": "Price",
+      "quantity": "Quantity",
+      "from_price_html": "From {{min_price}}",
+      "select_model": "Select this model",
+      "size_chart": "Size chart",
+      "inventory_quantity_count": {
+        "one": "{{count}} piece in stock.",
+        "other": "{{count}} pieces in stock"
+      },
+      "low_inventory_quantity_count": {
+        "one": "Only {{count}} piece in stock!",
+        "other": "Only {{count}} pieces in stock!"
+      },
+      "add_to_cart": "加入購物車",
+      "sold_out": "只限店內銷售",
+      "pre_order": "預訂",
+      "unavailable": "Unavailable",
+      "view_info": "瀏覽更多詳請",
+      "view_images": "瀏覽圖片"
+    },
+    "tabs": {
+      "reviews": "Reviews"
+    },
+    "buy_it_with": {
+      "title": "Buy it with"
+    }
+  },
+  "gift_card": {
+    "issued": {
+      "subtext": "這是您的禮品卡！",
+      "illustration_alt": "Gift card illustration",
+      "disabled": "您的禮品已無效。",
+      "expired": "您的禮品卡到期日 {{ expiry }}。",
+      "expires_on": "您的禮品卡到期日 {{ expiry }}.",
+      "redeem_html": "在結帳時使用此代碼即可兌換禮品卡或按 {{print_link}} 這頁面。",
+      "shop_link": "開始購物",
+      "print": "print",
+      "initial_amount_html": "Amount: {{initial_amount}}",
+      "remaining_balance_html": "剩餘餘額: {{balance}}",
+      "add_to_apple_wallet": "Add to Apple Wallet"
+    }
+  },
+  "blog": {
+    "general": {
+      "no_articles": "Blog {{blog_title}} is empty",
+      "empty_button": "返回主頁",
+      "all_tag": "All"
+    },
+    "article": {
+      "read_more": "瀏覽更多",
+      "written_by": "Written by {{author}}",
+      "now_reading": "Now reading:",
+      "share": "Share",
+      "previous": "Prev",
+      "next": "Next",
+      "comments_count": {
+        "zero": "{{count}} comments",
+        "one": "{{count}} comment",
+        "other": "{{count}} comments"
       }
     },
-    "customer": {
-      "account": "Account",
-      "log_out": "Log out",
-      "log_in": "Log in",
-      "create_account": "Create account"
+    "comments": {
+      "form_title": "Leave a comment",
+      "name_placeholder": "姓名",
+      "email_placeholder": "電子郵件",
+      "comment_placeholder": "Content",
+      "approval_notice": "All comments are moderated before being published",
+      "submit": "Post comment",
+      "success": "您的評論已發佈。",
+      "success_moderated": "您的評論已發送，店主接納，隨即可見！"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "您的姓名",
+      "email": "你的電子郵件",
+      "message": "你的意見",
+      "submit": "發送意見",
+      "successfully_sent": "您的意見已成功發送。"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%B %d, %Y",
+    "month_day_year_short": "%m\/%d\/%Y",
+    "month_day_year_time": "%B %d, %Y at %I:%M%p"
+  },
+  "shopify": {
+    "checkout": {
+      "contact": {
+        "first_name_placeholder": "名字*",
+        "last_name_label": "姓氏*",
+        "first_name_label": "First name *",
+        "last_name_placeholder": "姓氏*",
+        "address1_placeholder": "地址*",
+        "address2_placeholder": "Apartment, suite, etc.*",
+        "city_placeholder": "城市*",
+        "country_label": "國家*",
+        "country_code": "國家代碼*",
+        "address1_label": "地址*",
+        "address2_label": "Apartment, suite, etc.*",
+        "region_label": "Region*",
+        "region_placeholder": "Region*",
+        "city_label": "城市*",
+        "optional_phone_label": "您的電話 (如適用)",
+        "optional_first_name_label": "名字（可選）",
+        "optional_company_label": "身份證號",
+        "optional_address2_label": "公寓，套房...（可選）",
+        "postal_code_label": "郵政編碼",
+        "postal_code_placeholder": "郵政編碼",
+        "postcode_label": "郵政編碼",
+        "postcode_placeholder": "郵政編碼",
+        "shipping_address_title": "送貨地址",
+        "address_title": "地址",
+        "phone_label": "電話*",
+        "phone_placeholder": "電話*",
+        "company_label": "身份證號"
+      },
+      "order_summary": {
+        "discount_label": "優惠代碼",
+        "discount_placeholder": "優惠代碼",
+        "description_label": "描述"
+      },
+      "stock": {
+        "sold_out_label": "只限店內銷售"
+      },
+      "general": {
+        "cart": "購物車",
+        "back_to_cart": "返回購物車",
+        "page_title": "結帳"
+      },
+      "remember_me": {
+        "modal": {
+          "resend_code": "重發驗證碼"
+        }
+      },
+      "thank_you": {
+        "marker": {
+          "shipping": "送貨地址"
+        }
+      },
+      "shipping": {
+        "shipping_line_phone_label": "Phone*"
+      }
     },
-    "footer": {
-      "social_platform": "{{ name }} on {{ platform }}"
+    "notices": {
+      "customer": {
+        "invalid_credentials": "電郵地址或密碼無效",
+        "password_reset_error": "重設密碼無效"
+      }
+    },
+    "dates": {
+      "abbr_day_names": {
+        "sunday": "星期日",
+        "monday": "星期一",
+        "tuesday": "星期二",
+        "wednesday": "星期三",
+        "thursday": "星期四",
+        "friday": "星期五",
+        "saturday": "星期六"
+      },
+      "day_names": {
+        "sunday": "星期日",
+        "monday": "星期一",
+        "tuesday": "星期二",
+        "wednesday": "星期三",
+        "thursday": "星期四",
+        "friday": "星期五",
+        "saturday": "星期六"
+      },
+      "abbr_month_names": {
+        "january": "一月",
+        "february": "二月",
+        "march": "三月",
+        "april": "四月",
+        "may": "五月",
+        "june": "六月",
+        "july": "七月",
+        "august": "八月",
+        "september": "九月",
+        "october": "十月",
+        "november": "十一月",
+        "december": "十二月"
+      },
+      "month_names": {
+        "january": "一月",
+        "february": "二月",
+        "march": "三月",
+        "april": "四月",
+        "may": "五月",
+        "june": "六月",
+        "july": "七月",
+        "august": "八月",
+        "september": "九月",
+        "october": "十月",
+        "november": "十一月",
+        "december": "十二月"
+      }
+    },
+    "page_titles": {
+      "reset_account": "重設帳號"
+    },
+    "errors": {
+      "verify_email": "我們已將電子郵件發送到  {{customer_email}}，請單擊附帶的鏈接以驗證您的電子郵件地址。",
+      "reset_password_html": "該電子郵件地址已與一個帳戶關聯。如果此帳戶是您的帳戶，則可以重設密碼。"
+    },
+    "challenge": {
+      "message": "要繼續，請讓我們知道您不是機器人。",
+      "submit_button_text": "提交"
+    },
+    "addresses": {
+      "postcode": "郵政編碼",
+      "postal_code": "郵政編碼"
     }
   },
-  "products": {
-    "product": {
-      "regular_price": "Regular price",
-      "sold_out": "Sold out",
-      "unavailable": "Unavailable",
-      "availability": "Availability",
-      "on_sale": "Sale",
-      "from_lowest_price_html": "from {{ lowest_price }}",
-      "sale_price": "Sale price",
-      "quantity": "Quantity",
-      "add_to_cart": "Add to cart",
-      "loader_label": "Adding product to your cart",
-      "back_to_collection": "Back to {{ title }}",
-      "vendor": "Vendor",
-      "quantity_minimum_message": "Quantity must be 1 or more",
-      "include_taxes": "Tax included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping<\/a> calculated at checkout.",
-      "unit_price_label": "Unit price",
-      "view_cart": "View cart",
-      "view_in_space": "View in your space",
-      "view_in_space_label": "View in your space, loads item in augmented reality window"
-    }
-  },
-  "store_availability": {
-    "general": {
-      "view_store_info": "View store information",
-      "check_other_stores": "Check availability at other stores",
-      "pick_up_available": "Pickup available",
-      "pick_up_currently_unavailable": "Pickup currently unavailable",
-      "pick_up_available_at_html": "Pickup available at <strong>{{ location_name }}<\/strong>",
-      "pick_up_unavailable_at_html": "Pickup currently unavailable at <strong>{{ location_name }}<\/strong>"
-    }
-  },
-  "gift_cards": {
-    "issued": {
-      "title_html": "Here's your {{ value }} gift card for {{ shop }}!",
-      "subtext": "Your gift card",
-      "gift_card_code": "Gift card code",
-      "disabled": "Disabled",
-      "expired": "Expired on {{ expiry }}",
-      "active": "Expires on {{ expiry }}",
-      "redeem_html": "Use this code at checkout to redeem your {{ value }} gift card",
-      "shop_link": "Start shopping",
-      "print": "Print this gift card",
-      "remaining_html": "{{ balance }} left",
-      "add_to_apple_wallet": "Add to Apple Wallet",
-      "qr_image_alt": "QR code — scan to redeem gift card"
-    }
-  }
+  "undefined": ""
 }

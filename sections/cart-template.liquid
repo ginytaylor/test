@@ -1,429 +1,647 @@
-<div class="page-width" data-section-id="{{ section.id }}" data-section-type="cart-template" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+{%- capture section_settings -%}
+{
+  "type": {{ settings.cart_type | json }},
+  "itemCount": {{ cart.item_count }},
+  "drawer": <ly-as-16346538>false</ly-as-16346538>,
+  "hasShippingEstimator": {% if section.settings.show_shipping_estimator and cart.item_count > 0 %}<ly-as-16346537>true</ly-as-16346537>{% else %}<ly-as-16346538>false</ly-as-16346538>{% endif %}
+}
+{%- endcapture -%}
 
-  <div {% if cart.item_count == 0 %}class="hide" {% endif %}data-cart-wrapper>
-    <div class="cart-header">
-      <h1 class="cart-header__title">{{ 'cart.general.title' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="text-link text-link--accent">
-        {{ 'cart.general.continue_shopping' | t }}
-      </a>
+{%- assign assembly_items = false -%}
+{%- assign assembly = false -%}
+{%- assign furniture = false -%}
+{%- assign cart_lift = false -%}
+{%- assign furniture_count = 0 -%}
+
+{%- for line_item in cart.items -%}
+  {% if line_item.product.title contains "Assembly" %}
+    {%- assign assembly_items = true -%}
+  {% endif %}
+  {% if line_item.product.vendor == "F"%}
+    {%- assign furniture = true -%}
+    {%- assign furniture_count = furniture_count | plus: line_item.quantity -%}
+  {% endif %}
+  {% if line_item.product.title contains "Stairs" or line_item.product.title contains "lift"%}
+    {%- assign cart_lift = true -%}
+  {% endif %}
+  {% for tag in line_item.product.tags %}
+    {%- if tag == "Assembly" -%}
+      {% assign assembly = true %}
+    {%- endif -%}
+  {% endfor %}
+{% endfor %}  
+
+<section data-section-id="{{ section.id }}" data-section-type="cart" data-section-settings='{{ section_settings }}'>
+  {%- if cart.item_count == 0 -%}
+    <div class="EmptyState">
+      <div class="Container">
+        <h1 class="EmptyState__Title Heading u-h5">{% comment %}ly_i18n_replace_for_[ 'cart.general.empty' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.empty' | t }}{% endcapture %}{% include 'ly-static-string' with '16346546' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h1>
+
+        {%- if settings.cart_show_free_shipping_threshold -%}
+          {%- assign threshold_in_cents = settings.cart_free_shipping_threshold | times: 100 -%}
+          {%- capture remaining_amount -%}<span><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{ cart.total_price | minus: threshold_in_cents | abs | money_without_trailing_zeros }}</span>{%- endcapture -%}
+
+          <p class="Text--subdued">{% comment %}ly_i18n_replace_for_[ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount }}{% endcapture %}{% include 'ly-static-string' with '16346548' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = remaining_amount  %}{% assign ly_template = ly_template | replace: '[[remaining_amount]]', replacement %}{% if escape_content %}{{ ly_template}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+        {%- endif -%}
+
+        <a href="/collections/all" class="EmptyState__Action Button Button--primary">{% comment %}ly_i18n_replace_for_[ 'cart.general.empty_button' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.empty_button' | t }}{% endcapture %}{% include 'ly-static-string' with '16346549' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
+      </div>
     </div>
+  {%- else -%}
+    <div class="Container">
+      <header class="PageHeader">
+        <div class="SectionHeader SectionHeader--center">
+          <h1 class="SectionHeader__Heading Heading u-h1">{% comment %}ly_i18n_replace_for_[ 'cart.general.title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346550' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h1>
 
-    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
-      <table>
-        <thead class="cart__row cart__row--heading">
-          <th scope="col">{{ 'cart.label.product' | t }}</th>
-          <th class="text-right" scope="col">{{ 'cart.label.price' | t }}</th>
-          <th class="text-right small--hide" scope="col">{{ 'cart.label.quantity' | t }}</th>
-          <th class="text-right small--hide" scope="col">{{ 'cart.label.total' | t }}</th>
-        </thead>
-        <tbody data-cart-line-items>
-          {%- for item in cart.items -%}
-            <tr class="cart__row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}">
-              <td class="cart__meta small--text-left" data-cart-table-cell>
-                <div class="cart__product-information">
-                  <div class="cart__image-wrapper">
-                    <img class="cart__image{% if item.image == null %} hide{% endif %}" src="{{ item | img_url: 'x190' }}" alt="{{ item.image.alt | escape }}" data-cart-item-image>
-                  </div>
-                  <div>
-                    <div class="list-view-item__title">
-                      <a href="{{ item.url }}" class="cart__product-title" data-cart-item-title data-role="product-title">
-                        {{ item.product.title }}
-                      </a>
-                    </div>
+          {%- if settings.cart_show_free_shipping_threshold -%}
+            {%- assign threshold_in_cents = settings.cart_free_shipping_threshold | times: 100 -%}
 
-                    {%- assign variant_options = 'template ' | split: ' ' -%}
-                    {%- if item.product.has_only_default_variant != true -%}
-                      {%- assign variant_options = item.options_with_values -%}
-                    {%- endif -%}
-                    {%- assign property_size = item.properties | size -%}
-
-                    <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 and item.selling_plan_allocation == nil %} hide{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
-                      {%- for option in variant_options -%}
-                        <li class="product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>{{ option.name }}: {{ option.value }}</li>
-                      {%- endfor -%}
-
-                      <li
-                        class="product-details__item product-details__item--property
-                        {% if item.selling_plan_allocation == empty %} hide {% endif %}"
-                        data-cart-item-selling-plan-name
-                      >
-                        {{ item.selling_plan_allocation.selling_plan.name }}
-                      </li>
-
-                      {%- comment -%}
-                        Optional, loop through custom product line items if available
-
-                        Line item properties come in as having two parts. The first part will be passed with the default form,
-                        but p.last is the actual custom property and may be blank. If it is, don't show it.
-
-                        For more info on line item properties, visit:
-                          - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
-                      {%- endcomment -%}
-
-                      {%- assign properties = 'template ' | split: ' ' -%}
-                      {%- if property_size > 0 -%}
-                        {%- assign properties = item.properties -%}
-                      {%- endif -%}
-
-                      {%- for p in properties -%}
-                        {% assign property_first_char = p.first | slice: 0 %}
-                        <li class="product-details__item product-details__item--property
-                          {%if property_size == 0 or p.last == blank or property_first_char == '_' %} hide{% endif %}" data-cart-item-property>
-                          <span class="product-details__item-label" data-cart-item-property-name>{{ p.first }}: </span>
-
-                          {%- comment -%}
-                            Check if there was an uploaded file associated
-                          {%- endcomment -%}
-                          <span data-cart-item-property-value>
-                            {%- if p.last contains '/uploads/' -%}
-                              <a href="{{ p.last }}" data-role="product-upload">{{ p.last | split: '/' | last }}</a>
-                            {%- else -%}
-                              {{ p.last }}
-                            {%- endif -%}
-                          </span>
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-
-                    <p class="cart__remove">
-                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">{{ 'cart.general.remove' | t }}</a>
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td class="cart__price text-right">
-
-                {%- assign hasDiscount = false -%}
-                {%- if item.original_price != item.final_price -%}
-                  {%- assign hasDiscount = true -%}
-                {%- endif -%}
-
-                <div data-cart-item-price>
-                  <dl data-cart-item-price-list>
-                    {%- comment -%}
-                      Markup template for discount item
-                    {%- endcomment -%}
-                    <div {% unless hasDiscount %}class="hide" {% endunless %}data-cart-item-discounted-price-group>
-                      <dt>
-                        <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                      </dt>
-                      <dd>
-                        <s data-cart-item-original-price>{{ item.original_price | money }}</s>
-                      </dd>
-                      <dt>
-                        <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
-                      </dt>
-                      <dd>
-                        <span class="order-discount" data-cart-item-final-price>{{ item.final_price | money }}</span>
-                      </dd>
-                    </div>
-
-                    {%- comment -%}
-                      Markup template for regular price item
-                    {%- endcomment -%}
-                    <div {% if hasDiscount %}class="hide" {% endif %}data-cart-item-regular-price-group>
-                      <dt>
-                        <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-                      </dt>
-                      <dd data-cart-item-regular-price>
-                        {{ item.original_price | money }}
-                      </dd>
-                    </div>
-
-                    {%- comment -%}
-                      Markup template for unit price
-                    {%- endcomment -%}
-                    <div {% unless item.unit_price_measurement %}class="hide" {% endunless %}data-unit-price-group>
-                      <dt>
-                        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.unit_price_label' | t }}</span>
-                      </dt>
-                      <dd>
-                        <span class="price-unit-price">
-                          {%- capture unit_price_separator -%}
-                            <span aria-hidden="true">/</span><span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}&nbsp;</span>
-                          {%- endcapture -%}
-                          {%- capture unit_price_base_unit -%}
-                            {%- if item.unit_price_measurement.reference_value != 1 -%}
-                              {{- item.unit_price_measurement.reference_value -}}
-                            {%- endif -%}
-                            {{ item.unit_price_measurement.reference_unit }}
-                          {%- endcapture -%}
-
-                          <span data-unit-price>{{ item.unit_price | money }}</span>{{- unit_price_separator -}}<span data-unit-price-base-unit>{{- unit_price_base_unit -}}</span>
-                        </span>
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
-
-                {%- assign itemDiscounts = 'template ' | split: ' ' -%}
-                {%- if item.line_level_discount_allocations != blank -%}
-                  {%- assign itemDiscounts = item.line_level_discount_allocations -%}
-                {%- endif -%}
-
-                <ul class="order-discount order-discount--list order-discount--title order-discount--cart{% if item.line_level_discount_allocations == blank %} hide{% endif %}" aria-label="{{ 'customer.order.discount' | t }}" data-cart-item-discount-list>
-                  {%- for discount_allocation in itemDiscounts -%}
-                    <li class="order-discount__item" data-cart-item-discount>
-                      {% include 'icon-saletag' %}
-                      <span data-cart-item-discount-title>
-                        {{- discount_allocation.discount_application.title -}}
-                      </span> (-<span data-cart-item-discount-amount>{{ discount_allocation.amount | money }}</span>)
-                    </li>
-                  {%- endfor -%}
-                </ul>
-
-                <div class="cart__qty medium-up--hide">
-                  <label for="updates_{{ item.key }}" class="cart__qty-label" aria-label="{{ 'cart.label.quantity' | t }}" data-quantity-label-mobile>
-                    {{ 'cart.label.qty' | t }}
-                  </label>
-                  <input id="updates_{{ item.key }}" class="cart__qty-input" type="number"
-                    value="{{ item.quantity }}" min="0" pattern="[0-9]*"
-                    data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-mobile data-role="product-quantity-mobile">
-                </div>
-                <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--mobile hide" role="alert" data-cart-quantity-error-message-wrapper>
-                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                  {% include 'icon-error' %}
-                  <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
-                </div>
-              </td>
-              <td class="cart__quantity-td text-right small--hide">
-                <div class="cart__qty">
-                  <label for="updates_large_{{ item.key }}" class="cart__qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
-                  <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="number"
-                    name="updates[]" value="{{ item.quantity }}" min="0" pattern="[0-9]*"
-                    data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop data-role="product-quantity-desktop">
-                </div>
-                <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
-                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                  {% include 'icon-error' %}
-                  <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
-                </div>
-              </td>
-              <td class="cart__final-price text-right small--hide" data-cart-item-line-price>
-                {%- comment -%}
-                  Markup template for discount item
-                {%- endcomment -%}
-                <dl {% unless item.original_line_price != item.final_line_price %}class="hide" {% endunless %}data-cart-item-discounted-price-group>
-                  <dt>
-                    <span class="visually-hidden">{{ 'cart.label.regular_total' | t }}</span>
-                  </dt>
-                  <dd>
-                    <s data-cart-item-original-price>{{ item.original_line_price | money }}</s>
-                  </dd>
-                  <dt>
-                    <span class="visually-hidden">{{ 'cart.label.discounted_total' | t }}</span>
-                  </dt>
-                  <dd>
-                    <span class="order-discount" data-cart-item-final-price>{{ item.final_line_price | money }}</span>
-                  </dd>
-                </dl >
-
-                {%- comment -%}
-                  Markup template for regular price item
-                {%- endcomment -%}
-                <div {% if item.original_line_price != item.final_line_price %}class="hide" {% endif %}data-cart-item-regular-price-group>
-                  <span data-cart-item-regular-price>{{ item.original_line_price | money }}</span>
-                </div>
-              </td>
-            </tr>
-          {%- endfor -%}
-        </tbody>
-      </table>
-
-      <div class="cart__footer">
-        <div class="grid">
-          {%- if section.settings.cart_notes_enable -%}
-            <div class="grid__item medium-up--one-half cart-note">
-              <label for="CartSpecialInstructions" class="cart-note__label small--text-center">{{ 'cart.general.note' | t }}</label>
-              <textarea name="note" id="CartSpecialInstructions" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
-            </div>
-          {%- endif -%}
-          <div class="grid__item text-right small--text-center{% if section.settings.cart_notes_enable %} medium-up--one-half{% endif %}">
-
-            {%- assign cartDiscounts = 'template ' | split: ' ' -%}
-            {%- if cart.cart_level_discount_applications.size > 0 -%}
-              {%- assign cartDiscounts = cart.cart_level_discount_applications -%}
-            {%- endif -%}
-            <div{% if cart.cart_level_discount_applications.size == 0 %} class="hide"{% endif %} data-cart-discount-wrapper>
-              <div class="order-discount-card-wrapper" data-cart-discount>
-                {%- for discount_application in cartDiscounts -%}
-                  <span class="order-discount order-discount--title order-discount--cart">
-                    {% include 'icon-saletag' %}<span class="visually-hidden">{{ 'customer.order.discount' | t }}:</span><span data-cart-discount-title>{{- discount_application.title -}}</span>
-                  </span>
-                  <span class="order-discount order-discount--cart order-discount--cart-total">
-                    -<span data-cart-discount-amount>{{ discount_application.total_allocated_amount | money }}</span>
-                  </span>
-                {%- endfor -%}
-              </div>
-            </div>
-
-            <div class="cart-subtotal">
-              <span class="cart-subtotal__title">{{ 'cart.general.subtotal' | t }}</span>
-              <span class="cart-subtotal__price" data-cart-subtotal>{{ cart.total_price | money_with_currency }}</span>
-            </div>
-
-            {%- capture taxes_shipping_checkout -%}
-              {%- if shop.taxes_included and shop.shipping_policy.body != blank -%}
-                {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-              {%- elsif shop.taxes_included -%}
-                {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
-              {%- elsif shop.shipping_policy.body != blank -%}
-                {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+            <p class="SectionHeader__Description Text--subdued">
+              {%- if cart.total_price >= threshold_in_cents -%}
+                {% comment %}ly_i18n_replace_for_[ 'cart.general.free_shipping' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.free_shipping' | t }}{% endcapture %}{% include 'ly-static-string' with '16346551' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
               {%- else -%}
-                {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                {%- capture remaining_amount -%}<span>{{ cart.total_price | minus: threshold_in_cents | abs | money_without_trailing_zeros }}</span>{%- endcapture -%}
+                {% comment %}ly_i18n_replace_for_[ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount }}{% endcapture %}{% include 'ly-static-string' with '16346548' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = remaining_amount  %}{% assign ly_template = ly_template | replace: '[[remaining_amount]]', replacement %}{% if escape_content %}{{ ly_template}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
               {%- endif -%}
-            {%- endcapture -%}
-            <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
-            <div class="cart__buttons-container">
-              <div class="cart__submit-controls">
-                {%- unless section.settings.cart_ajax_enable -%}
-                <input type="submit" name="update"
-                  class="cart__submit btn btn--secondary"
-                  value="{{ 'cart.general.update' | t }}">
-                {%- endunless -%}
-                <input type="submit" name="checkout"
-                  class="cart__submit btn btn--small-wide"
-                  value="{{ 'cart.general.checkout' | t }}">
-              </div>
+            </p>
+          {%- endif -%}
+        </div>
+      </header>
 
-              <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>
-                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                {% include 'icon-error' %}
-                <span class="cart__error-message" data-cart-error-message></span>
-              </div>
+      <div class="PageContent">
+        {% include 'banana-stand-cart-top-container' %}
 
-              {%- if additional_checkout_buttons -%}
-                <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+        <form action="/cart{% comment %}ly_checkout_begin{% endcomment %}{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign checkout_code = shop.metafields.language_codes[language] %}{% if checkout_code %}{% assign checkout_code = '?locale=' | append: checkout_code %}{{ checkout_code }}{% endif %}{% comment %}ly_checkout_end{% endcomment %}" method="POST" class="Cart Cart--expanded" >
+          <input type="hidden" name="attributes[collection_mobile_items_per_row]" value="">
+          <input type="hidden" name="attributes[collection_desktop_items_per_row]" value="">
+
+          {% include 'cart-items' %}
+
+          <footer class="Cart__Footer">
+        {%- if assembly_items == false-%}
+          {%- if assembly -%}
+            <div class="Form__Item">
+            <ly-as-16346540>Do you require assembly?</ly-as-16346540>
+              <div class="">
+                    <input class="" type="radio" name="assembly" value="no" id="assembly-no" required> 
+                    <label for="assembly-no"><ly-as-16346541>No</ly-as-16346541></label>
+                    <input class="" type="radio" name="assembly" value="16202508009523" id="assembly-yes">
+                    <label for="assembly-yes"><ly-as-16346542>Yes</ly-as-16346542></label>
+              </div>
+            </div>
+
+            {% comment %} <div class="Form__Item">
+              <div class="Form__CheckboxWrapper">
+                <input type="checkbox" id="assembly" name="assembly" class="Form__Checkbox" value="16202508009523">
+                <svg class="Icon Icon--checkmark" role="presentation" viewBox="0 0 24 24">
+                  <polygon fill="currentColor" points="9,20 2,13 5,10 9,14 19,4 22,7 "></polygon>
+                </svg>
+                <label for="assembly">Do you require assembly?</label>
+              </div>
+            </div> {% endcomment %}
+          {%- endif -%}
+        {%- endif -%}
+
+        {% if furniture %}
+            <div class="Form__Item">
+            <ly-as-17006467>你有電梯嗎？</ly-as-17006467>
+              <div class="radio-wrapper">
+                    <input class="" type="radio" name="lift" value="no" id="lift-no" required> 
+                    <label for="lift-no"><ly-as-17006468>沒有</ly-as-17006468></label>
+                    <input class="" type="radio" name="lift" value="yes" id="lift-yes">
+                    <label for="lift-yes">有</label>
+              </div>
+              <div class="lift-select hidden">
+                  <select name="lift-value" id="lift-selector">
+                    <option value=""><ly-as-16346544>Please select your floor number</ly-as-16346544></option>
+                    <option value="16212174045235">1</option>
+                    <option value="16212174078003">2</option>
+                    <option value="16212174110771">3</option>
+                    <option value="16212174143539">4</option>
+                    <option value="16212174176307">5</option>
+                    <option value="16212174209075">6</option>
+                    <option value="16212174241843">7</option>
+                    <option value="16212174274611">8</option>
+                    <option value="16212174307379">9+</option>
+                  </select>
+              </div>
+            </div>
+        {% endif %}
+
+            {% comment %} {%- if settings.cart_enable_notes -%}
+              <div class="Cart__NoteContainer">
+                <span class="Cart__NoteButton">{% comment %}ly_i18n_replace_for_[ 'cart.general.add_note' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.add_note' | t }}{% endcapture %}{% include 'ly-static-string' with '16346552' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+                <textarea class="Cart__Note Form__Textarea" name="note" id="cart-note" rows="4" placeholder="{% comment %}ly_i18n_replace_for_[ 'cart.general.note_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.note_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346553' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}">{{ cart.note }}</textarea>
+              </div>
+            {%- endif -%} {% endcomment %}
+
+            <div class="Cart__Recap">
+              {%- capture shipping_and_taxes_notice -%}{% comment %}ly_i18n_replace_for_[ 'cart.general.shipping_and_taxes_notice' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.shipping_and_taxes_notice' | t }}{% endcapture %}{% include 'ly-static-string' with '16346554' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}{%- endcapture -%}
+
+              <span class="Cart__Total Heading u-h6">{% comment %}ly_i18n_replace_for_[ 'cart.general.total' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.total' | t }}{% endcapture %}{% include 'ly-static-string' with '16346555' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}: <span data-money-convertible>{{ cart.total_price | money_without_trailing_zeros }}</span></span>
+
+              {%- if shipping_and_taxes_notice != blank -%}
+                <span class="Cart__Taxes Text--subdued">{{ shipping_and_taxes_notice }}</span>
               {%- endif -%}
+
+              <button type="submit" name="checkout" class="Cart__Checkout Button Button--primary Button--full">{% comment %}ly_i18n_replace_for_[ 'cart.general.checkout' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.general.checkout' | t }}{% endcapture %}{% include 'ly-static-string' with '16346556' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</button>
+            </div>
+          </footer>
+
+<!--           <div class="Form__Item">
+              <ly-as-17006469>低於NT $ 4000的訂單需付NT $ 400。</ly-as-17006469>
+          </div> -->
+
+        </form>
+
+        {%- if section.settings.show_shipping_estimator -%}
+          <div class="Section Section--spacingExtraLarge">
+            <div class="Panel">
+              <h2 class="Panel__Title Heading u-h2">{% comment %}ly_i18n_replace_for_[ 'cart.shipping_estimator.title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.shipping_estimator.title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346557' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
+
+              <div class="Panel__Content">
+                <div class="ShippingEstimator">
+                  <div class="ShippingEstimator__Form">
+                    <div class="ShippingEstimator__Country Form__Select Select Select--primary">
+                      {%- include 'icon' with 'select-arrow' -%}
+                      <select name="country" title="{% comment %}ly_i18n_replace_for_[ 'cart.shipping_estimator.country' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.shipping_estimator.country' | t }}{% endcapture %}{% include 'ly-static-string' with '16346558' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" data-default="{% if customer %}{{ customer.default_address.country }}{% elsif section.settings.shipping_estimator_default_country != '' %}{{ section.settings.shipping_estimator_default_country }}{% endif %}">{{ all_country_option_tags }}</select>
+                    </div>
+
+                    <div class="ShippingEstimator__Province Form__Select Select Select--primary" style="display: none">
+                      {%- include 'icon' with 'select-arrow' -%}
+                      <select name="province" title="{% comment %}ly_i18n_replace_for_[ 'cart.shipping_estimator.province' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.shipping_estimator.province' | t }}{% endcapture %}{% include 'ly-static-string' with '16346559' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}"></select>
+                    </div>
+
+                    <input type="text" class="ShippingEstimator__Zip Form__Input" name="zip" placeholder="{% comment %}ly_i18n_replace_for_[ 'cart.shipping_estimator.zip_code' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.shipping_estimator.zip_code' | t }}{% endcapture %}{% include 'ly-static-string' with '16346560' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}">
+
+                    <button type="button" class="ShippingEstimator__Submit Button Button--primary">{% comment %}ly_i18n_replace_for_[ 'cart.shipping_estimator.estimate' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'cart.shipping_estimator.estimate' | t }}{% endcapture %}{% include 'ly-static-string' with '16346561' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</button>
+                  </div>
+
+                  <div class="ShippingEstimator__Error Alert Alert--error" style="display: none"></div>
+                  <div class="ShippingEstimator__Results">
+                    <div class="ShippingEstimator__ResultsInner"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        {%- endif -%}
       </div>
-    </form>
-
-    <p class="visually-hidden" data-cart-status
-      aria-live="polite"
-      role="status"
-    ></p>
-  </div>
-
-  <div class="empty-page-content{% if cart.item_count > 0 %} hide{% endif %} text-center" data-empty-page-content>
-    <h1>{{ 'cart.general.title' | t }}</h1>
-    <p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
-    <div class="cookie-message">
-      <p>{{ 'cart.general.cookies_required' | t }}</p>
     </div>
-    <a href="{{ routes.root_url }}" class="btn btn--has-icon-after cart__continue-btn">{{ 'general.404.link' | t }}{% include 'icon-arrow-right' %}</a>
-  </div>
-</div>
+  {%- endif -%}
+</section>
+{%- if section.settings.layout_mode == 'carousel' -%}
+  {%- capture flickity_options -%}
+  {
+    "prevNextButtons": true,
+    "pageDots": false,
+    "wrapAround": false,
+    "contain": true,
+    "cellAlign": "center",
+    "watchCSS": false,
+    "dragThreshold": 8,
+    "groupCells": true,
+    "arrowShape": {"x0": 20, "x1": 60, "y1": 40, "x2": 60, "y2": 35, "x3": 25}
+  }
+  {%- endcapture -%}
+{%- endif -%}
 
+{%- capture section_settings -%}
+{
+  "layout": {{ section.settings.layout_mode | json }}
+}
+{%- endcapture -%}
 
+<section class="Section Section--spacingNormal" data-section-id="{{ section.id }}" data-section-type="featured-collections" data-settings='{{ section_settings }}'>
+  <header class="SectionHeader SectionHeader--center">
+    <div class="Container">
+    {%- if section.settings.title != blank -%}
+      <h3 class="SectionHeader__SubHeading Heading u-h6">{{ section.settings.title | escape }}</h3>
+    {%- endif -%}
 
+    {%- if section.blocks.size > 1 -%}
+      <div class="SectionHeader__TabList TabList" role="tablist">
+        {%- for block in section.blocks -%}
+          {%- assign collection = collections[block.settings.collection] -%}
+
+          <button class="Heading u-h1 TabList__Item {% if forloop.first %}is-active{% endif %}" data-action="toggle-tab" aria-controls="block-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" role="tab">
+            {%- if collection != empty -%}
+              {{ block.settings.title | default: collection.title }}
+            {%- else -%}
+              {% comment %}ly_i18n_replace_for_[ 'home_page.onboarding.collection_title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'home_page.onboarding.collection_title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346562' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
+            {%- endif -%}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      {%- assign collection = collections[section.blocks.first.settings.collection] -%}
+
+      {%- if collection != empty -%}
+        <h2 class="SectionHeader__Heading Heading u-h1">{{ section.blocks.first.settings.title | default: collection.title }}</h2>
+      {%- else -%}
+        <h2 class="SectionHeader__Heading Heading u-h1">{% comment %}ly_i18n_replace_for_[ 'home_page.onboarding.collection_title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'home_page.onboarding.collection_title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346562' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
+      {%- endif -%}
+    {%- endif -%}
+    </div>
+  </header>
+
+  {%- for block in section.blocks -%}
+    {%- assign collection = collections[block.settings.collection] -%}
+
+    <div class="TabPanel" id="block-{{ block.id }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" role="tabpanel" {{ block.shopify_attributes }}>
+      <div class="ProductListWrapper">
+        {%- if collection != empty -%}
+          {%- assign item_count = block.settings.grid_items_count -%}
+
+          {%- if collection.products_count < block.settings.grid_items_count -%}
+            {%- assign item_count = collection.products_count -%}
+          {%- endif -%}
+
+          {%- if section.settings.layout_mode == 'grid' -%}
+            <div class="ProductList ProductList--grid ProductList--removeMargin Grid" data-mobile-count="{{ section.settings.grid_mobile_items_per_row }}" data-desktop-count="{{ section.settings.grid_desktop_items_per_row }}">
+              {%- for product in collection.products limit: block.settings.grid_items_count -%}
+                <div class="Grid__Cell 1/{{ section.settings.grid_mobile_items_per_row }}--phone 1/2--tablet 1/{{ section.settings.grid_desktop_items_per_row }}--lap-and-up">
+                  {%- include 'product-item', show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_color_swatch: section.settings.show_color_swatch, show_labels: true -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+            <div class="carousel_cart ProductList ProductList--carousel Carousel " data-flickity-config='{{ flickity_options }}'>
+              {%- for product in collection.products limit: block.settings.grid_items_count -%}
+                <div class="Carousel__Cell">
+                  {%- include 'product-item', show_product_info: section.settings.show_product_info, show_vendor: section.settings.show_vendor, show_color_swatch: section.settings.show_color_swatch, show_labels: true -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          {%- comment -%}<ly-as-16346545>If collection is not set, we use placeholder content for all three layout mode</ly-as-16346545>{%- endcomment -%}
+
+          {%- capture products_placeholder -%}
+            {%- for i in (1..block.settings.grid_items_count) -%}
+              <div class="{% if section.settings.layout_mode == 'grid' %}Grid__Cell 1/{{ section.settings.grid_mobile_items_per_row }}--phone 1/2--tablet-and-up 1/{{ section.settings.grid_desktop_items_per_row }}--lap-and-up{% else %}Carousel__Cell{% endif %}">
+                <div class="ProductItem">
+                  <div class="ProductItem__Wrapper">
+
+                    <a href="#" class="ProductItem__ImageWrapper">
+                      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                      {{ 'product-' | append: current | placeholder_svg_tag: 'ProductItem__Image PlaceholderSvg PlaceholderSvg--dark' }}
+                    </a>
+
+                    {%- if section.settings.show_product_info -%}
+                      <div class="ProductItem__Info ProductItem__Info--{{ settings.product_info_alignment }}">
+                        {%- if section.settings.show_vendor -%}
+                          <p class="ProductItem__Vendor Heading">{% comment %}ly_i18n_replace_for_[ 'home_page.onboarding.vendor_title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'home_page.onboarding.vendor_title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346563' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+                        {%- endif -%}
+
+                        <h2 class="ProductItem__Title Heading">{% comment %}ly_i18n_replace_for_[ 'home_page.onboarding.product_title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'home_page.onboarding.product_title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346564' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
+
+                        <div class="ProductItem__PriceList Heading">
+                          <span class="ProductItem__Price Price Text--subdued" data-money-convertible>{{ 3000 | money_without_trailing_zeros }}</span>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          {%- if section.settings.layout_mode == 'grid' -%}
+            <div class="ProductList ProductList--grid ProductList--removeMargin Grid" data-mobile-count="{{ section.settings.grid_mobile_items_per_row }}" data-desktop-count="{{ section.settings.grid_desktop_items_per_row }}">
+              {{ products_placeholder }}
+            </div>
+          {%- else -%}
+            <div class="ProductList ProductList--carousel Carousel" data-flickity-config='{{ flickity_options }}'>
+              {{ products_placeholder }}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      {%- if block.settings.button_text != blank -%}
+        <div class="Container">
+          <div class="SectionFooter">
+            <a href="{{ collection.url }}" class="Button Button--primary">{{ block.settings.button_text | escape }}</a>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</section>
 {% schema %}
 {
-  "name": {
-    "cs": "Stránka košíku",
-    "da": "Side med indkøbskurv",
-    "de": "Warenkorb-Seite",
-    "en": "Cart page",
-    "es": "Página del carrito",
-    "fi": "Ostoskorisivu",
-    "fr": "Page du panier",
-    "it": "Pagina del carrello",
-    "ja": "カートページ",
-    "ko": "카트 페이지",
-    "nb": "Handlekurvside",
-    "nl": "Winkelwagenpagina",
-    "pl": "Strona koszyka",
-    "pt-BR": "Página do carrinho",
-    "pt-PT": "Página do carrinho",
-    "sv": "Varukorgssida",
-    "th": "หน้าตะกร้าสินค้า",
-    "tr": "Sepet sayfası",
-    "vi": "Trang giỏ hàng",
-    "zh-CN": "购物车页面",
-    "zh-TW": "購物車頁面"
-  },
+  "name": "Cart page",
+  "class": "shopify-section--bordered",
   "settings": [
     {
       "type": "checkbox",
-      "id": "cart_ajax_enable",
-      "label": {
-        "cs": "Povolit automatické aktualizace košíku",
-        "da": "Aktivér automatisk opdatering af indkøbskurv",
-        "de": "Automatische Warenkorbaktualisierungen aktivieren",
-        "en": "Enable automatic cart updates",
-        "es": "Habilitar las actualizaciones automáticas del carrito",
-        "fi": "Ota automaattinen ostoskorin päivitykset käyttöön",
-        "fr": "Activer les mises à jour automatiques",
-        "it": "Abilita aggiornamenti automatici carrello",
-        "ja": "自動カートの更新を有効にする",
-        "ko": "자동 카트 업데이트 활성화하기",
-        "nb": "Aktiver automatiske oppdateringer av handlekurven",
-        "nl": "Automatische winkelwagen-updates inschakelen",
-        "pl": "Włącz automatyczne aktualizacje koszyka",
-        "pt-BR": "Permitir atualizações automáticas do carrinho",
-        "pt-PT": "Ativar atualizações automáticas do carrinho",
-        "sv": "Aktivera automatiska uppdateringar av varukorgen",
-        "th": "เปิดใช้การอัปเดตตะกร้าสินค้าอัตโนมัติ",
-        "tr": "Otomatik sepet güncellemelerini etkinleştir",
-        "vi": "Bật cập nhật giỏ hàng tự động",
-        "zh-CN": "启用购物车自动更新功能",
-        "zh-TW": "啟用自動更新購物車"
-      },
-      "info": {
-        "cs": "Aktualizuje košík hned, jak zákazník provede změny.",
-        "da": "Opdaterer indkøbskurven, så snart kunden foretager ændringer",
-        "de": "Aktualisiert den Warenkorb, sobald Kundenänderungen vorgenommen werden",
-        "en": "Updates the cart as soon as customer changes are made",
-        "es": "Actualiza el carrito tan pronto como el cliente realice cambios",
-        "fi": "Päivittää ostoskorin heti, kun asiakkaan muutokset on tehty",
-        "fr": "Mise à jour du panier dès que les modifications apportées aux clients ont été effectuées",
-        "it": "Aggiorna il carrello appena il cliente apporta le modifiche",
-        "ja": "お客様が変更されるとすぐにカートを更新します",
-        "ko": "고객 변경 시 카트를 업데이트합니다.",
-        "nb": "Oppdaterer handlekurven så snart kundens endringer er gjort",
-        "nl": "De winkelwagen wordt bijgewerkt zodra de klant wijzigingen aanbrengt",
-        "pl": "Aktualizuje koszyk, gdy tylko wprowadzone zostaną zmiany u klienta",
-        "pt-BR": "Atualiza o carrinho assim que o cliente faz alterações",
-        "pt-PT": "Atualiza o carrinho assim que o cliente faz alterações",
-        "sv": "Uppdaterar varukorgen så snart kundändringar görs",
-        "th": "อัปเดตตะกร้าสินค้าเมื่อลูกค้าได้ทำการเปลี่ยนแปลง",
-        "tr": "Müşteri değişiklikleri yapıldıktan sonra sepet güncellenir",
-        "vi": "Cập nhật giỏ hàng ngay khi khách hàng thay đổi",
-        "zh-CN": "客户做出更改后立即更新购物车",
-        "zh-TW": "在顧客進行變更時立即更新購物車"
-      },
+      "id": "show_shipping_estimator",
+      "label": "Show shipping rates calculator",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_estimator_default_country",
+      "label": "Default country to use",
+      "info": "If your customer is logged-in, the country in his default shipping address will be selected.",
+      "default": "United States"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Sub-heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "select",
+      "id": "layout_mode",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_info",
+      "label": "Show product info",
       "default": true
     },
     {
       "type": "checkbox",
-      "id": "cart_notes_enable",
-      "label": {
-        "cs": "Povolit poznámky ke košíku",
-        "da": "Aktivér bemærkninger til indkøbskurv",
-        "de": "Warenkorbanmerkungen erlauben",
-        "en": "Enable cart notes",
-        "es": "Habilitar notas del carrito",
-        "fi": "Ota tilauskommentit käyttöön",
-        "fr": "Activer les notes de panier",
-        "it": "Abilita note carrello",
-        "ja": "カートメモを有効にする",
-        "ko": "카트 참고 사항 사용",
-        "nb": "Aktiver handlekurvmerknader",
-        "nl": "Opmerkingen voor winkelwagen inschakelen",
-        "pl": "Włącz uwagi dotyczące koszyka",
-        "pt-BR": "Habilitar observações do carrinho",
-        "pt-PT": "Ativar notas do carrinho",
-        "sv": "Aktivera varukorgsmeddelanden",
-        "th": "เปิดใช้หมายเหตุสำหรับตะกร้าสินค้า",
-        "tr": "Sepet notlarını etkinleştir",
-        "vi": "Bật ghi chú trong giỏ hàng",
-        "zh-CN": "启用购物车备注",
-        "zh-TW": "啟用購物車備註"
-      },
+      "id": "show_vendor",
+      "label": "Show vendor",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_color_swatch",
+      "label": "Show color swatch",
+      "info": "Some colors appear white? [Learn more](http://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch).",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Grid",
+      "info": "Those settings apply only if the layout mode is set to grid."
+    },
+    {
+      "type": "select",
+      "id": "grid_mobile_items_per_row",
+      "label": "Products per row (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 4,
+      "id": "grid_desktop_items_per_row",
+      "label": "Products per row (desktop)",
+      "default": 4
     }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "info": "If none is set, collection title is used."
+        },
+        {
+          "type": "range",
+          "id": "grid_items_count",
+          "min": 2,
+          "max": 50,
+          "step": 1,
+          "label": "Products to show",
+          "default": 8
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "View all products"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Collection",
+      "name": "Featured collections",
+      "settings": {},
+      "blocks": [
+        {
+          "type": "collection"
+        }
+      ]
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   ]
 }
 {% endschema %}
+
+
+<script>
+
+
+
+$(document).ready(function(){
+      var lift = [16212174045235,
+16212174078003,
+16212174110771,
+16212174143539,
+16212174176307,
+16212174209075,
+16212174241843,
+16212174274611,
+16212174307379];
+
+
+{%- if assembly -%}
+    $("input[name='assembly']").change(function(){
+    if ($("#assembly-yes").is(':checked'))
+    {
+      $.ajax({
+        method: "POST",
+        url: "/cart/add.js",
+        dataType: "json",
+        data: { quantity: 1, id: $("#assembly-yes").val() }
+      })
+    }
+    else
+    {
+      $.ajax({
+        method: "POST",
+        url: "/cart/change.js",
+        dataType: "json",
+        data: { quantity: 0,id: $("#assembly-yes").val() }
+      })
+    }
+  });
+
+  
+
+{%- endif -%}
+
+
+
+
+$(".PageContent").on("click","input[name=lift]",function(){
+      // TODO: Add the session to cart
+      if($(this).val() == "no")
+      {
+        console.log("no")
+        $(".lift-select").show();
+        $("#lift-selector").prop("required",true);
+      }
+
+      else
+      {
+        $(".lift-select").hide()
+        $("#lift-selector").removeAttr("required");
+              var cart = $.getJSON( "/cart.js" )
+          .done(function( response ) {
+              cart = response;
+          });
+
+      cart.done(function(data){
+        $.each(data.items, function (indexInArray, valueOfElement) 
+      {
+
+        console.log("each")
+        if( $.inArray(valueOfElement.id, lift) > -1 )
+        {
+          foundLift = true;
+          console.log("valeur trouvee", valueOfElement.id);
+          test = $.ajax({
+            method: "POST",
+            url: "/cart/change.js",
+            dataType: "json",
+            data: { quantity: 0, id: valueOfElement.id }
+          }).done(function(data){
+            console.log("lift removed");
+          });
+          }
+        });
+      });
+    }
+});
+
+
+          
+    var foundLift = false;
+    $(".PageContent").on("change","#lift-selector",function(e){
+      e.preventDefault();
+      // var cart = {{cart.items | json}};
+      //var cart = {{cart.items | json}};
+
+      var cart = $.getJSON( "/cart.js" )
+          .done(function( response ) {
+              cart = response;
+          });
+
+      cart.done(function(data){
+        $.each(data.items, function (indexInArray, valueOfElement) 
+      {
+
+        console.log("each")
+        if( $.inArray(valueOfElement.id, lift) > -1 )
+        {
+          foundLift = true;
+          console.log("valeur trouvee", valueOfElement.id);
+          test = $.ajax({
+            method: "POST",
+            url: "/cart/change.js",
+            dataType: "json",
+            data: { quantity: 0, id: valueOfElement.id }
+          }).done(function(data){
+            console.log("lift removed");
+          });
+
+        test.done(function(data){
+          $.ajax({
+          method: "POST",
+          url: "/cart/add.js",
+          dataType: "json",
+          data: { quantity: {{ furniture_count }}, id: $("#lift-selector").children("option:selected").val() }
+          })
+
+
+          });
+        }
+    });
+    if(!foundLift)
+    {
+      console.log("no lift");
+        $.ajax({
+          method: "POST",
+          url: "/cart/add.js",
+          dataType: "json",
+          data: { quantity: {{furniture_count}}, id: $("#lift-selector").children("option:selected").val() }
+          })
+    }
+      });
+
+
+
+        
+      });
+
+  });
+</script>
+
+
+<style>
+
+.hidden
+{
+  display:none;
+}
+
+input[type="radio"]
+{
+  -webkit-appearance:radio;
+}
+</style>

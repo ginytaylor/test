@@ -1,0 +1,86 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+<div class="ProductMeta">
+  {%- if section.settings.show_vendor and product.vendor != blank -%}
+    <h2 class="ProductMeta__Vendor Heading u-h6">
+      {%- assign vendor_handle = product.vendor | handle -%}
+      {%- assign collection_for_vendor = collections[vendor_handle] -%}
+
+      {%- unless collection_for_vendor.empty? -%}
+        <a href="{{ collection_for_vendor.url }}">{% comment %}ly_code_replace_for_[ product.vendor ]_begin{% endcomment %}{% include 'ly-vendor' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+      {%- else -%}
+        {% comment %}ly_code_replace_for_[ product.vendor ]_begin{% endcomment %}{% include 'ly-vendor' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}
+      {%- endunless -%}
+    </h2>
+  {%- endif -%}
+  {%- if section.settings.show_collection and product.collection != blank -%}
+    <h2 class="ProductMeta__Collection Heading u-h6">
+      
+        <a href="{{ collection.url }}">{% comment %}ly_code_replace_for_[ collection.title ]_begin{% endcomment %}{% include 'ly-title' with collection %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+     
+    </h2>
+  {%- endif -%}
+
+  <h2 class="ProductMeta__Title Heading u-h2 collectionNameProductPage"> 
+    {% comment %}ly_code_replace_for_[ collection.title | link_to: collection.url ]_begin{% endcomment %}{% include 'ly-title' with collection %}{{ ly_translation | link_to: collection.url }}{% comment %}ly_code_replace_end{% endcomment %}
+  </h2>
+
+  <h1 class="ProductMeta__Title Heading u-h2">
+    {%- if template.name == 'product' -%}
+      {% comment %}ly_code_replace_for_[ product.title ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}
+    {%- else -%}
+      <a href="{{ product.url }}">{% comment %}ly_code_replace_for_[ product.title ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+    {%- endif -%}
+  </h1>
+
+  {%- if product.template_suffix != 'coming-soon' -%}
+    <div class="ProductMeta__PriceList Heading">
+      {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+        <span class="ProductMeta__Price Price Price--highlight Text--subdued u-h4" data-money-convertible>{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
+        <span class="ProductMeta__Price Price Price--compareAt Text--subdued u-h4" data-money-convertible>{{ product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros }}</span>
+      {%- else -%}
+        <span class="ProductMeta__Price Price Text--subdued u-h4" data-money-convertible>{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
+      {%- endif -%}
+      {% include 'swym-product-view', product: product %}<button class="wishlist_hover_product swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>
+    </div>
+  {%- endif -%}
+
+  {%- if show_description and section.settings.description_below_add_to_cart == false and product.description != blank -%}
+    <div class="ProductMeta__Description Rte">
+
+     {% include 'ly-description' with product %}
+      {% assign Description = ly_translation | strip_html %}
+
+            {% comment %} {%- assign Description = product.description | strip_html | truncatewords: 20 -%} {% endcomment %}
+          {%- if Description contains "Description" -%}
+            {%- if Description contains "Specifications" -%}
+              {% assign Description = Description | split: "Specifications" %}
+              {{ Description[0] | remove: 'Description' | truncatewords: 20}}
+            {%- else -%}
+            {{ Description | remove: 'Description' | truncatewords: 20 }}
+            {% endif %}
+          {%- else -%}
+            {%- if Description contains "產品規格" -%}
+              {% assign Description = Description | split: "產品規格" %}
+              {{ Description[0] | remove: '產品資料' | truncate: 30}}
+            {%- else -%}
+            {{ Description | remove: '產品資料' | truncate: 30}}
+            {% endif %}
+          {% endif %}
+
+
+          
+      <a href="#anchor" id="anchor-link"><ly-as-17006478>閱讀更多</ly-as-17006478></a>
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+
+$(document).ready(function(){
+  $("#anchor-link").click(function(){
+    $(".Collapsible--large").first().children("button").click();
+  });
+});
+
+
+</script>

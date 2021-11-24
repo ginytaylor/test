@@ -1,136 +1,393 @@
-<div class="section-header text-center">
-  <h1 class="article__title" id="title-0">{{ article.title }}</h1>
-  {% if section.settings.blog_show_author %}
-    <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+{%- assign share_url = shop.url | append: article.url -%}
+{%- assign twitter_text = article.title -%}
+{%- assign pinterest_description = article.description | strip_html | truncatewords: 15 | url_param_escape -%}
+{%- assign pinterest_image = article.image | img_url: '750x' | prepend: 'https:' -%}
+
+<article class="Article" data-section-id="{{ section.id }}" data-section-type="article">
+  <aside class="ArticleToolbar hidden-phone">
+    <div class="ArticleToolbar__Left">
+      <span class="Heading Text--subdued u-h8 hidden-tablet">{% comment %}ly_i18n_replace_for_[ 'blog.article.now_reading' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.article.now_reading' | t }}{% endcapture %}{% include 'ly-static-string' with '16346506' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+      <span class="ArticleToolbar__ArticleTitle Heading u-h7">{% comment %}ly_code_replace_for_[ article.title ]_begin{% endcomment %}{% include 'ly-title' with article %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</span>
+    </div>
+
+    <div class="ArticleToolbar__Right">
+      {%- if section.settings.show_share_buttons -%}
+        <div class="ArticleToolbar__ShareList">
+          <span class="ArticleToolbar__ShareLabel Heading Text--subdued u-h8">{% comment %}ly_i18n_replace_for_[ 'blog.article.share' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.article.share' | t }}{% endcapture %}{% include 'ly-static-string' with '16346507' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+
+          <div class="HorizontalList">
+            <a class="HorizontalList__Item Text--subdued Link" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener">{%- include 'icon' with 'facebook' -%}</a>
+            <a class="HorizontalList__Item Text--subdued Link" href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener">{%- include 'icon' with 'twitter' -%}</a>
+            <a class="HorizontalList__Item Text--subdued Link" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener">{%- include 'icon' with 'pinterest' -%}</a>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if blog.next_article or blog.previous_article -%}
+        <div class="ArticleToolbar__Nav">
+          {%- if blog.next_article -%}
+            <a href="{{ blog.next_article }}" class="ArticleToolbar__NavItem ArticleToolbar__NavItem--next Heading Text--subdued Link u-h8">{% include 'icon' with 'select-arrow-left' %} {% comment %}ly_i18n_replace_for_[ 'blog.article.previous' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.article.previous' | t }}{% endcapture %}{% include 'ly-static-string' with '16346508' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
+          {%- endif -%}
+
+          {%- if blog.previous_article and blog.next_article -%}
+            <span class="ArticleToolbar__NavItemSeparator"></span>
+          {%- endif -%}
+
+          {%- if blog.previous_article -%}
+            <a href="{{ blog.previous_article }}" class="ArticleToolbar__NavItem ArticleToolbar__NavItem--prev Heading Text--subdued Link u-h8">{% comment %}ly_i18n_replace_for_[ 'blog.article.next' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.article.next' | t }}{% endcapture %}{% include 'ly-static-string' with '16346509' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %} {% include 'icon' with 'select-arrow-right' %}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </aside>
+
+  {%- if article.image and section.settings.show_article_image -%}
+    <div class="Article__ImageWrapper" style="background-image: url({{ article.image | img_url: '1x1' }})">
+      <div class="Article__Image Image--lazyLoad Image--fadeIn"
+           data-optimumx="1.4"
+           data-bgset="{{ article.image | img_url: '400x' }} 400w, {{ article.image | img_url: '600x' }} 600w, {{ article.image | img_url: '800x' }} 800w, {{ article.image | img_url: '1200x' }} 1200w, {{ article.image | img_url: '1400x' }} 1400w, {{ article.image | img_url: '1600x' }} 1600w">
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="Article__Wrapper">
+    <div class="Article__Content">
+      <header class="Article__Header">
+        {%- capture article_meta -%}
+          {%- if section.settings.show_date -%}
+            <span class="Article__MetaItem">{{ article.published_at | date: format: 'month_day_year' }}</span>
+          {%- endif -%}
+
+          {%- if section.settings.show_category and article.tags != empty -%}
+            <span class="Article__MetaItem">{{ article.tags.first }}</span>
+          {%- endif -%}
+        {%- endcapture -%}
+
+        {%- if article_meta != blank -%}
+          <div class="Article__Meta Heading Text--subdued u-h6">
+            {{ article_meta }}
+          </div>
+        {%- endif -%}
+
+        <font align=center><h1 class="Article__Title Heading u-h1">{% comment %}ly_code_replace_for_[ article.title ]_begin{% endcomment %}{% include 'ly-title' with article %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</h1></font>
+      </header>
+
+      <div class="Article__Body Rte">
+        {% comment %}ly_code_replace_for_[ article.content ]_begin{% endcomment %}{% include 'ly-content' with article %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}
+      </div>
+
+      {%- capture article_footer -%}
+        {%- if section.settings.show_author -%}
+          <span class="Article__Author Heading Text--subdued u-h6">{% comment %}ly_i18n_replace_for_[ 'blog.article.written_by' | t: author: article.author ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.article.written_by' | t: author: article.author }}{% endcapture %}{% include 'ly-static-string' with '16346511' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = article.author  %}{% assign ly_template = ly_template | replace: '[[author]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+        {%- endif -%}
+        {%- if section.settings.show_share_buttons -%}
+          <div class="Article__ShareButtons ShareButtons">
+            <a class="ShareButtons__Item ShareButtons__Item--facebook" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener">{%- include 'icon' with 'facebook' -%}</a>
+            <a class="ShareButtons__Item ShareButtons__Item--twitter" href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener">{%- include 'icon' with 'twitter' -%}</a>
+            <a class="ShareButtons__Item ShareButtons__Item--pinterest" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener">{%- include 'icon' with 'pinterest' -%}</a>
+          </div>
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- if article_footer != blank -%}
+        <footer class="Article__Footer">
+          {{ article_footer }}
+        </footer>
+      {%- endif -%}
+
+      <div class="Panel" style="margin-top:40px">
+      <h2 class="Panel__Title Heading u-h2"><ly-as-16346503>Newsletter</ly-as-16346503></h2>
+      <p><ly-as-16346504>Subscribe to receive updates, access to exclusive deals, and more.</ly-as-16346504></p>
+
+        {%- form 'customer', id: 'journal-newsletter' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="Form__Alert Alert Alert--success">{% comment %}ly_i18n_replace_for_[ 'footer.newsletter.success' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'footer.newsletter.success' | t }}{% endcapture %}{% include 'ly-static-string' with '16346512' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+          {%- else -%}
+            {%- if form.errors -%}
+              <p class="Form__Alert Alert Alert--error">{{ form.errors.messages['email'] }}</p>
+            {%- endif -%}
+
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="email" name="contact[email]" class="Form__Input" aria-label="{% comment %}ly_i18n_replace_for_[ 'footer.newsletter.input' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'footer.newsletter.input' | t }}{% endcapture %}{% include 'ly-static-string' with '16346513' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" placeholder="{% comment %}ly_i18n_replace_for_[ 'footer.newsletter.input' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'footer.newsletter.input' | t }}{% endcapture %}{% include 'ly-static-string' with '16346513' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" required>
+            <button type="submit" class="Form__Submit Button Button--primary">{% comment %}ly_i18n_replace_for_[ 'footer.newsletter.submit' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'footer.newsletter.submit' | t }}{% endcapture %}{% include 'ly-static-string' with '16346514' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</button>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+
+    </div>
+
+              {% for tag in article.tags %}
+            {%- if tag contains "Collection:" -%}
+              {% assign article_collection = tag | split: "Collection:" | handle %} 
+              {% assign collectionss = collections[article_collection] %}
+            {%- endif -%}
+          {% endfor %}
+
+    {% comment %} {% for product in collectionss.products %}
+        {{ product.handle }}
+  
+      {% endfor %}  {% endcomment %}
+
+
+    {%- if blog.comments_enabled? -%}
+      {%- if article.comments_count > 0 -%}
+        <div class="Article__Comments">
+          <span class="Anchor" id="comments"></span>
+
+          <h2 class="Heading u-h1">{% comment %}ly_i18n_replace_for_[ 'blog.article.comments_count' | t: count: article.comments_count ]_begin{% endcomment %}{% if article.comments_count  == 0 %}{% capture ly_template %}{{ 'blog.article.comments_count' | t: count: article.comments_count }}{% endcapture %}{% include 'ly-static-string' with '16346515' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = article.comments_count  %}{% assign ly_template = ly_template | replace: '[[count]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% elsif article.comments_count  == 1 %}{% capture ly_template %}{{ 'blog.article.comments_count' | t: count: article.comments_count }}{% endcapture %}{% include 'ly-static-string' with '16346516' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = article.comments_count  %}{% assign ly_template = ly_template | replace: '[[count]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% elsif article.comments_count  == 2 %}{% capture ly_template %}{{ 'blog.article.comments_count' | t: count: article.comments_count }}{% endcapture %}{% include 'ly-static-string' with '16346517' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = article.comments_count  %}{% assign ly_template = ly_template | replace: '[[count]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% else %}{% capture ly_template %}{{ 'blog.article.comments_count' | t: count: article.comments_count }}{% endcapture %}{% include 'ly-static-string' with '16346517' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = article.comments_count  %}{% assign ly_template = ly_template | replace: '[[count]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
+
+          <div class="Article__CommentList">
+            {%- paginate article.comments by 25 -%}
+              {%- for comment in article.comments -%}
+                <div class="ArticleComment">
+                  <div class="ArticleComment__Body Rte">
+                    {% comment %}ly_code_replace_for_[ comment.content ]_begin{% endcomment %}{% include 'ly-content' with comment %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}
+                  </div>
+
+                  <div class="ArticleComment__Meta Heading Text--subdued u-h8">
+                    <span class="ArticleComment__Author">{{ comment.author }}</span>
+                    <span class="ArticleComment__Date">{{ comment.created_at | date: format: 'month_day_year' }}</span>
+                  </div>
+                </div>
+              {%- endfor -%}
+
+              {% include 'pagination', hash: '#comments' %}
+            {%- endpaginate -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="Article__CommentFormWrapper">
+        {% if article.comments_count == 0 %}
+          <span class="Anchor" id="comments"></span>
+        {%- endif -%}
+
+        <span class="Anchor" id="comment_form"></span>
+
+        <h2 class="Heading u-h1">{% comment %}ly_i18n_replace_for_[ 'blog.comments.form_title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.form_title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346520' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h2>
+
+        {%- form 'new_comment', article, class: 'Article__CommentForm Form', id: '' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="Form__Alert Alert Alert--success">
+              {%- if blog.moderated? -%}
+                {% comment %}ly_i18n_replace_for_[ 'blog.comments.success_moderated' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.success_moderated' | t }}{% endcapture %}{% include 'ly-static-string' with '16346521' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
+              {%- else -%}
+                {% comment %}ly_i18n_replace_for_[ 'blog.comments.success' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.success' | t }}{% endcapture %}{% include 'ly-static-string' with '16346522' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="Form__Alert Alert Alert--error">
+              <ul class="Alert__ErrorList">
+                {%- for field in form.errors -%}
+                  {%- if field == 'form' -%}
+                    <li class="Alert__ErrorItem">{{ form.errors.messages[field] }}</li>
+                  {%- else -%}
+                    <li class="Alert__ErrorItem"><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <div class="Form__Group">
+            <div class="Form__Item">
+              <input type="text" class="Form__Input" name="comment[author]" placeholder="{% comment %}ly_i18n_replace_for_[ 'blog.comments.name_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.name_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346523' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" aria-label="{% comment %}ly_i18n_replace_for_[ 'blog.comments.name_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.name_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346523' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" value="{{ form.author | escape | default: customer.name }}" required="required">
+              <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'blog.comments.name_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.name_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346523' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+            </div>
+
+            <div class="Form__Item">
+              <input type="email" class="Form__Input" name="comment[email]" placeholder="{% comment %}ly_i18n_replace_for_[ 'blog.comments.email_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.email_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346524' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" aria-label="{% comment %}ly_i18n_replace_for_[ 'blog.comments.email_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.email_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346524' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" value="{{ form.email | escape | default: customer.email }}" required="required">
+              <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'blog.comments.email_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.email_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346524' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+            </div>
+          </div>
+
+          <div class="Form__Item">
+            <textarea name="comment[body]" rows="6" class="Form__Textarea" placeholder="{% comment %}ly_i18n_replace_for_[ 'blog.comments.comment_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.comment_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346525' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" aria-label="{% comment %}ly_i18n_replace_for_[ 'blog.comments.comment_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.comment_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346525' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" required="required">
+              {{ form.body }}
+            </textarea>
+
+            <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'blog.comments.comment_placeholder' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.comment_placeholder' | t }}{% endcapture %}{% include 'ly-static-string' with '16346525' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+          </div>
+
+          {%- if blog.moderated? -%}
+            <p class="Form__Hint">{% comment %}ly_i18n_replace_for_[ 'blog.comments.approval_notice' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.approval_notice' | t }}{% endcapture %}{% include 'ly-static-string' with '16346526' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+          {%- endif -%}
+
+          <button type="submit" class="Form__Submit Button Button--primary">{% comment %}ly_i18n_replace_for_[ 'blog.comments.submit' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.comments.submit' | t }}{% endcapture %}{% include 'ly-static-string' with '16346527' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {% if collectionss %}
+
+        <h2 style="text-align:center;font-size:24px"> <ly-as-16346505>FEATURED COLLECTION　</ly-as-16346505></h4>
+      {%- capture product_panel -%}
+        <div class="ProductListWrapper">
+
+          <div class="ProductList ProductList--grid ProductList--removeMargin Grid" id="collection-blog">
+            
+            
+            {%- assign collection = collectionss -%}
+
+          
+              {%- for product in collection.products -%}
+                <div class="Grid__Cell 2/2--phone 2/3--tablet-and-up 1/4--desk">
+                  {%- include 'product-item', show_product_info: true, show_vendor: false, show_color_swatch: false, show_labels: false -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+      {%- endcapture -%}
+    
   {% endif %}
 
-  {% if section.settings.blog_show_date %}
-    <span class="article__date">
-      {{ article.published_at | time_tag: format: 'date' }}
-    </span>
-  {% endif %}
-</div>
-
-<div class="rte">
-  {{ article.content }}
-</div>
-
-{% if section.settings.show_share_buttons %}
-  {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
-{% endif %}
+      <div class="Container Container--narrow">
 
 
+
+      {%- if section.blocks.size > 0 -%}
+            {{ product_panel }}
+
+          <div class="Grid__Cell 1/3--lap-and-up">
+            <div class="FeaturedQuote">
+              {%- if section.blocks.first.settings.content != blank -%}
+                <div class="FeaturedQuote__Content">
+                  {{ section.blocks.first.settings.content }}
+                </div>
+              {%- endif -%}
+
+              {%- if section.blocks.first.settings.author != blank -%}
+                <p class="FeaturedQuote__Author">{{ section.blocks.first.settings.author }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        {{ product_panel }}
+      {%- endif -%}
+    </div>
+
+  {%- if blog.next_article or blog.previous_article -%}
+    <aside class="ArticleNav">
+      <div class="Container Container--narrow">
+        <div class="Grid Grid--m Grid--center">
+          {%- if blog.next_article -%}
+            <div class="Grid__Cell 1/2--tablet-and-up">
+              {%- include 'article-item', article: blog.next_article -%}
+            </div>
+          {%- elsif blog.articles_count > 3 -%}
+            <div class="Grid__Cell 1/2--tablet-and-up">
+              {%- include 'article-item', article: blog.articles.last -%}
+            </div>
+          {%- endif -%}
+
+          {%- if blog.previous_article -%}
+            <div class="Grid__Cell 1/2--tablet-and-up">
+              {%- include 'article-item', article: blog.previous_article -%}
+            </div>
+          {%- elsif blog.articles_count > 3 -%}
+            <div class="Grid__Cell 1/2--tablet-and-up">
+              {%- include 'article-item', article: blog.articles.first -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </aside>
+  {%- endif -%}
+</article>
 
 {% schema %}
 {
-  "name": {
-    "cs": "Příspěvky",
-    "da": "Opslag",
-    "de": "Posts",
-    "en": "Posts",
-    "es": "Publicaciones",
-    "fi": "Julkaisut",
-    "fr": "Articles",
-    "it": "Articoli",
-    "ja": "投稿",
-    "ko": "게시물",
-    "nb": "Innlegg",
-    "nl": "Berichten",
-    "pl": "Posty",
-    "pt-BR": "Posts",
-    "pt-PT": "Publicações",
-    "sv": "Inlägg",
-    "th": "โพสต์",
-    "tr": "Gönderiler",
-    "vi": "Bài viết",
-    "zh-CN": "文章",
-    "zh-TW": "貼文"
-  },
+  "name": "Blog post page",
   "settings": [
     {
       "type": "checkbox",
-      "id": "blog_show_author",
-      "label": {
-        "cs": "Zobrazit autora",
-        "da": "Vis forfatter",
-        "de": "Autor anzeigen",
-        "en": "Show author",
-        "es": "Mostrar autor",
-        "fi": "Näytä tekijä",
-        "fr": "Afficher l'auteur",
-        "it": "Mostra autore",
-        "ja": "執筆者を表示する",
-        "ko": "작성자 표시",
-        "nb": "Vis forfatter",
-        "nl": "Auteur weergeven",
-        "pl": "Pokaż autora",
-        "pt-BR": "Exibir autor",
-        "pt-PT": "Mostrar autor",
-        "sv": "Visa författare",
-        "th": "แสดงผู้เขียน",
-        "tr": "Yazarı göster",
-        "vi": "Hiển thị tác giả",
-        "zh-CN": "显示作者",
-        "zh-TW": "顯示作者"
-      },
+      "id": "show_article_image",
+      "label": "Show article image",
       "default": true
     },
     {
       "type": "checkbox",
-      "id": "blog_show_date",
-      "label": {
-        "cs": "Zobrazit datum",
-        "da": "Vis dato",
-        "de": "Datum anzeigen",
-        "en": "Show date",
-        "es": "Mostrar fecha",
-        "fi": "Näytä päivämäärä",
-        "fr": "Afficher la date",
-        "it": "Mostra data",
-        "ja": "日付を表示する",
-        "ko": "날짜 표시",
-        "nb": "Vis dato",
-        "nl": "Datum weergeven",
-        "pl": "Pokaż datę",
-        "pt-BR": "Exibir data",
-        "pt-PT": "Mostrar data",
-        "sv": "Visa datum",
-        "th": "แสดงวันที่",
-        "tr": "Tarihi göster",
-        "vi": "Hiển thị ngày",
-        "zh-CN": "显示日期",
-        "zh-TW": "顯示日期"
-      },
+      "id": "show_date",
+      "label": "Show article date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show article category",
+      "info": "The first article's tag is used as the main category.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_share_buttons",
-      "label": {
-        "cs": "Zobrazit tlačítka pro sdílení na sociálních sítích",
-        "da": "Vis knapper til deling på sociale medier",
-        "de": "Buttons für Social Media anzeigen",
-        "en": "Show social sharing buttons",
-        "es": "Mostrar botones para compartir en redes sociales",
-        "fi": "Näytä sosiaalisen median jakamispainikkeet",
-        "fr": "Afficher les boutons de partage sur les médias sociaux",
-        "it": "Mostra i pulsanti per la condivisione sui social",
-        "ja": "ソーシャルメディアでの共有ボタンを表示する",
-        "ko": "소셜 공유 버튼 표시",
-        "nb": "Vis knapper for deling på sosiale medier",
-        "nl": "Knoppen voor sociaal delen weergeven",
-        "pl": "Pokaż przyciski udostępniania w mediach społecznościowych",
-        "pt-BR": "Exibir botões de compartilhamento em redes sociais",
-        "pt-PT": "Mostrar botões de partilha nas redes sociais",
-        "sv": "Visa knappar för delning i sociala medier",
-        "th": "แสดงปุ่มสำหรับแชร์ลงโซเชียล",
-        "tr": "Sosyal medya paylaşım düğmelerini göster",
-        "vi": "Hiển thị nút chia sẻ qua mạng xã hội",
-        "zh-CN": "显示社交分享按钮",
-        "zh-TW": "顯示社群分享按鈕"
-      },
+      "label": "Show share buttons",
       "default": true
     }
   ]
 }
 {% endschema %}
+
+<script>
+
+$(document).ready(function(){
+
+$('#collection-blog').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+})
+
+
+
+</script>
+
+<style>
+.js .ProductList--grid .ProductItem
+{
+  visibility:inherit;
+}
+
+</style>

@@ -1,0 +1,98 @@
+{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign currentLanguageId = language %}
+{% assign language = cart.attributes["language"] %}{% if language == nil %}{% assign language = shop.metafields["languages"]["default"] %}{% endif %}{% assign currentLanguageId = language %}
+{% assign currentLanguageValue = 'LANGUAGE' %}
+{% for language in shop.metafields.languages %}
+{% assign key = language | first %}
+{% if key == currentLanguageId %}
+{% assign currentLanguageValue = language | last %}
+{% endif %}
+{% endfor %}
+{% assign currentLanguageIdForImage = currentLanguageId | split: 'ly' | last %}
+{% assign currentLanguageImage = 'ly-icon-' | append: currentLanguageIdForImage | append:'.png' %}
+
+{% case style %}
+{% when 'switcher-dropdown' %}
+<select class="ly-languages-switcher-dropdown{% if uppercase == 'true' %} ly-is-uppercase{% endif %}">
+  {% for language in shop.metafields.languages %}
+  {% assign key = language | first %}
+  {% assign value = language | last %}
+  {% if key != "default" %}
+  <option value="{{ key }}"{% if key == currentLanguageId %} selected="selected"{% endif %}>{{ value }}</option>
+  {% endif %}
+  {% endfor %}
+</select>
+{% when 'image-dropdown' %}
+<div data-dropup="{% if dropup %}true{% else %}false{% endif %}" class="ly-languages-image-dropdown-switcher{% if theme == 'bright' %} ly-bright-theme{% endif %}{% if uppercase == 'true' %} ly-is-uppercase{% endif %}">
+    <span class="ly-image-dropdown-current">
+      <img class="ly-image-dropdown-current-inner ly-image-dropdown-current-inner-image" src="{{ currentLanguageImage | asset_url }}">
+      <span class="ly-image-dropdown-current-inner ly-image-dropdown-current-inner-text">{{ currentLanguageValue }}</span>
+      <span class="ly-image-dropdown-current-inner {% if dropup %}ly-arrow-up{% else %}ly-arrow-down{% endif %} {% if theme == 'bright' %}ly-arrow-black{% else %}ly-arrow-white{% endif %}"></span>
+  	</span>
+  	<ul class="ly-image-dropdown-list{% if theme == 'bright' %} ly-bright-theme{% endif %}">
+    {% for language in shop.metafields.languages %}
+  	{% assign key = language | first %}
+    {% assign value = language | last %}
+    {% if key != "default" and key != currentLanguageId %}
+    {% assign language_id = key | split: 'ly' | last %}
+    {% assign img = 'ly-icon-' | append: language_id | append:'.png' %}
+      <li>
+        <a class="ly-image-dropdown-list-element ly-languages-link{% if theme == 'bright' %} ly-bright-theme{% endif %}" href="#" id="{{ key }}">
+          <img class="ly-image-dropdown-list-element-left" src="{{ img | asset_url }}">
+          <span class="ly-image-dropdown-list-element-right">{{ value }}</span>
+        </a>
+      </li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+</div>
+{% when 'image-dropdown-icons' %}
+<div data-dropup="{% if dropup %}true{% else %}false{% endif %}" class="ly-languages-image-dropdown-icons-switcher{% if theme == 'bright' %} ly-bright-theme{% endif %}{% if uppercase == 'true' %} ly-is-uppercase{% endif %}">
+    <span class="ly-image-dropdown-current">
+      <img  class="ly-image-dropdown-current-inner ly-image-dropdown-current-inner-image" src="{{ currentLanguageImage | asset_url }}">
+      <span class="ly-image-dropdown-current-inner {% if dropup %}ly-arrow-up{% else %}ly-arrow-down{% endif %} {% if theme == 'bright' %}ly-arrow-black{% else %}ly-arrow-white{% endif %}"></span>
+    </span>
+  	<ul class="ly-image-dropdown-icons-list{% if theme == 'bright' %} ly-bright-theme{% endif %}">
+    {% for language in shop.metafields.languages %}
+  	{% assign key = language | first %}
+    {% assign value = language | last %}
+    {% if key != "default" and key != currentLanguageId %}
+    {% assign language_id = key | split: 'ly' | last %}
+    {% assign img = 'ly-icon-' | append: language_id | append:'.png' %}
+      <li>
+        <a class="ly-image-dropdown-icons-list-element ly-languages-link{% if theme == 'bright' %} ly-bright-theme{% endif %}" href="#" id="{{ key }}">
+          <img src="{{ img | asset_url }}">
+        </a>
+      </li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+</div>
+{% when 'links' %}
+<div class="ly-languages-links-switcher{% if uppercase == 'true' %} ly-is-uppercase{% endif %}">
+  {% for language in shop.metafields.languages %}
+  {% assign key = language | first %}
+  {% assign value = language | last %}
+  {% if key != "default" %}
+  {% assign language_id = key | split: 'ly' | last %}
+  {% assign img = 'ly-icon-' | append: language_id | append:'.png' %}
+  <a href="#" id="{{ key }}" class="ly-languages-link">
+    <img src="{{ img | asset_url }}"> {{ value }}
+  </a>
+  {% endif %}
+  {% endfor %}
+</div>
+{% when 'links-icons' %}
+<div class="ly-languages-links-icons-switcher{% if uppercase == 'true' %} ly-is-uppercase{% endif %}">
+  {% for language in shop.metafields.languages %}
+  {% assign key = language | first %}
+  {% assign value = language | last %}
+  {% if key != "default" %}
+  {% assign language_id = key | split: 'ly' | last %}
+  {% assign img = 'ly-icon-' | append: language_id | append:'.png' %}
+  <a href="#" id="{{ key }}" class="ly-languages-link">
+    <img src="{{ img | asset_url }}" alt="{{ value }}">
+  </a>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endcase %}

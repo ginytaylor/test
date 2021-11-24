@@ -1,0 +1,255 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
+<div class="ProductItem {% if use_horizontal %}ProductItem--horizontal{% endif %}">
+  <div class="ProductItem__Wrapper">
+    {%- comment -%}
+    We are using LazySizes to efficiently choose the most appropriate image in the set. However, because internally LazySizes uses srcset, we need to make
+    sure that the image sizes we offer is not larger than the max size uploaded by the merchants.
+    {%- endcomment -%}
+
+    {%- if settings.product_image_size == 'natural' or use_horizontal -%}
+      {%- assign use_natural_size = true -%}
+    {%- else -%}
+      {%- assign use_natural_size = false -%}
+    {%- endif -%}
+
+    {%- if settings.product_show_secondary_image and product.images[1] != blank and use_horizontal != true -%}
+      {%- assign has_alternate_image = true -%}
+    {%- else -%}
+      {%- assign has_alternate_image = false -%}
+    {%- endif -%}
+
+    {% if product.tags contains 'wide' %}
+      {%- assign use_natural_size = true -%}
+    {% endif %}
+
+    <a href="{{ product.url | within: collection }}" class="ProductItem__ImageWrapper {% comment %}{% if has_alternate_image %}ProductItem__ImageWrapper--withAlternateImage{% endif %}{% endcomment %}">
+      {%- if use_horizontal -%}
+        {%- assign max_width = 125 -%}
+      {%- else -%}
+        {%- assign max_width = product.featured_image.width -%}
+      {%- endif -%}
+
+      <div class="AspectRatio AspectRatio--{% if use_natural_size %}withFallback{% else %}{{ settings.product_image_size }}{% endif %}" style="max-width: {{ max_width }}px; {% if use_natural_size %}padding-bottom: {{ 100.0 | divided_by: product.featured_image.aspect_ratio }}%;{% endif %} --aspect-ratio: {{ product.featured_image.aspect_ratio }}">
+        {%- comment -%}
+        IMPLEMENTATION NOTE: The alternate image (not visible by default) should be the first in the DOM, as the spinner (Image__Loader element) is
+        displayed based on the immediately previously shown image.
+        {%- endcomment -%}
+
+        {% comment %}{%- if has_alternate_image -%}
+          {%- include 'image-size', sizes: '200,300,400,600,800,900,1000,1200', image: product.images[1] -%}
+          {%- assign image_url = product.images[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+          <img class="ProductItem__Image ProductItem__Image--alternate Image--lazyLoad Image--fadeIn" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="{{ product.images[1].alt | escape }}" data-image-id="{{ product.images[1].id }}">
+        {%- endif -%}{% endcomment %}
+
+        {%- include 'image-size', sizes: '200,400,600,700,800,900,1000,1200', image: product.featured_image -%}
+        {%- assign image_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+        <img class="ProductItem__Image Image--lazyLoad Image--fadeIn" data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="{{ product.featured_image.alt | escape }}" data-image-id="{{ product.featured_image.id }}">
+        <span class="Image__Loader"></span>
+
+        <noscript>
+          <img class="ProductItem__Image ProductItem__Image--alternate" src="{{ product.images[1] | img_url: '600x' }}" alt="{{ product.images[1].alt | escape }}">
+          <img class="ProductItem__Image" src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.featured_image.alt | escape }}">
+        </noscript>
+      </div>
+    </a>
+
+    {%- if show_labels -%}
+      {%- capture product_labels -%}
+        {%- for tag in product.tags -%}
+          {%- if tag contains '__label' -%}
+            <span class="ProductItem__Label Heading Text--subdued">{{ tag | split: '__label:' | last }}</span>
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if product.available -%}
+          {%- if product.compare_at_price > product.price -%}
+            <span class="ProductItem__Label Heading Text--subdued">{% comment %}ly_i18n_replace_for_[ 'product.labels.on_sale' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'product.labels.on_sale' | t }}{% endcapture %}{% include 'ly-static-string' with '16346865' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+          {%- endif -%}
+        {%- else -%}
+          <span class="ProductItem__Label Heading Text--subdued">{% comment %}ly_i18n_replace_for_[ 'product.labels.sold_out' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'product.labels.sold_out' | t }}{% endcapture %}{% include 'ly-static-string' with '16346866' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- if product_labels != blank -%}
+        <div class="ProductItem__LabelList">
+          {{ product_labels }}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if show_product_info -%}
+      <div class="ProductItem__Info {% unless use_horizontal %}ProductItem__Info--{{ settings.product_info_alignment }}{% endunless %}">
+        {%- if show_vendor -%}
+          <p class="ProductItem__Vendor Heading">{% comment %}ly_code_replace_for_[ product.vendor ]_begin{% endcomment %}{% include 'ly-vendor' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</p>
+        {%- endif -%}
+
+        <h2 class="ProductItem__Title Heading">
+          <a href="{{ product.url | within: collection }}">{% comment %}ly_code_replace_for_[ product.title ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+        </h2>
+
+        {%- if show_color_swatch -%}
+          {%- assign color_swatch_list = '' -%}
+
+          {%- capture color_swatch -%}
+            {%- capture color_name -%}{{ section.id }}-{{ product.id }}-{% increment color_name %}{%- endcapture -%}
+
+            {%- for option in product.options_with_values -%}
+              {%- assign downcased_option = option.name | downcase -%}
+
+              {%- if downcased_option == 'color' or downcased_option == 'colour' or downcased_option == 'couleur' -%}
+                {%- assign variant_option = 'option' | append: forloop.index -%}
+
+                {%- for value in option.values -%}
+                  {%- assign downcased_value = value | downcase -%}
+                  {%- capture color_id -%}{{ section.id }}-{{ product.id }}-{% increment color_index %}{%- endcapture -%}
+
+                  {%- for variant in product.variants -%}
+                    {%- if variant[variant_option] == value -%}
+                      {%- assign variant_for_value = variant -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  <div class="ProductItem__ColorSwatchItem">
+                    {%- if variant_for_value.image -%}
+                      {%- include 'image-size', sizes: '200,400,600,700,800,900,1000,1200', image: variant_for_value.image -%}
+                      {%- assign variant_image_url = variant_for_value.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                    {%- endif -%}
+
+                    <input class="ColorSwatch__Radio" type="radio" name="{{ color_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked="checked"{% endif %} data-variant-url="{{ variant_for_value.url }}{% if variant_for_value.image %}#Image{{ variant_for_value.image.id }}{% endif %}" {% if variant_for_value.image %}data-image-id="{{ variant_for_value.image.id }}" data-image-url="{{ variant_image_url }}" data-image-widths="[{{ supported_sizes }}]" data-image-aspect-ratio="{{ variant_for_value.image.aspect_ratio }}"{% endif %} aria-hidden="true">
+                    <label class="ColorSwatch ColorSwatch--small" for="{{ color_id }}" style="background-color: {{ value | replace: ' ', '' | downcase }}; background-image: url({% comment %}ly_asset_replace_for_[ value | handle | append: '.png' | asset_url ]_begin{% endcomment %}{% assign ly_asset = value | handle | append: '.png' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %})" title="{{ value | escape }}" data-tooltip="{{ value | escape }}"></label>
+                  </div>
+                {%- endfor -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          {%- if color_swatch != blank -%}
+            {%- capture color_swatch_list -%}
+              <div class="ProductItem__ColorSwatchList">
+                {{ color_swatch }}
+              </div>
+            {%- endcapture -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if show_price_on_hover == nil -%}
+          {%- assign show_price_on_hover = settings.product_show_price_on_hover -%}
+        {%- endif -%}
+
+        {%- if show_price_on_hover and color_swatch_list != blank -%}
+          {{ color_swatch_list }}
+        {%- endif -%}
+
+        {%- if product.template_suffix != 'coming-soon' -%}
+          <div class="ProductItem__PriceList {% if show_price_on_hover %}ProductItem__PriceList--showOnHover{% endif %} Heading">
+          {% include 'swym-product-view', product: product %}<button class="SP_wishlist_hover_product swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button> <!-- Wishlist -->
+          <a href="{{ product.url | within: collection }}">
+            {%- if product.compare_at_price > product.price -%}
+              <span class="ProductItem__Price Price Price--highlight Text--subdued" data-money-convertible>{{ product.price | money_without_trailing_zeros }}</span>
+              <span class="ProductItem__Price Price Price--compareAt Text--subdued" data-money-convertible>{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+            {%- elsif product.price_varies -%}
+              {%- capture formatted_min_price -%}<span data-money-convertible>{{ product.price_min | money_without_trailing_zeros }}</span>{%- endcapture -%}
+              {%- capture formatted_max_price -%}<span data-money-convertible>{{ product.price_max | money_without_trailing_zeros }}</span>{%- endcapture -%}
+              <span class="ProductItem__Price Price Text--subdued">{% comment %}ly_i18n_replace_for_[ 'collection.product.from_price_html' | t: min_price: formatted_min_price, max_price: formatted_max_price ]_begin{% endcomment %}{% capture ly_template %}{{ 'collection.product.from_price_html' | t: min_price: formatted_min_price, max_price: formatted_max_price }}{% endcapture %}{% include 'ly-static-string' with '16346869' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = formatted_min_price %}{% assign ly_template = ly_template | replace: '[[min_price]]', replacement %}{% assign replacement = formatted_max_price  %}{% assign ly_template = ly_template | replace: '[[max_price]]', replacement %}{% if escape_content %}{{ ly_template}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+            {%- else -%}
+              <span class="ProductItem__Price Price Text--subdued" data-money-convertible>{{ product.price | money_without_trailing_zeros }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if show_price_on_hover == false and color_swatch_list != blank -%}
+          {{ color_swatch_list }}
+        {%- endif -%}
+        </a>
+      </div>
+
+      {%- form 'product', product, class: 'ProductForm ProductItem__Overlay' -%}
+      <a class="hover_product" href="{{ product.url | within: collection }}">
+        <div class="ProductItem__Info">
+          {%- if show_vendor -%}
+            <p class="ProductItem__Vendor Heading">{% comment %}ly_code_replace_for_[ product.vendor ]_begin{% endcomment %}{% include 'ly-vendor' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</p>
+          {%- endif -%}
+{% include 'swym-product-view', product: product %}<button class="wishlist_hover_product swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>
+
+          <h2 class="ProductItem__Title Heading">
+            {% comment %}ly_code_replace_for_[ product.title ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}
+             
+          </h2>
+          {%- if product.template_suffix != 'coming-soon' -%}
+            <div class="ProductItem__PriceList {% if show_price_on_hover %}ProductItem__PriceList--showOnHover{% endif %} Heading">
+            {% include 'swym-product-view', product: product %}<button class="SP_wishlist_hover_product swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button> <!-- Wishlist -->
+            <p>
+              {%- if product.compare_at_price > product.price -%}
+                <span class="ProductItem__Price Price Price--highlight Text--subdued" data-money-convertible>{{ product.price | money_without_trailing_zeros }}</span>
+                <span class="ProductItem__Price Price Price--compareAt Text--subdued" data-money-convertible>{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+              {%- elsif product.price_varies -%}
+                {%- capture formatted_min_price -%}<span data-money-convertible>{{ product.price_min | money_without_trailing_zeros }}</span>{%- endcapture -%}
+                {%- capture formatted_max_price -%}<span data-money-convertible>{{ product.price_max | money_without_trailing_zeros }}</span>{%- endcapture -%}
+                <span class="ProductItem__Price Price Text--subdued">{% comment %}ly_i18n_replace_for_[ 'collection.product.from_price_html' | t: min_price: formatted_min_price, max_price: formatted_max_price ]_begin{% endcomment %}{% capture ly_template %}{{ 'collection.product.from_price_html' | t: min_price: formatted_min_price, max_price: formatted_max_price }}{% endcapture %}{% include 'ly-static-string' with '16346869' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% assign replacement = formatted_min_price %}{% assign ly_template = ly_template | replace: '[[min_price]]', replacement %}{% assign replacement = formatted_max_price  %}{% assign ly_template = ly_template | replace: '[[max_price]]', replacement %}{% if escape_content %}{{ ly_template}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</span>
+              {%- else -%}
+                <span class="ProductItem__Price Price Text--subdued" data-money-convertible>{{ product.price | money_without_trailing_zeros }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          </p>
+        </div><!-- /.ProductItem__Info -->
+
+        <span class="ProductItem__Description">
+          <p>                  
+          {% include 'ly-description' with product %}
+              {% assign Description = ly_translation | strip_html %}
+     
+          
+          {%- if Description contains "Description" -%}
+                    {%- if Description contains "Care Instructions" -%}
+                      {% assign Description = Description | split: "Care Instructions" | first%}
+            		  {%assign Description = Description | split: 'Specifications' | first%}
+                      {{ Description | remove: 'Description'}}
+                   
+                    {%- else -%}
+            		{%assign Description = Description | split: 'Specifications' | first | truncate: 50%}
+           
+                    {{ Description | remove: 'Description' | truncatewords: 20 }}
+                    {% endif %}
+                  {%- else -%}
+                    {%- if Description contains "產品資料" -%}
+                      {% assign Description = Description | split: "產品規格" | first | truncate: 50 %}
+                      {{comment}}{{ Description[0] | remove: '產品資料' | truncate: 50}}{{endcomment}}
+                    {%- else -%}
+            		
+            
+                    {{ Description | remove: '產品資料' | truncate: 50}}
+                    {% endif %}
+                  {% endif %}
+           
+                
+          </p>
+        </span><!-- /.ProductItem__Description -->
+
+        <select id="product-select-{{ product.id }}" name="id" title="Variant">
+          {%- for variant in product.variants -%}
+            <option {% if variant == selected_variant %}selected="selected"{% endif %} {% unless variant.available %}disabled="disabled"{% endunless %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{% comment %}ly_code_replace_for_[ variant.title ]_begin{% endcomment %}{% include 'ly-title' with variant %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %} - {{ variant.price | money }}</option>
+          {%- endfor -%}
+        </select>
+
+        <button type="submit" class="ProductForm__AddToCart Button {% if selected_variant.available %}Button--primary{% else %}Button--secondary{% endif %} Button--full" {% if selected_variant.available %}data-action="add-to-cart"{% else %}disabled="disabled"{% endif %}>
+          {%- if selected_variant.available -%}
+            <span>{% if product.template_suffix == 'pre-order' %}{% comment %}ly_i18n_replace_for_[ 'product.form.pre_order' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'product.form.pre_order' | t }}{% endcapture %}{% include 'ly-static-string' with '16346870' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}{% else %}{% comment %}ly_i18n_replace_for_[ 'product.form.add_to_cart' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'product.form.add_to_cart' | t }}{% endcapture %}{% include 'ly-static-string' with '16346871' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}{% endif %}</span>
+          {%- else -%}
+            {% comment %}ly_i18n_replace_for_[ 'product.form.sold_out' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'product.form.sold_out' | t }}{% endcapture %}{% include 'ly-static-string' with '16346872' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}
+          {%- endif -%}
+        </button>
+        </a>
+      {%- endform -%}
+    {%- endif -%}
+  </div>
+
+  {%- if use_horizontal -%}
+    <a href="{{ associated_product.url }}" class="ProductItem__ViewButton Button Button--secondary hidden-pocket">{% comment %}ly_i18n_replace_for_[ 'collection.product.view_product' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'collection.product.view_product' | t }}{% endcapture %}{% include 'ly-static-string' with '16346873' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
+  {%- endif -%}
+</div>

@@ -1,20 +1,1 @@
-{% layout none %}
-
-{% paginate collection.products by 50 %}
-  {% for product in collection.products %}
-    {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
-    <div class="grid__item col-3 col-small-3  {% if thecycle == 'odd' %} col-md-3 {% else %} col-md-2 {% endif %} text-center">
-        {% assign tags = product.tags %}
-        {% assign mix_n_play = '' %}
-        {% for tag in tags %}
-            {% if tag contains 'mix_n_play:' %}
-                {% assign mix_n_play = tag | split: 'mix_n_play:' %}
-            {% endif %}
-        {% endfor %}
-        <a href="{{ product.url }}" class="mix-play-item" data-products="{{mix_n_play}}">
-            <img src="{{ product.featured_image | img_url:'316x397' }}" alt="{{ product.title }}" />
-        </a>
-    </div>
-  {% endfor %}
-
-{% endpaginate %}
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}{% section 'collection-template' %}

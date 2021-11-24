@@ -1,0 +1,35 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<article class="ArticleItem" {% if block %}{{ block.shopify_attributes }}{% endif %}>
+  {%- if article.image != blank -%}
+    {%- include 'image-size', sizes: '200,400,600,700,800,900,1000,1200', image: article.image -%}
+    {%- assign image_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+    <a class="ArticleItem__ImageWrapper AspectRatio AspectRatio--withFallback" style="background: url({{ article.image | img_url: '1x1', format: 'jpg' }}); padding-bottom: 58%; --aspect-ratio: 1.7" href="{{ article.url }}">
+      <img class="ArticleItem__Image Image--lazyLoad Image--fadeIn"
+           data-src="{{ image_url }}"
+           data-widths="[{{ supported_sizes }}]"
+           data-sizes="auto"
+           alt="{{ article.image.alt | escape }}">
+
+      <noscript>
+        <img class="ArticleItem__Image" src="{{ article.image | img_url: '600x' }}" alt="{{ article.image.alt | escape }}">
+      </noscript>
+    </a>
+  {%- endif -%}
+
+  <div class="ArticleItem__Content">
+    {%- if section.settings.show_category -%}
+      <span class="ArticleItem__Category Heading u-h6 Text--subdued">{{ article.tags.first }}</span>
+    {%- endif -%}
+
+    <h2 class="ArticleItem__Title Heading u-h2">
+      <a href="{{ article.url }}">{% comment %}ly_code_replace_for_[ article.title ]_begin{% endcomment %}{% include 'ly-title' with article %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+    </h2>
+
+    {%- unless template.name == 'article' -%}
+      <p class="ArticleItem__Excerpt">{% comment %}ly_code_replace_for_[ article.excerpt_or_content | strip_html | truncate: 150 ]_begin{% endcomment %}{% include 'ly-excerpt_or_content' with article %}{{ ly_translation | strip_html | truncate: 150 }}{% comment %}ly_code_replace_end{% endcomment %}</p>
+
+      <a href="{{ article.url }}" class="Button Button--primary">{% comment %}ly_i18n_replace_for_[ 'blog.article.read_more' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'blog.article.read_more' | t }}{% endcapture %}{% include 'ly-static-string' with '16346758' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
+
+    {%- endunless -%}
+  </div>
+</article>

@@ -1,44 +1,25 @@
-{% comment %}
-    Renders a pagination bar
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}{%- if paginate.pages > 1 -%}
+  <div class="Pagination Text--subdued">
+    <div class="Pagination__Nav">
+      {%- if paginate.previous -%}
+        <a class="Pagination__NavItem Link Link--primary" rel="prev" title="{% comment %}ly_i18n_replace_for_[ 'general.pagination.previous_page' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'general.pagination.previous_page' | t }}{% endcapture %}{% include 'ly-static-string' with '16346830' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" href="{{ paginate.previous.url | remove: 'view=ajax' }}{{ hash }}">
+          {%- include 'icon' with 'select-arrow-left' -%}
+        </a>
+      {%- endif -%}
 
-    Accepts:
-    - paginate: {Object} Paginate Liquid object (required)
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}
+          <a href="{{ part.url | remove: 'view=ajax' }}{{ hash }}" class="Pagination__NavItem Link Link--primary" title="{% comment %}ly_i18n_replace_for_[ 'general.pagination.go_to_page' | t: page: part.title ]_begin{% endcomment %}{% capture ly_template %}{{ 'general.pagination.go_to_page' | t: page: part.title }}{% endcapture %}{% include 'ly-static-string' with '16346832' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% include 'ly-title' with part %}{% assign replacement = ly_translation %}{% assign ly_template = ly_template | replace: '[[page]]', replacement %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}">{% comment %}ly_code_replace_for_[ part.title ]_begin{% endcomment %}{% include 'ly-title' with part %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</a>
+        {%- else -%}
+          <span class="Pagination__NavItem {% if part.title == paginate.current_page %}is-active{% endif %}">{% comment %}ly_code_replace_for_[ part.title ]_begin{% endcomment %}{% include 'ly-title' with part %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</span>
+        {%- endif -%}
+      {%- endfor -%}
 
-    Usage:
-    {% include 'pagination', paginate: paginate %}
-{% endcomment %}
-<ul class="list--inline pagination">
-  {% unless paginate.previous.is_link %}
-    <li aria-hidden="true">
-      <button class="btn btn--tertiary btn--narrow" disabled>
-        {% include 'icon-arrow-left' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.previous' | t }}</span>
-      </button>
-    </li>
-    {% else %}
-    <li>
-      <a href="{{ paginate.previous.url }}" class="btn btn--tertiary btn--narrow">
-        {% include 'icon-arrow-left' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.previous' | t }}</span>
-      </a>
-    </li>
-  {% endunless %}
-  <li class="pagination__text">
-    {{ 'general.pagination.current_page' | t: current: paginate.current_page, total: paginate.pages }}
-  </li>
-  {% unless paginate.next.is_link %}
-    <li aria-hidden="true">
-      <button class="btn btn--tertiary btn--narrow" disabled>
-        {% include 'icon-arrow-right' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.next' | t }}</span>
-      </button>
-    </li>
-  {% else %}
-    <li>
-      <a href="{{ paginate.next.url }}" class="btn btn--tertiary btn--narrow">
-        {% include 'icon-arrow-right' %}
-        <span class="icon__fallback-text">{{ 'general.pagination.next' | t }}</span>
-      </a>
-    </li>
-  {% endunless %}
-</ul>
+      {%- if paginate.next -%}
+        <a class="Pagination__NavItem Link Link--primary" rel="next" title="{% comment %}ly_i18n_replace_for_[ 'general.pagination.next_page' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'general.pagination.next_page' | t }}{% endcapture %}{% include 'ly-static-string' with '16346833' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" href="{{ paginate.next.url | remove: 'view=ajax' }}{{ hash }}">
+          {%- include 'icon' with 'select-arrow-right' -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

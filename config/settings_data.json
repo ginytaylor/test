@@ -1,834 +1,2155 @@
 {
   "current": {
-    "color_text": "#3a3a3a",
-    "color_body_text": "#4a4a4a",
-    "color_sale_text": "#EA0606",
-    "color_button": "#ffffff",
-    "color_button_text": "#a8a59e",
-    "color_small_button_text_border": "#3a3a3a",
-    "color_text_field_text": "#000000",
-    "color_text_field_border": "#cccccc",
-    "color_text_field": "#ffffff",
-    "color_image_overlay_text": "#ffffff",
-    "color_image_overlay": "#685858",
-    "image_overlay_opacity": 40,
-    "color_borders": "#cccccc",
-    "color_body_bg": "#ffffff",
-    "type_header_font": "helvetica_n7",
-    "type_header_base_size": 26,
-    "type_base_font": "helvetica_n4",
-    "type_base_size": 15,
-    "social_twitter_link": "https:\/\/www.facebook.com\/",
-    "social_facebook_link": "https:\/\/www.facebook.com\/",
-    "social_pinterest_link": "https:\/\/www.facebook.com\/",
-    "favicon": "shopify:\/\/shop_images\/favicon.png",
-    "checkout_logo_position": "left",
-    "checkout_logo_size": "medium",
-    "checkout_body_background_color": "#fff",
+    "heading_color": "#000000",
+    "text_color": "#1c1b1b",
+    "text_light_color": "#6a6a6a",
+    "link_color": "#6a6a6a",
+    "background": "#ffffff",
+    "light_background": "#ffffff",
+    "product_on_sale_color": "#f94c43",
+    "button_background": "#333333",
+    "button_text_color": "#ffffff",
+    "header_background": "#ffffff",
+    "header_heading_color": "#1c1b1b",
+    "header_light_color": "#6a6a6a",
+    "footer_background": "#ffffff",
+    "footer_heading_color": "#1c1b1b",
+    "footer_text_color": "#6a6a6a",
+    "navigation_background": "#ffffff",
+    "navigation_text_color": "#343434",
+    "newsletter_popup_background": "#ffffff",
+    "newsletter_popup_text_color": "#343434",
+    "secondary_elements_background": "#1c1b1b",
+    "secondary_elements_text_color": "#ffffff",
+    "heading_font": "helvetica_n4",
+    "heading_size": "small",
+    "uppercase_heading": true,
+    "text_font": "helvetica_n4",
+    "base_text_font_size": 14,
+    "currency_conversion_enabled": false,
+    "currency_conversion_round_amounts": true,
+    "currency_conversion_supported_currencies": "USD CAD EUR GBP",
+    "currency_conversion_money_format": "money_format",
+    "show_page_transition": false,
+    "show_image_zooming": false,
+    "show_element_staggering": true,
+    "search_mode": "product,article",
+    "size_chart_page": "",
+    "product_show_price_on_hover": false,
+    "product_show_secondary_image": false,
+    "product_info_alignment": "center",
+    "product_image_size": "short",
+    "product_list_horizontal_spacing": "medium",
+    "product_list_vertical_spacing": "small",
+    "cart_type": "drawer",
+    "cart_enable_notes": false,
+    "cart_show_free_shipping_threshold": false,
+    "cart_free_shipping_threshold": 50,
+    "share_image": "",
+    "social_facebook": "https:\/\/www.facebook.com\/francfranchk\/",
+    "social_twitter": "",
+    "social_google_plus": "",
+    "social_pinterest": "",
+    "social_instagram": "https:\/\/www.instagram.com\/francfranc_hk_official\/?hl=en",
+    "social_vimeo": "",
+    "social_tumblr": "",
+    "social_youtube": "https:\/\/www.youtube.com\/channel\/UCVm878iSGOjb0xlfIUFxSRQ",
+    "social_linkedin": "",
+    "social_snapchat": "",
+    "social_fancy": "",
+    "social_line": "https:\/\/line.me\/ti\/p\/AdhQtO6_cB",
+    "favicon": "shopify:\/\/shop_images\/logo_32x32_cab55aa0-2531-4d63-9c09-40292675ce79.png",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "small",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#ffffff",
     "checkout_input_background_color_mode": "white",
-    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#efefef",
     "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
     "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    "checkout_accent_color": "#1878b9",
-    "checkout_button_color": "#1878b9",
-    "checkout_error_color": "#e22120",
+    "checkout_accent_color": "#1c1b1b",
+    "checkout_button_color": "#1c1b1b",
+    "checkout_error_color": "#e32c2b",
     "sections": {
+      "sidebar-menu": {
+        "type": "sidebar-menu",
+        "settings": {
+          "primary_menu": "",
+          "secondary_menu": "",
+          "show_social_media": true
+        }
+      },
+      "announcement": {
+        "type": "announcement",
+        "settings": {
+          "enable_bar": true,
+          "home_page_only": false,
+          "background": "#f4c5b0",
+          "text_color": "#ff2800",
+          "content": "您好，歡迎光臨 Francfranc。如有查詢，LINE:francfranc.tw",
+          "link": ""
+        }
+      },
       "header": {
         "type": "header",
-        "settings": {
-          "align_logo": "left",
-          "logo": "shopify:\/\/shop_images\/logo_v.png",
-          "logo_max_width": 165,
-          "main_linklist": "main-menu",
-          "message": true,
-          "home_page_only": true,
-          "message_text": "購物滿$500即享免費送貨。",
-          "color_bg": "rgba(0,0,0,0)",
-          "color_text": "#6c6c6c"
-        }
-      },
-      "feature-row": {
-        "type": "feature-row",
-        "settings": {
-          "image": "shopify:\/\/shop_images\/hkhomepagestore_optimised.jpg",
-          "layout": "left",
-          "title": "分店搜尋",
-          "text": "<p>康維他誠意為您帶來源自新西蘭的健康滋味!<br\/>立即搜尋我們的分店。<\/p>",
-          "button_label": "查看分店地址",
-          "button_link": "shopify:\/\/collections"
-        }
-      },
-      "feature-columns": {
-        "type": "feature-columns",
         "blocks": {
-          "feature-columns-0": {
-            "type": "text_block",
+          "1548814430385": {
+            "type": "mega_menu",
             "settings": {
-              "enable_image": true,
-              "image": "shopify:\/\/shop_images\/Freeshipping_optimised.jpg",
-              "title": "",
-              "text": "",
-              "button_label": ""
+              "navigation_mega_menu": "n",
+              "push_1_image": "",
+              "push_1_heading": "Example heading",
+              "push_1_subheading": "Example sub-heading",
+              "push_1_url": "",
+              "push_2_image": "",
+              "push_2_heading": "Example heading",
+              "push_2_subheading": "Example sub-heading",
+              "push_2_url": ""
             }
           },
-          "feature-columns-1": {
-            "type": "text_block",
+          "1548815164596": {
+            "type": "mega_menu",
             "settings": {
-              "enable_image": true,
-              "image": "shopify:\/\/shop_images\/Comvita20_003_Online_Promotion_Feb_Web_WWWindowVM_LA1_800x275_fae60ae4-0720-4a1d-a1d2-971568add97f.jpg",
-              "title": "",
-              "text": "",
-              "button_label": ""
+              "navigation_mega_menu": "",
+              "push_1_image": "",
+              "push_1_heading": "Example heading",
+              "push_1_subheading": "Example sub-heading",
+              "push_1_url": "",
+              "push_2_image": "",
+              "push_2_heading": "Example heading",
+              "push_2_subheading": "Example sub-heading",
+              "push_2_url": ""
             }
           }
         },
         "block_order": [
-          "feature-columns-0",
-          "feature-columns-1"
+          "1548814430385",
+          "1548815164596"
         ],
         "settings": {
-          "show_background": true,
-          "classes": "remove-margin",
-          "title": "",
-          "align_text": "left"
+          "use_sticky_header": true,
+          "logo": "shopify:\/\/shop_images\/francfranc_logo_2017_New_logo_Ff_1_250x_ae7aa96a-b698-4cfb-b4a3-59d10ac31853.png",
+          "logo_max_width": 250,
+          "mobile_logo_max_width": 125,
+          "navigation_menu": "main-menu",
+          "navigation_style": "center",
+          "enable_transparent_header": false,
+          "enable_transparent_header_collection": false,
+          "transparent_text_color": "#ffffff",
+          "transparent_logo": ""
         }
-      },
-      "collection": {
-        "type": "collection",
-        "settings": {
-          "title": "顧客最愛產品",
-          "collection": "rangehk00001",
-          "grid": 5,
-          "rows": 1,
-          "show_vendor": false,
-          "show_view_all": false
-        }
-      },
-      "quotes": {
-        "type": "quotes",
-        "blocks": {
-          "quotes-0": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
-              "author": "Author's name"
-            }
-          },
-          "quotes-1": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
-              "author": "Author's name"
-            }
-          },
-          "quotes-2": {
-            "type": "quote",
-            "settings": {
-              "quote": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.<\/p>",
-              "author": "Author's name"
-            }
-          }
-        },
-        "block_order": [
-          "quotes-0",
-          "quotes-1",
-          "quotes-2"
-        ],
-        "settings": {
-          "title": ""
-        }
-      },
-      "image-bar": {
-        "type": "image-bar",
-        "blocks": {
-          "image-bar-0": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Freeshipping_optimised.jpg",
-              "cta_label": ""
-            }
-          },
-          "image-bar-1": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/Comvita20_003_Online_Promotion_Feb_Web_WWWindowVM_LA1_800x275_fae60ae4-0720-4a1d-a1d2-971568add97f.jpg",
-              "cta_label": ""
-            }
-          }
-        },
-        "block_order": [
-          "image-bar-0",
-          "image-bar-1"
-        ],
-        "settings": {}
       },
       "footer": {
         "type": "footer",
         "blocks": {
-          "footer-0": {
-            "type": "link_list",
+          "1548240924503": {
+            "type": "text",
             "settings": {
-              "title": "關於康維他™",
-              "menu": "link-list"
+              "title": "色彩的生活",
+              "content": "<p>Francfranc -&nbsp;每日在驚喜和興奮中渡過。Francfranc起源於日本，為你提供優質生活的家居裝飾店。通過我們精心設計的室內陳設品和家具，為您實現追求舒適住宅的夢想。<\/p>",
+              "button_catalog": "目錄",
+              "button_link_catalog": "https:\/\/cdn.shopify.com\/s\/files\/1\/0275\/7138\/8500\/files\/Francfranc_2020SS.pdf?v=1583803388",
+              "become_vip": "成為VIP",
+              "become_vip_link": "https:\/\/francfranc-taiwan.myshopify.com\/pages\/vip-policy",
+              "show_social_media": true
             }
           },
-          "a9d16ead-372a-44fe-84b4-53b3c0c45cab": {
-            "type": "link_list",
+          "1573056785110": {
+            "type": "socials",
             "settings": {
-              "title": "探索更多",
-              "menu": "link-list-2"
+              "title": "OFFICIAL SNS",
+              "show_social_media": true
             }
           },
-          "48f2f7a6-f66f-409a-a69d-de48c8220010": {
-            "type": "link_list",
+          "1548157484136": {
+            "type": "links",
             "settings": {
-              "title": "我們的服務",
-              "menu": "link-list-1"
+              "menu": "customer-service"
             }
           },
-          "a3268526-94a3-4ea6-ac00-cb5a8bfdca66": {
-            "type": "link_list",
-            "settings": {
-              "title": "合作關係",
-              "menu": "link-list-3"
-            }
-          },
-          "footer-1": {
+          "footer-2": {
             "type": "newsletter",
             "settings": {
-              "title": "Newsletter"
+              "title": "通訊",
+              "content": "<p>訂閱Francfranc以獲得最新的資訊和優惠。<\/p>"
             }
           }
         },
         "block_order": [
-          "footer-0",
-          "a9d16ead-372a-44fe-84b4-53b3c0c45cab",
-          "48f2f7a6-f66f-409a-a69d-de48c8220010",
-          "a3268526-94a3-4ea6-ac00-cb5a8bfdca66",
-          "footer-1"
+          "1548240924503",
+          "1573056785110",
+          "1548157484136",
+          "footer-2"
         ],
         "settings": {
-          "show_payment_icons": false,
-          "color_footer_bg": "rgba(0,0,0,0)",
-          "color_footer_text": "#333232",
-          "show_locale_selector": true,
-          "show_currency_selector": true
+          "show_payment_methods": true
         }
       },
-      "161795635995bca987": {
+      "blog-posts": {
+        "type": "blog-posts",
+        "blocks": {
+          "blog-0": {
+            "type": "blog",
+            "settings": {
+              "blog": "news"
+            }
+          }
+        },
+        "block_order": [
+          "blog-0"
+        ],
+        "settings": {
+          "subheading": "",
+          "title": "家居日誌",
+          "show_category": false,
+          "button_link": "shopify:\/\/blogs\/news",
+          "button_text": "瀏覽更多"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "show_collection_info": true,
+          "show_collection_image": true,
+          "apply_overlay": false,
+          "show_color_swatch": false,
+          "show_vendor": false,
+          "collection_image_size": "small",
+          "show_sort_by": true,
+          "show_layout_switch": true,
+          "toolbar_position": "top",
+          "filter_position": "sidebar",
+          "filter_mode": "tag",
+          "show_filter_color_swatch": true,
+          "filter_menu": "",
+          "grid_items_per_page": 96,
+          "grid_mobile_items_per_row": "2",
+          "grid_desktop_items_per_row": 4
+        }
+      },
+      "recently-viewed-products": {
+        "type": "recently-viewed-products",
+        "settings": {
+          "show_section": true,
+          "title": "最近瀏覽",
+          "show_product_info": true,
+          "show_vendor": false,
+          "show_color_swatch": false
+        }
+      },
+      "collection-footer": {
+        "type": "collection-footer",
+        "settings": {
+          "show_section": false,
+          "image": "",
+          "text_color": "#ffffff",
+          "apply_overlay": true,
+          "title": "我們的故事",
+          "content": "<p>加入你的故事!<\/p>\n<p><\/p>"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "show_share_buttons": true,
+          "show_vendor": false,
+          "show_collection": true,
+          "description_below_add_to_cart": false,
+          "show_color_swatch": false,
+          "show_color_carousel": false,
+          "show_size_swatch": false,
+          "show_quantity_selector": true,
+          "show_inventory_quantity": false,
+          "inventory_quantity_threshold": 3,
+          "show_price_in_button": false,
+          "show_payment_button": false,
+          "image_size": "small",
+          "enable_image_zoom": true,
+          "show_thumbnails": false,
+          "tab_page_1_handle": "about-us",
+          "tab_page_2_handle": "",
+          "reviews_enabled": false,
+          "featured_image_size": "large"
+        }
+      },
+      "related-products": {
+        "type": "related-products",
+        "settings": {
+          "show_section": true,
+          "title": "相關產品",
+          "show_product_info": true,
+          "show_vendor": false,
+          "show_color_swatch": false
+        }
+      },
+      "popup": {
+        "type": "popup",
+        "settings": {
+          "show_popup": false,
+          "show_only_on_index": true,
+          "show_only_for_visitors": false,
+          "show_only_once": false,
+          "title": "通訊",
+          "content": "<p>歡迎訂閱Francfranc以獲得最新的資訊和優惠。<\/p>",
+          "show_newsletter": true,
+          "apparition_delay": 3
+        }
+      },
+      "1543918979137": {
+        "type": "instagram-feed",
+        "settings": {
+          "subheading": "我們的社群",
+          "title": "@instagram",
+          "access_token": "2993509823.6a7999e.f07d9a863a06420585d79f34246582a4",
+          "image_count": 20,
+          "button_text": "關注我們",
+          "button_url": "https:\/\/www.instagram.com\/francfranc_hk_official\/"
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "blocks": {
+          "1559282969236": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "middleCenter",
+              "subheading": "",
+              "title": "Cushion & Bedding",
+              "button_text": "View Products",
+              "button_link": "shopify:\/\/collections\/special-deal-cushion-bedding",
+              "apply_overlay": false
+            }
+          },
+          "1559286353805": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "middleCenter",
+              "subheading": "",
+              "title": "Furniture",
+              "button_text": "View products",
+              "button_link": "",
+              "apply_overlay": false
+            }
+          },
+          "1559283260916": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "middleCenter",
+              "subheading": "",
+              "title": "廚具 & 餐具",
+              "button_text": "View products",
+              "button_link": "shopify:\/\/collections\/special-deal-kitchen-tableware",
+              "apply_overlay": false
+            }
+          },
+          "1559283187860": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "middleCenter",
+              "subheading": "",
+              "title": "Fashion Accessories",
+              "button_text": "View products",
+              "button_link": "shopify:\/\/collections\/special-deal-fashion-accessories",
+              "apply_overlay": false
+            }
+          },
+          "1559283097927": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "middleCenter",
+              "subheading": "",
+              "title": "Decoration",
+              "button_text": "View products",
+              "button_link": "shopify:\/\/collections\/special-deal-decoration",
+              "apply_overlay": true
+            }
+          },
+          "1559286460263": {
+            "type": "collection",
+            "settings": {
+              "collection": "",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "middleCenter",
+              "subheading": "",
+              "title": "Beauty & Fragrance",
+              "button_text": "View products",
+              "button_link": "",
+              "apply_overlay": true
+            }
+          }
+        },
+        "block_order": [
+          "1559282969236",
+          "1559286353805",
+          "1559283260916",
+          "1559283187860",
+          "1559283097927",
+          "1559286460263"
+        ],
+        "settings": {
+          "image_size": "small",
+          "add_spacing": true,
+          "expand_collection": false,
+          "text_color": "#ffffff",
+          "button_color": "#000000"
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "show_rss": false,
+          "show_tags": false,
+          "show_featured_article": false,
+          "show_category": true
+        }
+      },
+      "shop-now": {
+        "type": "shop-now",
+        "blocks": {
+          "1548381270713": {
+            "type": "quote",
+            "settings": {
+              "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis turpis et massa condimentum gravida.&nbsp;<\/p>",
+              "author": "Francfranc HK"
+            }
+          }
+        },
+        "block_order": [
+          "1548381270713"
+        ],
+        "settings": {
+          "show_section": false,
+          "title": "Shop now",
+          "collection": "",
+          "grid_items_count": 6,
+          "show_product_info": true,
+          "show_vendor": true,
+          "show_color_swatch": false
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "blocks": {
+          "1548415671396": {
+            "type": "collection",
+            "settings": {
+              "collection": "beauty-fragrance",
+              "title": "商品介紹",
+              "grid_items_count": 8,
+              "button_text": ""
+            }
+          },
+          "1550821365569": {
+            "type": "collection",
+            "settings": {
+              "collection": "cushions-bedding",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "View all products"
+            }
+          },
+          "1550821374986": {
+            "type": "collection",
+            "settings": {
+              "collection": "decor-decorations",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "View all products"
+            }
+          },
+          "1550821400238": {
+            "type": "collection",
+            "settings": {
+              "collection": "kitchen-tableware",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "View all products"
+            }
+          }
+        },
+        "block_order": [
+          "1548415671396",
+          "1550821365569",
+          "1550821374986",
+          "1550821400238"
+        ],
+        "settings": {
+          "show_shipping_estimator": false,
+          "shipping_estimator_default_country": "Hong Kong",
+          "title": "其他精選貨品",
+          "layout_mode": "carousel",
+          "show_product_info": true,
+          "show_vendor": false,
+          "show_color_swatch": false,
+          "grid_mobile_items_per_row": "2",
+          "grid_desktop_items_per_row": 4
+        }
+      },
+      "1549613551623": {
+        "type": "footer-description",
+        "disabled": true,
+        "settings": {
+          "title-1": "免費送貨",
+          "content-1": "<p>購物滿NT$4000即可免費送貨。<\/p>",
+          "title-2": "季節優惠",
+          "content-2": "<p>以愛與關懷為你打造超過1,000種適合您的款式。<\/p>",
+          "title-3": "聯絡我們",
+          "content-3": "<p>LINE:<\/p>\n<p>FRANCFRANC.TW<\/p>",
+          "title-4": "分享推廣",
+          "content-4": "<p>透過Instagram或Facebook與我們分享你對Francfranc產品的追求。<\/p>"
+        }
+      },
+      "1550112694937": {
+        "type": "featured-coordination",
+        "disabled": true,
+        "blocks": {
+          "1550112694937-0": {
+            "type": "collection",
+            "settings": {
+              "title": "Dining",
+              "htmlcontent": "<div id=\"image-mapper-574\" class=\"image-mapper\" data-mapper-module=\"mapper\" data-mapper='{\"url\": \"https:\/\/easy-image-mapper.herokuapp.com\/api\/v2\/mappers\/574\", \"money_format\": \"${{amount}}\"}'><\/div>",
+              "htmlcontent1": ""
+            }
+          },
+          "1551085836308": {
+            "type": "collection",
+            "settings": {
+              "title": "Living",
+              "htmlcontent": "<div id=\"image-mapper-575\" class=\"image-mapper\" data-mapper-module=\"mapper\" data-mapper='{\"url\": \"https:\/\/easy-image-mapper.herokuapp.com\/api\/v2\/mappers\/575\", \"money_format\": \"${{amount}}\"}'><\/div>",
+              "htmlcontent1": ""
+            }
+          },
+          "1551086069813": {
+            "type": "collection",
+            "settings": {
+              "title": "Bedroom",
+              "htmlcontent": "<div id=\"image-mapper-576\" class=\"image-mapper\" data-mapper-module=\"mapper\" data-mapper='{\"url\": \"https:\/\/easy-image-mapper.herokuapp.com\/api\/v2\/mappers\/576\", \"money_format\": \"${{amount}}\"}'><\/div>",
+              "htmlcontent1": ""
+            }
+          }
+        },
+        "block_order": [
+          "1550112694937-0",
+          "1551085836308",
+          "1551086069813"
+        ],
+        "settings": {
+          "title": "STYLING",
+          "layout_mode": "grid"
+        }
+      },
+      "1550829496237": {
+        "type": "featured-collections",
+        "blocks": {
+          "1572941710293": {
+            "type": "collection",
+            "settings": {
+              "collection": "new-arrival",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "查看更多"
+            }
+          },
+          "1558333214374": {
+            "type": "collection",
+            "settings": {
+              "collection": "精選產品",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "查看所有產品"
+            }
+          }
+        },
+        "block_order": [
+          "1572941710293",
+          "1558333214374"
+        ],
+        "settings": {
+          "title": "",
+          "layout_mode": "grid",
+          "show_product_info": true,
+          "show_vendor": false,
+          "show_color_swatch": false,
+          "grid_mobile_items_per_row": "2",
+          "grid_desktop_items_per_row": 4
+        }
+      },
+      "page-contact-template": {
+        "type": "page-contact-template",
+        "blocks": {
+          "page-contact-template-0": {
+            "type": "text",
+            "settings": {
+              "title": "您的電話 (如適用)",
+              "use_long_text": false,
+              "is_required": false
+            }
+          },
+          "1551096473575": {
+            "type": "dropdown",
+            "settings": {
+              "title": "查詢類別",
+              "values": "網上商店查詢, 綜合查詢"
+            }
+          }
+        },
+        "block_order": [
+          "page-contact-template-0",
+          "1551096473575"
+        ],
+        "settings": {}
+      },
+      "1555045824345": {
         "type": "slideshow",
         "blocks": {
-          "161795635995bca987-0": {
+          "1583736458081": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_homepage_banner_LA2.jpg",
-              "alignment": "center center",
-              "slide_title": "",
+              "image": "shopify:\/\/shop_images\/2020SS_TW_PC.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/2020SS_TW_MB.jpg",
+              "apply_overlay": false,
+              "content_position": "bottomLeft",
               "subheading": "",
-              "button_label": ""
+              "title": "",
+              "link": "https:\/\/tw.francfranc.net\/collections\/2020%E6%98%A5%E5%A4%8F%E7%B3%BB%E5%88%97",
+              "link_description": "",
+              "link_left": "",
+              "link_left_description": "",
+              "link_right": "",
+              "link_right_description": ""
             }
           },
-          "161795635995bca987-1": {
+          "1583223801840": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/20201222_propolis_homepage_desktop.jpg",
-              "alignment": "center center",
-              "slide_title": "",
+              "image": "shopify:\/\/shop_images\/original-price-items10__TWPC.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/original-price-items10__TWMB.jpg",
+              "apply_overlay": false,
+              "content_position": "bottomLeft",
               "subheading": "",
-              "button_label": ""
+              "title": "",
+              "link": "https:\/\/tw.francfranc.net\/collections\/new-arrival",
+              "link_description": "",
+              "link_left": "",
+              "link_left_description": "",
+              "link_right": "",
+              "link_right_description": ""
             }
           },
-          "5cf50361-74c6-4511-ab85-d4140947f0a4": {
+          "1581569238766": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/20191205_Dec_Web_Kids_Corner_1440x500_LA2.jpg",
-              "alignment": "center center",
-              "slide_title": "",
+              "image": "shopify:\/\/shop_images\/FINALSALE-CH-PC.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/FINAL-SALE-CH-MB.jpg",
+              "apply_overlay": false,
+              "content_position": "bottomLeft",
               "subheading": "",
-              "button_label": ""
+              "title": "",
+              "link": "https:\/\/tw.francfranc.net\/collections\/%E5%AD%A3%E7%AF%80%E5%84%AA%E6%83%A0",
+              "link_description": "",
+              "link_left": "",
+              "link_left_description": "",
+              "link_right": "",
+              "link_right_description": ""
             }
           },
-          "e37e17a5-ed44-4652-8d7b-5d62c0ef03a7": {
+          "1583493026797": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/20190510_banner_new-package_desktop.jpg",
-              "alignment": "center center",
-              "slide_title": "",
+              "image": "shopify:\/\/shop_images\/EXTRA-OFFER_TW_PC.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/EXTRA-OFFER_TW_MB.jpg",
+              "apply_overlay": false,
+              "content_position": "bottomLeft",
               "subheading": "",
-              "button_label": ""
+              "title": "",
+              "link": "shopify:\/\/collections\/季節優惠",
+              "link_description": "",
+              "link_left": "",
+              "link_left_description": "",
+              "link_right": "",
+              "link_right_description": ""
             }
           }
         },
         "block_order": [
-          "161795635995bca987-0",
-          "161795635995bca987-1",
-          "5cf50361-74c6-4511-ab85-d4140947f0a4",
-          "e37e17a5-ed44-4652-8d7b-5d62c0ef03a7"
+          "1583736458081",
+          "1583223801840",
+          "1581569238766",
+          "1583493026797"
         ],
         "settings": {
-          "slideshow_height": "adapt",
-          "text_size": "medium",
-          "text_alignment": "center center",
-          "show_overlay": false,
-          "autorotate": true,
-          "autorotate_speed": 3
+          "show_fullscreen": false,
+          "show_arrow": false,
+          "autoplay": true,
+          "cycle_speed": 6,
+          "text_color": "#ffffff",
+          "button_color": "#363636"
         }
       },
-      "1617957154e00b76f5": {
+      "1556766536096": {
+        "type": "text-with-image",
+        "disabled": true,
+        "settings": {
+          "subheading": "店內優惠",
+          "title": "高達20％的折扣",
+          "image": "",
+          "image_position": "right",
+          "content": "<p>All original price tableware &amp; kitchen-ware, enjoy 15% off for purchase of 3pcs and 20% off for purchase of 5 pcs.<\/p>\n<p>Free Delivery service for net purchase over HK$3,000&nbsp;<\/p>\n<p><em>* For physical store purchase only&nbsp; * Valid until 5th May&nbsp;<\/em>&nbsp;<em>* Free delivery service valid until<\/em>&nbsp;<em>13th May&nbsp;&nbsp;<\/em><em>* Terms &amp; Conditions apply&nbsp;&nbsp;<\/em><em>* Please ask shop staff for more details<\/em><\/p>\n<p><\/p>\n<p><strong><em><a href=\"\/pages\/find-your-store\" title=\"Find Your Store\">STORES LOCATION<\/a><\/em><\/strong><\/p>",
+          "link_text": "VIEW PRODUCTS",
+          "link_url": "shopify:\/\/collections\/kitchen-tableware"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "show_article_image": false,
+          "show_date": false,
+          "show_category": false,
+          "show_author": false,
+          "show_share_buttons": false
+        }
+      },
+      "1562304852968": {
+        "type": "featured-product",
+        "settings": {
+          "subheading": "",
+          "title": "特色產品",
+          "show_headings_on_mobile": true,
+          "product": "ailent-cushion-cover-pink",
+          "show_vendor": false,
+          "show_description": false,
+          "description_below_add_to_cart": false,
+          "show_color_swatch": false,
+          "show_color_carousel": false,
+          "show_size_swatch": false,
+          "show_quantity_selector": false,
+          "show_inventory_quantity": false,
+          "inventory_quantity_threshold": 0,
+          "show_price_in_button": false,
+          "show_payment_button": false
+        }
+      },
+      "1562915412130": {
+        "type": "featured-product",
+        "settings": {
+          "subheading": "",
+          "title": "熱門產品",
+          "show_headings_on_mobile": true,
+          "product": "abile-2way-clock-white",
+          "show_vendor": false,
+          "show_description": false,
+          "description_below_add_to_cart": false,
+          "show_color_swatch": false,
+          "show_color_carousel": false,
+          "show_size_swatch": false,
+          "show_quantity_selector": true,
+          "show_inventory_quantity": false,
+          "inventory_quantity_threshold": 0,
+          "show_price_in_button": false,
+          "show_payment_button": false
+        }
+      },
+      "1563249091824": {
+        "type": "background-video",
+        "disabled": true,
+        "settings": {
+          "section_size": "small",
+          "video_url": "https:\/\/www.youtube.com\/watch?v=necHE5U4nyM&feature=youtu.be"
+        }
+      },
+      "password-template": {
+        "type": "password-template",
+        "settings": {
+          "logo": "",
+          "logo_max_width": 140,
+          "mobile_logo_max_width": 90,
+          "background_image": "",
+          "text_color": "#ffffff",
+          "heading": "即將開幕",
+          "show_newsletter_signup": true,
+          "newsletter_text": "<p>請即訂閱!<\/p>",
+          "show_social_sharing": true,
+          "social_message": "向世界出發"
+        }
+      },
+      "collection-list": {
         "type": "collection-list",
         "blocks": {
-          "1617957154e00b76f5-0": {
-            "type": "featured_collection",
+          "collection-2": {
+            "type": "collection",
             "settings": {
-              "collection": "rangehk00005",
-              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_420x480_LA1-01.jpg"
+              "collection": "kitchen-tableware",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "bottomLeft",
+              "subheading": "",
+              "title": "廚具 & 餐具",
+              "button_text": "瀏覽產品",
+              "button_link": "",
+              "apply_overlay": false
             }
           },
-          "1617957154e00b76f5-1": {
-            "type": "featured_collection",
+          "1547023494186": {
+            "type": "collection",
             "settings": {
-              "collection": "rangehk00001",
-              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_420x480_LA2-03.jpg"
+              "collection": "cushions-bedding",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "bottomLeft",
+              "subheading": "",
+              "title": "",
+              "button_text": "瀏覽產品",
+              "button_link": "shopify:\/\/collections\/cushions-bedding",
+              "apply_overlay": false
             }
           },
-          "1617957154e00b76f5-2": {
-            "type": "featured_collection",
+          "1547022336366": {
+            "type": "collection",
             "settings": {
-              "collection": "rangehk190008",
-              "image": "shopify:\/\/shop_images\/Comvita20_063_Online_Promotion_Mar_420x480_LA1-02.jpg"
+              "collection": "beauty-fragrance",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "bottomLeft",
+              "subheading": "",
+              "title": "",
+              "button_text": "瀏覽產品",
+              "button_link": "shopify:\/\/collections\/beauty-fragrance",
+              "apply_overlay": false
+            }
+          },
+          "1547023007218": {
+            "type": "collection",
+            "settings": {
+              "collection": "fashion-accessories",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "bottomLeft",
+              "subheading": "",
+              "title": "",
+              "button_text": "瀏覽產品",
+              "button_link": "shopify:\/\/collections\/fashion-accessories",
+              "apply_overlay": false
+            }
+          },
+          "collection-1": {
+            "type": "collection",
+            "settings": {
+              "collection": "decor-decorations",
+              "image": "",
+              "image_alignment": "center center",
+              "content_position": "bottomLeft",
+              "subheading": "",
+              "title": "",
+              "button_text": "瀏覽產品",
+              "button_link": "shopify:\/\/collections\/decor-decorations",
+              "apply_overlay": false
             }
           }
         },
         "block_order": [
-          "1617957154e00b76f5-0",
-          "1617957154e00b76f5-1",
-          "1617957154e00b76f5-2"
+          "collection-2",
+          "1547023494186",
+          "1547022336366",
+          "1547023007218",
+          "collection-1"
         ],
         "settings": {
-          "show_background": true,
-          "title": "",
-          "grid": 3
+          "image_size": "small",
+          "add_spacing": true,
+          "expand_collection": true,
+          "text_color": "#ffffff",
+          "button_color": "#363636"
         }
       },
-      "1617958177fcb3c967": {
-        "type": "newsletter",
-        "settings": {
-          "section_title": "",
-          "subheading": "<p>訂閱電子郵件，第一時間獲得康維<\/p><p>他™最新產品及活動資訊<\/p>",
-          "show_background": true
-        }
-      },
-      "16179593667d0b296c": {
-        "type": "image-bar",
+      "1573546164248": {
+        "type": "testimonials",
         "blocks": {
-          "df0bdae0-5d4c-43ab-81d2-68c8619f3d5f": {
-            "type": "image",
+          "1573546164248-2": {
+            "type": "testimonial",
             "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-1.png",
-              "cta_label": ""
-            }
-          },
-          "16179593667d0b296c-0": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-2.png",
-              "cta_label": "• 皇牌產品 •"
-            }
-          },
-          "16179593667d0b296c-1": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-3.png",
-              "cta_label": "• 我們的故事 •"
-            }
-          },
-          "16179593667d0b296c-2": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-4.png",
-              "cta_label": "• UMF™麥蘆卡蜂蜜 •"
-            }
-          },
-          "84c9ca26-ae0e-43ab-9628-8068c0613edc": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-5.png",
-              "cta_label": "• UMF™麥蘆卡蜂蜜 •"
-            }
-          },
-          "b683e421-c269-4208-b745-c1ecfe6ce88e": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-6.png",
-              "cta_label": "• 橄欖葉精華 •"
-            }
-          },
-          "17b0b543-eadd-4411-bf68-f19580e32caf": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-7.png",
-              "cta_label": "• 蜂膠 •"
-            }
-          },
-          "52a3c648-5246-473e-badd-8d466de5ed37": {
-            "type": "image",
-            "settings": {
-              "image": "shopify:\/\/shop_images\/comvita-tile-8.png",
-              "cta_label": ""
+              "logo": "shopify:\/\/shop_images\/francfranc_logo_2017_New_logo_Ff_1_250x_ae7aa96a-b698-4cfb-b4a3-59d10ac31853.png",
+              "quote": "<p>Francfranc - 源自日本的潮流室內家居品牌，為您帶來時尚生活風格！<\/p>\n<p>設計新穎，色彩繽紛的咕臣套，優質的餐具及餐桌陳設，<br> 優雅大方。更有型格實用的梳化，為你創造溫馨理想的家居<\/p>"
             }
           }
         },
         "block_order": [
-          "df0bdae0-5d4c-43ab-81d2-68c8619f3d5f",
-          "16179593667d0b296c-0",
-          "16179593667d0b296c-1",
-          "16179593667d0b296c-2",
-          "84c9ca26-ae0e-43ab-9628-8068c0613edc",
-          "b683e421-c269-4208-b745-c1ecfe6ce88e",
-          "17b0b543-eadd-4411-bf68-f19580e32caf",
-          "52a3c648-5246-473e-badd-8d466de5ed37"
+          "1573546164248-2"
         ],
         "settings": {
-          "classes": "list-block-links"
+          "autoplay": true,
+          "cycle_speed": 5,
+          "background": "#eaeaea",
+          "text_color": "#1c1b1b"
         }
       },
-      "161796148974760aee": {
-        "type": "feature-columns",
+      "1582799902797": {
+        "type": "cart-template",
+        "disabled": true,
         "blocks": {
-          "161796148974760aee-0": {
-            "type": "text_block",
+          "1582799902797-0": {
+            "type": "collection",
             "settings": {
-              "enable_image": false,
-              "icon": "shopify:\/\/shop_images\/securePay.png",
-              "title": "安全網上付款",
-              "text": "<ul class=\"info-rep\">     <li>本網站採用保安接層加密技術 (SSL)<\/li>     <li>您所提供的個人資料及信用卡資料將被加密，以免您的資料在互聯網上傳輸時被竊露。<\/li>     <li>本網站不會儲存任何信用卡號碼<\/li> <\/ul>",
-              "button_label": ""
-            }
-          },
-          "161796148974760aee-1": {
-            "type": "text_block",
-            "settings": {
-              "enable_image": false,
-              "icon": "shopify:\/\/shop_images\/Localdelivery.png",
-              "title": "送貨服務",
-              "text": "<ul class=\"info-rep\">     <li>產品將於付款確認後的3-7個工作天(只限星期一至五，公眾假期除外)內送達收件地址。<\/li>     <li>訂購商品總金額超過港幣$500，即可享免運費; 未滿$500之訂單將收取港幣$50運費。<\/li>     <li>亦可選擇於13間指定康維他專門店取貨<\/li> <\/ul>",
-              "button_label": ""
-            }
-          },
-          "161796148974760aee-2": {
-            "type": "text_block",
-            "settings": {
-              "enable_image": false,
-              "icon": "shopify:\/\/shop_images\/Contactus.png",
-              "title": "顧客服務",
-              "text": "<ul class=\"info-rep\">     <li>如有任何查詢, 可致電我們的客戶服務電話(852) 2562 2335。辦公時間: 星期一至五9:30AM - 6:30PM<\/li> <\/ul>",
-              "button_label": ""
+              "collection": "",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "View all products"
             }
           }
         },
         "block_order": [
-          "161796148974760aee-0",
-          "161796148974760aee-1",
-          "161796148974760aee-2"
+          "1582799902797-0"
         ],
         "settings": {
-          "show_background": false,
-          "classes": "info-blocks",
+          "show_shipping_estimator": true,
+          "shipping_estimator_default_country": "United States",
+          "title": "Featured collection",
+          "layout_mode": "grid",
+          "show_product_info": true,
+          "show_vendor": false,
+          "show_color_swatch": false,
+          "grid_mobile_items_per_row": "2",
+          "grid_desktop_items_per_row": 4
+        }
+      },
+      "1582805438230": {
+        "type": "featured-collections",
+        "blocks": {
+          "1582805438230-0": {
+            "type": "collection",
+            "settings": {
+              "collection": "熱銷防疫產品",
+              "title": "",
+              "grid_items_count": 8,
+              "button_text": "查看全部"
+            }
+          }
+        },
+        "block_order": [
+          "1582805438230-0"
+        ],
+        "settings": {
           "title": "",
-          "align_text": "left"
+          "layout_mode": "grid",
+          "show_product_info": true,
+          "show_vendor": false,
+          "show_color_swatch": false,
+          "grid_mobile_items_per_row": "2",
+          "grid_desktop_items_per_row": 4
         }
       }
     },
     "content_for_index": [
-      "161795635995bca987",
-      "1617957154e00b76f5",
-      "feature-columns",
-      "1617958177fcb3c967",
-      "collection",
-      "feature-row",
-      "16179593667d0b296c",
-      "161796148974760aee"
+      "1555045824345",
+      "1550829496237",
+      "1582805438230",
+      "collection-list",
+      "1562304852968",
+      "1562915412130",
+      "1573546164248",
+      "1563249091824",
+      "1543918979137",
+      "1556766536096",
+      "1550112694937",
+      "blog-posts",
+      "1549613551623",
+      "1582799902797"
     ]
   },
   "presets": {
-    "Default": {
+    "Allure": {
+      "heading_color": "#1c1b1b",
+      "text_color": "#1c1b1b",
+      "text_light_color": "#6a6a6a",
+      "link_color": "#6a6a6a",
+      "background": "#efefef",
+      "light_background": "#ffffff",
+      "product_on_sale_color": "#f94c43",
+      "button_background": "#1c1b1b",
+      "button_text_color": "#ffffff",
+      "header_background": "#ffffff",
+      "header_heading_color": "#1c1b1b",
+      "header_light_color": "#6a6a6a",
+      "footer_background": "#ffffff",
+      "footer_heading_color": "#1c1b1b",
+      "footer_text_color": "#6a6a6a",
+      "newsletter_popup_background": "#1c1b1b",
+      "newsletter_popup_text_color": "#ffffff",
+      "secondary_elements_background": "#1c1b1b",
+      "secondary_elements_text_color": "#ffffff",
+      "navigation_background": "#1c1b1b",
+      "navigation_text_color": "#ffffff",
+      "heading_font": "montserrat_n5",
+      "heading_size": "small",
+      "uppercase_heading": true,
+      "text_font": "nunito_sans_n4",
+      "base_text_font_size": 14,
+      "currency_conversion_enabled": false,
+      "currency_conversion_round_amounts": true,
+      "currency_conversion_supported_currencies": "USD CAD EUR GBP",
+      "currency_conversion_money_format": "money_format",
+      "show_page_transition": true,
+      "search_mode": "product,article",
+      "product_show_price_on_hover": false,
+      "product_show_secondary_image": false,
+      "product_info_alignment": "center",
+      "product_image_size": "natural",
+      "product_list_horizontal_spacing": "medium",
+      "product_list_vertical_spacing": "small",
+      "cart_type": "drawer",
+      "cart_enable_notes": true,
+      "cart_show_free_shipping_threshold": false,
+      "cart_free_shipping_threshold": 50,
+      "checkout_logo_position": "center",
+      "checkout_logo_size": "small",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_color": "#efefef",
+      "checkout_accent_color": "#1c1b1b",
+      "checkout_button_color": "#1c1b1b",
       "sections": {
+        "sidebar-menu": {
+          "type": "sidebar-menu",
+          "settings": {
+            "primary_menu": "main-menu",
+            "show_social_media": true
+          }
+        },
+        "announcement": {
+          "type": "announcement",
+          "settings": {
+            "background": "#000000",
+            "text_color": "#ffffff",
+            "content": "Announce something here"
+          }
+        },
         "header": {
           "type": "header",
-          "settings": {}
-        },
-        "hero-1": {
-          "type": "hero",
           "settings": {
-            "hero_size": "large",
-            "text_size": "large"
+            "use_sticky_header": true,
+            "logo_max_width": 140,
+            "navigation_menu": "main-menu",
+            "navigation_style": "inline",
+            "enable_transparent_header": true,
+            "transparent_text_color": "#ffffff"
           }
-        },
-        "feature-row": {
-          "type": "feature-row",
-          "settings": {}
-        },
-        "feature-columns": {
-          "type": "feature-columns",
-          "blocks": {
-            "feature-columns-0": {
-              "type": "text_block",
-              "settings": {}
-            },
-            "feature-columns-1": {
-              "type": "text_block",
-              "settings": {}
-            },
-            "feature-columns-2": {
-              "type": "text_block",
-              "settings": {}
-            }
-          },
-          "block_order": [
-            "feature-columns-0",
-            "feature-columns-1",
-            "feature-columns-2"
-          ],
-          "settings": {
-            "title": ""
-          }
-        },
-        "collection": {
-          "type": "collection",
-          "settings": {
-            "grid": 4
-          }
-        },
-        "hero-2": {
-          "type": "hero",
-          "settings": {
-            "text_size": "large"
-          }
-        },
-        "quotes": {
-          "type": "quotes",
-          "blocks": {
-            "quotes-0": {
-              "type": "quote",
-              "settings": {}
-            },
-            "quotes-1": {
-              "type": "quote",
-              "settings": {}
-            },
-            "quotes-2": {
-              "type": "quote",
-              "settings": {}
-            }
-          },
-          "block_order": [
-            "quotes-0",
-            "quotes-1",
-            "quotes-2"
-          ],
-          "settings": {
-            "title": ""
-          }
-        },
-        "image-bar": {
-          "type": "image-bar",
-          "blocks": {
-            "image-bar-0": {
-              "type": "image",
-              "settings": {}
-            },
-            "image-bar-1": {
-              "type": "image",
-              "settings": {}
-            },
-            "image-bar-2": {
-              "type": "image",
-              "settings": {}
-            }
-          },
-          "block_order": [
-            "image-bar-0",
-            "image-bar-1",
-            "image-bar-2"
-          ],
-          "settings": {}
         },
         "footer": {
           "type": "footer",
           "blocks": {
             "footer-0": {
-              "type": "link_list",
-              "settings": {}
+              "type": "text",
+              "settings": {
+                "title": "About the shop",
+                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>",
+                "show_social_media": true
+              }
             },
             "footer-1": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "footer-2": {
               "type": "newsletter",
-              "settings": {}
+              "settings": {
+                "title": "Newsletter",
+                "content": "<p>Subscribe to receive updates, access to exclusive deals, and more.<\/p>"
+              }
             }
           },
           "block_order": [
             "footer-0",
-            "footer-1"
+            "footer-1",
+            "footer-2"
           ],
           "settings": {
-            "show_payment_icons": true
-          }
-        }
-      },
-      "content_for_index": [
-        "hero-1",
-        "feature-row",
-        "feature-columns",
-        "collection",
-        "hero-2",
-        "quotes",
-        "image-bar"
-      ]
-    },
-    "Light": {
-      "color_text": "#162950",
-      "color_body_text": "#6d6d6d",
-      "color_sale_text": "#DA2F0C",
-      "color_borders": "#e4e4e4",
-      "color_button": "#DA2F0C",
-      "color_button_text": "#ffffff",
-      "color_small_button_text_border": "#162950",
-      "color_text_field": "#ffffff",
-      "color_text_field_text": "#162950",
-      "color_text_field_border": "#909090",
-      "color_image_overlay_text": "#ffffff",
-      "color_image_overlay": "#3d3d3d",
-      "image_overlay_opacity": 40,
-      "color_body_bg": "#f8f8f8",
-      "type_header_font": "muli_n6",
-      "type_header_base_size": 26,
-      "type_base_font": "muli_n4",
-      "type_base_size": 18,
-      "share_facebook": true,
-      "share_twitter": true,
-      "share_pinterest": true,
-      "social_twitter_link": "",
-      "social_facebook_link": "",
-      "social_pinterest_link": "",
-      "social_instagram_link": "",
-      "social_tumblr_link": "",
-      "social_snapchat_link": "",
-      "social_youtube_link": "",
-      "social_vimeo_link": "",
-      "favicon": "",
-      "checkout_header_image": "",
-      "checkout_logo_image": "",
-      "checkout_logo_position": "left",
-      "checkout_logo_size": "small",
-      "checkout_body_background_image": "",
-      "checkout_body_background_color": "#ffffff",
-      "checkout_input_background_color_mode": "white",
-      "checkout_sidebar_background_image": "",
-      "checkout_sidebar_background_color": "#e8f3f6",
-      "checkout_heading_font": "Roboto",
-      "checkout_body_font": "Source Sans Pro",
-      "checkout_accent_color": "#1990c6",
-      "checkout_button_color": "#23314e",
-      "checkout_error_color": "#ff6d6d",
-      "sections": {
-        "header": {
-          "type": "header",
-          "settings": {
-            "align_logo": "left",
-            "logo": "",
-            "logo_max_width": 135,
-            "main_linklist": "main-menu",
-            "message": true,
-            "color_bg": "#162950",
-            "color_text": "#ffffff"
-          }
-        },
-        "hero": {
-          "type": "hero",
-          "settings": {
-            "alignment": "center",
-            "hero_size": "x-large",
-            "text_size": "large"
+            "show_payment_methods": true
           }
         },
         "slideshow": {
           "type": "slideshow",
           "blocks": {
-            "slideshow-0": {
+            "slide-0": {
               "type": "image",
               "settings": {
-                "image": "",
-                "alignment": "center center"
+                "apply_overlay": true,
+                "content_position": "bottomLeft",
+                "subheading": "Slide title",
+                "title": "Tell your story"
               }
             },
-            "1492095993817": {
+            "slide-1": {
               "type": "image",
               "settings": {
-                "image": "",
-                "alignment": "center"
+                "apply_overlay": true,
+                "content_position": "bottomLeft",
+                "subheading": "Slide title",
+                "title": "Tell your story"
               }
             }
           },
           "block_order": [
-            "slideshow-0",
-            "1492095993817"
+            "slide-0",
+            "slide-1"
           ],
           "settings": {
-            "slideshow_height": "medium",
-            "text_size": "medium",
-            "autorotate": false,
-            "autorotate_speed": 5
+            "show_fullscreen": true,
+            "show_arrow": false,
+            "autoplay": true,
+            "cycle_speed": 5,
+            "text_color": "#ffffff",
+            "button_color": "#363636"
           }
         },
         "featured-collections": {
-          "type": "collection",
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collection-0": {
+              "type": "collection",
+              "settings": {
+                "grid_items_count": 8,
+                "button_text": "View all products"
+              }
+            }
+          },
+          "block_order": [
+            "featured-collection-0"
+          ],
           "settings": {
-            "grid": 3,
-            "rows": 1,
-            "show_vendor": true,
-            "show_view_all": true
+            "title": "Featured collection",
+            "layout_mode": "grid",
+            "show_product_info": true,
+            "grid_mobile_items_per_row": "2",
+            "grid_desktop_items_per_row": 4
           }
         },
-        "product-template": {
-          "type": "product-template",
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-0": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            },
+            "collection-1": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            },
+            "collection-2": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            }
+          },
+          "block_order": [
+            "collection-0",
+            "collection-1",
+            "collection-2"
+          ],
           "settings": {
-            "show_quantity_selector": false,
-            "show_vendor": false,
-            "show_share_buttons": true,
-            "media_size": "medium",
-            "enable_image_zoom": true,
-            "enable_video_looping": false
+            "add_spacing": true,
+            "expand_collection": false,
+            "text_color": "#ffffff",
+            "button_color": "#363636"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {
+            "title": "Featured product",
+            "show_vendor": true,
+            "show_description": true,
+            "show_color_swatch": false,
+            "show_color_carousel": false,
+            "show_quantity_selector": true,
+            "show_inventory_quantity": false,
+            "inventory_quantity_threshold": 3
+          }
+        },
+        "timeline": {
+          "type": "timeline",
+          "blocks": {
+            "item-0": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2000",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            },
+            "item-1": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2001",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            },
+            "item-2": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2002",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "item-0",
+            "item-1",
+            "item-2"
+          ],
+          "settings": {
+            "text_color": "#ffffff"
+          }
+        },
+        "blog-posts": {
+          "type": "blog-posts",
+          "blocks": {
+            "blog-0": {
+              "type": "blog",
+              "settings": {
+                "blog": "news"
+              }
+            }
+          },
+          "block_order": [
+            "blog-0"
+          ],
+          "settings": {
+            "title": "Featured article",
+            "show_category": false,
+            "button_text": "View all articles"
+          }
+        },
+        "shop-the-look": {
+          "type": "shop-the-look",
+          "blocks": {
+            "look-0": {
+              "type": "look",
+              "settings": {
+                "dot_style": "light",
+                "product_1_horizontal_position": 30,
+                "product_1_vertical_position": 40,
+                "product_2_horizontal_position": 45,
+                "product_2_vertical_position": 65,
+                "product_3_horizontal_position": 70,
+                "product_3_vertical_position": 50
+              }
+            },
+            "look-1": {
+              "type": "look",
+              "settings": {
+                "dot_style": "light",
+                "product_1_horizontal_position": 25,
+                "product_1_vertical_position": 45,
+                "product_2_horizontal_position": 55,
+                "product_2_vertical_position": 30,
+                "product_3_horizontal_position": 65,
+                "product_3_vertical_position": 60
+              }
+            }
+          },
+          "block_order": [
+            "look-0",
+            "look-1"
+          ],
+          "settings": {
+            "subheading": "Shop",
+            "title": "Our looks"
           }
         },
         "collection-template": {
           "type": "collection-template",
           "settings": {
-            "layout": "grid",
-            "grid": 2,
-            "rows": 2,
-            "show_collection_image": true,
-            "show_vendor": false,
-            "sort_enable": true,
-            "tags_enable": true
+            "show_collection_info": true,
+            "show_collection_image": false,
+            "show_sort_by": true,
+            "show_layout_switch": false,
+            "toolbar_position": "bottom",
+            "filter_position": "sidebar",
+            "filter_mode": "tag",
+            "show_filter_color_swatch": true,
+            "grid_items_per_page": 16,
+            "grid_mobile_items_per_row": "2",
+            "grid_desktop_items_per_row": 4
           }
         },
-        "1492033809691": {
-          "type": "map",
-          "settings": {}
-        },
-        "1492033877875": {
-          "type": "quotes",
-          "blocks": {
-            "1492033877875-0": {
-              "type": "quote",
-              "settings": {}
-            }
-          },
-          "block_order": [
-            "1492033877875-0"
-          ],
-          "settings": {}
-        },
-        "1492033924902": {
-          "type": "custom-content",
-          "blocks": {
-            "1492033924902-0": {
-              "type": "text",
-              "settings": {
-                "width": "100%",
-                "alignment": "center",
-                "align_text": "center"
-              }
-            }
-          },
-          "block_order": [
-            "1492033924902-0"
-          ],
+        "recently-viewed-products": {
+          "type": "recently-viewed-products",
           "settings": {
-            "title": ""
+            "show_section": true,
+            "title": "Recently viewed",
+            "show_product_info": true
           }
         },
-        "1492096252560": {
-          "type": "collection-list",
-          "blocks": {
-            "1492096252560-0": {
-              "type": "featured_collection",
-              "settings": {}
-            },
-            "1492096252560-1": {
-              "type": "featured_collection",
-              "settings": {}
-            },
-            "1492096252560-2": {
-              "type": "featured_collection",
-              "settings": {}
-            }
-          },
-          "block_order": [
-            "1492096252560-0",
-            "1492096252560-1",
-            "1492096252560-2"
-          ],
+        "collection-footer": {
+          "type": "collection-footer",
           "settings": {
-            "grid": 3
+            "show_section": false,
+            "text_color": "#ffffff",
+            "apply_overlay": true,
+            "title": "Our story",
+            "content": "<p>Add your own custom content to explain your processes...<\/p>"
           }
         },
-        "blog-template": {
-          "type": "blog-template",
+        "product-template": {
+          "type": "product-template",
           "settings": {
-            "layout": "grid",
-            "blog_show_author": true,
-            "blog_show_date": false
+            "show_share_buttons": true,
+            "show_vendor": true,
+            "show_color_swatch": false,
+            "show_color_carousel": false,
+            "show_quantity_selector": true,
+            "show_inventory_quantity": false,
+            "inventory_quantity_threshold": 3,
+            "image_size": "large",
+            "enable_image_zoom": true,
+            "show_thumbnails": false,
+            "reviews_enabled": false
           }
         },
-        "article-template": {
-          "type": "article-template",
+        "related-products": {
+          "type": "related-products",
           "settings": {
-            "blog_show_author": true,
-            "blog_show_date": true,
-            "show_share_buttons": true
+            "show_section": true,
+            "title": "Related Products",
+            "show_product_info": true
+          }
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "featured-collections",
+        "collection-list",
+        "featured-product",
+        "timeline",
+        "blog-posts",
+        "shop-the-look"
+      ]
+    },
+    "Couture": {
+      "heading_color": "#5c5c5c",
+      "text_color": "#5c5c5c",
+      "text_light_color": "#939393",
+      "link_color": "#323232",
+      "background": "#ffffff",
+      "light_background": "#ffffff",
+      "product_on_sale_color": "#f94c43",
+      "button_background": "#5c5c5c",
+      "button_text_color": "#ffffff",
+      "header_background": "#ffffff",
+      "header_heading_color": "#5c5c5c",
+      "header_light_color": "#939393",
+      "footer_background": "#ffffff",
+      "footer_heading_color": "#5c5c5c",
+      "footer_text_color": "#939393",
+      "newsletter_popup_background": "#ffffff",
+      "newsletter_popup_text_color": "#1c1b1b",
+      "secondary_elements_background": "#5c5c5c",
+      "secondary_elements_text_color": "#ffffff",
+      "navigation_background": "#ffffff",
+      "navigation_text_color": "#5c5c5c",
+      "heading_font": "futura_n4",
+      "heading_size": "large",
+      "uppercase_heading": false,
+      "text_font": "century_gothic_n4",
+      "base_text_font_size": 15,
+      "currency_conversion_enabled": false,
+      "currency_conversion_round_amounts": true,
+      "currency_conversion_supported_currencies": "USD CAD EUR GBP",
+      "currency_conversion_money_format": "money_format",
+      "show_page_transition": true,
+      "search_mode": "product,article",
+      "product_show_price_on_hover": true,
+      "product_show_secondary_image": false,
+      "product_info_alignment": "left",
+      "product_image_size": "natural",
+      "product_list_horizontal_spacing": "small",
+      "product_list_vertical_spacing": "small",
+      "cart_type": "drawer",
+      "cart_enable_notes": true,
+      "cart_show_free_shipping_threshold": false,
+      "cart_free_shipping_threshold": 50,
+      "checkout_logo_position": "center",
+      "checkout_logo_size": "small",
+      "checkout_body_background_color": "#fff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_accent_color": "#323232",
+      "checkout_button_color": "#5c5c5c",
+      "sections": {
+        "sidebar-menu": {
+          "type": "sidebar-menu",
+          "settings": {
+            "primary_menu": "main-menu",
+            "show_social_media": true
           }
         },
-        "cart-template": {
-          "type": "cart-template",
+        "announcement": {
+          "type": "announcement",
           "settings": {
-            "cart_notes_enable": false
+            "background": "#f3f3f3",
+            "text_color": "#5c5c5c",
+            "content": "Announce something here"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "use_sticky_header": true,
+            "logo_max_width": 140,
+            "navigation_menu": "main-menu",
+            "navigation_style": "center",
+            "enable_transparent_header": true,
+            "transparent_text_color": "#ffffff"
           }
         },
         "footer": {
           "type": "footer",
           "blocks": {
-            "link_list": {
-              "type": "link_list",
-              "settings": {}
-            },
-            "text": {
+            "footer-0": {
               "type": "text",
-              "settings": {}
+              "settings": {
+                "title": "About the shop",
+                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>",
+                "show_social_media": true
+              }
             },
-            "newsletter": {
+            "footer-1": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "footer-2": {
               "type": "newsletter",
-              "settings": {}
+              "settings": {
+                "title": "Newsletter",
+                "content": "<p>Subscribe to receive updates, access to exclusive deals, and more.<\/p>"
+              }
             }
           },
           "block_order": [
-            "link_list",
-            "text",
-            "newsletter"
+            "footer-0",
+            "footer-1",
+            "footer-2"
           ],
           "settings": {
-            "color_footer_bg": "#f8f8f8",
-            "color_footer_text": "#6d6d6d"
+            "show_payment_methods": true
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slide-0": {
+              "type": "image",
+              "settings": {
+                "apply_overlay": true,
+                "content_position": "bottomLeft",
+                "subheading": "Slide title",
+                "title": "Tell your story"
+              }
+            },
+            "slide-1": {
+              "type": "image",
+              "settings": {
+                "apply_overlay": true,
+                "content_position": "bottomLeft",
+                "subheading": "Slide title",
+                "title": "Tell your story"
+              }
+            }
+          },
+          "block_order": [
+            "slide-0",
+            "slide-1"
+          ],
+          "settings": {
+            "show_fullscreen": true,
+            "show_arrow": false,
+            "autoplay": true,
+            "cycle_speed": 5,
+            "text_color": "#ffffff",
+            "button_color": "#363636"
+          }
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collection-0": {
+              "type": "collection",
+              "settings": {
+                "grid_items_count": 8,
+                "button_text": "View all products"
+              }
+            }
+          },
+          "block_order": [
+            "featured-collection-0"
+          ],
+          "settings": {
+            "title": "Featured collection",
+            "layout_mode": "grid",
+            "show_product_info": true,
+            "grid_mobile_items_per_row": "2",
+            "grid_desktop_items_per_row": 4
+          }
+        },
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-0": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            },
+            "collection-1": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            },
+            "collection-2": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            }
+          },
+          "block_order": [
+            "collection-0",
+            "collection-1",
+            "collection-2"
+          ],
+          "settings": {
+            "add_spacing": true,
+            "expand_collection": false,
+            "text_color": "#ffffff",
+            "button_color": "#363636"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {
+            "title": "Featured product",
+            "show_vendor": true,
+            "show_description": true,
+            "show_color_swatch": false,
+            "show_color_carousel": false,
+            "show_quantity_selector": true,
+            "show_inventory_quantity": false,
+            "inventory_quantity_threshold": 3
+          }
+        },
+        "timeline": {
+          "type": "timeline",
+          "blocks": {
+            "item-0": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2000",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            },
+            "item-1": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2001",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            },
+            "item-2": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2002",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "item-0",
+            "item-1",
+            "item-2"
+          ],
+          "settings": {
+            "text_color": "#ffffff"
+          }
+        },
+        "blog-posts": {
+          "type": "blog-posts",
+          "blocks": {
+            "blog-0": {
+              "type": "blog",
+              "settings": {
+                "blog": "news"
+              }
+            }
+          },
+          "block_order": [
+            "blog-0"
+          ],
+          "settings": {
+            "title": "Featured article",
+            "show_category": false,
+            "button_text": "View all articles"
+          }
+        },
+        "shop-the-look": {
+          "type": "shop-the-look",
+          "blocks": {
+            "look-0": {
+              "type": "look",
+              "settings": {
+                "dot_style": "light",
+                "product_1_horizontal_position": 30,
+                "product_1_vertical_position": 40,
+                "product_2_horizontal_position": 45,
+                "product_2_vertical_position": 65,
+                "product_3_horizontal_position": 70,
+                "product_3_vertical_position": 50
+              }
+            },
+            "look-1": {
+              "type": "look",
+              "settings": {
+                "dot_style": "light",
+                "product_1_horizontal_position": 25,
+                "product_1_vertical_position": 45,
+                "product_2_horizontal_position": 55,
+                "product_2_vertical_position": 30,
+                "product_3_horizontal_position": 65,
+                "product_3_vertical_position": 60
+              }
+            }
+          },
+          "block_order": [
+            "look-0",
+            "look-1"
+          ],
+          "settings": {
+            "subheading": "Shop",
+            "title": "Our looks"
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "show_collection_info": true,
+            "show_collection_image": false,
+            "show_sort_by": true,
+            "show_layout_switch": false,
+            "toolbar_position": "bottom",
+            "filter_position": "sidebar",
+            "filter_mode": "tag",
+            "show_filter_color_swatch": true,
+            "grid_items_per_page": 16,
+            "grid_mobile_items_per_row": "2",
+            "grid_desktop_items_per_row": 4
+          }
+        },
+        "recently-viewed-products": {
+          "type": "recently-viewed-products",
+          "settings": {
+            "show_section": true,
+            "title": "Recently viewed",
+            "show_product_info": true
+          }
+        },
+        "collection-footer": {
+          "type": "collection-footer",
+          "settings": {
+            "show_section": false,
+            "text_color": "#ffffff",
+            "apply_overlay": true,
+            "title": "Our story",
+            "content": "<p>Add your own custom content to explain your processes...<\/p>"
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "show_share_buttons": true,
+            "show_vendor": true,
+            "show_color_swatch": false,
+            "show_color_carousel": false,
+            "show_quantity_selector": true,
+            "show_inventory_quantity": false,
+            "inventory_quantity_threshold": 3,
+            "image_size": "large",
+            "enable_image_zoom": true,
+            "show_thumbnails": false,
+            "reviews_enabled": false
+          }
+        },
+        "related-products": {
+          "type": "related-products",
+          "settings": {
+            "show_section": true,
+            "title": "Related Products",
+            "show_product_info": true
           }
         }
       },
       "content_for_index": [
-        "hero",
-        "featured-collections",
         "slideshow",
-        "1492033924902",
-        "1492096252560",
-        "1492033877875",
-        "1492033809691"
+        "featured-collections",
+        "collection-list",
+        "featured-product",
+        "timeline",
+        "blog-posts",
+        "shop-the-look"
+      ]
+    },
+    "Vogue": {
+      "heading_color": "#454545",
+      "text_color": "#454545",
+      "text_light_color": "#9d9d9d",
+      "link_color": "#a17c5e",
+      "background": "#ffffff",
+      "light_background": "#ffffff",
+      "product_on_sale_color": "#f94c43",
+      "button_background": "#c2a284",
+      "button_text_color": "#ffffff",
+      "header_background": "#ffffff",
+      "header_heading_color": "#454545",
+      "header_light_color": "#9d9d9d",
+      "footer_background": "#ffffff",
+      "footer_heading_color": "#454545",
+      "footer_text_color": "#9d9d9d",
+      "newsletter_popup_background": "#454545",
+      "newsletter_popup_text_color": "#ffffff",
+      "secondary_elements_background": "#f1e4d8",
+      "secondary_elements_text_color": "#373737",
+      "navigation_background": "#454545",
+      "navigation_text_color": "#ffffff",
+      "heading_font": "din_neuzeit_grotesk_n3",
+      "heading_size": "small",
+      "uppercase_heading": true,
+      "text_font": "futura_n4",
+      "base_text_font_size": 14,
+      "currency_conversion_enabled": false,
+      "currency_conversion_round_amounts": true,
+      "currency_conversion_supported_currencies": "USD CAD EUR GBP",
+      "currency_conversion_money_format": "money_format",
+      "show_page_transition": true,
+      "show_element_staggering": false,
+      "search_mode": "product,article",
+      "product_show_price_on_hover": true,
+      "product_show_secondary_image": false,
+      "product_info_alignment": "center",
+      "product_image_size": "natural",
+      "product_list_horizontal_spacing": "medium",
+      "product_list_vertical_spacing": "small",
+      "cart_type": "drawer",
+      "cart_enable_notes": true,
+      "cart_show_free_shipping_threshold": false,
+      "cart_free_shipping_threshold": 50,
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_color": "#fff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_accent_color": "#a17c5e",
+      "checkout_button_color": "#454545",
+      "sections": {
+        "sidebar-menu": {
+          "type": "sidebar-menu",
+          "settings": {
+            "primary_menu": "main-menu",
+            "show_social_media": true
+          }
+        },
+        "announcement": {
+          "type": "announcement",
+          "settings": {
+            "background": "#f1e4d8",
+            "text_color": "#343434",
+            "content": "Announce something here"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "use_sticky_header": true,
+            "logo_max_width": 140,
+            "navigation_menu": "main-menu",
+            "navigation_style": "inline",
+            "enable_transparent_header": true,
+            "transparent_text_color": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "footer-0": {
+              "type": "text",
+              "settings": {
+                "title": "About the shop",
+                "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme settings.<\/p>",
+                "show_social_media": true
+              }
+            },
+            "footer-1": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "footer-2": {
+              "type": "newsletter",
+              "settings": {
+                "title": "Newsletter",
+                "content": "<p>Subscribe to receive updates, access to exclusive deals, and more.<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "footer-0",
+            "footer-1",
+            "footer-2"
+          ],
+          "settings": {
+            "show_payment_methods": true
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slide-0": {
+              "type": "image",
+              "settings": {
+                "apply_overlay": true,
+                "content_position": "bottomLeft",
+                "subheading": "Slide title",
+                "title": "Tell your story"
+              }
+            },
+            "slide-1": {
+              "type": "image",
+              "settings": {
+                "apply_overlay": true,
+                "content_position": "bottomLeft",
+                "subheading": "Slide title",
+                "title": "Tell your story"
+              }
+            }
+          },
+          "block_order": [
+            "slide-0",
+            "slide-1"
+          ],
+          "settings": {
+            "show_fullscreen": true,
+            "show_arrow": false,
+            "autoplay": true,
+            "cycle_speed": 5,
+            "text_color": "#ffffff",
+            "button_color": "#363636"
+          }
+        },
+        "featured-collections": {
+          "type": "featured-collections",
+          "blocks": {
+            "featured-collection-0": {
+              "type": "collection",
+              "settings": {
+                "grid_items_count": 8,
+                "button_text": "View all products"
+              }
+            }
+          },
+          "block_order": [
+            "featured-collection-0"
+          ],
+          "settings": {
+            "title": "Featured collection",
+            "layout_mode": "grid",
+            "show_product_info": true,
+            "grid_mobile_items_per_row": "2",
+            "grid_desktop_items_per_row": 4
+          }
+        },
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-0": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            },
+            "collection-1": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            },
+            "collection-2": {
+              "type": "collection",
+              "settings": {
+                "image_alignment": "center center",
+                "subheading": "Sub-heading",
+                "button_text": "View products",
+                "apply_overlay": true
+              }
+            }
+          },
+          "block_order": [
+            "collection-0",
+            "collection-1",
+            "collection-2"
+          ],
+          "settings": {
+            "add_spacing": true,
+            "expand_collection": false,
+            "text_color": "#ffffff",
+            "button_color": "#363636"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {
+            "title": "Featured product",
+            "show_vendor": true,
+            "show_description": true,
+            "show_color_swatch": false,
+            "show_color_carousel": false,
+            "show_quantity_selector": true,
+            "show_inventory_quantity": false,
+            "inventory_quantity_threshold": 3
+          }
+        },
+        "timeline": {
+          "type": "timeline",
+          "blocks": {
+            "item-0": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2000",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            },
+            "item-1": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2001",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            },
+            "item-2": {
+              "type": "item",
+              "settings": {
+                "apply_overlay": true,
+                "title": "2002",
+                "subheading": "Sub-heading",
+                "heading": "Heading",
+                "content": "<p>Add your own custom content to give more information about your store, availability details...<\/p>"
+              }
+            }
+          },
+          "block_order": [
+            "item-0",
+            "item-1",
+            "item-2"
+          ],
+          "settings": {
+            "text_color": "#ffffff"
+          }
+        },
+        "blog-posts": {
+          "type": "blog-posts",
+          "blocks": {
+            "blog-0": {
+              "type": "blog",
+              "settings": {
+                "blog": "news"
+              }
+            }
+          },
+          "block_order": [
+            "blog-0"
+          ],
+          "settings": {
+            "title": "Featured article",
+            "show_category": false,
+            "button_text": "View all articles"
+          }
+        },
+        "shop-the-look": {
+          "type": "shop-the-look",
+          "blocks": {
+            "look-0": {
+              "type": "look",
+              "settings": {
+                "dot_style": "light",
+                "product_1_horizontal_position": 30,
+                "product_1_vertical_position": 40,
+                "product_2_horizontal_position": 45,
+                "product_2_vertical_position": 65,
+                "product_3_horizontal_position": 70,
+                "product_3_vertical_position": 50
+              }
+            },
+            "look-1": {
+              "type": "look",
+              "settings": {
+                "dot_style": "light",
+                "product_1_horizontal_position": 25,
+                "product_1_vertical_position": 45,
+                "product_2_horizontal_position": 55,
+                "product_2_vertical_position": 30,
+                "product_3_horizontal_position": 65,
+                "product_3_vertical_position": 60
+              }
+            }
+          },
+          "block_order": [
+            "look-0",
+            "look-1"
+          ],
+          "settings": {
+            "subheading": "Shop",
+            "title": "Our looks"
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "show_collection_info": true,
+            "show_collection_image": false,
+            "show_sort_by": true,
+            "show_layout_switch": false,
+            "toolbar_position": "bottom",
+            "filter_position": "sidebar",
+            "filter_mode": "tag",
+            "show_filter_color_swatch": true,
+            "grid_items_per_page": 16,
+            "grid_mobile_items_per_row": "2",
+            "grid_desktop_items_per_row": 4
+          }
+        },
+        "recently-viewed-products": {
+          "type": "recently-viewed-products",
+          "settings": {
+            "show_section": true,
+            "title": "Recently viewed",
+            "show_product_info": true
+          }
+        },
+        "collection-footer": {
+          "type": "collection-footer",
+          "settings": {
+            "show_section": false,
+            "text_color": "#ffffff",
+            "apply_overlay": true,
+            "title": "Our story",
+            "content": "<p>Add your own custom content to explain your processes...<\/p>"
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "show_share_buttons": true,
+            "show_vendor": true,
+            "show_color_swatch": false,
+            "show_color_carousel": false,
+            "show_quantity_selector": true,
+            "show_inventory_quantity": false,
+            "inventory_quantity_threshold": 3,
+            "image_size": "large",
+            "enable_image_zoom": true,
+            "show_thumbnails": false,
+            "reviews_enabled": false
+          }
+        },
+        "related-products": {
+          "type": "related-products",
+          "settings": {
+            "show_section": true,
+            "title": "Related Products",
+            "show_product_info": true
+          }
+        }
+      },
+      "content_for_index": [
+        "slideshow",
+        "featured-collections",
+        "collection-list",
+        "featured-product",
+        "timeline",
+        "blog-posts",
+        "shop-the-look"
       ]
     }
   }

@@ -1,521 +1,510 @@
-{% case section.settings.grid %}
-  {% when 2 %}
-    {%- assign max_height = 530 -%}
-  {% when 3 %}
-    {%- assign max_height = 345 -%}
-  {% when 4 %}
-    {%- assign max_height = 250 -%}
-  {% when 5 %}
-    {%- assign max_height = 195 -%}
-{% endcase %}
+{%- if section.settings.show_layout_switch -%}
+  {%- assign desktop_items_per_row = cart.attributes.collection_desktop_items_per_row | default: section.settings.grid_desktop_items_per_row | times: 1 -%}
+  {%- assign mobile_items_per_row  = cart.attributes.collection_mobile_items_per_row | default: section.settings.grid_mobile_items_per_row | times: 1 -%}
 
-{% if section.settings.layout == 'grid' %}
-  {%- assign limit = section.settings.grid | times: section.settings.rows -%}
-{% else %}
-  {%- assign limit = 16 -%}
-{% endif %}
+  {%- if desktop_items_per_row >= 3 and desktop_items_per_row != section.settings.grid_desktop_items_per_row -%}
+    {%- assign desktop_items_per_row = section.settings.grid_desktop_items_per_row -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign desktop_items_per_row = section.settings.grid_desktop_items_per_row | times: 1 -%}
+  {%- assign mobile_items_per_row  = section.settings.grid_mobile_items_per_row | times: 1 -%}
+{%- endif -%}
 
-{% paginate collection.products by limit %}
+{%- if desktop_items_per_row == 4 -%}
+  {%- assign tablet_items_per_row = 3 -%}
+{%- else -%}
+  {%- assign tablet_items_per_row = 2 -%}
+{%- endif -%}
 
-<div data-section-id="{{ section.id }}" data-section-type="collection-template">
-  <header class="collection-header">
-    {%- assign is_filter_by_available = false -%}
-    {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
-      {%- assign is_filter_by_available = true -%}
-    {%- endif -%}
+{%- comment -%}
+--------------------------------------------------------------------------------------------------------------------
+CONTENT FOR NORMAL TEMPLATE
+--------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
 
-    {% if section.settings.show_collection_image and collection.image %}
-      <div class="collection-hero">
-        <div class="collection-hero__image ratio-container lazyload js"
-             data-bgset="{% include 'bgset', image: collection.image %}"
-             data-sizes="auto"
-             data-parent-fit="cover"
-             data-image-loading-animation
-        ></div>
-        <noscript>
-          <div class="collection-hero__image" style="background-image: url({{ collection.image | img_url: '2048x600', crop: 'top' }});"></div>
-        </noscript>
-        <div class="collection-hero__title-wrapper">
-          <h1 class="collection-hero__title page-width">
-              <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
-              {{ collection.title }}
-          </h1>
-        </div>
-      </div>
-      {% if is_filter_by_available == false and section.settings.sort_enable == false %}
-        <div class="page-width">
-          <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
-        </div>
-      {% endif %}
-      {% if collection.description != blank %}
-        <div class="rte collection-description page-width">
-          {{ collection.description }}
-        </div>
-      {% endif %}
-    {% else %}
-      <div class="page-width">
-        <div class="section-header text-center">
-          <h1>
-              <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
-              {{ collection.title }}
-          </h1>
-          {% if collection.description != blank %}
-            <div class="rte">
-              {{ collection.description }}
-            </div>
-          {% endif %}
-          {% if is_filter_by_available == false and section.settings.sort_enable == false %}
-            <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
-          {% endif %}
-        </div>
-      </div>
-    {% endif %}
+{%- assign active_tags = '' -%}
 
-    {% if is_filter_by_available or section.settings.sort_enable %}
-      <div class="filters-toolbar-wrapper{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
-        <div class="page-width">
-          <div class="filters-toolbar">
-            <div class="filters-toolbar__item-wrapper">
-              {% if section.settings.tags_enable %}
-                {% unless collection.all_tags.size == 0 %}
-                  <div class="filters-toolbar__item-child">
-                    <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
-                    <div class="filters-toolbar__input-wrapper select-group">
-                      <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
-                        <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
-                        {% for tag in collection.all_tags %}
-                          {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
-                          <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
-                        {% endfor %}
-                      </select>
-                      {% include 'icon-chevron-down' %}
-                    </div>
-                  </div>
-                {% endunless %}
-              {% endif %}
+{%- for tag in current_tags -%}
+{%- assign tag_as_handle = tag | replace: '&#39;', '' | replace: '&#34;', '' | handle -%}
+{%- assign active_tags = active_tags | append: tag_as_handle -%}
 
-              {% if section.settings.sort_enable %}
-                <div class="filters-toolbar__item-child">
-                  {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                  <label class="filters-toolbar__label select-label" for="SortBy">{{ 'collections.sorting.title' | t }}</label>
-                  <div class="filters-toolbar__input-wrapper select-group">
-                    <select name="sort_by" id="SortBy"
-                      class="filters-toolbar__input hidden"
-                      aria-describedby="a11y-refresh-page-message a11y-selection-message"
-                      data-default-sortby="{{ collection.default_sort_by }}"
-                      data-select-input
-                    >
-                      {%- for option in collection.sort_options -%}
-                        <option value="{{ option.value }}" {% if option.value == sort_by %}selected="selected"{% endif %}>{{ option.name }}</option>
-                      {%- endfor -%}
-                    </select>
-                    {% include 'icon-chevron-down' %}
-                  </div>
-                </div>
-              {% endif %}
-            </div>
+{%- unless forloop.last -%}
+    {%- assign active_tags = active_tags | append: '+' -%}
+{%- endunless -%}
+{%- endfor -%}
 
-            <div class="filters-toolbar__item filters-toolbar__item--count">
-              <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  </header>
-
-  <div class="page-width" id="Collection">
-    {% if section.settings.layout == 'grid' %}
-      {% case section.settings.grid %}
-      {% when 2 %}
-        {%- assign grid_item_width = 'medium-up--one-half' -%}
-      {% when 3 %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
-      {% when 4 %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
-      {% when 5 %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
-      {% endcase %}
-
-      <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-        {% for product in collection.products %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-            {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-          </li>
-        {% else %}
-          {% comment %}
-          Add default products to help with onboarding for collections/all only.
-
-          The onboarding styles and products are only loaded if the
-          store has no products.
-          {% endcomment %}
-          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-            <li class="grid__item">
-              <div class="grid grid--uniform">
-                {% for i in (1..limit) %}
-                  <div class="grid__item {{ grid_item_width }}">
-                    <div class="grid-view-item">
-                      <a href="#" class="grid-view-item__link">
-                        <div class="grid-view-item__image">
-                          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                        <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                        <div class="grid-view-item__meta">
-                          <span class="product-price__price">$19.99</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-            </li>
-          {% else %}
-            {%- assign is_empty_collection = true -%}
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% else %}
-      <ul class="list-view-items">
-        {% for product in collection.products %}
-          <li class="list-view-item">
-            {% include 'product-card-list', product: product, show_vendor: section.settings.show_vendor %}
-          </li>
-        {% else %}
-
-          {% comment %}
-          Add default products to help with onboarding for collections/all only.
-
-          The onboarding styles and products are only loaded if the
-          store has no products.
-          {% endcomment %}
-          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0%}
-            {% for i in (1..4) %}
-              <li class="list-view-item">
-                <a href="#" class="list-view-item__link">
-                  <div class="list-view-item__image-column">
-                    <div class="list-view-item__image-wrapper">
-                      <div class="list-view-item__image">
-                        {% capture current %}{% cycle 1, 2, 3, 4 %}{% endcapture %}
-                        {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="list-view-item__title-column">
-                    <div class="list-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                  </div>
-
-                  <div class="list-view-item__price-column">
-                    <span class="product-price__price">$19.99</span>
-                  </div>
-                </a>
-              </li>
-            {% endfor %}
-          {% else %}
-            {%- assign is_empty_collection = true -%}
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    {% if is_empty_collection %}
-      <div class="grid__item small--text-center">
-        <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
-      </div>
-    {% endif %}
-
-    {%- if paginate.pages > 1 -%}
-      {% include 'pagination', paginate: paginate %}
-    {%- endif -%}
-  </div>
-</div>
-
-{% endpaginate %}
-
-
-
-{% schema %}
+{%- capture section_settings -%}
 {
-  "name": {
-    "cs": "Stránky s kolekcemi",
-    "da": "Kollektionssider",
-    "de": "Kategorie-Seiten",
-    "en": "Collection pages",
-    "es": "Páginas de colección",
-    "fi": "Kokoelman sivut",
-    "fr": "Pages de collections",
-    "it": "Pagine di collezioni",
-    "ja": "コレクションページ",
-    "ko": "컬렉션 페이지",
-    "nb": "Samlingssider",
-    "nl": "Collectiepagina's",
-    "pl": "Strony kolekcji",
-    "pt-BR": "Páginas de coleções",
-    "pt-PT": "Páginas de coleções",
-    "sv": "Produktseriesidor",
-    "th": "หน้าคอลเลกชัน",
-    "tr": "Koleksiyon sayfaları",
-    "vi": "Trang bộ sưu tập",
-    "zh-CN": "产品系列页面",
-    "zh-TW": "商品系列頁面"
-  },
+"collectionUrl": {{ collection.url | default: '/collections/all' | json }},
+"currentTags": {% if active_tags != blank %}{{ active_tags | split: '+' | json }}{% else %}[]{% endif %},
+"sortBy": {{ collection.sort_by | default: collection.default_sort_by | json }},
+"filterPosition": {{ section.settings.filter_position | json }}
+}
+{%- endcapture -%}
+
+<section data-section-id="{{ section.id }}" data-section-type="collection" data-section-settings='{{ section_settings }}'>
+{%- comment -%}
+--------------------------------------------------------------------------------------------------------------------
+COLLECTION INFO
+--------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- if section.settings.show_collection_info and collection.all_products_count > 0 -%}
+    {%- if section.settings.show_collection_image and collection.image and collection.template_suffix != 'no-image' -%}
+    <div class="FlexboxIeFix">
+    <header class="PageHeader PageHeader--withBackground {% if section.settings.collection_image_size != 'normal' %}PageHeader--{{ section.settings.collection_image_size }}{% endif %}" style="background: url({{ collection.image | img_url: '1x1', format: 'jpg' }})">
+        <div class="PageHeader__ImageWrapper Image--lazyLoad Image--fadeIn Image--contrast"
+            data-optimumx="1.2"
+            data-bgset="{{ collection.image | img_url: '600x' }} 600w, {{ collection.image | img_url: '800x' }} 800w, {{ collection.image | img_url: '1200x' }} 1200w, {{ collection.image | img_url: '1400x' }} 1400w, {{ collection.image | img_url: '1600x' }} 1600w">
+        </div>
+
+        <noscript>
+        <div class="PageHeader__ImageWrapper Image--contrast" style="background-image: url({{ collection.image | img_url: '800x' }})"></div>
+        </noscript>
+
+        <div class="Container">
+        <div class="SectionHeader SectionHeader--center">
+            <h1 class="SectionHeader__Heading Heading u-h1 bc-sf-filter-collection-header">{{ collection.title }}</h1>
+
+            {%- if collection.description != blank -%}
+            <div class="SectionHeader__Description Rte bc-sf-filter-collection-description">
+                {{- collection.description -}}
+            </div>
+            {%- endif -%}
+        </div>
+        </div>
+    </header>
+    </div>
+    {%- else -%}
+    <header class="PageHeader">
+        <div class="Container">
+        <div class="SectionHeader SectionHeader--center">
+            <h1 class="SectionHeader__Heading Heading u-h1">{{ collection.title }}</h1>
+
+            {%- if collection.description != blank -%}
+            <div class="SectionHeader__Description Rte">
+                {{- collection.description -}}
+            </div>
+            {%- endif -%}
+        </div>
+        </div>
+    </header>
+    {%- endif -%}
+{%- endif -%}
+
+{%- comment -%}
+--------------------------------------------------------------------------------------------------------------------
+COLLECTION TOOLBAR
+--------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- if collection.all_products_count > 0 -%}
+    {%- comment -%}
+    In order to provide more predictable results (for instance not showing filters by tag even if the option is checked in settings,
+    but that there are no tags for the given collection to show), we are doing some more logic here. Basically, we try to check if there
+    are tags to show by stripping internal tags (those that start by "__")
+    {%- endcomment -%}
+
+    {%- assign has_visible_tags = false -%}
+
+    {%- case section.settings.filter_mode -%}
+    {%- when 'tag' -%}
+        {%- for tag in collection.all_tags -%}
+        {%- unless tag contains '__' -%}
+            {%- assign has_visible_tags = true -%}
+            {%- break -%}
+        {%- endunless -%}
+        {%- endfor -%}
+
+    {%- when 'group' -%}
+        {%- for tag in collection.all_tags -%}
+        {%- assign tag_parts = tag | split: '_' -%}
+
+        {%- if tag_parts.size == 2 -%}
+            {%- assign has_visible_tags = true -%}
+        {%- endif -%}
+        {%- endfor -%}
+    {%- endcase -%}
+
+    {%- assign show_filters = true -%}
+    {%- assign quick_links = linklists[section.settings.filter_menu] -%}
+
+    {%- capture collection_toolbar -%}
+    {%- if show_filters or section.settings.show_sort_by or section.settings.show_layout_switch -%}
+        <div class="CollectionToolbar CollectionToolbar--{{ section.settings.toolbar_position }} {% unless section.settings.show_layout_switch and show_filters == false and section.settings.show_sort_by == false %}CollectionToolbar--reverse{% endunless %}">
+        {%- if show_filters or section.settings.show_sort_by -%}
+            <div class="CollectionToolbar__Group">
+            {%- if show_filters -%}
+                <button class="CollectionToolbar__Item CollectionToolbar__Item--filter Heading {% unless current_tags %}Text--subdued{% endunless %} u-h6 {% if section.settings.filter_position != 'drawer' %}hidden-lap-and-up{% endif %}"
+                        data-action="open-drawer"
+                        data-drawer-id="collection-filter-drawer"
+                        aria-label="{{ 'collection.filter.show_filter' | t }}">
+                {{ 'collection.filter.title' | t }} {% if current_tags %}<span class="Text--subdued">({{ current_tags.size }})</span>{% endif %}
+                </button>
+            {%- endif -%}
+
+            {%- if section.settings.show_sort_by -%}
+                <button class="CollectionToolbar__Item CollectionToolbar__Item--sort Heading Text--subdued u-h6"
+                        aria-label="{{ 'collection.sorting.show_sort' | t }}"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        aria-controls="collection-sort-popover">
+                {{ 'collection.sorting.title' | t }} {% include 'icon' with 'select-arrow' %}
+                </button>
+            {%- endif -%}
+            </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_layout_switch -%}
+            <div class="CollectionToolbar__Item CollectionToolbar__Item--layout">
+            <div class="CollectionToolbar__LayoutSwitch hidden-tablet-and-up">
+                <button aria-label="{{ 'collection.layout.show_one_per_row' | t }}" class="CollectionToolbar__LayoutType {% if mobile_items_per_row == 1 %}is-active{% endif %}" data-action="change-layout-mode" data-grid-type="mobile" data-count="1">{% include 'icon' with 'wall-1' %}</button>
+                <button aria-label="{{ 'collection.layout.show_two_per_row' | t }}" class="CollectionToolbar__LayoutType {% if mobile_items_per_row == 2 %}is-active{% endif %}" data-action="change-layout-mode" data-grid-type="mobile" data-count="2">{% include 'icon' with 'wall-2' %}</button>
+            </div>
+
+            <div class="CollectionToolbar__LayoutSwitch hidden-phone">
+                <button aria-label="{{ 'collection.layout.show_two_per_row' | t }}" class="CollectionToolbar__LayoutType {% if desktop_items_per_row == 2 %}is-active{% endif %}" data-action="change-layout-mode" data-grid-type="desktop" data-count="2">{% include 'icon' with 'wall-2' %}</button>
+                <button aria-label="{{ 'collection.layout.show_four_per_row' | t }}" class="CollectionToolbar__LayoutType {% if desktop_items_per_row >= 3 %}is-active{% endif %}" data-action="change-layout-mode" data-grid-type="desktop" data-count="{{ section.settings.grid_desktop_items_per_row }}">{% include 'icon' with 'wall-4' %}</button>
+            </div>
+            </div>
+        {%- endif -%}
+        </div>
+    {%- endif -%}
+    {%- endcapture -%}
+
+    {%- comment -%}
+    --------------------------------------------------------------------------------------------------------------------
+    FILTERS AND SORT BY POPOVER
+    --------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    {%- assign quick_links = linklists[section.settings.filter_menu] -%}
+
+    <div id="collection-filter-drawer" class="CollectionFilters Drawer Drawer--secondary Drawer--fromRight" aria-hidden="true">
+        <header class="Drawer__Header Drawer__Header--bordered Drawer__Header--center Drawer__Container">
+        <span class="Drawer__Title Heading u-h4">{{ 'collection.filter.all' | t }}</span>
+
+        <button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="collection-filter-drawer" aria-label="{{ 'header.navigation.close_sidebar' | t }}">
+            {%- include 'icon' with 'close' -%}
+        </button>
+        </header>
+
+        <div class="Drawer__Content">
+        <div class="Drawer__Main" data-scrollable>
+            <div id="bc-sf-filter-tree2">
+            {% comment %} Include placeholder template {% endcomment %}
+            {% include 'bc-sf-filter-tree-placeholder' %}
+            </div>
+        </div>
+        </div>
+    </div>
+
+    {%- if section.settings.show_sort_by -%}
+    <div id="collection-sort-popover" class="Popover" aria-hidden="true">
+        {%- assign current_sort_by = collection.sort_by | default: collection.default_sort_by -%}
+
+        <header class="Popover__Header">
+        <button class="Popover__Close Icon-Wrapper--clickable" data-action="close-popover">{% include 'icon' with 'close' %}</button>
+        <span class="Popover__Title Heading u-h4">{{ 'collection.sorting.title' | t }}</span>
+        </header>
+
+        <div class="Popover__ValueList"  id="bc-sf-filter-top-sorting" data-scrollable>{% include 'bc-sf-filter-skeleton', width: 3 %}</div>
+    </div>
+    {%- endif -%}
+
+    {%- comment -%}
+    --------------------------------------------------------------------------------------------------------------------
+    COLLECTION PRODUCTS
+    --------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+
+    <div class="CollectionMain">
+    {%- if section.settings.toolbar_position == 'top' -%}
+        {{- collection_toolbar -}}
+    {%- endif -%}
+
+    <div class="CollectionInner">
+        {%- if show_filters and section.settings.filter_position == 'sidebar' -%}
+        <div class="CollectionInner__Sidebar {% if collection_toolbar != blank and section.settings.toolbar_position == 'top' %}CollectionInner__Sidebar--withTopToolbar{% endif %} hidden-pocket">
+            <div class="CollectionFilters">
+            <div id="bc-sf-filter-tree-mobile">{% include 'bc-sf-filter-skeleton', type: 'button' %}</div>
+            <div id="bc-sf-filter-tree">
+                {% comment %} Include placeholder template {% endcomment %}
+                {% include 'bc-sf-filter-tree-placeholder' %}
+            </div>
+            </div>
+        </div>
+        {%- endif -%}
+
+        <div class="CollectionInner__Products" >
+        {%- paginate collection.products by section.settings.grid_items_per_page -%}
+            <div class="ProductListWrapper">
+                <div id="bc-sf-filter-products" data-bc-sort="{{ collection.default_sort_by }}" class="ProductList ProductList--grid {% if paginate.pages > 1 %}ProductList--removeMargin{% endif %} Grid" data-mobile-count="{{ mobile_items_per_row }}" data-desktop-count="{{ desktop_items_per_row }}">
+                    {%- for product in collection.products -%}
+                        <div class="Grid__Cell 1/{{ mobile_items_per_row }}--phone 1/{{ tablet_items_per_row }}--tablet-and-up 1/{{ desktop_items_per_row }}--{% if section.settings.filter_position == 'drawer' %}lap-and-up{% else %}desk{% endif %}">
+                            {%- include 'product-item', show_product_info: true, show_color_swatch: section.settings.show_color_swatch, show_labels: true, show_vendor: section.settings.show_vendor -%}
+                        </div>
+                    {%- endfor -%}
+                </div>
+            </div>
+            <div id="bc-sf-filter-bottom-pagination">{%- include 'pagination' -%}</div>
+            <div id="bc-sf-filter-load-more"></div>
+
+        {%- endpaginate -%}
+        </div>
+    </div>
+
+    {%- if section.settings.toolbar_position == 'bottom' -%}
+        {{- collection_toolbar -}}
+    {%- endif -%}
+    </div>
+{%- else -%}
+    <div class="EmptyState">
+    <div class="Container">
+        <h3 class="EmptyState__Title Heading u-h5">{{ 'collection.general.empty' | t: collection_title: collection.title }}</h3>
+        <a href="{{ shop.url }}" class="EmptyState__Action Button Button--primary">{{ 'collection.general.empty_button' | t }}</a>
+    </div>
+    </div>
+{%- endif -%}
+</section>
+
+{%- capture hack -%}
+{%- comment -%}This is just an ugly hack to make those variables appear as part of the theme editor in the General Settings{%- endcomment -%}
+{{ settings.product_list_horizontal_spacing }},{{ settings.product_list_vertical_spacing }}
+{%- endcapture -%}
+<script>
+  // Declare bcSfFilterConfig variable
+  var bcSfFilterConfig = {
+    label: {
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Sorting" {% endunless %},
+      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Best Selling" {% endunless %},
+      sorting_featured: {% assign temp = 'collections.sorting.featured' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Featured" {% endunless %},
+      sorting_title_ascending: {% assign temp = 'collections.sorting.az' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Alphabetically, A-Z" {% endunless %},
+      sorting_title_descending: {% assign temp = 'collections.sorting.za' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Alphabetically, Z-A" {% endunless %},
+      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Lowest Price" {% endunless %},
+      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Highest Price" {% endunless %},
+      sorting_date_ascending: {% assign temp = 'collections.sorting.date_ascending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Date, Old to New" {% endunless %},
+      sorting_date_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Date, New to Old" {% endunless %},
+      sorting_sale_descending: {% assign temp = 'collections.sorting.sale_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "% Off" {% endunless %},
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Relevance" {% endunless %},
+      view_product: {% assign temp = 'collection.product.view_product' | t  %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "View" {% endunless %},
+
+      sale: {% assign temp = 'product.labels.on_sale' | t   %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "On Sale" {% endunless %},
+      sold_out: {% assign temp = 'product.labels.sold_out' | t   %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Sold out" {% endunless %},
+      from: {% assign temp = 'collection.product.from_price_html' | t   %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "From" {% endunless %},
+
+      search_results_zero: "{{ 'search.general.results_with_terms_count.zero' | t  }}",
+	  search_results_one: "{{ 'search.general.results_with_terms_count.one' | t  }}",
+	  search_results_other: "{{ 'search.general.results_with_terms_count.other' | t  }}",
+    },
+    custom: {
+	  section_id : {{ section.id | json }},
+	  product_show_price_on_hover: {{ settings.product_show_price_on_hover  | json }},      	
+      product_info_alignment: {{ settings.product_info_alignment | json }},
+      product_image_size: {{ settings.product_image_size | json }},
+      product_show_secondary_image: {{ settings.product_show_secondary_image | json }},
+      use_horizontal: false,
+      show_product_info: true,
+      show_color_swatch: {{ section.settings.show_color_swatch | json}},
+      show_labels: true,
+      mobile_row: '{{ mobile_items_per_row }}',
+      tablet_row: '{{ tablet_items_per_row }}',
+      desktop_row: '{{ desktop_items_per_row }}',
+      filter_position: '{{section.settings.filter_position}}',
+      products_per_page: {% if section.settings.grid_items_per_page %} {{ section.settings.grid_items_per_page | json }} {% else %} 16 {% endif %},
+      products_per_row: {% if section.settings.grid_desktop_items_per_row %} {{ section.settings.grid_desktop_items_per_row  | json }} {% else %} 4 {% endif %},
+      products_per_row_mobile: {% if section.settings.grid_mobile_items_per_row %} {{ section.settings.grid_mobile_items_per_row  | json }} {% else %} 2 {% endif %},
+      show_vendor: {% if section.settings.show_vendor %} {{ section.settings.show_vendor | json }} {% else %} false {% endif %},
+      show_color_swatch: {% if section.settings.show_color_swatch %} {{ section.settings.show_color_swatch | json }} {% else %} false {% endif %},
+      show_price: {% if section.settings.show_price %} {{ section.settings.show_price | json }} {% else %} false {% endif %},
+      show_sale_label: {% if section.settings.show_sale_label %} {{ section.settings.show_sale_label | json }} {% else %} false {% endif %},
+      show_sold_out_label: {% if section.settings.show_sold_out_label %} {{ section.settings.show_sold_out_label | json }} {% else %} false {% endif %},
+      active_image_swap: {% if section.settings.active_image_swap %} {{ section.settings.active_image_swap | json }} {% else %} false {% endif %},
+      show_sorting: {% if section.settings.show_sort_by %} {{ section.settings.show_sort_by | json }} {% else %} false {% endif %},
+      show_layout_switch: {% if section.settings.show_layout_switch %} {{ section.settings.show_layout_switch | json }} {% else %} false {% endif %},
+      theme_script: "{{ 'theme.min.js' | asset_url }}",
+    }
+  };
+</script>
+{% schema %}
+
+{
+  "name": "Collection page",
+  "class": "shopify-section--bordered",
   "settings": [
     {
-      "type": "select",
-      "id": "layout",
-      "label": {
-        "cs": "Rozvržení",
-        "da": "Layout",
-        "de": "Layout",
-        "en": "Layout",
-        "es": "Diseño",
-        "fi": "Asettelu",
-        "fr": "Mise en page",
-        "it": "Layout",
-        "ja": "レイアウト",
-        "ko": "레이아웃",
-        "nb": "Oppsett",
-        "nl": "Opmaak",
-        "pl": "Układ",
-        "pt-BR": "Layout",
-        "pt-PT": "Esquema",
-        "sv": "Layout",
-        "th": "เลย์เอาต์",
-        "tr": "Düzen",
-        "vi": "Bố cục",
-        "zh-CN": "布局",
-        "zh-TW": "版面配置"
-      },
-      "default": "grid",
-      "options": [
-        {
-          "value": "grid",
-          "label": {
-            "cs": "Mřížka",
-            "da": "Gitter",
-            "de": "Raster",
-            "en": "Grid",
-            "es": "Cuadrícula",
-            "fi": "Ruudukko",
-            "fr": "Grille",
-            "it": "Griglia",
-            "ja": "グリッド",
-            "ko": "그리드",
-            "nb": "Rutenett",
-            "nl": "Raster",
-            "pl": "Siatka",
-            "pt-BR": "Grade",
-            "pt-PT": "Grelha",
-            "sv": "Rutnät",
-            "th": "กริด",
-            "tr": "Izgara",
-            "vi": "Lưới",
-            "zh-CN": "网格",
-            "zh-TW": "網格"
-          }
-        },
-        {
-          "value": "list",
-          "label": {
-            "cs": "Seznam",
-            "da": "Liste",
-            "de": "Liste",
-            "en": "List",
-            "es": "Lista",
-            "fi": "Luettelo",
-            "fr": "Liste",
-            "it": "Elenco",
-            "ja": "リスト",
-            "ko": "목록",
-            "nb": "Liste",
-            "nl": "Lijst",
-            "pl": "Lista",
-            "pt-BR": "Lista",
-            "pt-PT": "Lista",
-            "sv": "Lista",
-            "th": "รายการ",
-            "tr": "Liste",
-            "vi": "Danh sách",
-            "zh-CN": "列表",
-            "zh-TW": "清單"
-          }
-        }
-      ]
-    },
-    {
-      "type": "range",
-      "id": "grid",
-      "label": {
-        "cs": "Počet produktů na řádek (jen mřížka)",
-        "da": "Produkter pr. række (kun gitter)",
-        "de": "Produkte per Reihe (nur Raster)",
-        "en": "Products per row (grid only)",
-        "es": "Productos por fila (solo cuadrícula)",
-        "fi": "Tuotteita per rivi (vain ruudukko)",
-        "fr": "Produits par rangée (grille uniquement)",
-        "it": "Prodotti per riga (solo griglia)",
-        "ja": "行あたりの商品数（グリッドのみ）",
-        "ko": "열 별 제품 (그리드 전용)",
-        "nb": "Produkter per rad (kun rutenett)",
-        "nl": "Producten per rij (alleen raster)",
-        "pl": "Liczba produktów na wiersz (tylko siatka)",
-        "pt-BR": "Produtos por linha (somente grade)",
-        "pt-PT": "Produtos por linha (somente grelha)",
-        "sv": "Produkter per rad (endast rutnät)",
-        "th": "สินค้าต่อแถว (กริดเท่านั้น)",
-        "tr": "Satır başına ürün (yalnızca ızgara)",
-        "vi": "Số sản phẩm trên một hàng (chỉ ở kiểu lưới)",
-        "zh-CN": "每行产品数（仅限网格）",
-        "zh-TW": "每列產品數 (僅限網格)"
-      },
-      "default": 4,
-      "min": 2,
-      "max": 5,
-      "step": 1
-    },
-    {
-      "type": "range",
-      "id": "rows",
-      "label": {
-        "cs": "Počet řádků na stránku (jen mřížka)",
-        "da": "Rækker pr. side (kun gitter)",
-        "de": "Reihen per Seite (nur Raster)",
-        "en": "Rows per page (grid only)",
-        "es": "Filas por página (solo cuadrícula)",
-        "fi": "Rivejä per sivu (vain ruudukko)",
-        "fr": "Rangées par page (grille uniquement)",
-        "it": "Righe per pagina (solo griglia)",
-        "ja": "ページあたりの行数（グリッドのみ）",
-        "ko": "페이지 별 열 (그리드 전용)",
-        "nb": "Rader per side (kun rutenett)",
-        "nl": "Rijen per pagina (alleen raster)",
-        "pl": "Liczba wierszy na stronę (tylko siatka)",
-        "pt-BR": "Linhas por página (somente grade)",
-        "pt-PT": "Linhas por página (somente grelha)",
-        "sv": "Rader per sida (endast rutnät)",
-        "th": "แถวต่อหน้า (กริดเท่านั้น)",
-        "tr": "Sayfa başına satır (yalnızca ızgara)",
-        "vi": "Số hàng trong một trang (chỉ ở kiểu lưới)",
-        "zh-CN": "每行产品数（仅限网格）",
-        "zh-TW": "每頁列數 (僅限網格)"
-      },
-      "default": 2,
-      "min": 2,
-      "max": 8,
-      "step": 1
+      "type": "checkbox",
+      "id": "show_collection_info",
+      "label": "Show collection info",
+      "default": true
     },
     {
       "type": "checkbox",
       "id": "show_collection_image",
-      "label": {
-        "cs": "Zobrazit obrázek kolekce",
-        "da": "Vis kollektionsbillede",
-        "de": "Kategorie-Foto anzeigen",
-        "en": "Show collection image",
-        "es": "Mostrar imagen de la colección",
-        "fi": "Näytä kokoelman kuva",
-        "fr": "Afficher l'image de la collection",
-        "it": "Mostra immagine collezione",
-        "ja": "コレクションの画像を表示する",
-        "ko": "컬렉션 이미지 표시",
-        "nb": "Vis samlingsbilde",
-        "nl": "Collectieafbeelding weergeven",
-        "pl": "Pokaż obraz kolekcji",
-        "pt-BR": "Exibir imagem da coleção",
-        "pt-PT": "Mostrar imagem da coleção",
-        "sv": "Visa produktseriebilder",
-        "th": "แสดงรูปภาพคอลเลกชัน",
-        "tr": "Koleksiyon görselini göster",
-        "vi": "Hiển thị hình ảnh bộ sưu tập",
-        "zh-CN": "显示产品系列图片",
-        "zh-TW": "顯示商品系列圖片"
-      },
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "label": {
-        "cs": "Zobrazit dodavatele produktů",
-        "da": "Vis produktleverandører",
-        "de": "Produktanbieter anzeigen",
-        "en": "Show product vendors",
-        "es": "Mostrar proveedores del producto",
-        "fi": "Näytä tuotteen myyjät",
-        "fr": "Afficher les vendeurs",
-        "it": "Mostra fornitori prodotto",
-        "ja": "商品の販売元を表示する",
-        "ko": "제품 공급 업체 표시",
-        "nb": "Vis produktleverandører",
-        "nl": "Productleveranciers weergeven",
-        "pl": "Pokaż dostawców produktu",
-        "pt-BR": "Exibir fornecedores do produto",
-        "pt-PT": "Mostrar fornecedores do produto",
-        "sv": "Visa produktleverantörer",
-        "th": "แสดงผู้ขายสินค้า",
-        "tr": "Ürün satıcılarını göster",
-        "vi": "Hiển thị nhà cung cấp sản phẩm",
-        "zh-CN": "显示产品厂商",
-        "zh-TW": "顯示產品廠商"
-      },
+      "label": "Show collection image",
       "default": false
     },
     {
       "type": "checkbox",
-      "id": "sort_enable",
-      "label": {
-        "cs": "Povolit řazení",
-        "da": "Aktivér sortering",
-        "de": "Sortieren erlauben",
-        "en": "Enable sorting",
-        "es": "Habilitar la función ordenar",
-        "fi": "Ota lajittelu käyttöön",
-        "fr": "Activer le tri",
-        "it": "Permetti di ordinare",
-        "ja": "並べ替えを有効にする",
-        "ko": "정렬 사용",
-        "nb": "Aktiver sortering",
-        "nl": "Sortering inschakelen",
-        "pl": "Włącz sortowanie",
-        "pt-BR": "Habilitar organização",
-        "pt-PT": "Ativar ordenação",
-        "sv": "Aktivera sortering",
-        "th": "เปิดใช้การจัดเรียง",
-        "tr": "Sıralamayı etkinleştir",
-        "vi": "Bật phân loại",
-        "zh-CN": "启用排序",
-        "zh-TW": "啟用排序"
-      },
+      "id": "apply_overlay",
+      "label": "Apply overlay on image",
+      "info": "This can improve text visibility.",
       "default": true
     },
     {
       "type": "checkbox",
-      "id": "tags_enable",
-      "label": {
-        "cs": "Povolit filtrování podle štítku",
-        "da": "Aktivér tagfiltrering",
-        "de": "Tag-Filtern erlauben",
-        "en": "Enable tag filtering",
-        "es": "Habilitar filtro de etiquetas",
-        "fi": "Ota tunnisteiden suodatus käyttöön",
-        "fr": "Activer le filtrage par balises",
-        "it": "Attiva filtro tag",
-        "ja": "タグでの絞り込みを有効にする",
-        "ko": "태그 필터링 사용",
-        "nb": "Aktiver taggfiltrering",
-        "nl": "Filteren op tags inschakelen",
-        "pl": "Włącz filtrowanie tagów",
-        "pt-BR": "Habilitar filtragem de tags",
-        "pt-PT": "Ativar filtragem por etiqueta",
-        "sv": "Aktivera taggfiltrering",
-        "th": "เปิดใช้การกรองแท็ก",
-        "tr": "Etiket filtrelemeyi etkinleştir",
-        "vi": "Bật lọc thẻ",
-        "zh-CN": "启用标签筛选",
-        "zh-TW": "啟用標籤篩選功能"
-      },
+      "id": "show_color_swatch",
+      "label": "Show color swatch",
+      "info": "Some colors appear white? [Learn more](http://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch).",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "collection_image_size",
+      "label": "Collection image size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Toolbar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sort_by",
+      "label": "Show sort by",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_layout_switch",
+      "label": "Show layout switch"
+    },
+    {
+      "type": "select",
+      "id": "toolbar_position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "header",
+      "content": "Filters"
+    },
+    {
+      "type": "select",
+      "id": "filter_position",
+      "label": "Desktop position",
+      "options": [
+        {
+          "value": "sidebar",
+          "label": "Sidebar"
+        },
+        {
+          "value": "drawer",
+          "label": "Drawer"
+        }
+      ],
+      "default": "sidebar"
+    },
+    {
+      "type": "select",
+      "id": "filter_mode",
+      "label": "Mode",
+      "info": "Filters by group requires specific tag formatting. [Learn more](https://help.shopify.com/manual/using-themes/themes-by-shopify/supply#product-tips-tips-specific)",
+      "options": [
+        {
+          "value": "hidden",
+          "label": "Hidden"
+        },
+        {
+          "value": "tag",
+          "label": "By tag"
+        },
+        {
+          "value": "group",
+          "label": "By group"
+        }
+      ],
+      "default": "tag"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_color_swatch",
+      "label": "Show filter color swatch",
+      "info": "This is only used if filters by group is enabled.",
+      "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "filter_menu",
+      "label": "Quick links",
+      "info": "This menu won't show dropdown items."
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "grid_items_per_page",
+      "label": "Products per page",
+      "min": 4,
+      "max": 96,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "grid_mobile_items_per_row",
+      "label": "Products per row (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "min": 2,
+      "max": 4,
+      "id": "grid_desktop_items_per_row",
+      "label": "Products per row (desktop)",
+      "default": 4
     }
   ]
 }

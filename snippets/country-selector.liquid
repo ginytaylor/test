@@ -1,0 +1,160 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<div class="country-selector-custom">
+  <form class="country-select-form">
+    <div class="form-group">
+      <select id="country-select">
+      	{{ country_option_tags }}
+      </select>
+      <span class="caret"></span>
+    </div>
+  </form>
+</div>
+<script>var country_trans = {
+  "Hong Kong": "香港",
+  Macao: "澳門",
+  Taiwan: "台灣"
+};
+jQuery(function() {
+  const country_select = $("#country-select");
+  try {
+    $.ajax({
+      type: "GET",
+      url: "/admin/shipping_zones.json",
+      success: function(data) {
+        if (!data) return false;
+        let shipping_zones = data.shipping_zones;
+        let country_option = "";
+        if(!shipping_zones) {
+        return;}
+        if (shipping_zones.length) {
+          shipping_zones.map(zone => {
+            zone.countries.map(country => {
+              if (country.name != "Rest of World") {
+                let isSelected =
+                  country.name == localStorage.getItem("country_name")
+                    ? "selected"
+                    : "";
+                country_option += `<option value="${
+                  country.name
+                }" ${isSelected}>${country_trans[country.name] ||
+                  country.name}</option>`;
+              }
+            });
+          });
+          country_select.html(country_option);
+        }
+        country_select.addClass("loaded");
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  $(document)
+    .off("change.country")
+    .on("change.country", "#country-select", function() {
+      document.dispatchEvent(new CustomEvent("theme:loading:start"));
+      let self = $(this);
+      let val = self.val();
+      let pathArr = location.pathname.split("/");
+      let currentProduct = pathArr[pathArr.length - 1];
+      localStorage.setItem("country_name", val);
+      fetchProduct(currentProduct);
+      fetchCart();
+      reAddProduct();
+      // fetchCartItems();
+    })
+  	.off('click.select-currency')
+  	.on('click.select-currency', '.currency-dropdown-option', function() {
+
+    })
+  
+  let fetchProduct = function(currentProduct) {
+    try {
+      $.ajax({
+        type: "GET",
+        url: `/products/${currentProduct}.json`,
+        success: function(data) {
+          if (
+            data.product.tags.includes(localStorage.getItem("country_name"))
+          ) {
+            $(".ProductForm")
+              .find('button[type="submit"]')
+              .hide();
+          } else {
+            $(".ProductForm")
+              .find('button[type="submit"]')
+              .show();
+          }
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  let fetchCart = function() {
+    try {
+      $.ajax({
+        type: "GET",
+        url: "/cart.js",
+        success: function(data) {
+          data = JSON.parse(data);
+          data.items.map(line_item => {
+            let handle = line_item.handle;
+            $.ajax({
+              type: "GET",
+              url: `/products/${handle}.json`,
+              success: function(data) {
+                if (
+                  data.product.tags.includes(
+                    localStorage.getItem("country_name")
+                  )
+                ) {
+                  let returnProduct = `${line_item.variant_id}:${line_item.quantity}`;
+                  let updates = {};
+                  updates[line_item.variant_id] = 0;
+                  localStorage.setItem(
+                    "return_product_id",returnProduct
+                    
+                  );
+                  $.ajax({
+                    type: "post",
+                    url: "/cart/update.js",
+                    data: {
+                      updates
+                    },
+                    success: function(data) {
+                      location.reload();
+                    }
+                  });
+                } 
+              }
+            });
+          });
+          document.dispatchEvent(new CustomEvent("theme:loading:end"));
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  let reAddProduct = function() {
+    let addProduct = localStorage.getItem('return_product_id');
+    if(!addProduct) {
+      return;
+    }
+    let updates = {};
+    updates[addProduct.split(':')[0]] = addProduct.split(':')[1];
+    $.ajax({
+      type: 'POST',
+      url: '/cart/update.js',
+      data: {
+        updates
+      },
+      success: function() {
+        localStorage.removeItem('return_product_id');
+        location.reload();
+      }
+    })
+  };
+});
+
+</script>

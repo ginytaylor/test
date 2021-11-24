@@ -1,0 +1,107 @@
+var gema = {
+  theme: function(json,data,$){
+    var tb = '',image = data.asset_url+'no-image.svg',images_thumb='',content_images_thumb='',cl_thumb='',image_content = '',compare_at_price = '',buttons = '',paginateTop='',paginateBottom='';
+    if(json.collection)
+    {
+      $('.tb-title-collection').html(json.collection.title);
+      $('.tb-bodyhtml-collection').html(json.collection.body_html);
+    }
+	if(json.products.length > 0)
+    {
+		$.each(json.products, function( index, value ) {
+          images_thumb = '';
+          content_images_thumb = '';
+          cl_thumb = '';
+            if(value.images)
+            {
+              $.each(value.images, function( x, u ) {
+                cl_thumb = '';
+                if(x == 0)
+                {
+                  cl_thumb = ' active';
+                }
+                images_thumb = images_thumb.concat('<li><a class="tb-thumb-onclick'+cl_thumb+' tb-thumb-id-'+value.id+' tb-thumb-id-'+value.id+'-'+u.id+'" href="'+gema.resizeImage(u.src,'large')+'" data-id="'+value.id+'"><img src="'+gema.resizeImage(u.src,'thumb')+'" /></a></li>');
+              });
+              content_images_thumb = '<ul class="tb-thumb-swatch tb-slick-carousel-thumb tb-thumb-function-'+value.id+'" style="display:none">'+images_thumb+'</ul>';
+            }
+            compare_at_price = '';
+          	buttons = '';
+            image = data.asset_url+'noimage.jpg'
+			if(value.featured_image != null)
+			{
+			  image = gema.resizeImage(value.featured_image.src,'large');
+              image_content = '<a href="/products/'+value.handle+'"><img alt="'+value.title+'" src="'+image+'"></a>';
+			}
+			if(value.price < value.compare_at_price)
+            {
+				if(value.compare_at_price != null)
+				{
+				  compare_at_price = '<s class="tb-product-compare-price tb-compare-at-price-'+value.id+'">'+snappy.Currency.formatMoney(value.compare_at_price, data['money_format'])+'</s>';
+				}
+			}
+          	if(data.quickv > 0)
+            {
+              buttons = '<div class="tb-content-button-add-to-cart"><a class="tb-button-add-to-cart btn" href="javascript:void(0);">Add to cart</a><a href="/products/'+value.handle+'" class="tb-button-details btn btn--secondary" href="javascript:void(0);">Details</a></div>';
+              image_content = '<img alt="'+value.title+'" src="'+image+'">';
+            }
+			tb = tb.concat('<li class="tb-product product-'+value.id+'">\
+			<div class="tb-apolomultimedia-data-product" data-id="'+value.id+'" data-handle="'+value.handle+'"></div>\
+			<div class="tb-product-inner-snappy-filter tb-content-hover">\
+			  <div class="tb-content-image-turbofilter">\
+				'+image_content+'\
+			  </div>\
+			  '+content_images_thumb+'\
+			  <div class="tb-product-card-details">\
+				<div class="tb-grid-view-item__title">'+value.title+'</div>\
+				  <div class="tb-grid-view-item__meta">\
+					'+compare_at_price+'\
+					<span class="tb-product-price__price tb-price-'+value.id+' product-price__sale">\
+						<span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
+				    </span>\
+				</div>\
+			  </div>\
+			  <div class="tb-content-swatches-cn tb-swatch-products-'+value.id+'"></div>\
+			  '+buttons+'\
+			</div>\
+			<div class="tb-product-inner-snappy-filter tb-content-static">\
+			  <div class="tb-content-image-turbofilter">\
+				'+image_content+'\
+			  </div>\
+			  <div class="tb-product-card-details">\
+				<div class="tb-grid-view-item__title">'+value.title+'</div>\
+				  <div class="tb-grid-view-item__meta">\
+					'+compare_at_price+'\
+					<span class="tb-product-price__price tb-price-'+value.id+' product-price__sale">\
+						<span class="tb-product__price">'+snappy.Currency.formatMoney(value.price, data['money_format'])+'</span>\
+				    </span>\
+				</div>\
+			  </div>\
+			</div>\
+			</li>');
+		});
+ 	  paginateTop = '<div class="tb-content-paginate tb-top" data-pisition="top">'+json.paginate+'</div>';
+      paginateBottom = '<div class="tb-content-paginate tb-bottom" data-pisition="bottom">'+json.paginate+'</div>';
+      gema.loadContent(paginateTop+'<ul class="tb-products-content">'+tb+'</ul>'+paginateBottom);
+      gema.addStyle(json);
+	}else{
+        gema.loadContent('<div class="tb-no-products-found">No products found</div>');
+    }
+  },
+  addStyle:function(){
+    $('#load-ajax-products').css('width','80%');
+    $('#load-ajax-products').css('display','inline-block');
+    $('#load-ajax-products').css('float','left');
+  },
+  loadContent:function(result){
+    $('#load-ajax-products').html(result);
+  },
+  resizeImage:function(t, r) {
+    try {
+        if ("original" == r) return t;
+        var e = t.match(/(.*\/[\w\-\_\.]+)\.(\w{2,4})/);
+        return e[1] + "_" + r + "." + e[2]
+    } catch (r) {
+        return t
+    }
+  },
+}

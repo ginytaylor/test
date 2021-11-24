@@ -1,0 +1,54 @@
+   	$(function() {
+      var addIdFunction = function () {
+        console.log('abc');
+	        
+		          let idField = `<div class="field__input-wrapper custom" id="id-number-field"><label class="field__label field__label--visible" for="identity-card">Identity Card*</label>
+<input placeholder="ID*" value="{{cart.attributes["Identity Card"] }}" autocorrect="off"  class="field__input" aria-required="true" type="text" name="checkout[attributes][Identity Card]" id="identity-card">
+      <span class="custom-error">請輸入正確的身份證號碼</span>      
+      </div>`;
+          $('.section--shipping-address').append(idField)      
+      
+      }
+
+          let valid_url = '/apps/shopify_func/validate_id';
+          	
+            $(document)
+            .on('change', '#identity-card', function() {
+            	const self = $(this);
+                self.data('is-valid', false);
+            })
+            .on('submit.validate-id', '.edit_checkout', function(e) {
+              const idInput = $('#identity-card');
+              const field = idInput.closest('.field__input-wrapper ');
+              const form = $(this);
+              if(idInput.data('is-valid') || Shopify.Checkout.step !== 'contact_information') {
+                return;
+              }
+              e.preventDefault();
+              try {
+              	$.ajax({
+                  type: 'GET',
+                  url: valid_url,
+                  data: {
+                    idNumber: idInput.val()
+                  },
+                  crossDomain: true,
+                  success: function(data) {
+                    field[!!data ? 'removeClass' : 'addClass']('field--error ');
+                    idInput.data('is-valid', !!data);
+                    if(!!data) {
+                      form.submit();
+                    }
+                  }
+              	})
+              }catch(e) {
+                console.log(e);
+              }
+
+            });
+          
+addIdFunction()
+  $(document).on("page:change", function() {
+    addIdFunction();
+  });
+          });

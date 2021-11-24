@@ -1,0 +1,22 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<script>
+$(function() {
+  {%if is_collection == true%}
+  	const add_to_cart_btn = $('product_form_{{product.id}}');
+    
+  {%else%}
+  	const add_to_cart_btn = $('.ProductForm__AddToCart');
+  {%endif%}
+  	const country_name = localStorage.getItem('country_name');
+    const product_tags = `{{product.tags}}`;
+  
+  let canAddToCart = false;
+  if(!add_to_cart_btn.length && !product_tags) {
+    return ;
+  }
+  if(product_tags.match(country_name)) {
+  add_to_cart_btn.hide();
+    console.log(add_to_cart_btn);
+  }
+    
+});
+</script>

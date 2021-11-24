@@ -1,0 +1,33 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<style>
+  .loading-turbo-filter-svg {
+    min-height: 300px;
+    width:100%;
+	position: relative;
+	max-height: 150px;
+  }
+  .loading-turbo-filter-svg img.tb-loading-products {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .loading-turbo-filter-svg img {
+    max-width: 40px;
+  }
+</style>
+<div id="snappy_filter_wrapper">
+  <div class="load-ajax-snappy-filter" style="display:none;"></div>
+  <input type="hidden" name="collection_filter" value="{{ collection.handle }}" id="collection_filter"/>
+  <div id="snappy_filter__filters">
+    <span class="tb-sidebar-close" style="display:none;"><img src="https://api.apolomultimedia-server3.info/assets/images/tb-cancel.png" /></span>
+    <div id="filter-b-tags"></div>
+    <div id="filter_container_collections"></div>
+  </div>
+  <div id="snappy_filter-results__wrapper">
+    <div id="load-ajax-products">
+      <div class="loading-turbo-filter-svg">
+        <img src="//api.apolomultimedia-server3.info/assets/images/tb-loading-products.gif" class="tb-loading-products" />
+      </div>
+    </div>
+  </div>
+</div>

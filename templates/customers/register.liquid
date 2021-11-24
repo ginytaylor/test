@@ -1,72 +1,250 @@
-<div class="page-width">
-  <div class="grid">
-    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
 
-      <div class="form-vertical">
+<section data-section-id="reset-password" data-section-type="reset-password">
+  <div class="Container">
+    <div class="PageContent PageContent--fitScreen PageContent--extraNarrow">
+      {%- form 'create_customer', name: 'create_customer', class: 'Form Form--spacingTight', id: 'create_customer' -%}
+        <header class="Form__Header">
+          <h1 class="Form__Title Heading u-h1">{% comment %}ly_i18n_replace_for_[ 'customer.register.title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346996' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h1>
+          <p class="Form__Legend">{% comment %}ly_i18n_replace_for_[ 'customer.register.description' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.description' | t }}{% endcapture %}{% include 'ly-static-string' with '16346997' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+        </header>
 
-        <h1 class="text-center">{{ 'customer.register.title' | t }}</h1>
+        <script src='//open-signin.okasconcepts.com/customer/script?shop=ffhk.myshopify.com'></script>
+{%- if form.errors -%}
+          <div class="Form__Alert Alert Alert--error">
+            <ul class="Alert__ErrorList">
+              {%- for field in form.errors -%}
+                {%- if field == 'form' -%}
+                  <li class="Alert__ErrorItem">{{ form.errors.messages[field] }}</li>
+                {%- else -%}
+                 {%- if form.errors.translated_fields[field] == 'email' -%}
+                   <li class="Alert__ErrorItem"><ly-as-17006480>電子郵件無效</ly-as-17006480></li>
+                  {%- else -%}
+                  <li class="Alert__ErrorItem"><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
+                 {%- endif -%}  
+              {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        <!-- customer errors -->
+        <div id="customer-error-first-name">
+          <div class="Form__Alert Alert Alert--error">
+            <ul class="Alert__ErrorList">
+                  <li class="Alert__ErrorItem"> <ly-as-17006481>請填寫您的名字</ly-as-17006481></li>
+            </ul>
+          </div>
+        </div>
 
-        {%- assign formId = 'RegisterForm' -%}
-        {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
-          {% include 'form-status', form: form, form_id: formId %}
+        <div id="customer-error-last-name">
+          <div class="Form__Alert Alert Alert--error">
+            <ul class="Alert__ErrorList">
+                  <li class="Alert__ErrorItem"><ly-as-17006482>請填寫您的姓氏</ly-as-17006482></li>
+            </ul>
+          </div>
+        </div>
 
-          <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
-          <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
+        <div id="customer-error-password">
+          <div class="Form__Alert Alert Alert--error">
+            <ul class="Alert__ErrorList">
+                  <li class="Alert__ErrorItem"><ly-as-17006483>請確認密碼：5個字符或更長</ly-as-17006483></li>
+            </ul>
+          </div>
+        </div>
 
-          <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
-          <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
+        <div class="Form__Item">
+          <input id="customer-first-name" type="text" class="Form__Input" name="customer[first_name]" aria-label="{% comment %}ly_i18n_replace_for_[ 'customer.register.first_name' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.first_name' | t }}{% endcapture %}{% include 'ly-static-string' with '16346998' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" placeholder="{% comment %}ly_i18n_replace_for_[ 'customer.register.first_name' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.first_name' | t }}{% endcapture %}{% include 'ly-static-string' with '16346998' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" autofocus>
+          <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'customer.register.first_name' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.first_name' | t }}{% endcapture %}{% include 'ly-static-string' with '16346998' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+        </div>
 
-          <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
-          <input
-            type="email"
-            name="customer[email]"
-            id="{{ formId }}-email"
-            class="{% if form.errors contains 'email' %} input--error{% endif %}"
-            {% if form.email %} value="{{ form.email }}"{% endif %}
-            autocorrect="off"
-            autocapitalize="off"
-            autocomplete="email"
-            aria-required="true"
-            {%- if form.errors contains 'email' -%}
-              class="input--error"
-              aria-invalid="true"
-              aria-describedby="{{ formId }}-email-error"
-            {%- endif -%}
-          >
-          {%- if form.errors contains 'email' -%}
-            <span id="{{ formId }}-email-error" class="input-error-message">
-              <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-              {% include 'icon-error' %}
-              <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-            </span>
-          {%- endif -%}
+        <div class="Form__Item">
+          <input id="customer-last-name" type="text" class="Form__Input" name="customer[last_name]" aria-label="{% comment %}ly_i18n_replace_for_[ 'customer.register.last_name' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.last_name' | t }}{% endcapture %}{% include 'ly-static-string' with '16346999' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" placeholder="{% comment %}ly_i18n_replace_for_[ 'customer.register.last_name' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.last_name' | t }}{% endcapture %}{% include 'ly-static-string' with '16346999' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}">
+          <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'customer.register.last_name' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.last_name' | t }}{% endcapture %}{% include 'ly-static-string' with '16346999' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+        </div>
 
-          <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>
-          <input
-            type="password"
-            name="customer[password]"
-            id="{{ formId }}-password"
-            class="{% if form.errors contains 'password' %} input--error{% endif %}"
-            aria-required="true"
-            {%- if form.errors contains 'password' -%}
-              class="input--error"
-              aria-invalid="true"
-              aria-describedby="{{ formId }}-password-error"
-            {%- endif -%}
-          >
-          {%- if form.errors contains 'password' -%}
-            <span id="{{ formId}}-password-error" class="input-error-message">
-              {% include 'icon-error' %}
-              <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
-            </span>
-          {%- endif -%}
+        <div class="Form__Item Bd_row" >
+          <p><ly-as-17006484>生日</ly-as-17006484></p>
+          <select name="customer[note][day]" class="Form__Input Bdday" id="dobday"></select>
+          <select name="customer[note][month]" class="Form__Input Bdmonth" id="dobmonth"></select>
+          <select name="customer[note][year]" class="Form__Input Bdyear" id="dobyear"></select>
+        </div>
 
-          <p class="text-center">
-            <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
-          </p>
+        <div class="Form__Item">
+          <input id="customer-email" oninvalid="this.setCustomValidity('請填寫此字段')" type="email" class="Form__Input" name="customer[email]" aria-label="{% comment %}ly_i18n_replace_for_[ 'customer.register.email' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.email' | t }}{% endcapture %}{% include 'ly-static-string' with '16347000' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" placeholder="{% comment %}ly_i18n_replace_for_[ 'customer.register.email' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.email' | t }}{% endcapture %}{% include 'ly-static-string' with '16347000' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" required="required">
+          <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'customer.register.email' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.email' | t }}{% endcapture %}{% include 'ly-static-string' with '16347000' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+        </div>
 
-        {% endform %}
-      </div>
+        <div class="Form__Item">
+          <input id="customer-password" type="password" class="Form__Input" name="customer[password]" aria-label="{% comment %}ly_i18n_replace_for_[ 'customer.register.password' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.password' | t }}{% endcapture %}{% include 'ly-static-string' with '16347001' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" placeholder="{% comment %}ly_i18n_replace_for_[ 'customer.register.password' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.password' | t }}{% endcapture %}{% include 'ly-static-string' with '16347001' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}" required="required">
+          <label class="Form__FloatingLabel">{% comment %}ly_i18n_replace_for_[ 'customer.register.password' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.password' | t }}{% endcapture %}{% include 'ly-static-string' with '16347001' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</label>
+        </div>
+
+        <div class="Form__Item">
+          <input id="vip-input" type="text" class="Form__Input" name="vip-number" aria-label="vip-number" placeholder="VIP號碼（可選）">
+          <p id="contact-text"><ly-as-16346992>Please contact us if you have an issue concerning your VIP number on the</ly-as-16346992> <strong><a class="Link Link--secondary" href="/pages/contact-us"><ly-as-16346993>contact us page</ly-as-16346993></a></strong></p>
+          <label id="vip-label" class="Form__FloatingLabel"><ly-as-16346994>VIP number</ly-as-16346994></label>
+          <a id="vip-forgot" href="/pages/contact-us" class="Link Link--secondary"><ly-as-17006485>忘記了VIP號碼？</ly-as-17006485></a>
+        </div>
+
+        
+
+        <input id="tag-customer" type="hidden" id="customer_tags" name="customer[tags]" value=""/>
+
+        <button id="vip-submit" type="submit" class="Form__Submit Button Button--primary Button--full">{% comment %}ly_i18n_replace_for_[ 'customer.register.submit' | t ]_begin{% endcomment %}{% capture ly_template %}{{ 'customer.register.submit' | t }}{% endcapture %}{% include 'ly-static-string' with '16347002' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</button>
+      {%- endform -%}
     </div>
   </div>
-</div>
+</section>
+
+<script src="{% comment %}ly_asset_replace_for_[ 'dobpicker.js' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'dobpicker.js' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}"> </script>
+<script>
+			$(document).ready(function() {
+				$.dobPicker({
+					daySelector: '#dobday', /* Required */
+					monthSelector: '#dobmonth', /* Required */
+					yearSelector: '#dobyear', /* Required */
+					dayDefault: '日', /* Optional */
+					monthDefault: '月', /* Optional */
+					yearDefault: '年', /* Optional */
+					minimumAge: 12, /* Optional */
+					maximumAge: 80 /* Optional */
+				});
+			});
+		</script>
+
+<script>
+$("#customer-error-first-name").hide();
+$("#customer-error-last-name").hide();
+$("#customer-error-password").hide();
+var fieldsFilled = false
+
+$("input").on("keyup", function() {
+    if ($("#customer-first-name").val() != "" && $("#customer-last-name").val() != "" && $("#customer-password").val().length >= 5 && $("#customer-email").val() != "" ) {
+        // $("button").prop('disabled', false)
+      fieldsFilled = true
+      console.log(fieldsFilled)
+    } else {
+      // $("button").prop('disabled', true)
+      fieldsFilled = false
+    }
+});
+
+var counter = 0
+$("#contact-text").hide();
+// if the vip field is not empty
+  $("#vip-submit").click(function(e){ // after click submit
+    $("#customer-error-first-name").hide();
+    $("#customer-error-last-name").hide();
+    $("#customer-error-password").hide();
+    console.log(fieldsFilled)
+    if (fieldsFilled) {
+      var number = $('#vip-input').val();
+      e.preventDefault()
+      if (number !== '') {
+        var test = $.ajax({
+          url: `https://ffhk-vip.herokuapp.com/checkVipNumber?number=${number}`,
+          type: "GET"
+        }).done(function(res){
+          console.log(res)
+          console.log("success")
+          $("#tag-customer").val("VIP")
+          $("#create_customer").submit() // submit form
+        }).fail(function(res){
+          console.log(res)
+          console.log("failed")
+          alert("invalid VIP number")
+          // clear field
+          $('#vip-input').val("")
+          if (counter == 2) {
+            $("#vip-input").hide()
+            $("#vip-forgot").hide()
+            $("#vip-label").hide()
+            $("#contact-text").show();
+            $("#vip-button").prop('disabled', true)
+            // window.location.replace("https://hkfrancfranc.myshopify.com/pages/contact");
+          }
+          counter++;
+          // $("#create_customer").submit()
+        })
+      } else {
+        $("#create_customer").submit()
+      }
+    } else {
+      // forms not filled
+      // check first name 
+      if ($('#customer-first-name').val() === '') {
+        e.preventDefault()
+        $("#customer-error-first-name").show();
+      } 
+      // check last name
+      if ($('#customer-last-name').val() === '') {
+        e.preventDefault()
+        $("#customer-error-last-name").show();
+      } 
+      // check password
+      if ($('#customer-password').val().length < 5) {
+        e.preventDefault()
+        $("#customer-error-password").show();
+      } 
+    }
+
+  })
+
+
+
+
+
+/*
+function myFunc() {
+  var number = $('#vip-input').val();
+  var flag = false
+  console.log("myFunc", number, flag)
+  var test = $.ajax({
+    url: `https://ffhk-vip.herokuapp.com/checkVipNumber?number=${number}`,
+    type: "GET"
+  }).done(function(res){
+    console.log(res)
+    $("#tag-customer").val("VIP")
+    flag = true
+  }).fail(function(res){
+    console.log(res)
+    console.log("failed")
+  })
+  console.log(flag)
+
+  test.done(function(res) {
+    console.log(res)
+    flag = true
+
+  })
+  return flag
+    
+    success: function(result){
+      alert("verified VIP number")
+      $("#tag-customer").val("VIP")
+      $("#vip-submit").prop('disabled', false)
+    },
+    error: function(result){
+      alert("invalid VIP number")
+      $("#vip-input").val('');
+      $("#vip-button").hide();
+      $("#vip-forgot").show();
+      $("#vip-cancel").hide();
+      $("#vip-submit").prop('disabled', false)
+      if (counter == 2) {
+        $("#vip-input").attr("placeholder", "please contact us");
+        $("#vip-button").prop('disabled', true)
+        // window.location.replace("https://hkfrancfranc.myshopify.com/pages/contact");
+      }
+      counter++;
+    }
+  });
+  
+};
+
+$("#create_customer").submit(function(e){
+  // e.preventDefault()
+  return myFunc()
+});
+*/
+</script>

@@ -1,0 +1,89 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}
+{%- comment -%}<ly-as-16346826>This snippet structures the micro-data using JSON-LD specification</ly-as-16346826>{%- endcomment -%}
+
+{%- if template.name == 'product' -%}
+  {%- capture main_entity_microdata -%}
+    "@type": "Product",
+    "offers": {
+      "@type": "Offer",
+      "availability": {%- if product.available -%}<ly-as-16346828>"InStock"</ly-as-16346828>{%- else -%}<ly-as-16346829>"OutOfStock"</ly-as-16346829>{%- endif -%},
+      "price": {{ product.price_min | money_without_currency | json }},
+      "priceCurrency": {{ shop.currency | json }}
+    },
+    "brand": {% comment %}ly_code_replace_for_[ product.vendor | json ]_begin{% endcomment %}{% include 'ly-vendor' with product %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "name": {% comment %}ly_code_replace_for_[ product.title | json ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "description": {% comment %}ly_code_replace_for_[ product.description | strip_html | json ]_begin{% endcomment %}{% include 'ly-description' with product %}{{ ly_translation | strip_html | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "category": {% comment %}ly_code_replace_for_[ product.type | json ]_begin{% endcomment %}{% include 'ly-type' with product %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "url": "{{ shop.url }}{{ product.url }}",
+    "sku": "{{ product.sku }}",
+    "review":"",
+    "aggregateRating":"",
+    "Product ID":"{{product.id}}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https:{{ product.featured_image | img_url: '1024x1024' }}",
+      "image": "https:{{ product.featured_image | img_url: '1024x1024' }}",
+      "name": {{ product.featured_image.alt | json }},
+      "width": 1024,
+      "height": 1024
+    }
+  {%- endcapture -%}
+{%- elsif template.name == 'article' -%}
+  {%- capture main_entity_microdata -%}
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "{{ article.url }}",
+    "articleSection": {% comment %}ly_code_replace_for_[ blog.title | json ]_begin{% endcomment %}{% include 'ly-title' with blog %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "keywords": "{{ article.tags | join: ', ' }}",
+    "headline": {% comment %}ly_code_replace_for_[ article.title | json ]_begin{% endcomment %}{% include 'ly-title' with article %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "description": {% comment %}ly_code_replace_for_[ article.excerpt_or_content | strip_html | truncatewords: 25 | json ]_begin{% endcomment %}{% include 'ly-excerpt_or_content' with article %}{{ ly_translation | strip_html | truncatewords: 25 | json }}{% comment %}ly_code_replace_end{% endcomment %},
+    "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%T' }}",
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+    "dateModified": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https:{{ article.image | img_url: '1024x1024' }}",
+      "image": "https:{{ article.image | img_url: '1024x1024' }}",
+      "name": {{ article.image.alt | json }},
+      "width": 1024,
+      "height": 1024
+    },
+    "author": {
+      "@type": "Person",
+      "name": "{{ article.user.first_name | escape }} {{ article.user.last_name | escape }}",
+      "givenName": {{ article.user.first_name | json }},
+      "familyName": {{ article.user.last_name | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ langify_shop_name | json }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https:{% comment %}ly_asset_replace_for_[ 'logo.png' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'logo.png' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}",
+        "image": "https:{% comment %}ly_asset_replace_for_[ 'logo.png' | asset_url ]_begin{% endcomment %}{% assign ly_asset = 'logo.png' %}{% include 'ly-asset' with ly_asset %}{{ ly_translation  }}{% comment %}ly_asset_replace_end{% endcomment %}",
+        "name": {{ langify_shop_name | json }},
+        "width": 100,
+        "height": 100
+      }
+    },
+    "commentCount": {{ article.comments_count }},
+    "comment": [
+      {%- for comment in article.comments limit: 5 -%}
+        {
+          "@type": "Comment",
+          "author": {{ comment.author | json }},
+          "datePublished": "{{ comment.created_at | date: '%Y-%m-%dT%T' }}",
+          "text": {% comment %}ly_code_replace_for_[ comment.content | json ]_begin{% endcomment %}{% include 'ly-content' with comment %}{{ ly_translation | json }}{% comment %}ly_code_replace_end{% endcomment %}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  {%- endcapture -%}
+{%- endif -%}
+
+{% if main_entity_microdata != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    {{ main_entity_microdata }}
+  }
+  </script>
+{% endif %}

@@ -1,9 +1,7 @@
-<div class="page-width">
-  <div class="empty-page-content text-center">
-    <h1>{{ 'general.404.title' | t }}</h1>
-    <p>{{ 'general.404.subtext' | t }}</p>
-    <p>
-      <a href="{{ routes.root_url }}" class="btn btn--has-icon-after">{{ 'general.404.link' | t }}{% include 'icon-arrow-right' %}</a>
-    </p>
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}<div class="EmptyState">
+  <div class="Container">
+    <h3 class="EmptyState__Title Heading u-h5">{% comment %}ly_i18n_replace_for_[ '404.general.title' | t ]_begin{% endcomment %}{% capture ly_template %}{{ '404.general.title' | t }}{% endcapture %}{% include 'ly-static-string' with '16346879' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</h3>
+    <p class="EmptyState__Description Text--subdued">{% comment %}ly_i18n_replace_for_[ '404.general.content' | t ]_begin{% endcomment %}{% capture ly_template %}{{ '404.general.content' | t }}{% endcapture %}{% include 'ly-static-string' with '16346880' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</p>
+    <a href="/" class="EmptyState__Action Button Button--primary">{% comment %}ly_i18n_replace_for_[ '404.general.button' | t ]_begin{% endcomment %}{% capture ly_template %}{{ '404.general.button' | t }}{% endcapture %}{% include 'ly-static-string' with '16346881' %}{% if ly_translation %}{% assign escape_content = true %}{% assign ly_template = ly_translation %}{% else %}{% assign escape_content = false %}{% endif %}{% if escape_content %}{{ ly_template | escape}}{% else %}{{ ly_template }}{% endif %}{% comment %}ly_i18n_replace_end{% endcomment %}</a>
   </div>
 </div>

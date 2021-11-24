@@ -1,0 +1,136 @@
+{% comment %}ly_global_begin{% endcomment %}{% include 'ly-global' %}{% comment %}ly_global_end{% endcomment %}{% layout none %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<div class="tb-quickview-wrapper" id="ProductSection-{{ product.id }}" >
+  <div class="tb-quickview-content">
+    <div class="tb-quickview-left tb-quickview-product-thumbs">
+
+      <div class="tb-quickview-featured-image-wrapper">
+        <img class="tb-feature-row__image" src="{{ product.featured_image  | img_url: '1024x1024' }}" data-src="{{ product.featured_image | img_url: '1024x1024' }}">
+		<div class="image-hidden" style="display:none;">
+          {% if product.images.size > 1 %}
+              {% for image in product.images %}
+                 <img src="{{ image.src  | img_url: '1024x1024' }}" data-src="{{ image.src | img_url: '1024x1024' }}">
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      {% if product.images.size > 1 %}
+      <div class="tb-quickview-product-thumbs-list">
+        <button type="button" class="tb-thumbnails-slider__prev--{{ product.id }}" style="display:none;">
+			<svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 284.49 498.98"><defs><style>.cls-1{fill:#231f20}</style></defs><path class="cls-1" d="M437.67 129.51a35 35 0 0 1 24.75 59.75L272.67 379l189.75 189.74a35 35 0 1 1-49.5 49.5L198.43 403.75a35 35 0 0 1 0-49.5l214.49-214.49a34.89 34.89 0 0 1 24.75-10.25z" transform="translate(-188.18 -129.51)"/></svg>
+          	<span class="tb-icon__fallback-text"><ly-as-16347022>Previous</ly-as-16347022></span>
+        </button>
+        <ul class="tb-product-single__thumbnails-{{ product.id }}">
+          {% for image in product.images %}
+          <li class="tb-product-single__thumbnails-item">
+            <a href="{{ image.src | img_url: '1024x1024' }}" class="tb-product-single__thumbnail--{{ product.id }}{% if forloop.index == 1 %} active{% endif %}" data-thumbnail-id="{{ image.id }}">
+              <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '110x110', scale: 2 }}" alt="{{ image.alt | escape }}">
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <button type="button" class="tb-thumbnails-slider__next--{{ product.id }}" style="display:none;">
+		  <svg aria-hidden="true" focusable="false" role="presentation" viewBox="0 0 284.49 498.98"><defs><style>.cls-1{fill:#231f20}</style></defs><path class="cls-1" d="M223.18 628.49a35 35 0 0 1-24.75-59.75L388.17 379 198.43 189.26a35 35 0 0 1 49.5-49.5l214.49 214.49a35 35 0 0 1 0 49.5L247.93 618.24a34.89 34.89 0 0 1-24.75 10.25z" transform="translate(-188.18 -129.51)"/></svg>
+          <span class="tb-icon__fallback-text"><ly-as-16347023>Next</ly-as-16347023></span>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="tb-quickview-right product-details">
+      <div class="tb-product-single__meta">
+        <h1 class="tb-product-single__title">{% comment %}ly_code_replace_for_[ product.title ]_begin{% endcomment %}{% include 'ly-title' with product %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}</h1>
+	    <div class="tb-view-product-description">
+            <a href="/products/{{ product.handle }}"><ly-as-16347024>View Product Description</ly-as-16347024></a>
+        </div>
+        <div class="tb-quickview-description">
+          <p class="product-single__price product-single__price-{{ product.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+            {% if current_variant.compare_at_price > current_variant.price %}
+                <s id="ComparePrice-{{ product.id }}">{{ current_variant.compare_at_price | money }}</s>
+                <span class="tb-product-price__sale product-price__sale--single">
+                  <span id="ProductPrice-{{ product.id }}"
+                    itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                    {{ current_variant.price | money }}
+                  </span>
+                  <span class="tb-product-price__sale-label tb-product-price__sale-label-{{ product.id }}">{{ 'products.product.on_sale' | t }}</span>
+                </span>
+            {% else %}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s id="ComparePrice-{{ product.id }}" class="hide">{{ current_variant.compare_at_price | money }}</s>
+              <span class="product-price__price product-price__price-{{ product.id }}">
+                <span id="ProductPrice-{{ product.id }}"
+                  itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+                  {{ current_variant.price | money }}
+                </span>
+                <span class="product-price__sale-label product-price__sale-label-{{ product.id }} hide">{{ 'products.product.on_sale' | t }}</span>
+              </span>
+            {% endif %}
+          </p>
+
+          <form action="/cart/add" method="post" enctype="multipart/form-data" data-id="{{ product.id }}" class="tb-product-form product-form-{{ product.id }}">
+            <div class="tb-content-selector-wrapper">
+			{% assign variantDefault = 0 %}
+            {% unless product.has_only_default_variant %}
+              {% for option in product.options_with_values %}
+                <div class="tb-selector-wrapper">
+                  <label>
+                    {{ option.name }}
+                  </label>
+                  <select class="tb-single-option-selector tb-single-option-selector-{{ product.id }} tb-product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                    {% for value in option.values %}
+                      <option value="{{ value | escape | handle}}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+			  {% assign variantDefault = 1 %}
+            {% endunless %}
+			{% if variantDefault == 0 %}
+				  {% for option in product.options_with_values %}
+					<div class="tb-selector-wrapper"{% if option.name != 'Default Title' %} style="display:none;"{% endif %}>
+					  <label>
+						{{ option.name }}
+					  </label>
+					  <select class="tb-single-option-selector tb-single-option-selector-{{ product.id }} tb-product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+						{% for value in option.values %}
+						  <option value="{{ value | escape | handle}}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+						{% endfor %}
+					  </select>
+					</div>
+				  {% endfor %}
+			{% endif %}
+            </div>
+            <select name="id" id="ProductSelect-{{ product.id }}" data-section="{{ product.id }}" class="tb-product-form__variants" style="display:none;">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option title="{{ variant.title | handle }}" data-available="{{variant.available}}" data-price="{{ variant.price | money}}" data-compareprice="{{ variant.compare_at_price | money}}" data-src="{{variant.featured_image.src | img_url: '1024x1024' }}" {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                    {% comment %}ly_code_replace_for_[ variant.title ]_begin{% endcomment %}{% include 'ly-title' with variant %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %}
+                  </option>
+                {% else %}
+                  <option disabled="disabled" title="{{ variant.title | handle }}" data-available="{{variant.available}}" data-price="{{ variant.price | money}}" data-compareprice="{{ variant.compare_at_price | money}}" data-src="{{variant.featured_image.src | img_url: '1024x1024' }}">{% comment %}ly_code_replace_for_[ variant.title ]_begin{% endcomment %}{% include 'ly-title' with variant %}{{ ly_translation }}{% comment %}ly_code_replace_end{% endcomment %} - {{ 'products.product.sold_out' | t }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+              <div class="tb-product-form__item tb-product-form__item--quantity">
+                <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                <input type="number" id="Quantity" name="quantity" value="1" min="1" class="tb-product-form__input" pattern="[0-9]*">
+              </div>
+            <div class="tb-product-form__item tb-product-form__item--submit">
+              <button type="submit" name="add" id="AddToCart-{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="tb-product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} tb-product-form__cart-submit--small{% endif %}">
+                <span id="AddToCartText-{{ product.id }}">
+                  {% unless current_variant.available %}
+                    <ly-as-16347025>Sold Out</ly-as-16347025>
+                  {% else %}
+                    <ly-as-16347026>Add to cart</ly-as-16347026>
+                  {% endunless %}
+                </span>
+              </button>
+            </div>
+          </form>
+
+        </div>
+        <textarea id="product_json" style="display:none;">{{ product | json }}</textarea>
+      </div>
+    </div>
+  </div>
+</div>
