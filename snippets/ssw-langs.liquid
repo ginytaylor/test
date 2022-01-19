@@ -1,27 +1,20 @@
-    {% comment %}
-/**************************************************
-* DO NOT MODIFY THIS FILE!!!                      *
-* IT WILL BE OVERWRITTEN BY UPDATES FROM GROWAVE! *
-**************************************************/
-{% endcomment %}
-
   sswLangs.data = {
     "reward_not_enough_points": {{ shop.metafields.ssw.lang.reward_not_enough_points|json }},
     "redeem_flexible_for_points": {{ shop.metafields.ssw.lang.redeem_flexible_for_points|json }},
     "fave_view_product": {{ shop.metafields.ssw.lang.fave_view_product|json }},
     "checkout":{{ shop.metafields.ssw.lang.checkout|json }},
-    "sold_out":{{ "socialshopwave.sold_out"|t|json }},
-    "add_to_cart":{{ "socialshopwave.add_to_cart"|t|json }},
+    "sold_out":{{ shop.metafields.ssw.lang.sold_out|json }},
+    "add_to_cart":{{ shop.metafields.ssw.lang.add_to_cart|json }},
     "view_more":{{ shop.metafields.ssw.lang.view_more|json }},
     "cancel":{{ shop.metafields.ssw.lang.cancel|json }},
     "pending":{{ shop.metafields.ssw.lang.pending|json }},
     "follow":{{ shop.metafields.ssw.lang.follow|json }},
-    "fave":{{ "socialshopwave.fave"|t|json }},
-    "faved":{{ "socialshopwave.faved"|t|json }},
+    "fave":{{ shop.metafields.ssw.lang.fave|json }},
+    "faved":{{ shop.metafields.ssw.lang.faved|json }},
     "fave_icon":{{ shop.metafields.ssw.lang.fave_icon|json }},
     "faved_icon":{{ shop.metafields.ssw.lang.faved_icon|json }},
     "my_faves":{{ shop.metafields.ssw.lang.my_faves|json }},
-    "unfave":{{ "socialshopwave.unfave"|t|json }},
+    "unfave":{{ shop.metafields.ssw.lang.unfave|json }},
     "untitled_favelist":{{ shop.metafields.ssw.lang.untitled_favelist|json }},
     "drop_to_add":{{ shop.metafields.ssw.lang.drop_to_add|json }},
     "add_new_favelist":{{ shop.metafields.ssw.lang.add_new_favelist|json }},
@@ -103,8 +96,8 @@
     "a_year":{{ shop.metafields.ssw.lang.a_year|json }},
     "quantity_years":{{ shop.metafields.ssw.lang.quantity_years|json }},
     "successfully_shared_faves":{{ shop.metafields.ssw.lang.successfully_shared_faves|json }},
-    "quantity_review2":{{ "socialshopwave.quantity_review2"|t|json }},
-    "quantity_reviews2":{{ "socialshopwave.quantity_reviews2"|t|json }},
+    "quantity_review2":{{ shop.metafields.ssw.lang.quantity_review2|json }},
+    "quantity_reviews2":{{ shop.metafields.ssw.lang.quantity_reviews2|json }},
     "this_email_is_already_used":{{ shop.metafields.ssw.lang.this_email_is_already_used|json }},
     "incorrect_data":{{ shop.metafields.ssw.lang.incorrect_data|json }},
     "tumblr_user_not_found":{{ shop.metafields.ssw.lang.tumblr_user_not_found|json }},
@@ -164,5 +157,6 @@
     "go_to_wishlist_page": {{ shop.metafields.ssw.lang.go_to_wishlist_page|json }},
     "list_name_limit": {{ shop.metafields.ssw.lang.list_name_limit|json }},
     "review_token_expired": {{ shop.metafields.ssw.lang.review_token_expired|json }},
-    "view_on_instagram": {{ shop.metafields.ssw.lang.view_on_instagram|json }}
+    "view_on_instagram": {{ shop.metafields.ssw.lang.view_on_instagram|json }},
+    "login_required_to_review": {{ shop.metafields.ssw.lang.login_required_to_review|json }}
 };
