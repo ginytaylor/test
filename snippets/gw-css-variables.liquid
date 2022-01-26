@@ -1,9 +1,3 @@
-{% comment %}
-/**************************************************
-* DO NOT MODIFY THIS FILE!!!                      *
-* IT WILL BE OVERWRITTEN BY UPDATES FROM GROWAVE! *
-**************************************************/
-{% endcomment %}
 <style>
   @font-face {
     font-family: "Ssw Fontello";
@@ -82,14 +76,17 @@
     {% if shop.metafields.ssw.css_variables.ssw_lb_color %}
       --gw_lb_color:{{ shop.metafields.ssw.css_variables.ssw_lb_color }};
     {% endif %}
+    {% if shop.metafields.ssw.css_variables.ssw_lb_color_for_tab %}
+      --gw_lb_color_for_tab:{{ shop.metafields.ssw.css_variables.ssw_lb_color_for_tab }};
+    {% endif %}
     {% if shop.metafields.ssw.css_variables.ssw_lb_bg_color %}
       --gw_lb_bg_color:{{ shop.metafields.ssw.css_variables.ssw_lb_bg_color }};
     {% endif %}
     {% if shop.metafields.ssw.css_variables.ssw_lb_hover_bg_color %}
       --gw_lb_hover_bg_color:{{ shop.metafields.ssw.css_variables.ssw_lb_hover_bg_color }};
     {% endif %}
-    {% if shop.metafields.ssw.css_variables.ssw_lb_hover_bg_color_star %}
-      --gw_lb_hover_bg_color_star:{{ shop.metafields.ssw.css_variables.ssw_lb_hover_bg_color_star }};
+    {% if shop.metafields.ssw.css_variables.ssw_review_rating_color %}
+      --gw_review_rating_color:{{ shop.metafields.ssw.css_variables.ssw_review_rating_color }};
     {% endif %}
     {% if shop.metafields.ssw.css_variables.ssw_lb_hover_bg_color_fave %}
       --gw_lb_hover_bg_color_fave:{{ shop.metafields.ssw.css_variables.ssw_lb_hover_bg_color_fave }};
@@ -99,6 +96,9 @@
     {% endif %}
     {% if shop.metafields.ssw.css_variables.ssw_lb_bg_color_text_fave %}
       --gw_lb_bg_color_text_fave:{{ shop.metafields.ssw.css_variables.ssw_lb_bg_color_text_fave }};
+    {% endif %}
+    {% if shop.metafields.ssw.css_variables.ssw_lb_bg_color_text_fave_for_tab %}
+      --gw_lb_bg_color_text_fave_for_tab:{{ shop.metafields.ssw.css_variables.ssw_lb_bg_color_text_fave_for_tab }};
     {% endif %}
     {% if shop.metafields.ssw.css_variables.ssw_cm_bg_color %}
       --gw_cm_bg_color:{{ shop.metafields.ssw.css_variables.ssw_cm_bg_color }};
@@ -174,6 +174,12 @@
     {% endif %}
     {% if shop.metafields.ssw.css_variables.show_rewards_tab_on_mobile %}
       --gw_show_rewards_tab_on_mobile:{{ shop.metafields.ssw.css_variables.show_rewards_tab_on_mobile }};
+    {% endif %}
+    {% if shop.metafields.ssw.css_variables.show_wishlist_tab_on_mobile %}
+      --gw_show_wishlist_tab_on_mobile:{{ shop.metafields.ssw.css_variables.show_wishlist_tab_on_mobile }};
+    {% endif %}
+    {% if shop.metafields.ssw.css_variables.show_reviews_tab_on_mobile %}
+      --gw_show_reviews_tab_on_mobile:{{ shop.metafields.ssw.css_variables.show_reviews_tab_on_mobile }};
     {% endif %}
     {% if shop.metafields.ssw.css_variables.login_my_itches %}
       --gw_login_my_itches:{{ shop.metafields.ssw.css_variables.login_my_itches }};
